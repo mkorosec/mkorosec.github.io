@@ -1,1 +1,160 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <style>
+            #map {
+                width: 100%;
+                height: 500px;
+            }
+            #form {
+                width: 70%;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <div id="map"></div>
+
+        <br/>
+        <div id="form">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputType" class="col-sm-2 control-label">Tip vremena</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputType" placeholder="Tip vremena" value="clear">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tmpMin" class="col-sm-2 control-label">Temperatura min</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="tmpMin" placeholder="Tmp min" value="20">
+                    </div>
+                    <label for="tmpMax" class="col-sm-2 control-label">Temperatura max</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="tmpMax" placeholder="Tmp max" value="30">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputZoom" class="col-sm-2 control-label">Zoom</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="inputZoom" placeholder="Zoom" value="100">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Išči</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <script>
+            function initializeMap() {
+                var mapCanvas = document.getElementById('map');
+                var mapOptions = {
+                    center: new google.maps.LatLng(46.555, 15.647),
+                    zoom: 8,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                var map = new google.maps.Map(mapCanvas, mapOptions);
+
+                map.addListener('center_changed', function(e) {
+                });
+
+                window.map = map;
+            }
+
+            function weatherRemoteCall() {
+                var bounds = map.getBounds();
+                var zoom = 1;
+                try {
+                    zoom = (+($('#inputZoom').val()));
+                } catch (err) {
+                }
+                //bbox bounding box [lat of the top left point, lon of the top left point, lat of the bottom right point, lon of the bottom right point, map zoom]
+                $.getScript('http://api.openweathermap.org/data/2.5/box/city?bbox=' + bounds.getNorthEast().lng() + ',' + bounds.getNorthEast().lat() + ',' + bounds.getSouthWest().lng() + ',' + bounds.getSouthWest().lat() + ',' + zoom + '&cluster=yes&callback=weatherCallback&units=metric&APPID=6046c80749db702bf168becc8757da06');
+            }
+
+            var markers = [];
+            function weatherCallback(response) {
+                if (markers.length > 0) {
+                    for (var i = 0; i < markers.length; i++) {
+                        markers[i].setMap(null);
+                    }
+                    markers = [];
+                }
+                var tmpMin = (+($("#tmpMin").val()));
+                var tmpMax = (+($("#tmpMax").val()));
+                var weatherType = $("#inputType").val().toLowerCase();
+
+                console.log('w: ', response);
+
+                var poi = [];
+
+                var l = response.list;
+                if (l !== null && l.length > 0) {
+                    var infowindow = new google.maps.InfoWindow({});
+                    
+                    for (var i = 0; i < l.length; i++) {
+                        var location = l[i];
+                        var _d = location.weather[0].description;
+                        var _m = location.weather[0].main;
+                        if ((_d !== undefined && _d !== null && _d.toLowerCase().indexOf(weatherType) > -1)
+                                || (_m !== undefined && _m !== null && _m.toLowerCase().indexOf(weatherType) > -1)) {
+                            console.log('poi: ', location);
+
+                            if (location.main.temp > tmpMin && location.main.temp < tmpMax) {
+
+                                var _marker = new google.maps.Marker({
+                                    map: map,
+                                    title: location.name,
+                                    animation: google.maps.Animation.DROP,
+                                    position: {lat: location.coord.lat, lng: location.coord.lon}
+                                });
+
+                                google.maps.event.addListener(_marker, 'click', (function(marker, content, infowindow) {
+                                    return function() {
+                                        infowindow.setContent(content);
+                                        infowindow.open(map, marker);
+                                    };
+                                })(_marker, JSON.stringify(location), infowindow));
+
+                                markers.push(_marker);
+
+                                poi.push(location);
+
+                            }
+                        }
+                    }
+                }
+
+            }
+
+
+            $(document).ready(initializeMap);
+
+            $(document).ready(function() {
+                $("form").submit(function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    weatherRemoteCall();
+                    return false;
+                });
+            });
+
+        </script>
+
+    </body>
+</html>
