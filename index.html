@@ -106,7 +106,7 @@
         function addDraggablePolygon(geojson) {
             var layer = L.geoJSON(geojson, {
                 style: {
-                    color: 'blue',
+                    color: getRandomVividColor(),
                     weight: 2,
                     fillOpacity: 0.2
                 }
@@ -121,6 +121,26 @@
                     l.dragging.enable();
                 }
             });
+        }
+        function getRandomVividColor() {
+            // Define a minimum brightness value to ensure vividness
+            const minBrightness = 50;  // Minimum value for any color channel to enhance vividness
+            const maxBrightness = 150;  // Maximum value for any color channel
+
+            // Generate random values for each of the red, green, and blue channels
+            const r = Math.floor(Math.random() * (maxBrightness - minBrightness + 1)) + minBrightness;
+            const g = Math.floor(Math.random() * (maxBrightness - minBrightness + 1)) + minBrightness;
+            const b = Math.floor(Math.random() * (maxBrightness - minBrightness + 1)) + minBrightness;
+
+            // Convert the RGB values to a hexadecimal string
+            const rgbToHex = (r, g, b) => {
+                return '#' + [r, g, b].map(value => {
+                    const hex = value.toString(16);
+                    return hex.length === 1 ? '0' + hex : hex;  // Ensures each value is at least two characters
+                }).join('');
+            };
+
+            return rgbToHex(r, g, b);
         }
 
         // Function to transform GeoJSON coordinates
