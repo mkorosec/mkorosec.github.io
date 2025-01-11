@@ -19,11 +19,8 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <!-- Leaflet Path Drag Plugin -->
-    <script src="https://unpkg.com/leaflet-path-drag@1.9.5/dist/index.js"></script>
-    <!-- Proj4js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js"></script>
-    <!-- Proj4Leaflet -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.js"></script>
+    <!--<script src="https://unpkg.com/leaflet-path-drag@1.9.5/dist/index.js"></script>-->
+    <script src="custom-leaflet-path-drag.js"></script>
     <script>
         // Initialize the map
         var map = L.map('map').setView([20, 0], 2); // Centered at latitude 20, longitude 0, zoom level 2
@@ -54,40 +51,30 @@
             return features;
         }
 
-
-        proj4.defs("urn:ogc:def:crs:EPSG::26915", "+proj=utm +zone=15 +ellps=GRS80 +datum=NAD83 +units=m +no_defs");
-
+        function calculateCentroid(geometry) {
+            var latSum = 0, lngSum = 0, count = 0;
+            
+            if (geometry.type === "Polygon") {
+                geometry.coordinates[0].forEach(function(coord) {
+                    lngSum += coord[0];
+                    latSum += coord[1];
+                    count++;
+                });
+            } else if (geometry.type === "MultiPolygon") {
+                geometry.coordinates.forEach(function(polygon) {
+                    polygon[0].forEach(function(coord) {
+                        lngSum += coord[0];
+                        latSum += coord[1];
+                        count++;
+                    });
+                });
+            }
+            
+            return [latSum / count, lngSum / count];
+        }        
 
         // Function to add draggable GeoJSON Polygon to the map
         function addDraggablePolygon(geojson) {
-            // Transform GeoJSON coordinates from EPSG:4326 to EPSG:3857    
-            var transformedGeoJSON = transformGeoJSON(geojson, sourceProj, destProj);
-
-            console.log('Original:', geojson);
-            console.log('Transformed:', transformedGeoJSON);
-            
-            var transformedGeoJSON = transformGeoJSON(geojson, proj4.defs('WGS84'), proj4.defs('EPSG:3857'));
-            transformedGeoJSON.crs={name:'EPSG:3857'}
-
-            L.geoJSON(transformedGeoJSON, {
-                style: {
-                    color: 'green',
-                    weight: 2,
-                    fillOpacity: 0.2
-                }
-            }).addTo(map);
-
-            L.geoJSON(transformGeoJSON(geojson, proj4.defs('WGS84'), proj4.defs('EPSG:53042')), {
-                style: {
-                    color: 'purple',
-                    weight: 2,
-                    fillOpacity: 0.2
-                }
-            }).addTo(map);
-
-
-            
-
             var layer = L.geoJSON(geojson, {
                 style: {
                     color: 'blue',
@@ -104,29 +91,24 @@
                     l.dragging = new L.Handler.PathDrag(l);
                     l.dragging.enable();
                 }
-
+/*
                 // Optional: Handle drag events
-                l.on('dragend', function () {
-                    var newCoords = l.getLatLngs();
+                l.on('drag', function (e) {
+                    console.log(e);
+                    //console.log(l);
+                    //console.log(l.getLatLngs());
+                    var newCoords = calculateCentroid(l.getLatLngs());
                     console.log(geojson.properties.name + ' moved to:', newCoords);
                 });
+                */
             });
         }
 
-
-
-
-        // Source projection (assuming GeoJSON is in EPSG:4326)
-        var sourceProj = proj4.defs('EPSG:3857');
-
-        // Destination projection (Leaflet uses EPSG:3857 by default)
-        var destProj = proj4.defs('EPSG:3857');
-
         // Function to transform GeoJSON coordinates
-        function transformGeoJSON(geojson, fromProj, toProj) {
+        function translateAllCoordinates(geojson, offsetX, offsetY) {
             var transformed = JSON.parse(JSON.stringify(geojson)); // Deep copy
             function transformCoord(coord) {
-                return proj4(fromProj, toProj, coord);
+                return [coord[0] + offsetX, coord[1] + offsetY];
             }
             function traverseCoords(coords) {
                 if (typeof coords[0] === 'number') {
@@ -167,7 +149,37 @@
                 console.error('Error loading GeoJSON:', error);
             });
 
+            fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries/GRC.geo.json')
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(geojson) {
+                geojson.features.forEach(function(feature) {
+                    var individualPolygons = splitMultiPolygon(feature);
+                    individualPolygons.forEach(function(polygon) {
+                        addDraggablePolygon(polygon);
+                    });
+                });                
+            })
+            .catch(function(error) {
+                console.error('Error loading GeoJSON:', error);
+            });
 
+            fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries/GRL.geo.json')
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(geojson) {
+                geojson.features.forEach(function(feature) {
+                    var individualPolygons = splitMultiPolygon(feature);
+                    individualPolygons.forEach(function(polygon) {
+                        addDraggablePolygon(polygon);
+                    });
+                });                
+            })
+            .catch(function(error) {
+                console.error('Error loading GeoJSON:', error);
+            });
 
 
 
