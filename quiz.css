@@ -1,9 +1,9 @@
 /* Custom styles for the floating dialog */
 #floatingDialog {
     position: fixed; /* Positions the dialog relative to the viewport */
-    top: 100px;      /* Initial top position */
-    left: 100px;     /* Initial left position */
-    width: 400px;    /* Dialog width */
+    top: 10px;      /* Initial top position */
+    left: 50px;     /* Initial left position */
+    width: 300px;    /* Dialog width */
     z-index: 1050;   /* Ensures the dialog appears above other elements */
     box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Optional: Adds a shadow for depth */
     border: 1px solid #ccc; /* Optional: Adds a border */
