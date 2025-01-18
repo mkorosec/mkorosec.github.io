@@ -1,0 +1,462 @@
+const questionsCapitals = [
+    {
+        question: 'Known as the Big Apple, this city is the largest in the United States.',
+        answer: {label: 'New York City', lat: 40.7128, lng: -74.0060}
+    },
+    {
+        question: 'This city is known as the "City of Light" and is the capital of France.',
+        answer: { label: 'Paris', lat: 48.8566, lng: 2.3522 }
+    },
+    {
+        question: 'As the capital of Japan, this city is famous for its bustling Shibuya Crossing.',
+        answer: { label: 'Tokyo', lat: 35.6895, lng: 139.6917 }
+    },
+    {
+        question: 'This capital city, located on the River Thames, is the capital of the United Kingdom.',
+        answer: { label: 'London', lat: 51.5074, lng: -0.1278 }
+    },
+    {
+        question: 'Known for its historic Red Square, this city is the capital of Russia.',
+        answer: { label: 'Moscow', lat: 55.7558, lng: 37.6173 }
+    },
+    {
+        question: 'This city, the capital of Canada, is known for the CN Tower.',
+        answer: { label: 'Ottawa', lat: 45.4215, lng: -75.6972 }
+    },
+    {
+        question: 'Located along the Potomac River, this city is the capital of the United States.',
+        answer: { label: 'Washington, D.C.', lat: 38.9072, lng: -77.0369 }
+    },
+    {
+        question: 'This capital city of Brazil is known for its modernist architecture and plane tree-lined avenues.',
+        answer: { label: 'Brasília', lat: -15.8267, lng: -47.9218 }
+    },
+    {
+        question: 'Known as the "Eternal City," this is the capital of Italy.',
+        answer: { label: 'Rome', lat: 41.9028, lng: 12.4964 }
+    },
+    {
+        question: 'This capital of Australia is home to the Parliament House and Lake Burley Griffin.',
+        answer: { label: 'Canberra', lat: -35.2809, lng: 149.1300 }
+    },
+    {
+        question: 'As the capital of India, this city is known for its historical monuments like the Red Fort.',
+        answer: { label: 'New Delhi', lat: 28.6139, lng: 77.2090 }
+    },
+    {
+        question: 'This Norvegian capital is known for its beautiful waterfront and Viking history.',
+        answer: { label: 'Oslo', lat: 59.9139, lng: 10.7522 }
+    },
+    {
+        question: 'Known for its colorful culture and vibrant street life, this is the capital of Mexico.',
+        answer: { label: 'Mexico City', lat: 19.4326, lng: -99.1332 }
+    },
+    {
+        question: 'This capital city of Egypt is home to the iconic Pyramids of Giza nearby.',
+        answer: { label: 'Cairo', lat: 30.0444, lng: 31.2357 }
+    },
+    {
+        question: 'As the capital of South Africa, this city is one of three capitals, known for its legislative buildings.',
+        answer: { label: 'Pretoria', lat: -25.7479, lng: 28.2293 }
+    },
+    {
+        question: 'This capital of Argentina is famous for its tango dance and vibrant nightlife.',
+        answer: { label: 'Buenos Aires', lat: -34.6037, lng: -58.3816 }
+    },
+    {
+        question: 'Known as the "Pearl of Africa," this city is the capital of Uganda.',
+        answer: { label: 'Kampala', lat: 0.3476, lng: 32.5825 }
+    },
+    {
+        question: 'This city serves as the capital of South Korea and is a major global technology hub.',
+        answer: { label: 'Seoul', lat: 37.5665, lng: 126.9780 }
+    },
+    {
+        question: 'This capital city of Greece is known for its ancient landmarks like the Acropolis.',
+        answer: { label: 'Athens', lat: 37.9838, lng: 23.7275 }
+    },
+    {
+        question: 'Known for its fjords and maritime history, this is the capital of Norway.',
+        answer: { label: 'Oslo', lat: 59.9139, lng: 10.7522 }
+    },
+    {
+        question: 'This capital of Thailand is famous for its ornate temples and vibrant street markets.',
+        answer: { label: 'Bangkok', lat: 13.7563, lng: 100.5018 }
+    }                
+]; 
+
+const questionsBattles = [
+    {
+        question: 'This battle was a turning point in the American Civil War, fought in Pennsylvania in 1863.',
+        answer: { label: 'Gettysburg', lat: 40.3428, lng: -77.2311 }
+    },
+    {
+        question: 'Known as the decisive battle where Napoleon was defeated in 1815, occurring in Belgium.',
+        answer: { label: 'Waterloo', lat: 50.6809, lng: 4.4128 }
+    },
+    {
+        question: 'This battle marked the end of the Second World War in Europe, taking place in 1945 in a city that was divided among allied powers.',
+        answer: { label: 'Battle of Berlin', lat: 52.5200, lng: 13.4050 }
+    },
+    {
+        question: 'A pivotal naval battle in 1805 where the British Royal Navy defeated the French and Spanish fleets.',
+        answer: { label: 'Battle of Trafalgar', lat: 36.0602, lng: -5.6168 }
+    },
+    {
+        question: 'This battle in 1066 led to the Norman conquest of England.',
+        answer: { label: 'Battle of Hastings', lat: 50.8552, lng: 0.4872 }
+    },
+    {
+        question: 'A major confrontation in 1942 between the United States and Japan in the Pacific Theater.',
+        answer: { label: 'Battle of Midway', lat: 28.1956, lng: -177.3662 }
+    },
+    {
+        question: 'This battle in 732 saw Charles Martel defeat a Muslim army, halting their advance into Western Europe.',
+        answer: { label: 'Battle of Tours', lat: 47.2833, lng: 0.7000 }
+    },
+    {
+        question: 'This 1944 battle in Normandy was crucial for the Allied forces to establish a foothold in Western Europe.',
+        answer: { label: 'Battle of Normandy (D-Day)', lat: 49.4144, lng: -0.8481 }
+    },
+    {
+        question: 'A significant World War I battle fought between the German and Allied forces in France from 1916.',
+        answer: { label: 'Battle of the Somme', lat: 49.9333, lng: 2.2500 }
+    },
+    {
+        question: 'This battle in 331 BC saw Alexander the Great defeat the Persian Empire near modern-day Turkey.',
+        answer: { label: 'Battle of Gaugamela', lat: 36.6333, lng: 43.0167 } // Near present-day Iraq
+    },
+    {
+        question: 'A decisive battle in 1942 where Soviet forces halted the German advance into Moscow.',
+        answer: { label: 'Battle of Moscow', lat: 55.7558, lng: 37.6173 }
+    },
+    {
+        question: 'This 1812 battle in Russia saw Napoleon\'s invasion fail due to harsh winter conditions.',
+        answer: { label: 'Battle of Borodino', lat: 55.3139, lng: 35.2844 }
+    },
+    {
+        question: 'A crucial naval battle in 1571 where the Holy League defeated the Ottoman Empire.',
+        answer: { label: 'Battle of Lepanto', lat: 38.2917, lng: 15.6683 } // Near the Gulf of Patras
+    },
+    {
+        question: 'This battle in 1941 was one of the largest encirclements in military history, fought in the Soviet Union.',
+        answer: { label: 'Battle of Kiev (1941)', lat: 50.4501, lng: 30.5234 } // Kyiv area
+    },
+    {
+        question: 'A significant World War II battle fought between the US and Germany in the Ardennes region.',
+        answer: { label: 'Battle of the Bulge', lat: 49.8333, lng: 5.8333 }
+    },
+    {
+        question: 'This battle in 480 BC featured King Leonidas and the Spartans against the Persian Empire.',
+        answer: { label: 'Battle of Thermopylae', lat: 39.5167, lng: 22.3500 }
+    },
+    {
+        question: 'A decisive battle in 1944 where Allied forces liberated Paris from German occupation.',
+        answer: { label: 'Liberation of Paris', lat: 48.8566, lng: 2.3522 }
+    },
+    {
+        question: 'This battle in 1945 was the last major German offensive on the Western Front during World War II.',
+        answer: { label: 'Battle of the Rhineland', lat: 50.0000, lng: 8.0000 }
+    },
+    {
+        question: 'A pivotal battle in 1943 where the Soviet Union decisively defeated Nazi Germany near Stalingrad.',
+        answer: { label: 'Battle of Stalingrad', lat: 48.7080, lng: 44.5133 }
+    }
+];            
+
+const questionsHistoricCities = [
+    {
+        question: 'Once the capital of the Byzantine Empire, this city is now a major metropolis in Turkey.',
+        answer: { label: 'Constantinople (Istanbul)', lat: 41.0082, lng: 28.9784 }
+    },
+    {
+        question: 'This ancient city, once a thriving center of Mesopotamia, is now an archaeological site in modern-day Iraq.',
+        answer: { label: 'Babylon', lat: 32.5364, lng: 44.4200 }
+    },
+    {
+        question: 'Known as the "Olive Tree of the World," this city was a prominent center of Christianity in ancient times.',
+        answer: { label: 'Jerusalem', lat: 31.7683, lng: 35.2137 } // Note: Jerusalem still exists but has ancient significance
+    },
+    {
+        question: 'This city was the heart of the Inca Empire before being conquered and renamed by the Spanish.',
+        answer: { label: 'Cuzco (Cusco)', lat: -13.5319, lng: -71.9675 }
+    },
+    {
+        question: 'Once the capital of the Mali Empire, this city is now a UNESCO World Heritage Site in modern Mali.',
+        answer: { label: 'Timbuktu', lat: 16.7666, lng: -3.0026 }
+    },
+    {
+        question: 'This city was the center of the Aztec Empire and is now Mexico\'s bustling capital.',
+        answer: { label: 'Tenochtitlan (Mexico City)', lat: 19.4326, lng: -99.1332 }
+    },
+    {
+        question: 'An ancient city famed for its hanging gardens, it is now located within modern Iraq.',
+        answer: { label: 'Nineveh', lat: 36.3495, lng: 43.1756 }
+    },
+    {
+        question: 'This Silk Road city was a major cultural and economic hub in ancient Persia, now in Iran.',
+        answer: { label: 'Persepolis', lat: 29.9353, lng: 52.8915 }
+    },
+    {
+        question: 'An important city in ancient Egypt, it is now submerged underwater.',
+        answer: { label: 'Thonis-Heracleion', lat: 30.8000, lng: 31.2000 } // Approximate coordinates
+    },
+    {
+        question: 'Once the capital of the Khmer Empire, it is now an archaeological site near modern-day Siem Reap.',
+        answer: { label: 'Angkor (Angkor Wat)', lat: 13.4125, lng: 103.8667 }
+    },
+    {
+        question: 'Known for its magnificent architecture, this city was a cultural hub in the Ming Dynasty and is now part of modern Beijing.',
+        answer: { label: 'Beijing (Forbidden City)', lat: 39.9163, lng: 116.3972 }
+    },
+    {
+        question: 'This city was the heart of the Sumerian civilization and is now an archaeological site in Iraq.',
+        answer: { label: 'Ur', lat: 30.9517, lng: 46.1033 }
+    }
+];            
+
+const quizOptions = [
+    {
+        "name": "Oil Industry - History",
+        "order": "strict",
+        "questions": [
+            {
+                "question": "Which city is home to the world's first dedicated oil refinery, established in 1856?",
+                "answer": { "label": "Ploiești, Romania", "lat": 44.94, "lng": 26.03 },
+                "context": "Ploiești is famously known as a pioneering city for oil refining, with innovations in refining processes beginning there in the 19th century."
+            },
+            {
+                "question": "Which city is known as the birthplace of the modern oil industry due to the successful drilling of the first commercial oil well in 1859?",
+                "answer": { "label": "Titusville, USA", "lat": 41.626, "lng": -79.6745 },
+                "context": "Titusville, Pennsylvania, is where Edwin Drake drilled the first commercial oil well, marking the start of the modern petroleum industry."
+            },
+            {
+                "question": "Which city in Azerbaijan is historically significant for being the site of the first oil well drilled in 1846?",
+                "answer": { "label": "Baku, Azerbaijan", "lat": 40.4093, "lng": 49.8671 },
+                "context": "Baku, the capital of Azerbaijan, is known for its early oil production and as one of the first centers of the international oil industry."
+            },        
+        ]
+    },  
+    {
+        name: 'Quiz - 7 Wonders of the Ancient World',
+        order: 'strict',
+        questions:
+        [
+            {
+                question: 'The only surviving wonder of the ancient world, this monumental tomb was built near Cairo, Egypt.',
+                answer: { label: 'Great Pyramid of Giza', lat: 29.9792, lng: 31.1342 }
+            },
+            {
+                question: 'This legendary ascending garden was said to be located in the ancient city of Babylon, near present-day Baghdad, Iraq.',
+                answer: { label: 'Hanging Gardens of Babylon', lat: 32.5364, lng: 44.4200 }
+            },
+            {
+                question: 'This massive statue honoring the king of the Greek gods was located at the Temple of Zeus in this ancient Greek city.',
+                answer: { label: 'Olympia, Greece', lat: 37.6370, lng: 21.6297 }
+            },
+            {
+                question: 'This grand temple dedicated to the goddess Artemis was situated in the ancient city of Ephesus, near present-day Selçuk, Turkey.',
+                answer: { label: 'Temple of Artemis at Ephesus', lat: 37.9394, lng: 27.3419 }
+            },
+            {
+                question: 'This tomb built for Mausolus, a ruler in the Persian Empire, stood in Halicarnassus, now known as Bodrum, Turkey.',
+                answer: { label: 'Mausoleum at Halicarnassus', lat: 37.0344, lng: 27.4300 }
+            },
+            {
+                question: 'This giant bronze statue symbolizing the sun god Helios stood in the harbor of this Greek island city before being destroyed by an earthquake.',
+                answer: { label: 'Colossus of Rhodes', lat: 36.4349, lng: 28.2170 }
+            },
+            {
+                question: 'This towering lighthouse was built on the island of Pharos in the ancient city of Alexandria, Egypt, serving as a landmark for sailors.',
+                answer: { label: 'Lighthouse of Alexandria', lat: 31.2001, lng: 29.9187 }
+            }
+        ]
+    },
+    {
+        name: 'Quiz - 7 Wonders of the New World',
+        order: 'strict',
+        questions:
+        [
+            {
+                question: "Stretching over 13,000 miles, this monumental structure was originally built to protect ancient Chinese states from invasions.",
+                answer: { label: 'Great Wall of China', lat: 40.4319, lng: 116.5704 }
+            },
+            {
+                question: "Carved into vibrant red sandstone cliffs, this ancient city in Jordan is renowned for its stunning architecture and water conduit system.",
+                answer: { label: 'Petra', lat: 30.3285, lng: 35.4444 }
+            },
+            {
+                question: "Overlooking the city of Rio de Janeiro, this iconic statue depicts Jesus with outstretched arms, symbolizing peace and welcoming.",
+                answer: { label: 'Christ the Redeemer', lat: -22.9519, lng: -43.2105 }
+            },
+            {
+                question: "Nestled high in the Andes Mountains, this Incan citadel is famed for its sophisticated dry-stone walls and breathtaking panoramic views.",
+                answer: { label: 'Machu Picchu', lat: -13.1631, lng: -72.5450 }
+            },
+            {
+                question: "This large pre-Columbian archaeological site in Mexico features the massive pyramid known as El Castillo, dedicated to the serpent god Kukulcán.",
+                answer: { label: 'Chichen Itza', lat: 20.6843, lng: -88.5678 }
+            },
+            {
+                question: "Located in the heart of Rome, this ancient amphitheater is a testament to Roman engineering and was once the venue for gladiatorial contests.",
+                answer: { label: 'Roman Colosseum', lat: 41.8902, lng: 12.4922 }
+            },
+            {
+                question: "This magnificent white marble mausoleum in India was built by Emperor Shah Jahan in memory of his beloved wife Mumtaz Mahal.",
+                answer: { label: 'Taj Mahal', lat: 27.1751, lng: 78.0421 }
+            }
+        ]
+    },
+    {
+        name: 'Quiz - World Capitals',
+        order: 'strict',
+        questions: questionsCapitals
+    },
+    {
+        name: 'Quiz - World Battles',
+        order: 'strict',
+        questions: questionsBattles
+    },
+    {
+        name: 'Quiz - Historic Cities',
+        order: 'strict',
+        questions: questionsHistoricCities
+    },
+    {
+        name: 'Quiz - Dark tourism sites',
+        order: 'strict',
+        questions:
+            [
+                {
+                    question: 'Space complex, launch site of first human in space.',
+                    answer: { label: 'Baikonur Cosmodrome, Kazakhstan', lat: 45.9650, lng: 63.3050 }
+                },
+                {
+                    question: 'The Gates of Hell, a natural gas field that has been burning continuously since 1971.',
+                    answer: { label: 'Darvaza Gas Crater, Turkmenistan', lat: 40.2525, lng: 58.4392 }
+                },
+                {
+                    question: 'This former Nazi concentration and extermination camp in Poland is a poignant reminder of the Holocaust.',
+                    answer: { label: 'Auschwitz-Birkenau, Poland', lat: 50.0359, lng: 19.1783 }
+                },
+                {
+                    question: 'This Ukrainian city suffered a catastrophic nuclear disaster in 1986, leading to widespread contamination and evacuation.',
+                    answer: { label: 'Chernobyl, Ukraine', lat: 51.2760, lng: 30.2219 }
+                },
+                {
+                    question: 'Located in New York City, this site marks the location of the World Trade Center towers destroyed in the 2001 terrorist attacks.',
+                    answer: { label: 'Ground Zero, New York City, USA', lat: 40.7115, lng: -74.0134 }
+                },
+                {
+                    question: 'This ancient Roman city was buried by a volcanic eruption in 79 AD and remains remarkably preserved.',
+                    answer: { label: 'Pompeii, Italy', lat: 40.7460, lng: 14.4989 }
+                },
+                {
+                    question: 'Situated in Cambodia, this area is known for the mass killings carried out by the Khmer Rouge regime.',
+                    answer: { label: 'The Killing Fields, Cambodia', lat: 13.3178, lng: 103.2160 }
+                },
+                {
+                    question: 'This Japanese city was devastated by an atomic bomb in 1945, and now hosts a peace memorial park. It was the first military target of a nuclear weapon in history.',
+                    answer: { label: 'Hiroshima Peace Memorial Park, Japan', lat: 34.3953, lng: 132.4553 }
+                },
+                {
+                    question: 'This railway in Thailand was built during World War II by forced labor and is now a significant historical site.',
+                    answer: { label: 'Death Railway (Thailand), Thailand', lat: 14.0658, lng: 99.5000 }
+                },
+                {
+                    question: 'Located in Bosnia and Herzegovina, this site commemorates the genocide that took place in 1995.',
+                    answer: { label: 'Srebrenica Memorial Center, Bosnia and Herzegovina', lat: 43.0278, lng: 19.1525 }
+                },
+                {
+                    question: 'This Berlin landmark was once a symbol of division between East and West during the Cold War.',
+                    answer: { label: 'Berlin Wall Memorial, Germany', lat: 52.5351, lng: 13.3903 }
+                },
+                {
+                    question: 'Off the coast of South Africa, this island was historically used to imprison political activists, including Nelson Mandela.',
+                    answer: { label: 'Robben Island, South Africa', lat: -33.8060, lng: 18.3670 }
+                },
+                {
+                    question: 'This site in Rwanda serves as a memorial to the victims of the 1994 genocide against the Tutsi.',
+                    answer: { label: 'Kigali Genocide Memorial, Rwanda', lat: -1.9403, lng: 30.0588 }
+                },
+                {
+                    question: 'Located in the United States, this national cemetery is the final resting place for countless soldiers from various wars.',
+                    answer: { label: 'Arlington National Cemetery, USA', lat: 38.8860, lng: -77.0910 }
+                }
+        ]
+    },
+    {
+        name: 'Quiz - Books!',
+        order: 'strict',
+        questions:
+            [
+                {
+                    question: 'The city of Metropolis in the Superman comics is inspired by which real-world American city?',
+                    answer: { label: 'New York City, USA', lat: 40.7128, lng: -74.0060 },
+                    context: 'Metropolis embodies the bustling and diverse nature of New York City, serving as a symbol of hope and resilience in the Superman narrative.'
+                },
+                {
+                    question: 'J.K. Rowling’s Diagon Alley is believed to be inspired by which famous London street?',
+                    answer: { label: 'Charing Cross Road, London', lat: 51.5112, lng: -0.1249 },
+                    context: 'Charing Cross Road’s vibrant atmosphere and diverse shops influenced the magical ambiance of Diagon Alley in the Harry Potter series.'
+                },
+                {
+                    question: '“So it goes,” a recurring phrase in Kurt Vonnegut’s "Slaughterhouse-Five," refers to the acceptance of fate. The novel is set in this German city during WWII.',
+                    answer: { label: 'Dresden, Germany', lat: 51.0504, lng: 13.7373 }
+                },
+                {
+                    question: 'The Louvre Pyramid is featured in Dan Brown’s "The Da Vinci Code."',
+                    answer: { label: 'Louvre Pyramid, Paris', lat: 48.8606, lng: 2.3376 }
+                },                
+                {
+                    question: 'Endurance was the ship in which Sir Ernest Shackleton and a crew of 27 men sailed for the Antarctic on the 1914–1917 Imperial Trans-Antarctic Expedition. Where was the last port of call before the ship was lost to the ice?',
+                    answer: { label: 'the whaling station at Grytviken on the island of South Georgia', lat: -54.2815064, lng: -36.5101987 }
+                },                
+                {
+                    question: 'Where did the crew of the Endurance abandon ship?',
+                    answer: { label: 'The wreck of Endurance', lat: -69.739167, lng: -52.329722 }
+                }
+        ]
+    },
+    {
+        "name": "Oil Industry - Basics",
+        "order": "strict",
+        "questions": [
+            {
+                "question": "Which is the headquarters city of OPEC, the Organization of the Petroleum Exporting Countries?",
+                "answer": { "label": "Vienna, Austria", "lat": 48.2082, "lng": 16.3738 },
+                "context": "OPEC, established in 1960, has its headquarters in Vienna, a neutral ground where members coordinate oil production policies."
+            },        
+            {
+                "question": "Which city is the central hub of Russia's oil industry, home to the headquarters of Gazprom Neft?",
+                "answer": { "label": "Saint Petersburg, Russia", "lat": 59.9343, "lng": 30.3351 },
+                "context": "Saint Petersburg is the headquarters for Gazprom Neft, managing some of the largest oil and gas operations in Russia."
+            },
+            {
+                "question": "What city serves as the operational headquarters for the multinational oil giant, ExxonMobil?",
+                "answer": { "label": "Irving, Texas, USA", "lat": 32.8140, "lng": -96.9489 },
+                "context": "Irving in Texas is the location of ExxonMobil's headquarters, one of the largest publicly traded oil and gas companies in the world."
+            },
+            {
+                "question": "Which city boasts the largest oil refinery in the world, the Jamnagar Refinery?",
+                "answer": { "label": "Jamnagar, India", "lat": 22.4707, "lng": 70.0577 },
+                "context": "The Jamnagar Refinery, located in Jamnagar, India, is the world's largest oil refinery, significantly bolstering India's energy production capabilities."
+            },
+            {
+                "question": "Which city is home to the world's largest onshore oil field, the Ghawar Field?",
+                "answer": { "label": "Al-Hasa, Saudi Arabia", "lat": 25.0000, "lng": 49.6667 },
+                "context": "The Ghawar Field, located near Al-Hasa, is the largest conventional oil field in the world, contributing significantly to Saudi Arabia's oil production."
+            },
+            {
+                "question": "Which city is considered the heart of the North Sea oil industry?",
+                "answer": { "label": "Aberdeen, Scotland", "lat": 57.1497, "lng": -2.0943 },
+                "context": "Aberdeen is known as the 'Oil Capital of Europe' due to its critical role in the North Sea oil and gas sector."
+            },
+            {
+                "question": "What is the largest oil-producing city in Texas, often referred to as the energy capital of the world?",
+                "answer": { "label": "Houston, Texas, USA", "lat": 29.7604, "lng": -95.3698 },
+                "context": "Houston's economy is heavily driven by the energy sector, boasting many headquarters of prominent oil and gas companies."
+            },
+        ]
+    }  
+];

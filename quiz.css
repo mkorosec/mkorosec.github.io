@@ -1,0 +1,42 @@
+/* Custom styles for the floating dialog */
+#floatingDialog {
+    position: fixed; /* Positions the dialog relative to the viewport */
+    top: 100px;      /* Initial top position */
+    left: 100px;     /* Initial left position */
+    width: 400px;    /* Dialog width */
+    z-index: 1050;   /* Ensures the dialog appears above other elements */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Optional: Adds a shadow for depth */
+    border: 1px solid #ccc; /* Optional: Adds a border */
+    border-radius: 5px;     /* Optional: Rounds the corners */
+    cursor: default;        /* Default cursor */
+}
+
+/* Header style for the dialog */
+#floatingDialog .dialog-header {
+    cursor: move;              /* Indicates draggable area */
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 10px;             /* Padding inside the header */
+    border-bottom: 1px solid #dee2e6; /* Bottom border */
+    border-top-left-radius: 5px;     /* Rounded top-left corner */
+    border-top-right-radius: 5px;    /* Rounded top-right corner */
+}
+
+#distance, #result, #points, #answers {
+    font-weight: bold;
+}
+
+/* Body style for the dialog */
+#floatingDialog .dialog-body {
+    padding: 10px; /* Padding inside the body */
+}
+#map {
+    height: 99vh;
+    width: 100%;
+    cursor: crosshair;
+}
+#next {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+img.huechange { filter: hue-rotate(120deg); }
