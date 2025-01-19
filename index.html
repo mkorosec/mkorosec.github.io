@@ -34,16 +34,17 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="resultsModalLabel">Results!</h5>
+              <h5 class="modal-title" id="resultsModalLabel">How did you do?</h5>
             </div>
             <div class="modal-body">
+                <p style="display:none" id="dailyResultsMessage">Daily puzzle will refresh again tomorrow, you can only play it once per day. Meanwhile, <a class="link" onclick="changeCategoryModal()">try some other quizes to practice!</a></p>
                 <p>Total points: <span id="pointsInDialog"></span>/<span id="possiblePoints"></span> (<span id="pointsPct"></span>)</p>
                 <p>Your guesses:</p>
                 <ul class="answers"></ul>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="changeCategoryModal()">Choose next quiz</button>
-                <button type="button" class="btn btn-secondary" onclick="copyResultToClipboard()" id="copyBtn">Copy result</button>
+                <button type="button" class="btn btn-secondary" onclick="copyResultToClipboard()" id="copyBtn">Share results (without spoilers)</button>
             </div>
           </div>
         </div>
@@ -61,10 +62,11 @@
                 <p>Choose a quiz to start</p>
                 <select id="categorySelect" class="form-select" aria-label="Select category">
                 </select>
+                <p></p>
+                <button type="button" class="btn btn-secondary" onclick="changeCategory(true)">Surprise me!</button>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="changeCategory()">Confirm!</button>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn btn-primary" onclick="changeCategory()">Start quiz</button>
             </div>
           </div>
         </div>
@@ -73,6 +75,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="questions.js"></script>  
+    <script src="daily-questions.js"></script>  
     <script src="quiz.js"></script>  
     <script src="quiz-helper.js"></script>  
   
@@ -80,6 +83,7 @@
         // Initialize the map
         var map = L.map('map').setView([20, 0], 2); // Centered at latitude 20, longitude 0, zoom level 2
         map.doubleClickZoom.disable();
+        map.setMaxBounds([[90, -180], [-90, 180]]);
         const markersGroup = L.layerGroup().addTo(map);
 
         // Add OpenStreetMap tiles
@@ -89,9 +93,9 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        //go over all quizOptions and add them to the dropdown
+        //go over all window.quizList and add them to the dropdown
         const categorySelect = document.getElementById('categorySelect');
-        quizOptions.map((option) => option).forEach((category) => {
+        window.quizList.map((option) => option).forEach((category) => {
             const option = document.createElement('option');
             option.value = category.name;
             option.innerText = category.name + ' (' + category.questions.length + ' questions)';
@@ -117,29 +121,19 @@
         function handleMarkerPlaced(marker, latitude, longitude) {
             allowNewMarkerPlacement = false;
             latestGuess = {lat: latitude, lng: longitude};
-            console.log(`You placed a marker at Latitude: ${latitude}, Longitude: ${longitude}`);
-//            document.getElementById('guess').innerText = `${latitude.toFixed(3)}, ${longitude.toFixed(3)}`;
             submitGuess();
         }
 
         function submitGuess() {
             //TODO currently we validate offline (in js). In a real app, you would submit to a server for validation
             if (latestGuess) {
-                console.log('Submitting guess:', latestGuess);
                 //distance in meters
                 const distance = L.latLng(latestGuess.lat, latestGuess.lng).distanceTo(L.latLng(answer.lat, answer.lng));
-                console.log('Distance to answer in km:', distance/1000);
-                //document.getElementById('distance').innerText = '' + (distance/1000).toFixed(2);
-
                 const score = evaluateResult((distance/1000).toFixed(0));
-                //document.getElementById('result').innerText = score.label + '(' + score.points + '/100 points)';
                 totalPoints += score.points;
                 answered++;
                 document.getElementById('answers').innerText = '' + answered;
                 document.getElementById('points').innerText = '' + totalPoints;
-                //document.getElementById('answerLabel').innerText = answer.label;
-                //document.getElementById('answerCoordinates').innerText = '' + answer.lat + ', ' + answer.lng;
-                //document.getElementById('answer').style.display = 'block';
 
                 revealAnswerOnMap(answer.lat, answer.lng, 
                 '<p style="margin:0">Correct answer: ' + answer.label + '</p>' + 
@@ -161,15 +155,25 @@
 
         function revealAnswerOnMap(lat, lng, label) {
             const marker = L.marker([lat, lng]).addTo(markersGroup);
+            setTimeout(() => {
+                map.flyTo([lat, lng], 6);
+                //draw line between guess and answer
+                if (latestGuess) {
+                    const latlngs = [
+                        [latestGuess.lat, latestGuess.lng],
+                        [lat, lng]
+                    ];
+                    const polyline = L.polyline(latlngs, {color: 'gray'}).addTo(markersGroup);
+                }
+            }, 500);
             marker._icon.classList.add("huechange");
             marker._icon.classList.add("animated-icon");
             marker._icon.id = 'answerIcon';
             marker._shadow.id = 'answerIconShadow';
-            console.log(marker);
             marker.bindPopup(label).openPopup();
 
             animateMarker(marker);
-            enableNextQuestionButton(true, 5);
+            enableNextQuestionButton(true, 10);
             //map.setView([answer.lat, answer.lng], 5);
         }
 
@@ -212,33 +216,13 @@
 
         function finishQuiz() {
             enableNextQuestionButton(false);
-
-            //show results
-            document.getElementById('pointsInDialog').innerText = totalPoints;
-            document.getElementById('possiblePoints').innerText = currentQuiz.questions.length * 100;
-            document.getElementById('pointsPct').innerText = Math.round(totalPoints / (currentQuiz.questions.length * 100) * 100) + '%';
-
-            const answersList = document.querySelector('#resultsModal .answers');
-            answersList.innerHTML = '';
-            currentQuiz.results.forEach((result) => {
-                const li = document.createElement('li');
-                //li.innerHTML = `<strong>${result.question}</strong><br>Answer: ${result.answer.label}<br>Your guess: ${result.guess.lat.toFixed(3)}, ${result.guess.lng.toFixed(3)}<br>Distance: ${(result.distance/1000).toFixed(2)}km`;
-                li.innerHTML = `<strong>${result.answer.label}</strong> - ${(result.distance/1000).toFixed(2)}km off target`;
-                answersList.appendChild(li);
-            });
-            
-            resultsModal.show();
-//            startQuiz(currentQuiz);
-        }
-
-        function copyResultToClipboard() {
-            const pointsPct = Math.round(totalPoints / (currentQuiz.questions.length * 100) * 100) + '%';
-            const availablePoints = currentQuiz.questions.length * 100;
-            const text = `"${currentQuiz.name}" quiz results: Accuracy ${pointsPct}, got ${totalPoints}/${availablePoints} points. Try it yourself at https://www.example.com/quiz`;
-            navigator.clipboard.writeText(text).then(() => {
-                console.log('Copied to clipboard:', text);
-                document.getElementById('copyBtn').innerText = 'Copied!';
-            });
+            displayResults(totalPoints, currentQuiz);
+            if (currentQuiz.id === 'daily') {
+                //ensure daily can be played only once per day
+                localStorage.setItem('lastPlayedDailyQuiz', new Date().toISOString());
+                localStorage.setItem('dailyQuizResults', JSON.stringify(currentQuiz.results));
+                localStorage.setItem('dailyQuizTotalPoints', totalPoints);
+            }
         }
 
         function clearMarkers() {
@@ -247,7 +231,29 @@
             allowNewMarkerPlacement = true;
         }
 
-        startQuiz(quizOptions[0]);
+
+        var url = window.location.href;
+        var quizToStartWith = window.quizList[0];
+        if (url.indexOf("#") > 0) {
+            const deepLinkQuizId = url.substring(url.indexOf("#") + 1);
+            const deepLinkQuiz = window.quizList.find((quiz) => quiz.id === deepLinkQuizId);
+            if (deepLinkQuiz) {
+                quizToStartWith = deepLinkQuiz;
+            }
+        } 
+
+        //on href change
+        window.onhashchange = function() {
+            var url = window.location.href;
+            if (url.indexOf("#") > 0) {
+                const deepLinkQuizId = url.substring(url.indexOf("#") + 1);
+                const deepLinkQuiz = window.quizList.find((quiz) => quiz.id === deepLinkQuizId);
+                if (deepLinkQuiz) {
+                    startQuiz(deepLinkQuiz);
+                }
+            } 
+        };
+        startQuiz(quizToStartWith);
      </script>
   </body>
 </html>

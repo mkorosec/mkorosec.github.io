@@ -34,7 +34,7 @@
     width: 100%;
     cursor: crosshair;
 }
-#next {
+#next, a, .link {
     cursor: pointer;
     color: blue;
     text-decoration: underline;
