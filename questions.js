@@ -198,6 +198,7 @@ window.quizList.push(
 window.quizList.push(
     {
         "name": "Chip War: Semiconductors!",
+        "id": "chip-war",
         "order": "strict",
         "questions": [
             {
