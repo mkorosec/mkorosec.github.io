@@ -77,7 +77,13 @@ function copyResultToClipboard() {
     const pointsPct = Math.round(totalPoints / (currentQuiz.questions.length * 100) * 100) + '%';
     const availablePoints = currentQuiz.questions.length * 100;
     const link = `https://mkorosec.github.io/#${currentQuiz.id}`;
-    const text = `"${currentQuiz.name}" quiz results: Accuracy ${pointsPct}, got ${totalPoints}/${availablePoints} points. Try it yourself at ${link}`;
+    //get list of emojis for each result
+    var emojiText = '';
+    currentQuiz.results.forEach((result) => {
+        emojiText += getResultEmoji(result.points);
+    });
+    const text = `"${currentQuiz.name}" quiz results: Accuracy ${pointsPct}, got ${totalPoints}/${availablePoints} points. Try it yourself at ${link}\n${emojiText}`;
+
     navigator.clipboard.writeText(text).then(() => {
         document.getElementById('copyBtn').innerText = 'Copied to clipboard!';
     });

@@ -157,7 +157,7 @@
         function revealAnswerOnMap(lat, lng, label) {
             const marker = L.marker([lat, lng]).addTo(markersGroup);
             setTimeout(() => {
-                map.flyTo([lat, lng], currentQuiz.map.zoom !== undefined ? currentQuiz.map.zoom : 6);
+                map.flyTo([lat, lng], currentQuiz.map !== undefined && currentQuiz.map.zoom !== undefined ? currentQuiz.map.zoom : 6);
                 //draw line between guess and answer
                 if (latestGuess) {
                     const latlngs = [
