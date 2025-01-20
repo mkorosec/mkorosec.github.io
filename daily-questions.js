@@ -1,3 +1,4 @@
+
 if (window.quizList == undefined || window.quizList == null) {
     window.quizList = [];
 }
@@ -8,21 +9,23 @@ window.quizList.push(
         "id": "daily",
         "order": "strict",
         "questions": [
-            {
-                "question": "Which city is home to the world's first dedicated oil refinery, established in 1856?",
-                "answer": { "label": "Ploiești, Romania", "lat": 44.94, "lng": 26.03 },
-                "context": "Ploiești is famously known as a pioneering city for oil refining, with innovations in refining processes beginning there in the 19th century."
-            },
-            {
-                "question": "Which city is known as the birthplace of the modern oil industry due to the successful drilling of the first commercial oil well in 1859?",
-                "answer": { "label": "Titusville, USA", "lat": 41.626, "lng": -79.6745 },
-                "context": "Titusville, Pennsylvania, is where Edwin Drake drilled the first commercial oil well, marking the start of the modern petroleum industry."
-            },
-            {
-                "question": "Which city in Azerbaijan is historically significant for being the site of the first oil well drilled in 1846?",
-                "answer": { "label": "Baku, Azerbaijan", "lat": 40.4093, "lng": 49.8671 },
-                "context": "Baku, the capital of Azerbaijan, is known for its early oil production and as one of the first centers of the international oil industry."
-            },        
+
+        {
+            "question": "Which city is famous for its Opera House, a masterpiece of 20th-century architecture completed in 1973?",
+            "answer": { "label": "Sydney, Australia", "lat": -33.8568, "lng": 151.2153 },
+            "context": "The Sydney Opera House is an iconic structure that stands as a symbol of Australia's creative and technical achievements."
+        },
+        {
+            "question": "In which city can you visit the famous Alhambra Palace, a stunning example of Moorish architecture?",
+            "answer": { "label": "Granada, Spain", "lat": 37.1765, "lng": -3.5897 },
+            "context": "The Alhambra Palace, with its intricate Islamic art and lush gardens, is one of the most visited attractions in Spain."
+        },
+        {
+            "question": "Which city is known for the historic Christ the Redeemer statue overlooking it?",
+            "answer": { "label": "Rio de Janeiro, Brazil", "lat": -22.9519, "lng": -43.2105 },
+            "context": "Christ the Redeemer is an iconic symbol of Christianity and provides panoramic views of Rio de Janeiro from its perch atop Corcovado Mountain."
+        }
+    
         ]
     }
 );

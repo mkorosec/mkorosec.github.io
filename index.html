@@ -220,6 +220,7 @@
             if (currentQuiz.id === 'daily') {
                 //ensure daily can be played only once per day
                 localStorage.setItem('lastPlayedDailyQuiz', new Date().toISOString());
+                setLastPlayedDailyHashCode(currentQuiz.questions);
                 localStorage.setItem('dailyQuizResults', JSON.stringify(currentQuiz.results));
                 localStorage.setItem('dailyQuizTotalPoints', totalPoints);
             }

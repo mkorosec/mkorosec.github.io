@@ -83,27 +83,48 @@ function copyResultToClipboard() {
     });
 }
 
+String.prototype.hashCode = function() {
+  var hash = 0,
+    i, chr;
+  if (this.length === 0) return hash;
+  for (i = 0; i < this.length; i++) {
+    chr = this.charCodeAt(i);
+    hash = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+}
+
+function getLastPlayedDailyHashCode() {
+    return localStorage.getItem('lastPlayedDailyHashCode');
+}
+
+function setLastPlayedDailyHashCode(questions) {
+    const questionsHash = JSON.stringify(questions).hashCode();
+    localStorage.setItem('lastPlayedDailyHashCode', questionsHash);
+}
+
 //select the current quiz
 function startQuiz(quiz) {
     if (quiz.id === 'daily') {
         //ensure only once per day
-        const lastPlayed = localStorage.getItem('lastPlayedDailyQuiz');
-        if (lastPlayed) {
-            const lastPlayedDate = new Date(lastPlayed);
-            const now = new Date();
-            if (now.toDateString() === lastPlayedDate.toDateString()) {
-                //get items back from localStorage
-                const dailyQuizResults = JSON.parse(localStorage.getItem('dailyQuizResults'));
-                const dailyQuizTotalPoints = localStorage.getItem('dailyQuizTotalPoints');
-                const quiz = window.quizList.find((quiz) => quiz.id === 'daily');
-                quiz.results = dailyQuizResults;
-                totalPoints = dailyQuizTotalPoints;
-                currentQuiz = quiz;
-                displayResults(dailyQuizTotalPoints, quiz);
-                //categoriesModal.show();
-                //alert('Already played today - try the daily quiz again tomorrow! Until then - choose a different quiz!');
-                return;
-            }
+        //ensure that by generating a hash for the questions and storing it in localStorage
+        const questionsHash = JSON.stringify(quiz.questions).hashCode().toString();
+        const lastPlayedDailyHashCode = localStorage.getItem('lastPlayedDailyHashCode');
+        console.log('lastPlayedDailyHashCode', lastPlayedDailyHashCode);
+        console.log('questionsHash', questionsHash);
+        if (lastPlayedDailyHashCode === questionsHash) {
+            //get items back from localStorage
+            const dailyQuizResults = JSON.parse(localStorage.getItem('dailyQuizResults'));
+            const dailyQuizTotalPoints = localStorage.getItem('dailyQuizTotalPoints');
+            const quiz = window.quizList.find((quiz) => quiz.id === 'daily');
+            quiz.results = dailyQuizResults;
+            totalPoints = dailyQuizTotalPoints;
+            currentQuiz = quiz;
+            displayResults(dailyQuizTotalPoints, quiz);
+            //categoriesModal.show();
+            //alert('Already played today - try the daily quiz again tomorrow! Until then - choose a different quiz!');
+            return;
         }
     }
     if (quiz.id === 'random') {

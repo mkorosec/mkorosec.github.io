@@ -39,4 +39,29 @@
     color: blue;
     text-decoration: underline;
 }
-img.huechange { filter: hue-rotate(120deg); }
+img.huechange { 
+    filter: hue-rotate(120deg); 
+}
+
+@media(max-width: 600px) {
+    .h5, h5 {
+        font-size: 1rem !important;
+    }
+    #floatingDialog .dialog-header {
+        padding: 5px !important;
+    }
+    #floatingDialog .dialog-body {
+        padding: 5px !important;
+    }
+    p {
+        margin-bottom: 0.25rem !important;
+    }
+    :root {
+        --bs-body-font-size: 0.875rem !important;
+    }
+    .btn {
+        --bs-btn-font-size: 0.875rem !important;
+        --bs-btn-padding-x: 0.5rem;
+        --bs-btn-padding-y: 0.175rem;
+    }
+}
