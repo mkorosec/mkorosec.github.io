@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+    "questions": [
         {
             "question": "Which city is known for its iconic steel tower, designed for the 1889 World's Fair and often associated with romantic views of the Seine River?",
             "answer": { "label": "Paris, France", "lat": 48.8566, "lng": 2.3522 },
@@ -25,7 +16,6 @@ window.quizList.push(
             "answer": { "label": "New York City, USA", "lat": 40.7128, "lng": -74.0060 },
             "context": "New York City is known for being a global hub, with the United Nations headquarters located in the Turtle Bay neighborhood of Manhattan."
         }
-    
-        ]
-    }
-);
+    ]
+}
+```
