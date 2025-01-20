@@ -422,7 +422,7 @@ window.quizList.push(
                 },
                 {
                     question: 'Located in Bosnia and Herzegovina, this site commemorates the genocide that took place in 1995.',
-                    answer: { label: 'Srebrenica Memorial Center, Bosnia and Herzegovina', lat: 45.1100, lng: 13.3368 }
+                    answer: { label: 'Srebrenica Memorial Center, Bosnia and Herzegovina', lat: 44.1580, lng: 19.3016 }
                 },
                 {
                     question: 'This Berlin landmark was once a symbol of division between East and West during the Cold War.',
