@@ -145,7 +145,8 @@
                     question: question.question,
                     answer: answer,
                     guess: latestGuess,
-                    distance: distance
+                    distance: distance,
+                    points: score.points
                 });
             } else {
                 console.log('No guess to submit.');
@@ -156,7 +157,7 @@
         function revealAnswerOnMap(lat, lng, label) {
             const marker = L.marker([lat, lng]).addTo(markersGroup);
             setTimeout(() => {
-                map.flyTo([lat, lng], 6);
+                map.flyTo([lat, lng], currentQuiz.map.zoom !== undefined ? currentQuiz.map.zoom : 6);
                 //draw line between guess and answer
                 if (latestGuess) {
                     const latlngs = [

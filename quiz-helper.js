@@ -53,7 +53,7 @@ function displayResults(totalPoints, quiz) {
         const li = document.createElement('li');
         //li.innerHTML = `<strong>${result.question}</strong><br>Answer: ${result.answer.label}<br>Your guess: ${result.guess.lat.toFixed(3)}, ${result.guess.lng.toFixed(3)}<br>Distance: ${(result.distance/1000).toFixed(2)}km`;
 
-        li.innerHTML = getResultEmoji(result.distance/1000) + `<strong>${result.answer.label}</strong> - ${(result.distance/1000).toFixed(2)}km off target`;
+        li.innerHTML = getResultEmoji(result.points) + `<strong>${result.answer.label}</strong> - ${(result.distance/1000).toFixed(2)}km off target`;
         answersList.appendChild(li);
     });
     
@@ -61,13 +61,13 @@ function displayResults(totalPoints, quiz) {
     resultsModal.show();
 }
 
-function getResultEmoji(distanceKm) {
-    if (distanceKm < 50) {
+function getResultEmoji(points) {
+    if (points > 90) {
         return '🎯';
-    } else if (distanceKm < 100) {
+    } else if (points > 75) {
         return '👍';
-    } else if (distanceKm < 500) {
-        return '👍';
+    } else if (points > 50) {
+        return '😶';
     } else {
         return '👎';
     }
@@ -111,8 +111,6 @@ function startQuiz(quiz) {
         //ensure that by generating a hash for the questions and storing it in localStorage
         const questionsHash = JSON.stringify(quiz.questions).hashCode().toString();
         const lastPlayedDailyHashCode = localStorage.getItem('lastPlayedDailyHashCode');
-        console.log('lastPlayedDailyHashCode', lastPlayedDailyHashCode);
-        console.log('questionsHash', questionsHash);
         if (lastPlayedDailyHashCode === questionsHash) {
             //get items back from localStorage
             const dailyQuizResults = JSON.parse(localStorage.getItem('dailyQuizResults'));
@@ -162,6 +160,23 @@ function startQuiz(quiz) {
     } else {
         quiz.questions = shuffle(quiz.questions);
     }
+
+    if (currentQuiz.map !== undefined) {
+        if (currentQuiz.map.lat !== undefined && currentQuiz.map.lng !== undefined) {
+            setTimeout(() => {
+                map.setView([currentQuiz.map.lat, currentQuiz.map.lng]);
+            }, 100);
+        } else {
+            map.setView([20, 0], 2);
+        }
+        if (currentQuiz.map.zoom !== undefined) {
+            map.setZoom(currentQuiz.map.zoom);
+        } else {
+            map.setZoom(2);
+        }
+    } else {
+        map.setView([20, 0], 2);
+    }
 }
 
 function changeCategoryModal() {
@@ -197,7 +212,10 @@ function changeCategory(random) {
 
 function evaluateResult(kmOffset) {
     const maxPoints = 100;
-    const scale = 500; //TODO - configure per quiz
+    var scale = 500; //TODO - configure per quiz
+    if (currentQuiz.scale !== undefined) {
+        scale = currentQuiz.scale;
+    }
 
     const points = Math.round(maxPoints * Math.exp(-kmOffset / scale));
     let label;

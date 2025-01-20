@@ -595,6 +595,71 @@ window.quizList.push(
     });
 window.quizList.push(
     {
+        "name": "The French Revolution",
+        "id": "viva-la-revolution",
+        "scale": 5,
+        "map": {
+            "lat": 48.8566, 
+            "lng": 2.3522,
+            "zoom": 12
+        },
+        "order": "strict",
+        "questions": 
+        [
+            {
+                "question": "Where in Paris was the Bastille fortress located, whose storming marked the start of the French Revolution in 1789?",
+                "answer": { "label": "Place de la Bastille, Paris, France", "lat": 48.8529, "lng": 2.3694 },
+                "context": "The fall of the Bastille on July 14, 1789, symbolized the end of the king's absolute power and the birth of the people's sovereignty."
+            },
+            {
+                "question": "Which palace was the location of the Women's March on ---, where women demanded bread and political reform?",
+                "answer": { "label": "Palace of Versailles, Versailles, France", "lat": 48.8049, "lng": 2.1204 },
+                "context": "On October 5, 1789, thousands of Parisians marched to Versailles, which pressured King Louis XVI to return to Paris."
+            },
+            {
+                "question": "What is the name of the square in Paris where King Louis XVI was executed by guillotine in 1793?",
+                "answer": { "label": "Place de la Concorde, Paris, France", "lat": 48.8656, "lng": 2.3212 },
+                "context": "Formerly known as Place de la Révolution, it was the site where King Louis XVI and many others were guillotined."
+            },
+            {
+                "question": "Where was the National Constituent Assembly formed, which laid foundations for modern political systems during the Revolution?",
+                "answer": { "label": "Tennis Court, Versailles, France", "lat": 48.8047, "lng": 2.1204 },
+                "context": "The Tennis Court Oath on June 20, 1789, was a pivotal event, where the National Assembly vowed not to disband until a new constitution was established."
+            },
+            {
+                "question": "Which location in Paris served as the revolutionary tribunal and prison known for the Reign of Terror?",
+                "answer": { "label": "Conciergerie, Paris, France", "lat": 48.8554, "lng": 2.3451 },
+                "context": "The Conciergerie was a primary detention center for those deemed enemies of the revolution from 1793 to 1794."
+            },
+            {
+                "question": "Which church became the 'Temple of Reason' during the de-Christianization movement of the Revolution?",
+                "answer": { "label": "Notre-Dame Cathedral, Paris, France", "lat": 48.8530, "lng": 2.3499 },
+                "context": "During the revolution, the Notre-Dame Cathedral was rededicated to the Cult of Reason, symbolizing the replacement of religious dogma with rational thought."
+            },
+            {
+                "question": "Where was the headquarters of the French Revolution's most radical political group, the Jacobins?",
+                "answer": { "label": "Dominican Monastery, Rue Saint-Honoré, Paris, France", "lat": 48.8648, "lng": 2.3435 },
+                "context": "The Jacobin Club was a political group advocating for republicanism and led by figures like Robespierre."
+            },
+            {
+                "question": "Which building witnessed the signing of the Constitution of 1791 that established constitutional monarchy in France?",
+                "answer": { "label": "Palais Bourbon, Paris, France", "lat": 48.8605, "lng": 2.3186 },
+                "context": "The Palais Bourbon is now home to the French National Assembly, which played a key role in establishing legislative reforms during the revolution."
+            },
+            {
+                "question": "Where in Paris was the revolutionary public execution device, the guillotine, infamously located during the Reign of Terror?",
+                "answer": { "label": "Place de la Révolution (now Place de la Concorde), Paris, France", "lat": 48.8656, "lng": 2.3212 },
+                "context": "The site was synonymous with political purges and was a grim symbol of the radical phase of the revolution."
+            },
+            {
+                "question": "Which venue hosted the Festival of the Supreme Being, celebrating a new revolutionary religion introduced by Robespierre?",
+                "answer": { "label": "Champ de Mars, Paris, France", "lat": 48.8566, "lng": 2.2986 },
+                "context": "The festival represented an effort to unify citizens under the Cult of the Supreme Being, promoting civic virtue and morality."
+            }
+        ]        
+    });        
+window.quizList.push(
+    {
         "name": "Pick 10 Random Questions",
         "id": "random",
         "order": "strict",
