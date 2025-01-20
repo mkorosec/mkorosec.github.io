@@ -11,19 +11,19 @@ window.quizList.push(
         "questions": [
 
         {
-            "question": "Which city is known for its iconic steel tower, designed for the 1889 World's Fair and often associated with romantic views of the Seine River?",
-            "answer": { "label": "Paris, France", "lat": 48.8566, "lng": 2.3522 },
-            "context": "Paris is home to the famous Eiffel Tower, a global cultural icon of France and one of the most recognizable structures in the world."
+            "question": "Which city is home to the famous Colosseum, an ancient amphitheater that hosted gladiatorial games?",
+            "answer": { "label": "Rome, Italy", "lat": 41.8902, "lng": 12.4922 },
+            "context": "Rome is one of the most historically significant cities in the world, with landmarks such as the Colosseum attracting millions of visitors each year."
         },
         {
-            "question": "Which coastal city is renowned for its opera house, which is a masterpiece of modern architecture with a shell-like design?",
-            "answer": { "label": "Sydney, Australia", "lat": -33.8688, "lng": 151.2093 },
-            "context": "Sydney is famous for the Sydney Opera House, a UNESCO World Heritage Site and a symbol of both Sydney and Australia."
+            "question": "Which city celebrates its famous canal system with an extensive annual light festival?",
+            "answer": { "label": "Amsterdam, Netherlands", "lat": 52.3676, "lng": 4.9041 },
+            "context": "Amsterdam's canals are a symbol of the city, offering stunning views and hosting vibrant events like the Amsterdam Light Festival."
         },
         {
-            "question": "Which city hosts the headquarters of the United Nations, situated on the banks of the East River?",
-            "answer": { "label": "New York City, USA", "lat": 40.7128, "lng": -74.0060 },
-            "context": "New York City is known for being a global hub, with the United Nations headquarters located in the Turtle Bay neighborhood of Manhattan."
+            "question": "Which U.S. city is home to the iconic Golden Gate Bridge?",
+            "answer": { "label": "San Francisco, USA", "lat": 37.7749, "lng": -122.4194 },
+            "context": "San Francisco is well known for its fog, steep hills, and the iconic Golden Gate Bridge that spans the Golden Gate Strait."
         }
     
         ]
