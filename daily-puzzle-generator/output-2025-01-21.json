@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+    "questions": [
         {
             "question": "What city is known for its iconic Ferris wheel and hosting a famous 1893 World's Fair?",
             "answer": { "label": "Chicago, USA", "lat": 41.8781, "lng": -87.6298 },
@@ -25,7 +16,6 @@ window.quizList.push(
             "answer": { "label": "Prague, Czech Republic", "lat": 50.0755, "lng": 14.4378 },
             "context": "Prague hosts the Prague Astronomical Clock, a medieval clock that draws visitors with its hourly show and intricate design, located in the city's enchanting Old Town Square."
         }
-    
-        ]
-    }
-);
+    ]
+}
+```
