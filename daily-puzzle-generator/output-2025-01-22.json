@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+    "questions": [
         {
             "question": "Where is the Eiffel Tower located?",
             "answer": { "label": "Paris, France", "lat": 48.8584, "lng": 2.2945 },
@@ -25,7 +16,6 @@ window.quizList.push(
             "answer": { "label": "Rome, Italy", "lat": 41.8902, "lng": 12.4922 },
             "context": "The Colosseum in Rome is an iconic symbol of Imperial Rome and is still the largest amphitheater ever built."
         }
-    
-        ]
-    }
-);
+    ]
+}
+```
