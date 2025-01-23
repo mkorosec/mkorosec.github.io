@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+    "questions": [
         {
             "question": "Which city is famous for the Golden Gate Bridge, an iconic suspension bridge that opened in 1937?",
             "answer": { "label": "San Francisco, USA", "lat": 37.7749, "lng": -122.4194 },
@@ -25,7 +16,6 @@ window.quizList.push(
             "answer": { "label": "Sydney, Australia", "lat": -33.8688, "lng": 151.2093 },
             "context": "Sydney Opera House is an architectural icon, recognized globally for its unique sail-like design and cultural significance."
         }
-    
-        ]
-    }
-);
+    ]
+}
+```
