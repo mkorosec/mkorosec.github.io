@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+    "questions": [
         {
             "question": "Which city is known for the iconic clock tower Big Ben?",
             "answer": { "label": "London, England", "lat": 51.5074, "lng": -0.1278 },
@@ -25,7 +16,6 @@ window.quizList.push(
             "answer": { "label": "New York City, USA", "lat": 40.7128, "lng": -74.0060 },
             "context": "New York City is known for many iconic landmarks, with the Statue of Liberty on Liberty Island being a universal symbol of freedom and democracy."
         }
-    
-        ]
-    }
-);
+    ]
+}
+```
