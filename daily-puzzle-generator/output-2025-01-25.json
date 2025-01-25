@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+    "questions": [
         {
             "question": "Where can you visit the famous museum that houses the Mona Lisa?",
             "answer": { "label": "Louvre Museum, Paris", "lat": 48.8606, "lng": 2.3376 },
@@ -25,7 +16,6 @@ window.quizList.push(
             "answer": { "label": "Rome, Italy", "lat": 41.8902, "lng": 12.4922 },
             "context": "Rome's Colosseum is an iconic symbol of Imperial Rome, and is noted for its grand architecture and the historical significance of the gladiatorial contests that took place there."
         }
-    
-        ]
-    }
-);
+    ]
+}
+```
