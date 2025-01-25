@@ -1,21 +1,29 @@
-```json
 {
-    "questions": [
-        {
-            "question": "Where can you visit the famous museum that houses the Mona Lisa?",
-            "answer": { "label": "Louvre Museum, Paris", "lat": 48.8606, "lng": 2.3376 },
-            "context": "Located in Paris, the Louvre Museum is one of the world's largest and most visited art museums, renowned for housing a vast collection of art including Leonardo da Vinci's Mona Lisa."
-        },
-        {
-            "question": "Which city is known for its iconic opera house, completed in 1973, with a design resembling sails?",
-            "answer": { "label": "Sydney, Australia", "lat": -33.8568, "lng": 151.2153 },
-            "context": "Sydney is famous for its striking Opera House, an architectural masterpiece that has become a symbol of the city, attracting millions of tourists to Australia each year."
-        },
-        {
-            "question": "In which city would you find the Colosseum, an ancient amphitheater known for gladiator games?",
-            "answer": { "label": "Rome, Italy", "lat": 41.8902, "lng": 12.4922 },
-            "context": "Rome's Colosseum is an iconic symbol of Imperial Rome, and is noted for its grand architecture and the historical significance of the gladiatorial contests that took place there."
-        }
-    ]
+  "questions": [
+    {
+      "question": "Which UNESCO World Heritage site is famous for its well-preserved Roman aqueduct, completed around the 1st century AD and spans over the Gardon River in southern France?",
+      "answer": { "label": "Pont du Gard, France", "lat": 43.947, "lng": 4.535 },
+      "context": "This ancient aqueduct bridge is a remarkable example of Roman engineering and is a popular tourist attraction today."
+    },
+    {
+      "question": "What modern architectural marvel in Dubai held the title of the world's tallest structure and skyscraper since its completion in 2010?",
+      "answer": { "label": "Burj Khalifa, United Arab Emirates", "lat": 25.197, "lng": 55.274 },
+      "context": "At over 828 meters tall, this iconic tower is a standout in Dubai's skyline and includes an observation deck offering unparalleled views of the city."
+    },
+    {
+      "question": "Which historical battle site in Belgium was the location of Napoleon Bonaparte's final defeat in 1815?",
+      "answer": { "label": "Waterloo Battlefield, Belgium", "lat": 50.680, "lng": 4.412 },
+      "context": "The Battle of Waterloo marked the end of the Napoleonic Wars and significantly shaped European history."
+    },
+    {
+      "question": "Known for housing the famous 'Mona Lisa', what is the name of this iconic museum located in the heart of Paris, France?",
+      "answer": { "label": "Louvre Museum, France", "lat": 48.861, "lng": 2.336 },
+      "context": "The Louvre is the world's largest art museum and a historic monument in Paris, and its glass pyramid entrance is recognized worldwide."
+    },
+    {
+      "question": "Which ancient ruin site in Jordan is famous for its rock-cut architecture and water conduit system, known as the Rose City due to the color of the stone from which it is carved?",
+      "answer": { "label": "Petra, Jordan", "lat": 30.328, "lng": 35.444 },
+      "context": "Established as early as 312 BC, Petra was the capital of the Nabataean Kingdom and is one of the most visited tourist sites in the world."
+    }
+  ]
 }
-```
