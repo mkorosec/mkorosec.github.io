@@ -37,27 +37,36 @@ def main():
     openai.api_key = os.getenv("OPENAI_API_KEY")
     
     prompt = '''
-Generate three questions for a daily map game. The questions should be unique each time, in order to achieve this, a seed number is provided at the end.
-The answer should be an exact location, like a city, museum, or similar. Do not ask about countries, rivers, regions or anything that might require an amgiuous answer. 
-The answer should be a specific location that can be found on a map. 
-The context should be a short sentence or two that provides some information about the location.
+Generate five questions for a daily map game. Use the seed number to uniquely determine the following variables for today's questions:
+- **Category**: Pick one from [UNESCO sites, modern architectural marvels, historical battle sites, famous museums, ancient ruins, space exploration sites, dark tourism sites, capital city, world wonder].
 
-Use difficulty: easy. The format is JSON, this is the exact format I want you to generate:
+Rules:
+1. Answers must be specific, mappable locations (cities, buildings, monuments). Never countries, rivers, or regions.
+2. Question must un-ambigiously tie to the answer. There should be a clear answer to the question.
+3. For coordinates, ensure precision (at least 2 decimal places).
+4. Use the seed to deterministically vary categories/themes/facts. 
+5. Do not repeat locations in either questions or answers.
+6. In the question: Include at least one historical fact, include at least one fact for the popular masses, to make recognizing the location easier. 
+7. Do not reveal the location in the question, do not mention the city. You can mention the country, region or continent.
+
+Remember - the main challenge is finding the location on the map, do make the question easy.
+
+Format output as JSON without markdown. Example for seed=42:
 {
-    questions: [
-            {
-                "question": "Which city is home to the world's first dedicated oil refinery, established in 1856?",
-                "answer": { "label": "Ploiești, Romania", "lat": 44.94, "lng": 26.03 },
-                "context": "Ploiești is famously known as a pioneering city for oil refining, with innovations in refining processes beginning there in the 19th century."
-            }
-    ]
-}
+  "questions": [
+    {
+      "question": "What is the northernmost UNESCO World Heritage Site, designated for its Viking-age settlements?",
+      "answer": { "label": "Ilulissat Icefjord, Greenland", "lat": 69.22, "lng": -49.83 },
+      "context": "This fjord's ice sheet provides critical data about climate change and was inhabited by Norse settlers circa 985 AD."
+    }
+  ]
+}    
 
 The JSON you output must have valid syntax. Do not prefix the text with anything, do not note that the format is json, just start with code and end with code.
 '''
 
     # append random number to variable prompt to make it unique
-    prompt = prompt + "\nseed: " + str(random.randint(1000000, 10000000000))
+    prompt = prompt + "\nseed: " + str(random.randint(1, 10000000000))
 
     response = openai.chat.completions.create(
         messages=[
