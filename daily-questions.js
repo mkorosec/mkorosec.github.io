@@ -11,29 +11,29 @@ window.quizList.push(
         "questions": [
 
     {
-      "question": "One of the world's most visited UNESCO sites, where a statue once held a torch to welcome immigrants near the end of the 19th century, is now found on an island in North America. What is this iconic location?",
-      "answer": { "label": "Statue of Liberty, New York", "lat": 40.6892, "lng": -74.0445 },
-      "context": "Gifted by France in 1886, this colossal neoclassical statue symbolizes freedom and democracy."
+      "question": "Which ancient ruin in Greece is known for its remarkably preserved multi-tiered amphitheater, dating back to the Hellenistic period?",
+      "answer": { "label": "Epidaurus Theater, Greece", "lat": 37.5986, "lng": 23.0778 },
+      "context": "Situated in the northeastern part of the Peloponnese, this site was a pilgrimage center dedicated to the healing god Asclepius."
     },
     {
-      "question": "Identify the modern architectural marvel in the Middle East, known for its luxury and status, where a sail-shaped hotel dominates the skyline and sits on an artificial island.",
-      "answer": { "label": "Burj Al Arab, Dubai", "lat": 25.1412, "lng": 55.1853 },
-      "context": "Completed in 1999, this luxurious hotel is often referred to as the world's only '7-star hotel' due to its lavish amenities."
+      "question": "Where is the space exploration site located, from which the historic launch of the first human-made satellite into space occurred?",
+      "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.9203, "lng": 63.3423 },
+      "context": "On October 4, 1957, Sputnik 1 was launched from this site, marking the beginning of the space age and sparking the space race."
     },
     {
-      "question": "Locate the UNESCO site in East Asia that is revered for its ancient temple complex, built as a Hindu monument in the early 12th century by a famous king and now forms the symbol of its nation.",
-      "answer": { "label": "Angkor Wat, Siem Reap", "lat": 13.4125, "lng": 103.8666 },
-      "context": "Constructed by King Suryavarman II, Angkor Wat is the largest religious monument in the world, initially dedicated to Vishnu."
+      "question": "What is the site of the infamous battle in Belgium, known for Napoleon's final defeat in 1815?",
+      "answer": { "label": "Waterloo Battlefield, Belgium", "lat": 50.6808, "lng": 4.4125 },
+      "context": "This battle site saw Napoleon Bonaparte's forces defeated by the Duke of Wellington and his allies, marking the end of the Napoleonic Wars."
     },
     {
-      "question": "This European dark tourism site, built in the late 19th century, is infamously known for housing the inmate who sparked the First World War. It is still visited by many history enthusiasts. What is this place?",
-      "answer": { "label": "Alcatraz Prison, San Francisco", "lat": 37.8267, "lng": -122.423 },
-      "context": "Though primarily known as a Federal prison, its infamous inmates and daring escape attempts fuel its allure in popular culture."
+      "question": "Identify the UNESCO World Heritage Site in Italy famous for its well-preserved ancient ruins buried by a volcanic eruption in AD 79.",
+      "answer": { "label": "Pompeii, Italy", "lat": 40.7487, "lng": 14.4931 },
+      "context": "The eruption of Mount Vesuvius buried this city under meters of volcanic ash, preserving buildings, artifacts, and human forms."
     },
     {
-      "question": "Visit the ancient ruins in the Middle East, where a famous tomb built in the 1st century BC showcases intricate rock-cut architecture and was part of a vital trade route. Name this archaeological wonder.",
-      "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
-      "context": "Also known as the Rose City due to the color of the stone, Petra was once a thriving capital of the Nabataean empire before falling to the Romans."
+      "question": "Which museum in France is housed in a former royal palace and is renowned for its vast collection, including the Mona Lisa?",
+      "answer": { "label": "Louvre Museum, France", "lat": 48.8606, "lng": 2.3376 },
+      "context": "Located in Paris, this museum is the world's largest art museum and a historic monument, attracting millions of visitors annually."
     }
   
         ]
