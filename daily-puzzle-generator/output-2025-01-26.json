@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "One of the world's most visited UNESCO sites, where a statue once held a torch to welcome immigrants near the end of the 19th century, is now found on an island in North America. What is this iconic location?",
       "answer": { "label": "Statue of Liberty, New York", "lat": 40.6892, "lng": -74.0445 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
       "context": "Also known as the Rose City due to the color of the stone, Petra was once a thriving capital of the Nabataean empire before falling to the Romans."
     }
-  
-        ]
-    }
-);
+  ]
+}
