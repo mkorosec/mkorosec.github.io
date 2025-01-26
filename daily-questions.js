@@ -11,29 +11,29 @@ window.quizList.push(
         "questions": [
 
     {
-      "question": "Which ancient ruin in Greece is known for its remarkably preserved multi-tiered amphitheater, dating back to the Hellenistic period?",
-      "answer": { "label": "Epidaurus Theater, Greece", "lat": 37.5986, "lng": 23.0778 },
-      "context": "Situated in the northeastern part of the Peloponnese, this site was a pilgrimage center dedicated to the healing god Asclepius."
+      "question": "Where can you find the modern architectural marvel known as the Burj Khalifa, the tallest building in the world completed in 2010, located in a desert-based metropolis?",
+      "answer": { "label": "Burj Khalifa, Dubai, UAE", "lat": 25.1972, "lng": 55.2744 },
+      "context": "This iconic skyscraper reaches a height of 828 meters and represents a centerpiece of the city’s rapid 21st-century development."
     },
     {
-      "question": "Where is the space exploration site located, from which the historic launch of the first human-made satellite into space occurred?",
-      "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.9203, "lng": 63.3423 },
-      "context": "On October 4, 1957, Sputnik 1 was launched from this site, marking the beginning of the space age and sparking the space race."
+      "question": "Which historical battle site is the location where Napoleon Bonaparte faced defeat in 1815, marking the end of his rule?",
+      "answer": { "label": "Waterloo, Belgium", "lat": 50.6802, "lng": 4.4127 },
+      "context": "This small town in Belgium was the site of the infamous Battle of Waterloo, signaling the end of Napoleonic Wars and leading to Napoleon's exile."
     },
     {
-      "question": "What is the site of the infamous battle in Belgium, known for Napoleon's final defeat in 1815?",
-      "answer": { "label": "Waterloo Battlefield, Belgium", "lat": 50.6808, "lng": 4.4125 },
-      "context": "This battle site saw Napoleon Bonaparte's forces defeated by the Duke of Wellington and his allies, marking the end of the Napoleonic Wars."
+      "question": "Where will you find the famous museum that houses the Mona Lisa and was originally a royal palace in France?",
+      "answer": { "label": "Louvre Museum, Paris, France", "lat": 48.8606, "lng": 2.3376 },
+      "context": "The Louvre is famous for its extensive art collection and its iconic glass pyramid entrance, serving as one of the world's largest and most visited museums."
     },
     {
-      "question": "Identify the UNESCO World Heritage Site in Italy famous for its well-preserved ancient ruins buried by a volcanic eruption in AD 79.",
-      "answer": { "label": "Pompeii, Italy", "lat": 40.7487, "lng": 14.4931 },
-      "context": "The eruption of Mount Vesuvius buried this city under meters of volcanic ash, preserving buildings, artifacts, and human forms."
+      "question": "In which ancient city can you explore the ruin known as the Temple of Artemis, one of the Seven Wonders of the Ancient World, located in modern-day Turkey?",
+      "answer": { "label": "Ephesus, Turkey", "lat": 37.9496, "lng": 27.3634 },
+      "context": "Although mostly destroyed, the site once hosted a grand temple dedicated to the goddess Artemis and was a major hub of trade and culture in the Roman period."
     },
     {
-      "question": "Which museum in France is housed in a former royal palace and is renowned for its vast collection, including the Mona Lisa?",
-      "answer": { "label": "Louvre Museum, France", "lat": 48.8606, "lng": 2.3376 },
-      "context": "Located in Paris, this museum is the world's largest art museum and a historic monument, attracting millions of visitors annually."
+      "question": "Which city is known as the 'Space City' and houses the NASA Johnson Space Center, where Mission Control for all U.S. manned space flights is located?",
+      "answer": { "label": "Houston, Texas, USA", "lat": 29.5614, "lng": -95.0852 },
+      "context": "This city is not only famous for its role in space exploration but also boasts a diverse cultural scene, being the fourth-largest city in the United States."
     }
   
         ]
