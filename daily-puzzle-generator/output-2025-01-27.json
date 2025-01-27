@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage site was completed in 1887 and features Gothic architecture renowned for its stunning stained glass windows and intricate sculptures?",
       "answer": { "label": "Sainte-Chapelle, France", "lat": 48.855, "lng": 2.345 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.965, "lng": 63.305 },
       "context": "The Baikonur Cosmodrome remains the world’s first and largest operational space launch facility, famous for launching Sputnik 1 and the first human, Yuri Gagarin, into space."
     }
-  
-        ]
-    }
-);
+  ]
+}
