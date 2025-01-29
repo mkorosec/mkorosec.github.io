@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel in a Middle Eastern city is known for its sail-shaped silhouette and was opened in 1999 as one of the tallest hotels in the world?",
       "answer": { "label": "Burj Al Arab, Dubai", "lat": 25.1412, "lng": 55.1855 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Pompeii Ruins, Italy", "lat": 40.7485, "lng": 14.4958 },
       "context": "This site was rediscovered in the 18th century with remarkably well-preserved art and structures following the catastrophic eruption of Mount Vesuvius."
     }
-  
-        ]
-    }
-);
+  ]
+}
