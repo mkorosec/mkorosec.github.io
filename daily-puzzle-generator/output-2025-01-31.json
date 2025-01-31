@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "What ancient ruin, known for its large stone statues called moai, is located on an isolated volcanic island in the southeastern Pacific Ocean?",
       "answer": { "label": "Rano Raraku, Easter Island", "lat": -27.12, "lng": -109.28 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.92, "lng": 63.34 },
       "context": "This site was pivotal in the space race, still operational today, and was the launch point for the famous Sputnik."
     }
-  
-        ]
-    }
-);
+  ]
+}
