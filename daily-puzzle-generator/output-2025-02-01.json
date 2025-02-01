@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which site, a UNESCO World Heritage Site since 1979, marks the ancient capital of the Khmer Empire and is the largest religious monument in the world?",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.4125, "lng": 103.8667 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Athens, Greece", "lat": 37.9715, "lng": 23.7257 },
       "context": "The Acropolis, a UNESCO World Heritage Site, was constructed under the leadership of Pericles in the 5th century BC."
     }
-  
-        ]
-    }
-);
+  ]
+}
