@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO site, an ancient city known for its well-preserved ruins and temples, was rediscovered in the early 19th century by Johann Ludwig Burckhardt?",
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.9203, "lng": 63.3429 },
       "context": "This spaceport has been the launch site for many historic missions during the Space Race era."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
