@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site, known for its impressive clifftop structures built by the Nabataeans, is located in the Middle East?",
       "answer": { "label": "Petra, Jordan", "lat": 30.33, "lng": 35.44 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Olympia, Greece", "lat": 37.64, "lng": 21.63 },
       "context": "This site hosted the ancient Olympics every four years and held significant temples and sports facilities."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
