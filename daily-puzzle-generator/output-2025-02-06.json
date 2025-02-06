@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which city is home to an iconic skyscraper that was constructed during the Great Depression and held the title of the world's tallest building until 1970?",
       "answer": { "label": "Empire State Building, New York City, USA", "lat": 40.748817, "lng": -73.985428 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Waterloo Battlefield, Belgium", "lat": 50.680168, "lng": 4.412771 },
       "context": "The Battle of Waterloo is famously known as the end of Napoleon Bonaparte’s rule, involving forces led by the Duke of Wellington."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
