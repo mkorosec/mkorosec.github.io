@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "This UNESCO site in Europe is renowned for its ancient rock carvings, dating back to the Neolithic period, considered as early expressions of human creativity.",
       "answer": { "label": "Alta Rock Carvings, Norway", "lat": 69.93, "lng": 23.27 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Persepolis, Iran", "lat": 29.94, "lng": 52.89 },
       "context": "Founded by Darius I around 518 BCE, Persepolis is an enduring symbol of the Persian Empire's architectural achievements. It was sacked by Alexander the Great."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
