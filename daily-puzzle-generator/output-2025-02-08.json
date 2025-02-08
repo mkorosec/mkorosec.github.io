@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Italy is famous for its Leaning Tower, a structural marvel dating back to 1173?",
       "answer": { "label": "Piazza del Duomo, Pisa, Italy", "lat": 43.723, "lng": 10.3966 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Santiago, Chile", "lat": -33.4489, "lng": -70.6654 },
       "context": "Santiago's Plaza de Armas is surrounded by important landmarks and has played a key role since the city's founding in 1541."
     }
-  
-        ]
-    }
-);
+  ]
+}
