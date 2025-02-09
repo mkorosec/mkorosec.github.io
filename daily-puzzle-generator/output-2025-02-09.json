@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Cambodia is renowned for its impressive temple complex that was built in the early 12th century and is featured on the national flag?",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.4125, "lng": 103.867 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Pompeii, Italy", "lat": 40.7497, "lng": 14.4853 },
       "context": "This ancient city was buried by ash and pumice from the eruption of Mount Vesuvius."
     }
-  
-        ]
-    }
-);
+  ]
+}
