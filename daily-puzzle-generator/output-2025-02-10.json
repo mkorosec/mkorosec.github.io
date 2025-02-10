@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruin in Mesopotamia, modern-day Iraq, is renowned for the discovery of the Epic of Gilgamesh tablets?",
       "answer": { "label": "Ruins of Nineveh, Mosul, Iraq", "lat": 36.34, "lng": 43.13 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Sydney Opera House, Sydney, Australia", "lat": -33.86, "lng": 151.21 },
       "context": "Opened in 1973 and designed by Jørn Utzon, the Sydney Opera House is a UNESCO World Heritage Site and a symbol of modern expressionist architecture."
     }
-  
-        ]
-    }
-);
+  ]
+}
