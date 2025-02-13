@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Known for holding some of the greatest masterworks of art including works by Leonardo da Vinci and Michelangelo, which museum is located in a former royal palace that once served as the residence for French monarchs?",
       "answer": { "label": "Louvre Museum, Paris", "lat": 48.8606, "lng": 2.3376 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Nazca Lines, Peru", "lat": -14.7399, "lng": -75.1308 },
       "context": "These extraordinary and large drawings date back to between 500 BCE and 500 CE, constructed by the pre-Inca Nasca culture."
     }
-  
-        ]
-    }
-);
+  ]
+}
