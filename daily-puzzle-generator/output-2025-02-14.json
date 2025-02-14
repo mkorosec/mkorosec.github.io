@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site, located in Egypt, holds the world's oldest known monumental sculpture associated with the Pharaoh Khafre?",
       "answer": { "label": "Great Sphinx of Giza, Egypt", "lat": 29.9753, "lng": 31.1376 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Chichen Itza, Mexico", "lat": 20.6843, "lng": -88.5678 },
       "context": "Located on the Yucatán Peninsula, this archaeological site displays a sacred cenote and has been a UNESCO World Heritage Site since 1988."
     }
-  
-        ]
-    }
-);
+  ]
+}
