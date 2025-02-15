@@ -68,7 +68,8 @@
                 <button type="button" class="btn btn-secondary" onclick="changeCategory(true)">Surprise me!</button>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="changeCategory()">Start quiz</button>
+                <button type="button" class="btn btn-primary" onclick="changeCategory()">Start</button>
+                <button type="button" class="btn btn-primary" onclick="changeCategory(false, true)">Start - shuffle questions</button>
             </div>
           </div>
         </div>
@@ -141,7 +142,9 @@
                 revealAnswerOnMap(answer.lat, answer.lng, 
                 '<p style="margin:0">Correct answer: ' + answer.label + '</p>' + 
                 '<p style="margin:0">Distance: ' + (distance/1000).toFixed(2) + 'km</p>' + 
-                '<p style="margin:0">Points: ' + score.points + '/100</p>'
+                '<p style="margin:0">Points: ' + score.points + '/100</p>' +
+                '<p style="margin-top:1em"><a class="link" onclick="moreInformationAboutAnswer()">click for more info</a> &#x25BC;</p>' +
+                '<p style="margin:0" id="moreInformation"></p>'
                 );
 
                 currentQuiz.results.push({
@@ -155,6 +158,18 @@
                 console.log('No guess to submit.');
             }
 
+        }
+
+        function moreInformationAboutAnswer() {
+            document.getElementById('moreInformation').innerText = question.context;
+            cancelCountdown();
+        }
+
+        function cancelCountdown() {
+            clearInterval(nextQuestionAutoSubmitTimer);
+            const button = document.getElementById('nextQuestionButton');
+            button.textContent = 'Next';
+            button.disabled = false;
         }
 
         function revealAnswerOnMap(lat, lng, label) {
