@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site, located in the Middle East, is famous for its rock-cut architecture dating back to around the 5th century BC?",
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Acropolis of Athens, Greece", "lat": 37.9715, "lng": 23.7257 },
       "context": "The Acropolis stands on a limestone hill above the city of Athens and dates back to the 5th century BC, representing the pinnacle of classical Greek art and architecture."
     }
-  
-        ]
-    }
-);
+  ]
+}
