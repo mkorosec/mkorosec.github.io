@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient city, located in modern-day Greece, is considered one of the most important centers of early Christianity and famously known for its massive Roman amphitheater?",
       "answer": { "label": "Philippi, Greece", "lat": 41.008, "lng": 24.290 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Louvre Museum, Paris, France", "lat": 48.8606, "lng": 2.3376 },
       "context": "The Louvre is the world's largest art museum and a historic monument in Paris, originally built as a fortress in the late 12th century under Philip II."
     }
-  
-        ]
-    }
-);
+  ]
+}
