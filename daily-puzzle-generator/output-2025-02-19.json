@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel was designed by Frank Gehry and opened in 1997, transforming its surrounding area into a bustling cultural hub?",
       "answer": { "label": "Guggenheim Museum Bilbao, Spain", "lat": 43.2686, "lng": -2.9336 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Ephesus, Turkey", "lat": 37.9398, "lng": 27.3413 },
       "context": "This city was once a major trade and religious center, known for its grand theatre and well-preserved facade of the Library of Celsus."
     }
-  
-        ]
-    }
-);
+  ]
+}
