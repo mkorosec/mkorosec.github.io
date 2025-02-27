@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which famous museum in Europe houses the painting 'Girl with a Pearl Earring', also known for its historic 17th-century architecture?",
       "answer": { "label": "Mauritshuis, The Hague", "lat": 52.08, "lng": 4.31 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Great Pyramid of Giza, Egypt", "lat": 29.98, "lng": 31.13 },
       "context": "The last surviving of the Seven Wonders of the Ancient World, it exemplifies ancient Egyptian architectural prowess and alignment with celestial bodies."
     }
-  
-        ]
-    }
-);
+  ]
+}
