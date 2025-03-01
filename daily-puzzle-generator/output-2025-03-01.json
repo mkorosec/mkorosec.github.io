@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel in the United Arab Emirates is known for having the world's tallest building since its opening in 2010?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Parthenon, Athens", "lat": 37.9715, "lng": 23.7267 },
       "context": "Standing on the Acropolis, the Parthenon was constructed in the 5th century BC and has played a key role in Greek history and cultural identity."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
