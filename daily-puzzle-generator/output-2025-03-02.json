@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in South America is known for its panoramic mountain view and was once considered a royal estate of the Inca emperor Pachacuti?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.545 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Pantheon, Rome", "lat": 41.8986, "lng": 12.4769 },
       "context": "Built around 126 AD, this impeccably preserved site features a central oculus that opens directly to the sky."
     }
-  
-        ]
-    }
-);
+  ]
+}
