@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Egypt, located along the Nile, is renowned for the Karnak Temple Complex?",
       "answer": { "label": "Ancient Thebes with its Necropolis, Luxor, Egypt", "lat": 25.720, "lng": 32.610 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Palace of Knossos, Crete, Greece", "lat": 35.299, "lng": 25.162 },
       "context": "Dating back to the Minoan civilization, this archaeological site is linked to King Minos and stories from Greek mythology."
     }
-  
-        ]
-    }
-);
+  ]
+}
