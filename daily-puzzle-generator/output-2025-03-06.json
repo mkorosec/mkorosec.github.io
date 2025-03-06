@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "In what city can you find a UNESCO World Heritage Site renowned for its ancient rock-cut architecture, specifically the Treasury, which dates back to the 4th century BC?",
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Carcassonne, France", "lat": 43.2106, "lng": 2.3509 },
       "context": "This medieval fortress is famous for its double-walled structure and 53 towers, playing a crucial role in the history of the Cathars."
     }
-  
-        ]
-    }
-);
+  ]
+}
