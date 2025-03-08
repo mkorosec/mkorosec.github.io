@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where is the UNESCO World Heritage Site known for its breathtaking aquatic terraces, located in a country with a famed cuisine that includes dishes like spring rolls?",
       "answer": { "label": "Rice Terraces of the Philippine Cordilleras", "lat": 16.93, "lng": 121.10 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Historic Centre of Salvador de Bahia, Brazil", "lat": -12.97, "lng": -38.51 },
       "context": "Salvador was the first colonial capital of Brazil and is famed for its afro-Brazilian culture and colorful buildings reflecting its colonial past."
     }
-  
-        ]
-    }
-);
+  ]
+}
