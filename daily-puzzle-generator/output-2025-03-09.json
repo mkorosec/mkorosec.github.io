@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage site in South America was created in the 15th century and showcases stunning Inca engineering deep within the Andes?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.545 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Old Town of Lviv, Ukraine", "lat": 49.8397, "lng": 24.0297 },
       "context": "The city is a cultural melting pot showcasing Polish, Armenian, Jewish, and German influences through its architecture and urban layout."
     }
-  
-        ]
-    }
-);
+  ]
+}
