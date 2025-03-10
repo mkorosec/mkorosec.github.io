@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site is known for hosting one of the largest collections of prehistoric petroglyphs, and is located in one of the most arid regions in the world?",
       "answer": { "label": "Rupestrian Rock Art of the Altamira Cave, Spain", "lat": 43.38, "lng": -4.12 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.9206, "lng": 63.3425 },
       "context": "Yuri Gagarin's historic 1961 flight aboard Vostok 1 launched from this site, which remains active for Russian space missions."
     }
-  
-        ]
-    }
-);
+  ]
+}
