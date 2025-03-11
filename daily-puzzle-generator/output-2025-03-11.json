@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO site, nestled on a coral atoll in the Pacific Ocean, played a pivotal role in World War II being the site of the Battle of Tarawa?",
       "answer": { "label": "Betio Island, Tarawa Atoll", "lat": 1.352, "lng": 172.931 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Ephesus, Turkey", "lat": 37.9499, "lng": 27.3634 },
       "context": "This city was once a major trade and cultural center in the Roman Empire, renowned for its monumental architecture and as a hub for early Christianity."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
