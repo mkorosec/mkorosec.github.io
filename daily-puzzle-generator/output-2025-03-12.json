@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Australia, known for its unique rock formations, dates back over 40,000 years with continuous evidence of Aboriginal habitation?",
       "answer": { "label": "Uluru-Kata Tjuta National Park, Australia", "lat": -25.34, "lng": 131.03 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Chichen Itza, Mexico", "lat": 20.68, "lng": -88.57 },
       "context": "This archaeological site includes the Temple of the Warriors and the Great Ball Court, making it a wonder of the pre-Columbian era."
     }
-  
-        ]
-    }
-);
+  ]
+}
