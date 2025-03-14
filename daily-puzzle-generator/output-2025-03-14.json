@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Cambodia, a former capital of the Khmer Empire, is famous for its temple complex built in the 12th century?",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.41, "lng": 103.87 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Van Gogh Museum, Amsterdam, Netherlands", "lat": 52.36, "lng": 4.88 },
       "context": "This museum houses the largest collection of artworks by Vincent van Gogh, including many of his self-portraits and the iconic Sunflowers."
     }
-  
-        ]
-    }
-);
+  ]
+}
