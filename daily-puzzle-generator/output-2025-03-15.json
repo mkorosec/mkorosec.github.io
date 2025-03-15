@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Southeast Asia was originally a Hindu temple dedicated to Vishnu before becoming a Buddhist site?",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.4125, "lng": 103.8667 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "The Lighthouse of Alexandria (Pharos of Alexandria), Egypt", "lat": 31.2135, "lng": 29.8852 },
       "context": "This beacon stood on the small island of Pharos and guided sailors safely to the busy harbor of Alexandria, becoming an architectural marvel of the ancient world."
     }
-  
-        ]
-    }
-);
+  ]
+}
