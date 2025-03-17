@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where is the famous architectural marvel, completed in 2010, that stands as the tallest man-made structure on Earth?",
       "answer": { "label": "Burj Khalifa, Dubai, United Arab Emirates", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
       "context": "Famed for its rock-cut architecture and water conduit system, this city is also known as the 'Rose City' due to the color of the stone."
     }
-  
-        ]
-    }
-);
+  ]
+}
