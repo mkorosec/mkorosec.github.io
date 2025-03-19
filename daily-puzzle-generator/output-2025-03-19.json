@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel, known for its twin skyscrapers and completed in 1998, held the title of the tallest buildings in the world until 2004?",
       "answer": { "label": "Petronas Towers, Kuala Lumpur", "lat": 3.1579, "lng": 101.7114 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Paris", "lat": 48.8566, "lng": 2.3522 },
       "context": "The Eiffel Tower has become a global cultural icon of France and is one of the most recognizable structures in the world, attracting millions of visitors each year."
     }
-  
-        ]
-    }
-);
+  ]
+}
