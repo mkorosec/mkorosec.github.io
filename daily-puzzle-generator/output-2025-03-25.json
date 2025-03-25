@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site is known for its ancient rock carvings and was a major settlement over 5,000 years ago, located in Scandinavia?",
       "answer": { "label": "Rock Carvings in Tanum, Sweden", "lat": 58.71, "lng": 11.35 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Acropolis of Athens, Greece", "lat": 37.97, "lng": 23.72 },
       "context": "Known for its Parthenon temple, the Acropolis played a central role in ancient Greek civilization and still dominates Athens' skyline."
     }
-  
-        ]
-    }
-);
+  ]
+}
