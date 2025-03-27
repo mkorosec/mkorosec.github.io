@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where can you find the tallest building in the world, completed in 2010, located in a city known for its luxury and innovation in the Middle East?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.1975, "lng": 55.2744 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome", "lat": 45.965, "lng": 63.305 },
       "context": "Used for Vostok 1, Yuri Gagarin's historic flight, this site played key roles throughout the space race and continues to be central in international space efforts."
     }
-  
-        ]
-    }
-);
+  ]
+}
