@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Italy is famous for its vibrant Byzantine mosaics and played a significant role during the early years of the Christian church?",
       "answer": { "label": "Basilica of San Vitale, Ravenna", "lat": 44.42, "lng": 12.196 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Ancient Olympia, Peloponnese", "lat": 37.637, "lng": 21.6303 },
       "context": "This site includes the ruins of athletic training areas, a stadium, and temples dedicated to the gods Hera and Zeus."
     }
-  
-        ]
-    }
-);
+  ]
+}
