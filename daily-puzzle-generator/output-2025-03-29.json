@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site, located in Italy, is renowned for its remarkable 18th-century palace and gardens, once home to the Bourbon kings of Naples?",
       "answer": { "label": "Royal Palace of Caserta", "lat": 41.075, "lng": 14.319 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Pripyat, Ukraine", "lat": 51.389, "lng": 30.099 },
       "context": "Abandoned after the Chernobyl disaster, the town's Ferris wheel is an iconic symbol of the event's impact."
     }
-  
-        ]
-    }
-);
+  ]
+}
