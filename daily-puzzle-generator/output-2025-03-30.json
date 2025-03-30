@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Where is the famous space exploration site where the first artificial satellite, Sputnik 1, was launched in 1957?",
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.92, "lng": 63.34 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Angkor Wat, Siem Reap, Cambodia", "lat": 13.41, "lng": 103.87 },
       "context": "This temple is a symbol of Cambodia, noted for its majestic carvings and has withstood the test of time through various periods of Cambodian history."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
