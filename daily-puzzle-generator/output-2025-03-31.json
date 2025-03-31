@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel in the Arabian Peninsula is held to be the tallest building in the world, completed in 2010?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Louvre Museum, Paris", "lat": 48.8606, "lng": 2.3376 },
       "context": "Once a royal palace, this museum is the world's most visited and features collections ranging from ancient civilizations to the 19th century."
     }
-  
-        ]
-    }
-);
+  ]
+}
