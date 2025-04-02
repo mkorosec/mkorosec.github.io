@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where can you find a UNESCO World Heritage Site known for its impressive water management system and Roman connections, located in present-day India?",
       "answer": { "label": "Rani Ki Vav, Patan", "lat": 23.85, "lng": 72.10 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Carthage Ruins, Tunis", "lat": 36.85, "lng": 10.32 },
       "context": "These ruins are remnants of a powerful city that fought against Rome in the Punic Wars, and was later rebuilt by the Romans after its defeat."
     }
-  
-        ]
-    }
-);
+  ]
+}
