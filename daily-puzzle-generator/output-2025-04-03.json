@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where is the ancient Roman site that housed the Praetorian Guard in Italy?",
       "answer": { "label": "Arch of Constantine, Rome", "lat": 41.8894, "lng": 12.4923 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Cusco, Peru", "lat": -13.532, "lng": -71.9675 },
       "context": "Founded in the 15th century, it's famous for its Spanish Colonial architecture on top of Incan foundations."
     }
-  
-        ]
-    }
-);
+  ]
+}
