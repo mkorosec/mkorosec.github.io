@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel, completed in 2010, is known as the tallest building in the world and features an impressive 163 floors?",
       "answer": { "label": "Burj Khalifa, Dubai, UAE", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.9203, "lng": 63.3426 },
       "context": "This site remains operational and is essential for International Space Station missions, symbolizing early space race achievements."
     }
-  
-        ]
-    }
-);
+  ]
+}
