@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Where is the UNESCO World Heritage Site known for its well-preserved Inca citadel, with terraces, and the iconic sun temple, located in the mountain region of Peru?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Taj Mahal, India", "lat": 27.1751, "lng": 78.0421 },
       "context": "This white marble structure is admired for its symmetrical gardens and intricate calligraphy, and it stands as a symbol of love."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
