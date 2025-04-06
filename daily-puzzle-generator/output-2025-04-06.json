@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel in the United Arab Emirates is famously known for its sail-like structure and is located in a city that was just a fishing village 50 years ago?",
       "answer": { "label": "Burj Al Arab, Dubai", "lat": 25.1418, "lng": 55.1851 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Canberra, Australia", "lat": -35.2809, "lng": 149.1300 },
       "context": "In 1964, the Parkes Radio Telescope near this city received live TV images of the Apollo 11 moonwalk, bringing it to millions worldwide."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
