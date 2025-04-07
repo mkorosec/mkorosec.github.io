@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Peru is known for being a ceremonial center of a significant pre-Columbian culture, renowned for its massive stone monoliths?",
       "answer": { "label": "Chavín de Huántar, Peru", "lat": -9.595, "lng": -77.177 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Paestum, Italy", "lat": 40.422, "lng": 15.003 },
       "context": "Situated in southern Italy, Paestum is famous for its three major Doric temples, dating back to the 6th and 5th centuries BC, dedicated to Hera, Athena, and Neptune."
     }
-  
-        ]
-    }
-);
+  ]
+}
