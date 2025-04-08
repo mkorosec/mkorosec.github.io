@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where can you explore the remains of an ancient Roman city that was buried in AD 79 due to a catastrophic volcanic eruption?",
       "answer": { "label": "Pompeii, Italy", "lat": 40.75, "lng": 14.49 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Van Gogh Museum, Amsterdam, Netherlands", "lat": 52.35, "lng": 4.88 },
       "context": "Opened in 1973, this museum showcases paintings like 'The Starry Night,' highlighting the artist's evolution and tragic life."
     }
-  
-        ]
-    }
-);
+  ]
+}
