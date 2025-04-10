@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where is the world's tallest building located, a modern architectural marvel completed in 2010?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Sydney, Australia", "lat": -33.8568, "lng": 151.2153 },
       "context": "This iconic venue, completed in 1973, not only hosts performing arts but is also a UNESCO World Heritage Site known worldwide for its unique architecture."
     }
-  
-        ]
-    }
-);
+  ]
+}
