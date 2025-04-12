@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "What ancient ruin, located in the Andes of South America, was rediscovered by Hiram Bingham in 1911 and is often mistakenly referred to as the Lost City of the Incas?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Chernobyl Exclusion Zone, Ukraine", "lat": 51.2766, "lng": 30.2210 },
       "context": "This area encompasses the remains of the Chernobyl Nuclear Power Plant and the abandoned city of Pripyat, and it has become a somber reminder of the potential perils of nuclear energy."
     }
-  
-        ]
-    }
-);
+  ]
+}
