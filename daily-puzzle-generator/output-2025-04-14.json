@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in France, known for its Romanesque architecture, held a significant role as a pilgrimage destination in the medieval period?",
       "answer": { "label": "Mont Saint-Michel, France", "lat": 48.636, "lng": -1.511 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Chichén Itzá, Mexico", "lat": 20.684, "lng": -88.567 },
       "context": "This site showcases the ingenuity of Mayan architecture and astronomy, attracting millions of tourists annually."
     }
-  
-        ]
-    }
-);
+  ]
+}
