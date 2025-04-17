@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Where can you find a UNESCO World Heritage site that's a famous pre-Columbian city in the Yucatán Peninsula, known for its massive pyramidal temple dedicated to Kukulkan?",
       "answer": { "label": "Chichen Itza, Mexico", "lat": 20.6843, "lng": -88.5678 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Mogao Caves, China", "lat": 40.0479, "lng": 94.6622 },
       "context": "Situated along the Silk Road, these caves were a significant Buddhist center for centuries and reflect a blend of artistic and religious influences."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
