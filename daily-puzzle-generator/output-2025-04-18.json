@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which famous architectural marvel, designed by Antoni Gaudí, commenced construction in 1882 and remains unfinished to this day?",
       "answer": { "label": "Sagrada Família, Barcelona", "lat": 41.4036, "lng": 2.1744 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Munich, Germany", "lat": 48.1351, "lng": 11.5820 },
       "context": "The city is renowned for its beer halls, including the famed Hofbräuhaus, and was heavily bombed during World War II."
     }
-  
-        ]
-    }
-);
+  ]
+}
