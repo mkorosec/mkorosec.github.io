@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel in the Middle East, designed by Jean Nouvel, opened in 2017 and attempts to house the history of humanity’s artistic achievements?",
       "answer": { "label": "Louvre Abu Dhabi, United Arab Emirates", "lat": 24.53, "lng": 54.39 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Kennedy Space Center, Florida, United States", "lat": 28.57, "lng": -80.65 },
       "context": "This center is known for its iconic Vehicle Assembly Building and the launch of the Space Shuttle program."
     }
-  
-        ]
-    }
-);
+  ]
+}
