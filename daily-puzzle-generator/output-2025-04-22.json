@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage site, located in South America, served as the heart of the Inca Empire in the 15th century and is often characterized by its dry-stone construction?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Segovia, Spain", "lat": 40.9481, "lng": -4.1184 },
       "context": "Besides its architectural significance, the Roman aqueduct here is one of the best-preserved elevated Roman aqueducts and spans the plaza of the city."
     }
-  
-        ]
-    }
-);
+  ]
+}
