@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel, located in the Middle East, was completed in 2010 and held the title of the world's tallest building, towering over 828 meters high?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.197, "lng": 55.2744 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.965, "lng": 63.305 },
       "context": "Still in operation today, this facility played a pivotal role during the Space Race and continues to be used for launching various international space missions."
     }
-  
-        ]
-    }
-);
+  ]
+}
