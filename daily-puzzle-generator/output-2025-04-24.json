@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which remarkable ancient ruin features a sunken courtyard and monolithic statues known to have been constructed in southern Peru around 1200 BC?",
       "answer": { "label": "Chavín de Huantar, Peru", "lat": -9.72, "lng": -77.17 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Moscow, Russia", "lat": 55.75, "lng": 37.62 },
       "context": "The Museum of Cosmonautics here, near the towering Monument to the Conquerors of Space, commemorates the achievements of Soviet space exploration."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
