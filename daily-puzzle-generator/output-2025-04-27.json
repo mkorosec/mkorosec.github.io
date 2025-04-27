@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which World Wonder, located in the desert in the Middle East, was built as a tomb for the pharaoh around 2560 BC and is the only surviving structure of the Seven Wonders of the Ancient World?",
       "answer": { "label": "Great Pyramid of Giza, Egypt", "lat": 29.9792, "lng": 31.1342 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Oslo, Norway", "lat": 59.9139, "lng": 10.7522 },
       "context": "This city hosts the Nobel Peace Prize ceremony each year and its beautiful waterfront is a major attraction."
     }
-  
-        ]
-    }
-);
+  ]
+}
