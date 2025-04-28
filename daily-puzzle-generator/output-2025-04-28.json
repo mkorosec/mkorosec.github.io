@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Africa is known for its ancient pyramidal structures, built by the Kushite Kingdom?",
       "answer": { "label": "Meroe Pyramids, Sudan", "lat": 16.9375, "lng": 33.7499 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
       "context": "This 15th-century site, rediscovered in 1911, is known for its sophisticated dry-stone construction and is often referred to as the 'Lost City of the Incas.'"
     }
-  
-        ]
-    }
-);
+  ]
+}
