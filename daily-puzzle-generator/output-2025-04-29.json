@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where can you find the ancient ruins believed to be the birthplace of democracy, dating back to the 5th century BC, and which hosts a famous annual marathon?",
       "answer": { "label": "The Acropolis of Athens, Greece", "lat": 37.9715, "lng": 23.7257 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
       "context": "This Incan citadel was known to the West only after its rediscovery by American historian Hiram Bingham in 1911."
     }
-  
-        ]
-    }
-);
+  ]
+}
