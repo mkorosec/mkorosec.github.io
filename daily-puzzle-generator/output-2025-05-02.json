@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruins is famous for its massive stone-carved amphitheater and was once a center for trade in the Arabian desert?",
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Panathenaic Stadium, Athens", "lat": 37.9680, "lng": 23.7415 },
       "context": "This ancient site is the only stadium in the world built entirely of marble and hosted the first Modern Olympic Games installed by Pierre de Coubertin."
     }
-  
-        ]
-    }
-);
+  ]
+}
