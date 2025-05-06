@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Italy is famous for its leaning tower, completed in 1372?",
       "answer": { "label": "Piazza del Duomo, Pisa", "lat": 43.723, "lng": 10.396 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Buzludzha Monument, Bulgaria", "lat": 42.738, "lng": 25.395 },
       "context": "Constructed in 1981, this UFO-shaped building symbolized the power of socialist Bulgaria and now attracts adventurous tourists."
     }
-  
-        ]
-    }
-);
+  ]
+}
