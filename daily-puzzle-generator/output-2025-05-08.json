@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which capital city houses the iconic Christ the Redeemer statue, a landmark that was completed in 1931 and stands atop Mount Corcovado?",
       "answer": { "label": "Rio de Janeiro, Brazil", "lat": -22.95, "lng": -43.21 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Istanbul, Turkey", "lat": 41.01, "lng": 28.98 },
       "context": "Originally constructed in 537 AD under Byzantine Emperor Justinian I, this site is a masterpiece of Byzantine architecture."
     }
-  
-        ]
-    }
-);
+  ]
+}
