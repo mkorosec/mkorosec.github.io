@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which ancient ruin, located in South America, is renowned for its complex mortarless construction by the Incan Empire, and is a major UNESCO World Heritage Site?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.545 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Babylon, Iraq", "lat": 32.5364, "lng": 44.4203 },
       "context": "Despite the legend of the Hanging Gardens, their existence in Babylon remains unconfirmed. The city is one of history's most significant early urban cultures."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
