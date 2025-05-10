@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient site is one of the New Seven Wonders of the World, famous for a monumental city carved into rose-red cliffs?",
       "answer": { "label": "Petra, Jordan", "lat": 30.33, "lng": 35.44 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Louvre Museum, Paris", "lat": 48.86, "lng": 2.34 },
       "context": "Originally a royal palace, the Louvre became a public museum during the French Revolution and is now the world's most-visited museum."
     }
-  
-        ]
-    }
-);
+  ]
+}
