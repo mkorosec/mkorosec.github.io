@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Peru, built in the 15th century by the Inca Empire, is famed for its breathtaking mountain-top location and intricate stonework?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Acropolis of Athens, Greece", "lat": 37.9715, "lng": 23.7257 },
       "context": "This UNESCO site is emblematic of classical Greek culture and includes the Parthenon, known for its historical and architectural significance."
     }
-  
-        ]
-    }
-);
+  ]
+}
