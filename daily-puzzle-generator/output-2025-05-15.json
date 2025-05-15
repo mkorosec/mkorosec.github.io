@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which capital city is renowned for its futuristic skyline and is home to the world's tallest twin towers?",
       "answer": { "label": "Kuala Lumpur, Malaysia", "lat": 3.13, "lng": 101.68 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Sydney Opera House, Sydney", "lat": -33.86, "lng": 151.21 },
       "context": "Opened in 1973 and designed by Jørn Utzon, this UNESCO site is symbolic of 20th-century architecture."
     }
-  
-        ]
-    }
-);
+  ]
+}
