@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which famous modernist building in North America, designed by architect Frank Lloyd Wright, is considered a masterpiece of organic architecture?",
       "answer": { "label": "Fallingwater, Pennsylvania", "lat": 39.9065, "lng": -79.4688 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Houston, Texas", "lat": 29.5502, "lng": -95.097 },
       "context": "Famous for the phrase 'Houston, we have a problem,' this center was established in 1961 and has been crucial for all Apollo, Skylab, and Space Shuttle missions."
     }
-  
-        ]
-    }
-);
+  ]
+}
