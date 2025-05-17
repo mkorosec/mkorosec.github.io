@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruins are considered the largest religious monument in the world, built in the early 12th century in Southeast Asia?",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.4125, "lng": 103.8668 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Pompeii, Italy", "lat": 40.7460, "lng": 14.4989 },
       "context": "The catastrophic eruption of Mount Vesuvius preserved buildings, artifacts, and the remains of its inhabitants, offering a unique snapshot of a moment in time."
     }
-  
-        ]
-    }
-);
+  ]
+}
