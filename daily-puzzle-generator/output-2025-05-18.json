@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which capital city is known for its modern glass skyscraper resembling a gherkin, and continued expansion as a leading global financial center during the 21st century?",
       "answer": { "label": "The Gherkin, London, UK", "lat": 51.5144, "lng": -0.0804 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Maloka Museum, Bogotá, Colombia", "lat": 4.6496, "lng": -74.1145 },
       "context": "Located in Bogotá, Maloka is known for engaging young minds in the wonders of science and space exploration with its interactive exhibits."
     }
-  
-        ]
-    }
-);
+  ]
+}
