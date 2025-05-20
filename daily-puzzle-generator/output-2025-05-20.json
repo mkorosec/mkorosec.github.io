@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruin in Greece is celebrated for its role as the most important sanctuary of Apollo, where the famous oracle provided guidance and was rebuilt after a destructive fire in 548 BC?",
       "answer": { "label": "Delphi, Greece", "lat": 38.482, "lng": 22.501 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "American Museum of Natural History, New York City, USA", "lat": 40.781, "lng": -73.973 },
       "context": "Located across from Central Park, this museum is well-known for its contributions to research and its striking diorama halls."
     }
-  
-        ]
-    }
-);
+  ]
+}
