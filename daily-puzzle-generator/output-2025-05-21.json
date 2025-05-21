@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel in India is known for its distinctive lotus flower shape and has won numerous architectural awards since its completion in 1986?",
       "answer": { "label": "Lotus Temple, New Delhi, India", "lat": 28.5535, "lng": 77.2588 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Kennedy Space Center, Cape Canaveral, Florida, USA", "lat": 28.5721, "lng": -80.6480 },
       "context": "Located on the east coast of Florida, this facility is not only pivotal in space exploration history but also a popular visitor center with exhibits about the history of space travel."
     }
-  
-        ]
-    }
-);
+  ]
+}
