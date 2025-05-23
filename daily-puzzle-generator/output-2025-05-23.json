@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruin is a temple in Greece that once housed the massive gold and ivory statue of Athena, considered one of the greatest feats of accomplished Greek architects?",
       "answer": { "label": "Parthenon, Athens, Greece", "lat": 37.9715, "lng": 23.7267 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Chichen Itza, Yucatán, Mexico", "lat": 20.6843, "lng": -88.5678 },
       "context": "Dating back to 600 AD, Chichen Itza is celebrated for its architectural marvels and is designated as one of the New Seven Wonders of the World."
     }
-  
-        ]
-    }
-);
+  ]
+}
