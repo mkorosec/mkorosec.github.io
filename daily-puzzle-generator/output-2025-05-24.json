@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which famous museum, known for housing Leonardo da Vinci's 'Mona Lisa', is the largest art museum in the world and is located in Europe?",
       "answer": { "label": "Louvre Museum, Paris", "lat": 48.8606, "lng": 2.3376 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Auschwitz-Birkenau Memorial, Oświęcim", "lat": 50.0355, "lng": 19.1783 },
       "context": "Located in Poland, Auschwitz-Birkenau was a complex of concentration and extermination camps where over 1.1 million people were killed between 1940 and 1945."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
