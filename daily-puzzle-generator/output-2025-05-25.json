@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruin located in Egypt is known for the massive temple complex built by Ramses II, whose four colossal statues mark the entrance?",
       "answer": { "label": "Abu Simbel, Egypt", "lat": 22.336, "lng": 31.625 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Leaning Tower of Pisa, Italy", "lat": 43.7228, "lng": 10.3966 },
       "context": "Its unintended tilt makes it a popular attraction, and it is one of the structures of the Piazza del Duomo, or Cathedral Square."
     }
-  
-        ]
-    }
-);
+  ]
+}
