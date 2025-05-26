@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which dark tourism site in Ukraine, known for a catastrophic nuclear event in 1986, draws visitors despite its exclusion zone?",
       "answer": { "label": "Chernobyl Nuclear Power Plant, Ukraine", "lat": 51.389, "lng": 30.099 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Louvre Museum, Paris", "lat": 48.861, "lng": 2.337 },
       "context": "Originally a royal palace, this museum covers more than 72,000 square meters and contains thousands of works spanning from prehistory to the 21st century."
     }
-  
-        ]
-    }
-);
+  ]
+}
