@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in the Czech Republic is known for its well-preserved medieval town center and was founded in 1233 by the noble family of Lords of Künring?",
       "answer": { "label": "Cesky Krumlov, Czech Republic", "lat": 48.81, "lng": 14.32 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Petra, Jordan", "lat": 30.32, "lng": 35.48 },
       "context": "This archaeological site is often referred to as the 'Rose City' for the color of the stone from which it is carved."
     }
-  
-        ]
-    }
-);
+  ]
+}
