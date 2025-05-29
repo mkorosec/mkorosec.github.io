@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Italy is renowned for its stunningly preserved ancient Roman city, famously buried by the eruption of Mount Vesuvius in AD 79?",
       "answer": { "label": "Pompeii, Italy", "lat": 40.75, "lng": 14.49 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.16, "lng": -72.55 },
       "context": "This site is perched high in the Andes and offers a glimpse into Inca civilization before Spanish conquest."
     }
-  
-        ]
-    }
-);
+  ]
+}
