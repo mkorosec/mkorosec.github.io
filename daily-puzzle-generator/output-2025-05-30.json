@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Cambodia, known for its stunning temple complex, was once the capital of the Khmer Empire?",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.4125, "lng": 103.8661 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.545 },
       "context": "Situated high in the Andes Mountains, this 15th-century Incan citadel is renowned for its sophisticated dry-stone construction."
     }
-  
-        ]
-    }
-);
+  ]
+}
