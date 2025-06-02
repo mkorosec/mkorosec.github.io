@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in the ancient city of Petra was known for its rock-cut architecture and water conduit system, dating back to the 5th century BC?",
       "answer": { "label": "Al-Khazneh, Petra", "lat": 30.322, "lng": 35.477 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
       "context": "Often referred to as 'The Lost City of the Incas', it is a UNESCO World Heritage Site and a major tourist destination in South America."
     }
-  
-        ]
-    }
-);
+  ]
+}
