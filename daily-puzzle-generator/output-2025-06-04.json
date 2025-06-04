@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where can you find the Mausoleum at Halicarnassus, one of the Seven Wonders of the Ancient World, located in present-day Turkey?",
       "answer": { "label": "Bodrum, Turkey", "lat": 37.0344, "lng": 27.4305 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Hemisphere Building, Valencia, Spain", "lat": 39.4541, "lng": -0.3483 },
       "context": "This striking structure, resembling a giant eye, includes an IMAX cinema and planetarium and was inaugurated in 1998."
     }
-  
-        ]
-    }
-);
+  ]
+}
