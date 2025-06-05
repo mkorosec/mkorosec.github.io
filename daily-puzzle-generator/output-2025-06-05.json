@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which city in Austria is famous for a UNESCO World Heritage Site that hosted the famous 'Grossglockner' military operation during World War II?",
       "answer": { "label": "Salzburg, Austria", "lat": 47.80, "lng": 13.04 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Montreal Biosphere, Montreal", "lat": 45.51, "lng": -73.54 },
       "context": "Originally constructed as the United States pavilion for Expo 67, this geodesic dome is now an environmental museum."
     }
-  
-        ]
-    }
-);
+  ]
+}
