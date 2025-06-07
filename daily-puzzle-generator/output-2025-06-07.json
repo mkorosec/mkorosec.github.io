@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which site, a marvel of modern architecture in the United Arab Emirates, was designed by Jean Nouvel and inspired by classical Islamic architecture?",
       "answer": { "label": "Louvre Abu Dhabi, Abu Dhabi", "lat": 24.533, "lng": 54.397 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Waterloo, Belgium", "lat": 50.679, "lng": 4.404 },
       "context": "The Battle of Waterloo marked the end of the Napoleonic Wars and altered the course of European history."
     }
-  
-        ]
-    }
-);
+  ]
+}
