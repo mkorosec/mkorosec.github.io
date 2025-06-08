@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "What modern architectural marvel in Germany is known for its unique mirrored facade and serves as the headquarters for an automotive giant?",
       "answer": { "label": "BMW Welt, Munich", "lat": 48.1767, "lng": 11.5562 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Dalí Theatre-Museum, Figueres", "lat": 42.2677, "lng": 2.9611 },
       "context": "Opened in 1974 in Dalí’s hometown, this museum houses the largest single collection of his works."
     }
-  
-        ]
-    }
-);
+  ]
+}
