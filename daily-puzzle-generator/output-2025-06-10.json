@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Peru is known for the lost city of the Inca civilization and draws thousands of tourists yearly?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Giza Pyramid Complex, Egypt", "lat": 29.9792, "lng": 31.1342 },
       "context": "This location is famous for its three iconic pyramids and the Great Sphinx, constructed during the Fourth Dynasty of the Old Kingdom."
     }
-  
-        ]
-    }
-);
+  ]
+}
