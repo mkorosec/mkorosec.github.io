@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where can you find an iconic skyscraper completed in 1973 that was once the world's tallest building, known for its twin radio and TV antennas?",
       "answer": { "label": "Willis Tower, Chicago", "lat": 41.8789, "lng": -87.6359 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Aleppo Citadel, Syria", "lat": 36.1990, "lng": 37.1611 },
       "context": "With a history spanning back to the 3rd millennium BC, this citadel is symbolized by its formidable stone walls and has withstood several historic battles and sieges."
     }
-  
-        ]
-    }
-);
+  ]
+}
