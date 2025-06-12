@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "What ancient ruin, known for its grandeur and astronomical alignment, is located in a deeply forested area of the Yucatán Peninsula?",
       "answer": { "label": "Chichen Itza, Mexico", "lat": 20.68, "lng": -88.57 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Chernobyl Exclusion Zone, Ukraine", "lat": 51.28, "lng": 30.22 },
       "context": "This zone encompasses the area most affected by the Chernobyl nuclear reactor explosion, and Pripyat, a ghost town, stands as a chilling monument to the event."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
