@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in China is famed for its towering limestone pillars, one of which inspired the 'Hallelujah Mountains' in the movie 'Avatar'?",
       "answer": { "label": "Zhangjiajie National Forest Park, China", "lat": 29.32, "lng": 110.46 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Uluru-Kata Tjuta National Park, Australia", "lat": -25.34, "lng": 131.03 },
       "context": "Uluru, also known as Ayers Rock, is a massive sandstone monolith formed about 550 million years ago and is a key symbol of Australia."
     }
-  
-        ]
-    }
-);
+  ]
+}
