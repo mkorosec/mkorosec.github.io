@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel, completed in 2010, holds the title of being the tallest structure in the world as of 2023?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Azincourt, France", "lat": 50.4108, "lng": 2.0462 },
       "context": "This battle during the Hundred Years' War demonstrated the effectiveness of the English longbow and remains a significant event in military history."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
