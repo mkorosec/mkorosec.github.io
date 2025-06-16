@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "What famous museum in France is the largest art museum in the world and was once a royal palace before becoming a public museum after the French Revolution?",
       "answer": { "label": "Louvre Museum, Paris", "lat": 48.861, "lng": 2.336 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Troy, Turkey", "lat": 39.9570, "lng": 26.2389 },
       "context": "The archaeological site of Troy provides valuable insights into ancient civilizations and the historicity of the Trojan War."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
