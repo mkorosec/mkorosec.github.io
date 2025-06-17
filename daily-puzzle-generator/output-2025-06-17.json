@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site, located in Egypt, is known for its massive twin temples and was relocated to avoid submersion during the creation of the Aswan Dam?",
       "answer": { "label": "Abu Simbel, Egypt", "lat": 22.3374, "lng": 31.6258 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Acropolis of Athens, Greece", "lat": 37.9715, "lng": 23.7257 },
       "context": "The Parthenon, dedicated to the goddess Athena, stands here and exemplifies Classical Greek architecture."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
