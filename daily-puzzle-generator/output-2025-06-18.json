@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where can you explore a UNESCO World Heritage site that features iconic terraced rice paddies dating back over 2,000 years, known for representing an ancient sustainable agriculture system?",
       "answer": { "label": "Batad Rice Terraces, Banaue, Philippines", "lat": 16.94, "lng": 121.12 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Dahshur, Giza, Egypt", "lat": 29.79, "lng": 31.20 },
       "context": "Dahshur is home to the Bent Pyramid and the Red Pyramid, which represent the early experimentation in pyramid building during the reign of Pharaoh Sneferu."
     }
-  
-        ]
-    }
-);
+  ]
+}
