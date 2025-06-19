@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in India is renowned for its exquisitely carved decaying temples that date back to the 10th century CE?",
       "answer": { "label": "Khajuraho Group of Monuments, India", "lat": 24.8516, "lng": 79.9210 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.965, "lng": 63.305 },
       "context": "From this site, the Soviet Union launched the first artificial Earth satellite in 1957, marking a pivotal point in the space race."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
