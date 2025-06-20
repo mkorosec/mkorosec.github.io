@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "In which location can you find the space center named after the first American to orbit Earth, where countless space shuttle missions have been launched?",
       "answer": { "label": "John F. Kennedy Space Center, Florida, USA", "lat": 28.5721, "lng": -80.648 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Singapore Sports Hub, Singapore", "lat": 1.304, "lng": 103.8745 },
       "context": "Opened in 2014, this national sports stadium integrates a retractable roof, allowing for environmental control in a hot climate, and can seat up to 55,000 people."
     }
-  
-        ]
-    }
-);
+  ]
+}
