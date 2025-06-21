@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where can you find the remarkable structure designed by Antoni Gaudí, which has been under construction since 1882 and is one of the most iconic buildings in Catalonia?",
       "answer": { "label": "Sagrada Família, Barcelona", "lat": 41.4036, "lng": 2.1744 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Kennedy Space Center, Merritt Island", "lat": 28.5721, "lng": -80.6480 },
       "context": "This spaceport's Launch Complex 39A is where Neil Armstrong and crew departed for the first moon landing in 1969."
     }
-  
-        ]
-    }
-);
+  ]
+}
