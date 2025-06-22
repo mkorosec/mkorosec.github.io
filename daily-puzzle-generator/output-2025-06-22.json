@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "This UNESCO site in Southeast Asia was once the capital of the Khmer Empire and is renowned for its intricate temple complex, which includes a famous depiction of a churning sea.",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.4125, "lng": 103.8667 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Stonehenge, United Kingdom", "lat": 51.1789, "lng": -1.8262 },
       "context": "Regarded as a ceremonial site and astronomical observatory, these megaliths align with solstice sunrise and sunset."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
