@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site, located in Italy, is renowned for its remarkable water engineering systems and was a pivotal location during the Renaissance?",
       "answer": { "label": "Villa d'Este, Tivoli, Italy", "lat": 41.963611, "lng": 12.795 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Chichen Itza, Yucatán, Mexico", "lat": 20.6829, "lng": -88.5686 },
       "context": "Chichen Itza is a complex of Mayan ruins, with El Castillo serving as a central landmark, reflecting the advanced astronomical and architectural knowledge of the Mayans."
     }
-  
-        ]
-    }
-);
+  ]
+}
