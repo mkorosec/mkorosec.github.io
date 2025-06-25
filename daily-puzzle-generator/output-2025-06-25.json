@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "This UNESCO World Heritage Site, known for its immense collection of rock carvings, depicts life from a civilization over 3,000 years ago in the Arabian Desert.",
       "answer": { "label": "Hegra (Madain Salih), Saudi Arabia", "lat": 26.8, "lng": 37.95 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.545 },
       "context": "Often referred to as the 'Lost City of the Incas', it was rediscovered by Hiram Bingham in 1911 and is an icon of Inca civilization."
     }
-  
-        ]
-    }
-);
+  ]
+}
