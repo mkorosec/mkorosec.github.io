@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which famous UNESCO site in southern England is aligned with the solstices and originated in the Neolithic period?",
       "answer": { "label": "Stonehenge, United Kingdom", "lat": 51.18, "lng": -1.83 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "El Djem Amphitheatre, Tunisia", "lat": 35.3, "lng": 10.71 },
       "context": "This grand structure was built in the 3rd century AD and could host up to 35,000 spectators for gladiatorial contests and public events."
     }
-  
-        ]
-    }
-);
+  ]
+}
