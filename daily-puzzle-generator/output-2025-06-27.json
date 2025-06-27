@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which capital city has been sculpted by architect Antoni Gaudí, including a basilica that remains under construction and is known for its modernist style?",
       "answer": { "label": "Sagrada Família, Barcelona", "lat": 41.4036, "lng": 2.1744 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Valencia, Spain", "lat": 39.4535, "lng": -0.3491 },
       "context": "This futuristic complex includes a science museum, planetarium, aquarium, and opera house, merging art, science, and nature."
     }
-  
-        ]
-    }
-);
+  ]
+}
