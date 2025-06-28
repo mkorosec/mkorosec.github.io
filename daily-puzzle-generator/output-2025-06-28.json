@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which famous museum, housed in a former railway station, features the world's largest collection of Impressionist and post-Impressionist masterpieces?",
       "answer": { "label": "Musée d'Orsay, Paris", "lat": 48.8600, "lng": 2.3266 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
       "context": "Believed to have been built by the Inca emperor Pachacuti in the 15th century, this site is often referred to as the 'Lost City of the Incas.'"
     }
-  
-        ]
-    }
-);
+  ]
+}
