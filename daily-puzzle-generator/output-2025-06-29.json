@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "This UNESCO site in Southern Europe, recognized in 1981, is renowned for its Byzantine mosaics. It served as a major political and cultural center in the Greek world.",
       "answer": { "label": "Archaeological Site of Olympia, Greece", "lat": 37.6386, "lng": 21.6292 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Tikal, Guatemala", "lat": 17.2220, "lng": -89.6237 },
       "context": "Tikal was once a powerful city-state and is famous for its towering pyramids amidst dense rainforest."
     }
-  
-        ]
-    }
-);
+  ]
+}
