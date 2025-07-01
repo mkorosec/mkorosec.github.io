@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in South America, known for its colossal Moai statues, was inscribed for its cultural significance reflecting the Polynesian Triangle?",
       "answer": { "label": "Rapa Nui National Park, Chile", "lat": -27.12, "lng": -109.37 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Fallingwater, Mill Run, Pennsylvania, USA", "lat": 39.91, "lng": -79.47 },
       "context": "Designed by Frank Lloyd Wright in 1935, it exemplifies organic architecture, harmonizing with the surrounding wilderness."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
