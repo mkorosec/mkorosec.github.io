@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which ancient ruin, known for being the birthplace of democracy, is located in Europe and sits on a hill offering panoramic views of the surrounding city?",
       "answer": { "label": "Acropolis of Athens, Greece", "lat": 37.9715, "lng": 23.7267 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
       "context": "Built in the 15th century by the Inca Empire, Machu Picchu was rediscovered in 1911 and is set high in the Andes Mountains."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
