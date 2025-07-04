@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Known as an illustrious symbol of Mughal architecture, which World Heritage Site in India was commissioned in 1632 by Emperor Shah Jahan in memory of his beloved wife?",
       "answer": { "label": "Taj Mahal, Agra", "lat": 27.1751, "lng": 78.0421 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Balaclava, Sevastopol", "lat": 44.5106, "lng": 33.5961 },
       "context": "The Battle of Balaclava highlighted the use of strategic military tactics and is immortalized by Alfred Lord Tennyson's poem."
     }
-  
-        ]
-    }
-);
+  ]
+}
