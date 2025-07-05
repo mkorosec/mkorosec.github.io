@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site is known for its Renaissance architecture and hosts the famous 15th-century painting, 'The Last Supper'?",
       "answer": { "label": "Santa Maria delle Grazie, Milan", "lat": 45.4647, "lng": 9.1881 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Great Pyramid of Giza, Giza", "lat": 29.9792, "lng": 31.1342 },
       "context": "This colossal limestone structure was originally built as a tomb for the Pharaoh Khufu around 2560 BC and remains an icon of Egypt."
     }
-  
-        ]
-    }
-);
+  ]
+}
