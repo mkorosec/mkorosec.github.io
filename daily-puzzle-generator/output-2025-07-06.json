@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruin in Greece is renowned for its well-preserved sanctuary dedicated to a Greek goddess and was the site of the first Pythian Games?",
       "answer": { "label": "Delphi, Greece", "lat": 38.4828, "lng": 22.5010 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Sydney Opera House, Sydney, Australia", "lat": -33.8568, "lng": 151.2153 },
       "context": "The opera house stands as a symbol of 20th-century architecture and hosts over 1,500 performances annually."
     }
-  
-        ]
-    }
-);
+  ]
+}
