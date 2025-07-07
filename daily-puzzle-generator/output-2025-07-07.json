@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "What space exploration site is known for launching the first human into space in 1961, located in the steppes of Kazakhstan?",
       "answer": {
@@ -55,7 +45,5 @@ window.quizList.push(
       },
       "context": "This iconic landmark was commissioned by Emperor Shah Jahan in memory of his wife Mumtaz Mahal, symbolizing eternal love."
     }
-  
-        ]
-    }
-);
+  ]
+}
