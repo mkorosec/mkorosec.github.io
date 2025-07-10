@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruins in Mexico, known for the Temple of the Feathered Serpent, served as a massive metropolis and religious center from 100 BC to 750 AD?",
       "answer": { "label": "Teotihuacan, Mexico", "lat": 19.685, "lng": -98.848 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "The Great Pyramid of Giza, Egypt", "lat": 29.9792, "lng": 31.1342 },
       "context": "The Great Pyramid stood as the tallest man-made structure for over 3,800 years."
     }
-  
-        ]
-    }
-);
+  ]
+}
