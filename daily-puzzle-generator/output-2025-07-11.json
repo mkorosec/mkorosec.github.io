@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site, located in Asia, is famous for its 9th-century temple complex and is distinguished for its intricate stone carvings, depicting the Ramayana and Mahabharata?",
       "answer": { "label": "Prambanan Temple, Indonesia", "lat": -7.7519, "lng": 110.4916 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
       "context": "This site, nestled in the Andes Mountains, was built in the 15th century and is one of the most iconic symbols of Inca civilization."
     }
-  
-        ]
-    }
-);
+  ]
+}
