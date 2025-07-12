@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site is known for its ancient rock art and was crucial in tracking human development over millennia in the Sahara?",
       "answer": { "label": "Tassili n'Ajjer, Algeria", "lat": 24.57, "lng": 9.47 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Tikal, Guatemala", "lat": 17.22, "lng": -89.62 },
       "context": "This region was one of the most powerful cultural and population centers in the Maya civilization, peaking from 200 to 900 AD."
     }
-  
-        ]
-    }
-);
+  ]
+}
