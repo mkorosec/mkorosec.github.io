@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in South America is known for its well-preserved Inca terraces and was declared a World Heritage Site in 1983?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Kennedy Space Center, Florida", "lat": 28.5721, "lng": -80.6480 },
       "context": "Located on Merritt Island, this site has been the primary launch center of human spaceflight for the United States and continues to be a hub of space science."
     }
-  
-        ]
-    }
-);
+  ]
+}
