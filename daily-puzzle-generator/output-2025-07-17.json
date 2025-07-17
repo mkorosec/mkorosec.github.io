@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Africa is home to the famous rock-cut churches that were constructed in the 12th and 13th centuries by King Lalibela?",
       "answer": { "label": "Lalibela Churches, Ethiopia", "lat": 12.03, "lng": 39.04 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Chichen Itza, Yucatan, Mexico", "lat": 20.68, "lng": -88.57 },
       "context": "An iconic symbol of the Mayan civilization, the Temple of Kukulcan's staircase shadows resemble a serpent, drawing thousands of visitors each equinox."
     }
-  
-        ]
-    }
-);
+  ]
+}
