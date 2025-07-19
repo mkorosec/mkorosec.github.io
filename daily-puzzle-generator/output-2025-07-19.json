@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage site in the Middle East was once the center of a prosperous Nabataean kingdom and is famously carved into rose-red sandstone cliffs?",
       "answer": { "label": "Petra, Jordan", "lat": 30.33, "lng": 35.44 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.41, "lng": 103.87 },
       "context": "Constructed in the early 12th century, it's part of the Angkor Archaeological Park."
     }
-  
-        ]
-    }
-);
+  ]
+}
