@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which famous UNESCO site in France is known for its stunning Gothic architecture and is associated with the patron saint of aviators?",
       "answer": { "label": "Chartres Cathedral, Chartres", "lat": 48.4475, "lng": 1.4871 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Aspendos, Antalya", "lat": 36.9397, "lng": 31.1712 },
       "context": "Known for its remarkably preserved theater, Aspendos was founded around 1000 BC and played a key role in the trade networks of the ancient world."
     }
-  
-        ]
-    }
-);
+  ]
+}
