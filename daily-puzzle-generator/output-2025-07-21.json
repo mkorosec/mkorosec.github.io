@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Egypt features colossal statues of Ramses II and was relocated to avoid submersion due to the Aswan High Dam?",
       "answer": { "label": "Abu Simbel Temples, Egypt", "lat": 22.3372, "lng": 31.6258 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Louvre Museum, Paris, France", "lat": 48.8606, "lng": 2.3376 },
       "context": "The Louvre, once a royal palace, is the world's largest art museum and a historic monument in Paris."
     }
-  
-        ]
-    }
-);
+  ]
+}
