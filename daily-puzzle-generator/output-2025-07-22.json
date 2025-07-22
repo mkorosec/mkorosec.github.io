@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where is the battle site where Napoleon Bonaparte faced a decisive defeat in 1815, leading to the end of his rule?",
       "answer": { "label": "Waterloo, Belgium", "lat": 50.68, "lng": 4.41 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Stonehenge, England", "lat": 51.18, "lng": -1.83 },
       "context": "Located on Salisbury Plain, this site is one of the wonders of the ancient world and aligns with the solstices."
     }
-  
-        ]
-    }
-);
+  ]
+}
