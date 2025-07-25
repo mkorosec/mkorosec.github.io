@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site, known for its hill complex filled with 500 caves containing Buddhist Art, is one of the four famous ancient capitals of China?",
       "answer": { "label": "Mogao Caves, China", "lat": 40.0474, "lng": 94.8071 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Horyu-ji, Japan", "lat": 34.6142, "lng": 135.735 },
       "context": "Built in the early 7th century, Horyu-ji is a Buddhist temple that warms visitors with its historical architecture and significant cultural artifacts."
     }
-  
-        ]
-    }
-);
+  ]
+}
