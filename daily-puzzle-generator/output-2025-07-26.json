@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site is known for the world's largest and oldest city of the ancient Indus Valley Civilization?",
       "answer": { "label": "Mohenjo-daro, Sindh, Pakistan", "lat": 27.3294, "lng": 68.1386 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Pripyat, Ukraine", "lat": 51.3890, "lng": 30.0990 },
       "context": "This city was evacuated after the Chernobyl Nuclear Power Plant disaster, leaving behind eerie remnants of Soviet life."
     }
-  
-        ]
-    }
-);
+  ]
+}
