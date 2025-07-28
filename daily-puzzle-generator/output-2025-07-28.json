@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Egypt is renowned for its rock-cut temples constructed under the orders of Pharaoh Ramses II, and later saved from the rising waters of the Nile due to the Aswan Dam?",
       "answer": { "label": "Abu Simbel Temples", "lat": 22.3372, "lng": 31.6258 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Forbidden City", "lat": 39.9163, "lng": 116.3971 },
       "context": "Located in the heart of Beijing, it is noted for its traditional Chinese palatial architecture."
     }
-  
-        ]
-    }
-);
+  ]
+}
