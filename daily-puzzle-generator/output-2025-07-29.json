@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which famous ancient ruin, known for its massive carved stone faces and once the capital of the Khmer Empire, is a UNESCO World Heritage Site located in Southeast Asia?",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.41, "lng": 103.87 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Rock Art of the Hail Region, Saudi Arabia", "lat": 27.36, "lng": 41.68 },
       "context": "This site includes petroglyphs and inscriptions located in two desert areas famous for their artistic and historical significance."
     }
-  
-        ]
-    }
-);
+  ]
+}
