@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "In which European capital would you explore a famous ancient ruin that was once a symbol of the power of the Roman Empire, built in 80 AD?",
       "answer": { "label": "The Colosseum, Rome", "lat": 41.89, "lng": 12.49 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Wright Brothers National Memorial, Kill Devil Hills", "lat": 36.02, "lng": -75.67 },
       "context": "Located in North Carolina, this site commemorates the historic flight that changed the course of transportation forever."
     }
-  
-        ]
-    }
-);
+  ]
+}
