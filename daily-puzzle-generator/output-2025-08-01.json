@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where is the ancient ruin located that once served as the political and spiritual heart of the Khmer Empire, and also listed as a UNESCO site?",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.41, "lng": 103.87 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Chichen Itza, Mexico", "lat": 20.68, "lng": -88.57 },
       "context": "Featuring the pyramid of El Castillo, this archaeological site is one of the New Seven Wonders of the World, renowned for its ball court and astronomical precision."
     }
-  
-        ]
-    }
-);
+  ]
+}
