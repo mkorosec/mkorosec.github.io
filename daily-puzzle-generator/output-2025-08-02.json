@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "In which city can you find a famous museum that houses the Mona Lisa and was originally built as a fortress in 1190?",
       "answer": { "label": "Louvre Museum, Paris", "lat": 48.861, "lng": 2.336 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Capitoline Museums, Rome", "lat": 41.8931, "lng": 12.4828 },
       "context": "The museums on Capitoline Hill were commissioned by Pope Sixtus IV and are among the oldest public museums in the world."
     }
-  
-        ]
-    }
-);
+  ]
+}
