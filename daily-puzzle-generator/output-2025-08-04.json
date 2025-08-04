@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in an island city was home to ancient ruins and is famous for its pink sandstone architecture?",
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Carthage, Tunisia", "lat": 36.8529, "lng": 10.3231 },
       "context": "Destroyed in 146 BC after the Punic Wars, this site was later revived by the Romans and includes ruins like the Antonine Baths and Roman villas."
     }
-  
-        ]
-    }
-);
+  ]
+}
