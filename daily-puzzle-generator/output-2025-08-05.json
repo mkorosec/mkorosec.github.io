@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in France, completed in 1889, was originally dismissed as an eyesore but is now celebrated as a symbol of modern engineering?",
       "answer": { "label": "Eiffel Tower, Paris", "lat": 48.8584, "lng": 2.2945 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Taj Mahal, Agra", "lat": 27.1751, "lng": 78.0421 },
       "context": "Constructed with white marble, this mausoleum was built by Emperor Shah Jahan for Mumtaz Mahal."
     }
-  
-        ]
-    }
-);
+  ]
+}
