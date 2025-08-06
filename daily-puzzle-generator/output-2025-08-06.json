@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which capital city is home to a famous UNESCO World Heritage temple complex built in the 12th century during the Khmer Empire?",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.4125, "lng": 103.867 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Pompeii, Italy", "lat": 40.7488, "lng": 14.4840 },
       "context": "Exploration of this ancient site unearthed remarkably well-preserved buildings, artifacts, and even human casts, frozen in time."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
