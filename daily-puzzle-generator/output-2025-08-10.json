@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in France was the site of a major WWII operation known as Operation Dragoon?",
       "answer": { "label": "Citadel of Besançon, France", "lat": 47.23, "lng": 6.02 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Mycenae, Greece", "lat": 37.73, "lng": 22.75 },
       "context": "Famous for its Lion Gate and royal tombs, Mycenae is considered a significant precursor to Classical Greek culture."
     }
-  
-        ]
-    }
-);
+  ]
+}
