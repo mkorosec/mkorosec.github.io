@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which capital city is home to a UNESCO World Heritage Site that is a royal complex dating back to the 11th century and has served both religious and governmental roles in Central Europe?",
       "answer": { "label": "Prague Castle, Prague", "lat": 50.0909, "lng": 14.4005 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Tikal, Tikal National Park", "lat": 17.2214, "lng": -89.6299 },
       "context": "This UNESCO World Heritage Site was one of the most powerful kingdoms of the ancient Maya and contains some of the tallest pre-Columbian structures in the Americas."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
