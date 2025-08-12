@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel in the United Arab Emirates holds the world record for the tallest building completed in 2010?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Alcatraz Island, San Francisco", "lat": 37.8267, "lng": -122.4230 },
       "context": "This island prison, now a popular tourist site, is often remembered for its historical escape attempts and significant role in American penal history."
     }
-  
-        ]
-    }
-);
+  ]
+}
