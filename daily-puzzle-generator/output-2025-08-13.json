@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "What is the ancient ruin in Peru known for its sacred Inca city, built in the 15th century and rediscovered by Hiram Bingham in 1911?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.545 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
       "context": "Known as the 'Rose City' due to the color of the stone, it was the capital of the Nabataean Kingdom and is featured in the movie 'Indiana Jones and the Last Crusade'."
     }
-  
-        ]
-    }
-);
+  ]
+}
