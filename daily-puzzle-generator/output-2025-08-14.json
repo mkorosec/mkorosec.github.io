@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which iconic UNESCO heritage site located in a small Italian city is renowned for its leaning tower, constructed in 1173 and completed in the 14th century?",
       "answer": { "label": "Piazza del Duomo, Pisa", "lat": 43.723, "lng": 10.396 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "SpaceX Headquarters, Hawthorne", "lat": 33.9206, "lng": -118.3278 },
       "context": "Founded by Elon Musk, SpaceX is the first private company to return a spacecraft from low-Earth orbit, and its headquarters is in Hawthorne, California."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
