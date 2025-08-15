@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site is known for its unique combination of Gothic and Romanesque architecture and was the location of a pivotal church gathering in 1414, focusing on the Papal schism?",
       "answer": { "label": "Konstanz Minster, Constance, Germany", "lat": 47.66, "lng": 9.18 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Petra, Ma'an Governorate, Jordan", "lat": 30.32, "lng": 35.47 },
       "context": "Famous for its treasury (Al-Khazneh), Petra is also known for its intricate tombs and temples carved into pink sandstone."
     }
-  
-        ]
-    }
-);
+  ]
+}
