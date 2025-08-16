@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Saudi Arabia is known for its rock-cut tombs and was once an ancient Nabataean city, second only to Petra?",
       "answer": { "label": "Hegra (Mada'in Salih), Saudi Arabia", "lat": 26.796, "lng": 37.953 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.964, "lng": 63.305 },
       "context": "Yuri Gagarin began his historic space journey from here in 1961, marking the first human flight into cosmic space."
     }
-  
-        ]
-    }
-);
+  ]
+}
