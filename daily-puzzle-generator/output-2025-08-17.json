@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "What is the UNESCO site famous for its terraced rice fields, known for being continuously cultivated for over 2,000 years in the Philippines?",
       "answer": { "label": "Banaue Rice Terraces, Philippines", "lat": 16.92, "lng": 121.05 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.16, "lng": -72.55 },
       "context": "This site is an iconic symbol of the Incan Empire, featuring more than 150 structures with terraces, ramps, and astronomical tools."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
