@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruins site in Peru, known as a symbol of the Incan Empire and often called the 'Lost City of the Incas', was built in the 15th century and is situated 2,430 meters above sea level?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.545 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Mauthausen-Gusen Concentration Camp, Austria", "lat": 48.2561, "lng": 14.5072 },
       "context": "Mauthausen was one of the largest labor camps in the Nazi regime and is now a poignant reminder of the Holocaust."
     }
-  
-        ]
-    }
-);
+  ]
+}
