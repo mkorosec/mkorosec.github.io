@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which famous UNESCO World Heritage Site in Russia features historically significant towers and exudes a fairy tale-like charm?",
       "answer": { "label": "Kremlin and Red Square, Moscow", "lat": 55.7539, "lng": 37.6208 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
       "context": "Set in the Andes Mountains, it is renowned for its sophisticated dry-stone construction and panoramic views."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
