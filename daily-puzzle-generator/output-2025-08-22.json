@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site is known as the 'Lost City of the Incas' and is located in the Andes Mountains of Peru?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Kennedy Space Center, USA", "lat": 28.5721, "lng": -80.6480 },
       "context": "Opened in 1968, it serves as NASA's primary launch center and was the site of the famous Apollo 11 launch."
     }
-  
-        ]
-    }
-);
+  ]
+}
