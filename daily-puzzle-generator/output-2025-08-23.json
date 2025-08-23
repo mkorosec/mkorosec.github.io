@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Known for its distinctive sails, which UNESCO site in Australia has been a center for performing arts since its completion in 1973?",
       "answer": { "label": "Sydney Opera House", "lat": -33.8568, "lng": 151.2153 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu", "lat": -13.1631, "lng": -72.545 },
       "context": "This site is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
