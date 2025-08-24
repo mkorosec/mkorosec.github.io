@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site, located in Peru, is an ancient city of the Inca Empire that was rediscovered in 1911 and often referred to as the 'Lost City of the Incas'?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.545 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Stonehenge, England", "lat": 51.1789, "lng": -1.8262 },
       "context": "Stonehenge is one of the most famous landmarks in the UK, drawing tourists worldwide who are fascinated by its enigmatic history and alignments with the summer solstice."
     }
-  
-        ]
-    }
-);
+  ]
+}
