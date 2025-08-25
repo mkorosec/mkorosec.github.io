@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site, famous for its prehistoric rock art and early European maritime culture, is located on a Mediterranean island?",
       "answer": { "label": "Megalithic Temples of Malta, Tarxien", "lat": 35.87, "lng": 14.51 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Smithsonian National Air and Space Museum, Washington D.C.", "lat": 38.89, "lng": -77.02 },
       "context": "Opened in 1976, this museum showcases the command module of Apollo 11 among other space exploration artifacts."
     }
-  
-        ]
-    }
-);
+  ]
+}
