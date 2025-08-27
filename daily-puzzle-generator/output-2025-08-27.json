@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site is known for a famous temple complex that served as the capital of the Khmer Empire, located in Southeast Asia?",
       "answer": { "label": "Angkor Wat, Siem Reap, Cambodia", "lat": 13.4125, "lng": 103.8667 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Templo Mayor, Mexico City, Mexico", "lat": 19.4344, "lng": -99.1328 },
       "context": "Rediscovered in the late 20th century, Templo Mayor was a focal point for Aztec religion and politics."
     }
-  
-        ]
-    }
-);
+  ]
+}
