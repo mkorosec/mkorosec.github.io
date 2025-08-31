@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site, located in Peru, is known for its 15th-century Incan citadel set high in the Andes Mountains?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.545 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Carthage, Tunisia", "lat": 36.8529, "lng": 10.3235 },
       "context": "Originally founded by the Phoenicians in the 9th century BC, this city was central in the Punic Wars and boasts numerous archaeological sites."
     }
-  
-        ]
-    }
-);
+  ]
+}
