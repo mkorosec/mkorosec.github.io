@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "What UNESCO World Heritage Site in Peru was once the heart of the Inca Empire and features the famous citadel on a mountain ridge?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Zwinger Palace, Dresden", "lat": 51.0532, "lng": 13.7361 },
       "context": "This cultural landmark was heavily damaged in World War II but has since been meticulously restored to reflect its former grandeur."
     }
-  
-        ]
-    }
-);
+  ]
+}
