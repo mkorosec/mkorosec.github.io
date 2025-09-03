@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which architectural marvel, located in the United Arab Emirates, holds the record for the world's tallest building and was completed in 2010?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Kennedy Space Center, Florida", "lat": 28.5721, "lng": -80.6480 },
       "context": "Located on Merritt Island, Kennedy Space Center is where NASA launched Apollo, Skylab, and Space Shuttle missions."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
