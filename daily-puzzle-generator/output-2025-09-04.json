@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which historical battle site in Belgium is famous for its defeat of Napoleon Bonaparte in 1815?",
       "answer": { "label": "Waterloo Battlefield", "lat": 50.6806, "lng": 4.4127 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
       "context": "Once a bustling trading hub, Petra dates back to the 5th century BC and was rediscovered by Swiss explorer Johann Ludwig Burckhardt in 1812."
     }
-  
-        ]
-    }
-);
+  ]
+}
