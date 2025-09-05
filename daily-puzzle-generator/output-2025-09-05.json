@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "In which city can you find the UNESCO World Heritage site known for its distinct checkerboard city planning and is the birthplace of Mafalda, a famous comic character?",
       "answer": { "label": "La Plata, Argentina", "lat": -34.92, "lng": -57.95 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Battle Abbey, East Sussex", "lat": 50.91, "lng": 0.49 },
       "context": "Battle Abbey was built on the site of the Battle of Hastings, where King Harold met his demise, marking the Norman conquest of England."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
