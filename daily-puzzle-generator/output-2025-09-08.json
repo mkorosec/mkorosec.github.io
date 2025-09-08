@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Identified as a UNESCO World Heritage Site, which ancient city in Jordan is renowned for its rock-cut architecture and water conduit system, famously depicted in the film 'Indiana Jones and the Last Crusade'?",
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Louvre Museum, Paris", "lat": 48.8606, "lng": 2.3376 },
       "context": "It is the world's largest art museum and a historic monument in Paris, attracting nearly 10 million visitors annually."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
