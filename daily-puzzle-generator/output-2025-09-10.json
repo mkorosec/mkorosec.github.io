@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruins, a UNESCO World Heritage Site located in South America, are famously linked to the Inca civilization and were hidden from the Western world until the early 20th century?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.4125, "lng": 103.8670 },
       "context": "Constructed in the early 12th century, Angkor Wat features on Cambodia's national flag and is a symbol of the country's heritage."
     }
-  
-        ]
-    }
-);
+  ]
+}
