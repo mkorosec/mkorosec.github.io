@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where can you find the only UNESCO World Heritage Site in Australia that is known for its massive monolith, a sacred site to the indigenous Anangu people?",
       "answer": { "label": "Uluru, Northern Territory, Australia", "lat": -25.345, "lng": 131.036 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Louvre Museum, Paris, France", "lat": 48.861, "lng": 2.336 },
       "context": "Originally a royal palace, this historic building now houses over 38,000 pieces of art, including da Vinci's masterpiece, attracting millions of visitors annually."
     }
-  
-        ]
-    }
-);
+  ]
+}
