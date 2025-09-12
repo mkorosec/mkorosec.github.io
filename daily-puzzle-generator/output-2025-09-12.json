@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site, located in a legendary ancient city of Mesopotamia, is known for the Hanging Gardens and has ruins dating back to the 18th century BC?",
       "answer": { "label": "Babylon, Iraq", "lat": 32.5426, "lng": 44.4202 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Chernobyl Nuclear Power Plant, Pripyat, Ukraine", "lat": 51.3889, "lng": 30.0987 },
       "context": "This location has become a symbol of the risks associated with nuclear energy and its aftereffects."
     }
-  
-        ]
-    }
-);
+  ]
+}
