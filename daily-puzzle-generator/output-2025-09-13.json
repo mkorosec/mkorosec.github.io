@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Asia, known for its remarkable cave art, has over 60,000 figures that span periods from the Upper Paleolithic to the Middle Ages?",
       "answer": { "label": "Cave of Altamira, Spain", "lat": 43.38, "lng": -4.12 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Tikal, Guatemala", "lat": 17.22, "lng": -89.63 },
       "context": "In modern-day Guatemala, Tikal was an influential cultural and political center, featuring towering pyramid temples amid the jungle."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
