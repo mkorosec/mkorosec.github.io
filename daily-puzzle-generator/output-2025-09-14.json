@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "What famous ancient ruin in the Middle East was known for its grand columns and temples before being heavily damaged during recent conflicts?",
       "answer": { "label": "Palmyra, Syria", "lat": 34.55, "lng": 38.27 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Art Institute of Chicago, USA", "lat": 41.88, "lng": -87.62 },
       "context": "This museum is one of the oldest and largest art museums in the USA and is known for its iconic pair of bronze lions guarding the entrance."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
