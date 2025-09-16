@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "What ancient ruin is known for its massive stone-cut facades, which served as the capital of the Nabataean Kingdom?",
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Abu Simbel, Egypt", "lat": 22.3372, "lng": 31.6258 },
       "context": "The twin temples of Abu Simbel are famed for their colossal statues and are part of a UNESCO World Heritage site, relocated in 1968 to avoid submersion by Lake Nasser."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
