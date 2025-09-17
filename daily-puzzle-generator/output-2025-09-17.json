@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which capital city in Asia, home to a unique UNESCO-listed wooden palace that has survived the test of time, is known for its rich textile trade history?",
       "answer": { "label": "Baku, Azerbaijan", "lat": 40.39, "lng": 49.89 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Ife, Nigeria", "lat": 7.48, "lng": 4.56 },
       "context": "Ife is celebrated for its 13th-century terracotta and bronze sculptures, notably the Ife Head, reflecting the advanced metallurgy of the time."
     }
-  
-        ]
-    }
-);
+  ]
+}
