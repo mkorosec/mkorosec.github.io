@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "What is the United States city known for its space exploration history and where the Johnson Space Center is located?",
       "answer": { "label": "Houston, Texas", "lat": 29.76, "lng": -95.37 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Tokyo, Japan", "lat": 35.68, "lng": 139.69 },
       "context": "This city hosted the 1964 Summer Olympics and was set to host again in 2020, and is noted for landmarks like the Tokyo Tower and modern skyscrapers."
     }
-  
-        ]
-    }
-);
+  ]
+}
