@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where is the Great Pyramid located, an ancient wonder of the world and the largest tomb for a Pharaoh?",
       "answer": { "label": "Giza Pyramid Complex, Egypt", "lat": 29.9792, "lng": 31.1342 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "St. Louis, Missouri, USA", "lat": 38.6247, "lng": -90.1848 },
       "context": "Rising 630 feet, the Gateway Arch is the tallest man-made monument in the Western Hemisphere."
     }
-  
-        ]
-    }
-);
+  ]
+}
