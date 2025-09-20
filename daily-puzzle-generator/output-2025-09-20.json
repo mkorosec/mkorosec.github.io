@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruin in present-day Turkey was famously crushed and rebuilt after an earthquake in the 3rd century AD and holds one of the Seven Wonders of the Ancient World?",
       "answer": { "label": "Temple of Artemis, Ephesus", "lat": 37.9497, "lng": 27.3634 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome", "lat": 45.965, "lng": 63.305 },
       "context": "This launch site sent Yuri Gagarin into orbit aboard Vostok 1 and remains a key launch center for the Russian space program."
     }
-  
-        ]
-    }
-);
+  ]
+}
