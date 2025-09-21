@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Where is the UNESCO World Heritage Site that famously hosted the first performance of Richard Wagner's 'The Ring Cycle'?",
       "answer": { "label": "Bayreuth Festspielhaus, Germany", "lat": 49.9563, "lng": 11.5789 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Pompeii, Italy", "lat": 40.7465, "lng": 14.4989 },
       "context": "The ruins of Pompeii near Naples allow visitors to explore remarkably intact homes, streets, and public buildings from ancient Rome."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
