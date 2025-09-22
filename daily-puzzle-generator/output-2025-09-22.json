@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "What city is home to a UNESCO World Heritage site that preserves the ancient Roman architecture of the Forum, remarkably contributing to our understanding of ancient urban planning?",
       "answer": { "label": "Rome, Italy", "lat": 41.89, "lng": 12.49 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Rome, Italy", "lat": 41.89, "lng": 12.49 },
       "context": "The Colosseum, also known as the Flavian Amphitheatre, remains one of the greatest architectural and engineering feats of ancient Rome."
     }
-  
-        ]
-    }
-);
+  ]
+}
