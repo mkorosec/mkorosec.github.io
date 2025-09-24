@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site was the ancient ceremonial center of the Zapotec civilization located in modern-day Mexico?",
       "answer": { "label": "Monte Albán, Mexico", "lat": 17.043, "lng": -96.767 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Temple of Artemis, Ephesus", "lat": 37.9497, "lng": 27.3646 },
       "context": "Once located near present-day Selçuk, the temple was rebuilt three times before its final destruction in 401 AD."
     }
-  
-        ]
-    }
-);
+  ]
+}
