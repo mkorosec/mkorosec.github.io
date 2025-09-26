@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO site, known for its impressive terraced rice fields and traditional Ifugao houses, was inscribed in 1995?",
       "answer": { "label": "Banaue Rice Terraces, Philippines", "lat": 16.9304, "lng": 121.0579 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Boyana Church, Bulgaria", "lat": 42.6283, "lng": 23.2678 },
       "context": "This medieval church, located on the outskirts of Sofia, is renowned for its frescoes, considered one of the most complete and well-preserved monuments of Eastern European medieval art."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
