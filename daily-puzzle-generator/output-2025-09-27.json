@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO site, known for its breathtaking rock-hewn churches and a key pilgrimage destination, is situated in the Amhara Region of Ethiopia?",
       "answer": { "label": "Lalibela, Ethiopia", "lat": 12.03, "lng": 39.05 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Ephesus, Turkey", "lat": 37.94, "lng": 27.34 },
       "context": "Once a major Roman city in Asia Minor, Ephesus was famed for the Temple of Artemis, one of the Seven Wonders of the Ancient World."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
