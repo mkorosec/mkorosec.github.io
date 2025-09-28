@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site located in Southern Peru was the heart of the Inca Empire and is renowned for its finely crafted stone buildings?",
       "answer": { "label": "Machu Picchu", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome", "lat": 45.965, "lng": 63.305 },
       "context": "Opened in 1955, this iconic site was central to Soviet space missions and remains the world's first and largest operational space launch site."
     }
-  
-        ]
-    }
-);
+  ]
+}
