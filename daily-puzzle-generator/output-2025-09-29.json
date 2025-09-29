@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which famous UNESCO site in Peru, rediscovered in 1911, is known for being a part of the Inca Empire?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Mogao Caves, Dunhuang, China", "lat": 40.0448, "lng": 94.8007 },
       "context": "These caves form an important collection of Buddhist art, showcasing over a thousand years of history since the 4th century."
     }
-  
-        ]
-    }
-);
+  ]
+}
