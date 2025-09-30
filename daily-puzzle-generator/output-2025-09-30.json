@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruin, known for its iconic stone faces, is part of the largest religious monument in the world, located in Southeast Asia?",
       "answer": { "label": "Bayon Temple, Cambodia", "lat": 13.4413, "lng": 103.858 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Giza Necropolis, Egypt", "lat": 29.9792, "lng": 31.1342 },
       "context": "The Giza Necropolis includes the Great Pyramid, one of the Seven Wonders of the Ancient World, constructed during the Fourth Dynasty around 2560 BC."
     }
-  
-        ]
-    }
-);
+  ]
+}
