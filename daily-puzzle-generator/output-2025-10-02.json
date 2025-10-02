@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which space exploration site, located in Kazakhstan, is known as the world's first and largest spaceport, from where Yuri Gagarin embarked on his historic journey in 1961?",
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.92, "lng": 63.34 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Taj Mahal, Agra", "lat": 27.1751, "lng": 78.0421 },
       "context": "This white marble mausoleum is considered an architectural masterpiece and attracts millions of visitors every year from around the globe."
     }
-  
-        ]
-    }
-);
+  ]
+}
