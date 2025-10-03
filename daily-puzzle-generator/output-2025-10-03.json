@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in northern Italy was designated for its remarkable elliptical shape and preserved ancient walls?",
       "answer": { "label": "City of Verona", "lat": 45.4384, "lng": 10.9916 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Parthenon, Athens", "lat": 37.9715, "lng": 23.7267 },
       "context": "Constructed in the 5th century BC on the Acropolis, the Parthenon once served as the city's treasury and symbolizes the birth of democracy."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
