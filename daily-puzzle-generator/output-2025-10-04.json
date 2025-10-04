@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which building, opened in 1973 and located in the heart of Sydney, is recognized as a modern architectural marvel for its unique sail-like design?",
       "answer": { "label": "Sydney Opera House, Australia", "lat": -33.857, "lng": 151.215 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Petra, Jordan", "lat": 30.328, "lng": 35.444 },
       "context": "Often referred to as the 'Rose City' due to the color of the stone, it is one of the New Seven Wonders of the World."
     }
-  
-        ]
-    }
-);
+  ]
+}
