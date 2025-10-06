@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which famous dark tourism site, located in Europe, was the stage for one of the most infamous trials in history involving war crimes post-World War II?",
       "answer": { "label": "Nuremberg Palace of Justice, Germany", "lat": 49.4532, "lng": 11.0639 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Battle Abbey, Hastings, United Kingdom", "lat": 50.9114, "lng": 0.4870 },
       "context": "The Battle of Hastings marked the Norman conquest of England. The site includes Battle Abbey, which was built as a memorial by orders of William the Conqueror."
     }
-  
-        ]
-    }
-);
+  ]
+}
