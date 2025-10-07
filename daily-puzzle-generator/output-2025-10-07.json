@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Peru features an Inca citadel that was rediscovered by Hiram Bingham in 1911, known as the 'Lost City of the Incas'?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Great Wall of China, China", "lat": 40.4319, "lng": 116.5704 },
       "context": "The Great Wall traverses mountains, valleys, and deserts, featuring bastions, watchtowers, and fortresses built in various eras primarily during the Ming dynasty."
     }
-  
-        ]
-    }
-);
+  ]
+}
