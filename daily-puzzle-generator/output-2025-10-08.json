@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel located in Southeast Asia was designed by architect Moshe Safdie and is renowned for its rooftop infinity pool?",
       "answer": { "label": "Marina Bay Sands, Singapore", "lat": 1.2835, "lng": 103.8607 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Santiago, Chile", "lat": -33.4489, "lng": -70.6693 },
       "context": "This city, nestled at the foot of the Andes mountains, showcases a blend of Spanish colonial architecture and modern urban development."
     }
-  
-        ]
-    }
-);
+  ]
+}
