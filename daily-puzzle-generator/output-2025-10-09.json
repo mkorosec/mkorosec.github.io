@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel, located in the United States, was completed in 2001 and is renowned for its unconventional design and glass exterior, housing a city library and providing striking views of the surrounding cityscape?",
       "answer": { "label": "Seattle Central Library, Seattle", "lat": 47.6067, "lng": -122.3325 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Hermitage Museum, Saint Petersburg", "lat": 59.9398, "lng": 30.3146 },
       "context": "The museum's stunning architecture and vast collections have made it a top destination for art enthusiasts worldwide."
     }
-  
-        ]
-    }
-);
+  ]
+}
