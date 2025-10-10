@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage site in South America was the heart of a major Andean civilization until its major expansion in the 15th century?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.545 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Stonehenge, England", "lat": 51.1789, "lng": -1.8262 },
       "context": "Believed to be erected around 2500 BC, it is one of the world's most famous prehistoric monuments."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
