@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruin, located in the Middle East, was once a significant cultural center of the Nabataean civilization?",
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Battle of Waterloo, Belgium", "lat": 50.6806, "lng": 4.4125 },
       "context": "Fought on June 18, 1815, this battle led to Napoleon's abdication and the end of the French Empire."
     }
-  
-        ]
-    }
-);
+  ]
+}
