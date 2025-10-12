@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel in the United Arab Emirates features a hotel inside a man-made archipelago shaped like a palm tree?",
       "answer": { "label": "Atlantis The Palm, Dubai", "lat": 25.1305, "lng": 55.1170 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Atomium, Brussels", "lat": 50.8949, "lng": 4.3416 },
       "context": "The Atomium is both a museum and an iconic symbol of Brussels, showcasing the city's commitment to progress and innovation."
     }
-  
-        ]
-    }
-);
+  ]
+}
