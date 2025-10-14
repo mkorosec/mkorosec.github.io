@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "What ancient ruin, located in the Andes, is recognized for its sophisticated dry-stone construction and was rediscovered in 1911 by an American historian?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Baalbek, Lebanon", "lat": 34.0060, "lng": 36.2032 },
       "context": "This site includes some of the best-preserved Roman ruins and was called Heliopolis during Roman times."
     }
-  
-        ]
-    }
-);
+  ]
+}
