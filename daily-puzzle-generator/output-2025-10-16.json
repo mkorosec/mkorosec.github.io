@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO site, located in a city famed for its iconic steel tower, commemorates the universal declaration of its quaint identity since 1991?",
       "answer": { "label": "Banks of the Seine, Paris", "lat": 48.8566, "lng": 2.3522 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Hellenic Parliament, Athens", "lat": 37.975, "lng": 23.7348 },
       "context": "Originally built as a royal palace, it overlooks Syntagma Square and has been home to the Hellenic Parliament since 1934."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
