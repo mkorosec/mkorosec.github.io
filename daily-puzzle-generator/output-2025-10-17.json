@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruin in South America, believed to have been a 15th-century Inca citadel, is famous for its panoramic views and is a UNESCO World Heritage Site?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Taj Mahal, Agra", "lat": 27.1751, "lng": 78.0421 },
       "context": "This mausoleum is recognized for its symmetrical design and intricate carvings, attracting millions of visitors annually."
     }
-  
-        ]
-    }
-);
+  ]
+}
