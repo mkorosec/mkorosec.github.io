@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site on the Italian peninsula was famously preserved by volcanic ash in 79 AD?",
       "answer": { "label": "Pompeii Archaeological Park, Italy", "lat": 40.75, "lng": 14.49 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Taj Mahal, Agra", "lat": 27.17, "lng": 78.04 },
       "context": "Constructed by Emperor Shah Jahan in memory of his wife Mumtaz Mahal, it is one of the New Seven Wonders of the World."
     }
-  
-        ]
-    }
-);
+  ]
+}
