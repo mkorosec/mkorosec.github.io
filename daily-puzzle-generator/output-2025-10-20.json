@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site, known for its medieval astronomical clock installed in 1410, also hosted the famed 'Defenestration' incident in the early 17th century?",
       "answer": { "label": "Old Town Square, Prague, Czech Republic", "lat": 50.0875, "lng": 14.4208 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Vienna, Austria", "lat": 48.2082, "lng": 16.3738 },
       "context": "Known for its music heritage and rich history, this city uniquely blends imperial tradition with modern cultural scenes."
     }
-  
-        ]
-    }
-);
+  ]
+}
