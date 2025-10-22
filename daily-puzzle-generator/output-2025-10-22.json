@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Mexico is famous for its Temple of the Inscriptions, built during the reign of King Pakal?",
       "answer": { "label": "Palenque, Mexico", "lat": 17.4849, "lng": -92.0469 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
       "context": "Believed to be a royal estate or religious site, this location is one of the New Seven Wonders of the World."
     }
-  
-        ]
-    }
-);
+  ]
+}
