@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "What is the site of a UNESCO World Heritage-recognized temple complex built for the Egyptian pharaohs, which features the colossal statues of Ramses II?",
       "answer": { "label": "Abu Simbel, Egypt", "lat": 22.3372, "lng": 31.6258 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Curonian Spit, Lithuania/Russia", "lat": 55.2814, "lng": 20.9717 },
       "context": "Stretching 98 km and forming a natural border between Lithuania and the Russian enclave of Kaliningrad, this spit is a vital bird migration corridor."
     }
-  
-        ]
-    }
-);
+  ]
+}
