@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "This UNESCO site is a historic space observatory known for its impressive array of radio telescopes, one of which played a key role in confirming Einstein's theory of general relativity.",
       "answer": { "label": "Jodrell Bank Observatory, England", "lat": 53.2362, "lng": -2.3074 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Giza Pyramids, Egypt", "lat": 29.9792, "lng": 31.1342 },
       "context": "Having stood for over 4,500 years, these pyramids continue to be a testament to ancient Egyptian engineering and burial customs."
     }
-  
-        ]
-    }
-);
+  ]
+}
