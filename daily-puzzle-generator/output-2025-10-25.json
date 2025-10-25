@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where is the tallest twin building complex located, a marvel of modern architecture that also houses a skybridge connecting the two towers?",
       "answer": { "label": "Petronas Towers, Kuala Lumpur, Malaysia", "lat": 3.157, "lng": 101.711 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Hanging Gardens of Babylon, Iraq", "lat": 32.5364, "lng": 44.4212 },
       "context": "Though the exact location remains unknown, they are one of the Seven Wonders of the Ancient World, reputedly built by Nebuchadnezzar II."
     }
-  
-        ]
-    }
-);
+  ]
+}
