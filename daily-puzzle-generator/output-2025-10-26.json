@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "This UNESCO site is renowned for its striking petroglyphs, and is located in a region famous for the aurora borealis. It was a significant area for prehistoric nomadic tribes.",
       "answer": { "label": "Alta Rock Art, Norway", "lat": 69.95, "lng": 23.27 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.4125, "lng": 103.8669 },
       "context": "Angkor Wat is the largest religious monument in the world and a symbol of Cambodia, appearing on its national flag."
     }
-  
-        ]
-    }
-);
+  ]
+}
