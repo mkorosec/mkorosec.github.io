@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Asia is renowned for its terraced rice paddies created over 2,000 years ago by the Ifugao people?",
       "answer": { "label": "Banaue Rice Terraces, Philippines", "lat": 16.9278, "lng": 121.1023 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Tassili n'Ajjer, Algeria", "lat": 25.9183, "lng": 8.2333 },
       "context": "This vast plateau features prehistoric cave paintings and rock carvings reflecting the region's climatic changes."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
