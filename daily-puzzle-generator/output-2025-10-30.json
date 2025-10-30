@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "This UNESCO World Heritage Site in Southeast Asia is famous for its massive temples and was once the capital of the Khmer Empire. Known for its majestic Angkor Wat, it attracts millions of visitors annually.",
       "answer": { "label": "Angkor, Cambodia", "lat": 13.41, "lng": 103.87 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "The Egyptian Museum, Cairo, Egypt", "lat": 30.05, "lng": 31.23 },
       "context": "Established in 1902, the museum showcases some of the world's most important artifacts from ancient Egypt."
     }
-  
-        ]
-    }
-);
+  ]
+}
