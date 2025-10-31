@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Italy is renowned for its leaning structure, completed in 1372?",
       "answer": { "label": "Leaning Tower of Pisa, Italy", "lat": 43.723, "lng": 10.3966 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Chernobyl Exclusion Zone, Ukraine", "lat": 51.2768, "lng": 30.2216 },
       "context": "The site attracts visitors interested in the history of the disaster, which led to widespread contamination and the evacuation of surrounding areas."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
