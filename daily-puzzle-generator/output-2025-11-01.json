@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which dark tourism site in the United States was the location of a major nuclear accident in 1979?",
       "answer": { "label": "Three Mile Island Nuclear Generating Station, Pennsylvania, USA", "lat": 40.1536, "lng": -76.7258 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
       "context": "This ancient city was carved into the sandstone cliffs and became known for its stunning architecture as well as its reddish hue."
     }
-  
-        ]
-    }
-);
+  ]
+}
