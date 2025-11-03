@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel in the United Arab Emirates has been dubbed as the 'seven-star hotel'?",
       "answer": { "label": "Burj Al Arab, Dubai", "lat": 25.1416, "lng": 55.1853 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Issos, Turkey", "lat": 36.8911, "lng": 36.0025 },
       "context": "Alexander the Great defeated King Darius III of Persia here, marking a pivotal moment in the expansion of Alexander's empire."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
