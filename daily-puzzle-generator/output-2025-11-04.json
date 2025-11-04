@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruins, located in South America, were rediscovered in 1911 and are known for being a symbol of the Incan Empire?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Tokyo, Japan", "lat": 35.6828, "lng": 139.7595 },
       "context": "Tokyo's Imperial Palace is the main residence of the Emperor of Japan and sits on the former site of Edo Castle. Today, Tokyo is known for being a major cultural and financial center."
     }
-  
-        ]
-    }
-);
+  ]
+}
