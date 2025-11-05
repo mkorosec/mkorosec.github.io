@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "In which ancient Roman city, destroyed by a volcanic eruption in 79 AD, can you explore ruins frozen in time including intact frescoes and mosaics, in Italy?",
       "answer": { "label": "Pompeii Ruins, Italy", "lat": 40.75, "lng": 14.49 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Terracotta Army, Xi'an, China", "lat": 34.38, "lng": 109.27 },
       "context": "Discovered in 1974, this site features thousands of life-sized terracotta figures buried to protect Emperor Qin Shi Huang in the afterlife."
     }
-  
-        ]
-    }
-);
+  ]
+}
