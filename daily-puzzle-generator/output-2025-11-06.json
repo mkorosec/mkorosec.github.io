@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Italy is known for its extensive collection of ancient Roman houses, streets, and public baths, buried by a catastrophic eruption in 79 AD?",
       "answer": { "label": "Pompeii, Italy", "lat": 40.75, "lng": 14.49 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
       "context": "Known as the 'Rose City' due to the color of the stone, it is one of the New7Wonders of the World."
     }
-  
-        ]
-    }
-);
+  ]
+}
