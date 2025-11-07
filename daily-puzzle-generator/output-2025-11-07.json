@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Egypt is famed for being the world's largest indoor antiquities museum until the new Grand Egyptian Museum's partial opening in 2021?",
       "answer": { "label": "Egyptian Museum, Cairo", "lat": 30.0479, "lng": 31.2336 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Petra, Ma'an", "lat": 30.3285, "lng": 35.4444 },
       "context": "Famous for its rock-cut architecture and advanced water conduit system, it became a UNESCO site in 1985."
     }
-  
-        ]
-    }
-);
+  ]
+}
