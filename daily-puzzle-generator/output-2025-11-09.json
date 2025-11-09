@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "What is the site of the Battle of Austerlitz, also known as the Battle of the Three Emperors, where Napoleon I achieved a significant victory in 1805?",
       "answer": { "label": "Austerlitz Battlefield, Slavkov u Brna, Czech Republic", "lat": 49.15, "lng": 16.73 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Cusco Region, Peru", "lat": -13.16, "lng": -72.55 },
       "context": "This 15th-century Inca citadel is renowned for its sophisticated dry-stone construction and stunning mountain vistas."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
