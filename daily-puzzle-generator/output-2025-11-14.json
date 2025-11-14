@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Located in Southeast Asia, this extraordinary site is a UNESCO World Heritage location known for its Khmer architecture and was the center of the Khmer Empire from the 9th to the 15th century.",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.4125, "lng": 103.8670 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Wright Brothers National Memorial, Kill Devil Hills", "lat": 36.0149, "lng": -75.6684 },
       "context": "Located in North Carolina, the Wright Brothers achieved their first powered flight on December 17, 1903, an event that changed the course of aviation history."
     }
-  
-        ]
-    }
-);
+  ]
+}
