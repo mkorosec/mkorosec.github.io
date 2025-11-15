@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site is known as the 'Lost City of the Incas' and draws millions annually for its stunning vistas and historical significance in Peru?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5449 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Tallinn, Estonia", "lat": 59.4370, "lng": 24.7536 },
       "context": "Known for its cobblestone streets and historic architecture, Tallinn became a UNESCO site in 1997 due to its exceptional medieval urban landscape."
     }
-  
-        ]
-    }
-);
+  ]
+}
