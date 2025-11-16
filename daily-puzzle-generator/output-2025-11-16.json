@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "In which city can you find the tallest art deco statue designed by Paul Landowski, completed in 1931 and celebrated globally?",
       "answer": { "label": "Christ the Redeemer, Rio de Janeiro", "lat": -22.9519, "lng": -43.2105 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.9206, "lng": 63.3421 },
       "context": "As the world's first and largest operational space launch facility, it continues to play a pivotal role in global space exploration."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
