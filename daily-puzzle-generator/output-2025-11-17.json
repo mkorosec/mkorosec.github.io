@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage site in Europe is known for its Renaissance architecture and was the setting for Shakespeare's 'Hamlet'?",
       "answer": { "label": "Kronborg Castle, Denmark", "lat": 56.0389, "lng": 12.6136 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.9650, "lng": 63.3050 },
       "context": "Established in 1955, this site was where Yuri Gagarin launched to become the first human in space in 1961."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
