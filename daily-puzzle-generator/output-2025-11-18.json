@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "What is the UNESCO World Heritage Site known as the 'Lost City of the Incas', located in the Andes Mountains of Peru?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Burj Khalifa, United Arab Emirates", "lat": 25.1972, "lng": 55.2744 },
       "context": "Standing 828 meters tall, it features an innovative structural system and hosts a variety of commercial and residential spaces."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
