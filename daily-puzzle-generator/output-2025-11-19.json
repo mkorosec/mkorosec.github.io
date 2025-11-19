@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in the Andes commemorates the largest and most sophisticated empire in ancient South America?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.9650, "lng": 63.3050 },
       "context": "Launched in 1961, Yuri Gagarin's historic flight from this site marked a pivotal moment in space exploration history."
     }
-  
-        ]
-    }
-);
+  ]
+}
