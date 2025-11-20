@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which famous battle site in North America is known for a pivotal 1863 conflict during the American Civil War?",
       "answer": { "label": "Gettysburg, Pennsylvania, USA", "lat": 39.83, "lng": -77.23 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Hiroshima Peace Memorial Park, Hiroshima, Japan", "lat": 34.39, "lng": 132.45 },
       "context": "Located near the epicenter of the 1945 atomic explosion, this site displays the devastation's aftermath and seeks to educate on nuclear disarmament."
     }
-  
-        ]
-    }
-);
+  ]
+}
