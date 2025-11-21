@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Jordan is known for its rock-cut architecture and water conduit system, having been a major trading center in the Nabataean kingdom around the 4th century BC?",
       "answer": { "label": "Petra, Jordan", "lat": 30.33, "lng": 35.44 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Alhambra, Spain", "lat": 37.17, "lng": -3.59 },
       "context": "This site includes notable features such as the Court of the Lions and was once the palace of the Nasrid sultans."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
