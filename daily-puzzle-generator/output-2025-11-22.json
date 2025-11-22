@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO site in China was the first section of the ancient Silk Road to be inscribed on the list, recognized for its ancient Buddhist cave art?",
       "answer": { "label": "Mogao Caves, China", "lat": 40.05, "lng": 94.80 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Tikal, Guatemala", "lat": 17.22, "lng": -89.62 },
       "context": "This Mayan archaeological site is one of the largest and most important urban centers of the pre-Columbian Mayan civilization."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
