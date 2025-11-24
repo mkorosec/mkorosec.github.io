@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Egypt was relocated in the 1960s to prevent submersion under the rising waters of Lake Nasser?",
       "answer": { "label": "Abu Simbel Temples, Egypt", "lat": 22.3372, "lng": 31.6258 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Battle of Mohi, Hungary", "lat": 47.8671, "lng": 20.8666 },
       "context": "The Battle of Mohi in 1241 was a significant conflict where the Hungarian forces were decisively defeated by the Mongols, leading to a major retreat by the Europeans."
     }
-  
-        ]
-    }
-);
+  ]
+}
