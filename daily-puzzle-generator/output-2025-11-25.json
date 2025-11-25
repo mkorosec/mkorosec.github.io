@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site is known as the birthplace of the industrial revolution, home to the world's first factory founded in 1771?",
       "answer": { "label": "Derwent Valley Mills, England", "lat": 53.065, "lng": -1.485 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Göbekli Tepe, Turkey", "lat": 37.223, "lng": 38.922 },
       "context": "This archaeological site is notable for its large stone pillars arranged in circles and provides insight into early human settlement."
     }
-  
-        ]
-    }
-);
+  ]
+}
