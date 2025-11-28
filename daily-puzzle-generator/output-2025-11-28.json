@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Italy is famous for its unique trulli houses, characterized by conical roofs and whitewashed walls?",
       "answer": { "label": "Alberobello, Italy", "lat": 40.78, "lng": 17.24 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Vatican City, Vatican", "lat": 41.90, "lng": 12.45 },
       "context": "Enclosed within the walls of Rome, this city-state is the heart of the Catholic Church and home to the Pope."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
