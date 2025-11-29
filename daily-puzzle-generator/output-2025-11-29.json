@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site is known for its ancient cliff dwellings and served as the home of the Ancestral Puebloans in North America?",
       "answer": { "label": "Mesa Verde National Park, Colorado", "lat": 37.23, "lng": -108.49 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.16, "lng": -72.54 },
       "context": "This 15th-century site was brought to international attention by Hiram Bingham in 1911, and is often referred to as the 'Lost City of the Incas'."
     }
-  
-        ]
-    }
-);
+  ]
+}
