@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel, found in the Middle East, is the tallest building in the world and opened in 2010 to much fanfare?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Meteora, Thessaly", "lat": 39.7163, "lng": 21.6305 },
       "context": "The monasteries were built on immense natural pillars and hills, and the complex is one of the largest of its kind in Greece, serving as a center of Orthodox monkhood."
     }
-  
-        ]
-    }
-);
+  ]
+}
