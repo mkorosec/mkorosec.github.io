@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site features an ancient Roman aqueduct, known for its three-tiered arches and exceptional state of preservation?",
       "answer": { "label": "Pont du Gard, France", "lat": 43.9475, "lng": 4.5344 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Pompeii, Italy", "lat": 40.7469, "lng": 14.4974 },
       "context": "This archaeological site is preserved under volcanic ash from Mount Vesuvius's eruption, providing invaluable insights into Roman life."
     }
-  
-        ]
-    }
-);
+  ]
+}
