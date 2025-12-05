@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "This famous museum is home to Leonardo da Vinci's Mona Lisa and was originally built as a fortress in the 12th century. Which museum, located in Europe, is it?",
       "answer": { "label": "Louvre Museum, Paris", "lat": 48.8606, "lng": 2.3376 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Battle, East Sussex", "lat": 50.9168, "lng": 0.4847 },
       "context": "The Battle of Hastings took place here, fundamentally altering the English culture and governance."
     }
-  
-        ]
-    }
-);
+  ]
+}
