@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which famous modern architectural marvel in the Middle East is known for its enormous man-made archipelago shaped like a palm?",
       "answer": { "label": "Palm Jumeirah, Dubai", "lat": 25.112, "lng": 55.138 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Pompeii, Italy", "lat": 40.749, "lng": 14.484 },
       "context": "The eruption of Mount Vesuvius led to the city's preservation under a thick layer of ash, offering insights into Roman life."
     }
-  
-        ]
-    }
-);
+  ]
+}
