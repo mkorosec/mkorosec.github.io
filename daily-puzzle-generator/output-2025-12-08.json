@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Asia is known for its extensive cave paintings dating back over 30,000 years, offering a glimpse into the psyches of early humans?",
       "answer": { "label": "Altamira Cave, Spain", "lat": 43.38, "lng": -4.12 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.545 },
       "context": "This Incan citadel, built in the 15th century, was unknown to the outside world until its discovery in 1911 by Hiram Bingham."
     }
-  
-        ]
-    }
-);
+  ]
+}
