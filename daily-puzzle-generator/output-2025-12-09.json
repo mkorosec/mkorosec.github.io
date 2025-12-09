@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site, located in France, features an intricate terra-cotta façade and was the tallest man-made structure in the world until 1889?",
       "answer": { "label": "Chartres Cathedral, Chartres", "lat": 48.446, "lng": 1.487 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Uffizi Gallery, Florence", "lat": 43.7699, "lng": 11.2556 },
       "context": "This gallery is considered one of the most important Italian museums and is renowned for its collections of Italian Renaissance masterpieces by artists such as Michelangelo and Leonardo da Vinci."
     }
-  
-        ]
-    }
-);
+  ]
+}
