@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where was the first human-made object to orbit the Earth launched, marking the start of the space race in 1957?",
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.92, "lng": 63.34 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Chernobyl Exclusion Zone, Pripyat, Ukraine", "lat": 51.28, "lng": 30.22 },
       "context": "Following the world's worst nuclear disaster, this abandoned area serves as a chilling reminder of human error's potential impact."
     }
-  
-        ]
-    }
-);
+  ]
+}
