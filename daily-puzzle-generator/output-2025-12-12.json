@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site, located on the Iberian Peninsula, was a prominent Roman military stronghold in the 1st century BC?",
       "answer": { "label": "Mérida, Spain", "lat": 38.9162, "lng": -6.3444 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "The Museum of Modern Art, New York", "lat": 40.7614, "lng": -73.9776 },
       "context": "Situated in Manhattan, this museum has hosted ground-breaking exhibits and is considered one of the leading museums of modern art in the world."
     }
-  
-        ]
-    }
-);
+  ]
+}
