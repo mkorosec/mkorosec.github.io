@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel was built in 2008 in Dubai and is known as the world's tallest building?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Istanbul, Turkey", "lat": 41.0082, "lng": 28.9784 },
       "context": "Also known as Sultan Ahmed Mosque, it was completed in 1616 during the rule of Ahmed I."
     }
-  
-        ]
-    }
-);
+  ]
+}
