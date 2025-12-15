@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "This UNESCO site in Europe is renowned for its Gothic cathedral that has the tallest spire in the United Kingdom and a historic Magna Carta display. What is this location?",
       "answer": { "label": "Salisbury Cathedral, Salisbury, UK", "lat": 51.063, "lng": -1.337 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Tiwanaku, Bolivia", "lat": -16.555, "lng": -68.679 },
       "context": "This archaeological site was part of a civilization that peaked around 600-800 AD and is a UNESCO World Heritage Site."
     }
-  
-        ]
-    }
-);
+  ]
+}
