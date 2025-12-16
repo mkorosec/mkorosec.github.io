@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "What UNESCO World Heritage Site in the Middle East is famous for its rock-cut architecture and water conduit system, dating back to the 4th century BCE?",
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
       "context": "This iconic citadel is located on a mountain ridge amid the Andes Mountains and is a lasting symbol of the Incan Empire."
     }
-  
-        ]
-    }
-);
+  ]
+}
