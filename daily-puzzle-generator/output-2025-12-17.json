@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel in the United Arab Emirates is acclaimed for being the world's tallest building since 2010?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Kennedy Space Center, Florida", "lat": 28.5721, "lng": -80.6480 },
       "context": "Situated on Merritt Island, this site has been the launch headquarters for NASA since 1968, including major Shuttle missions."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
