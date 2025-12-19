@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site, located in the heart of Cusco Region, Peru, is known for its outstanding pre-Columbian architecture and was previously a sanctuary for Inca royalty?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.9647, "lng": 63.3050 },
       "context": "Yuri Gagarin launched from here in 1961, becoming the first human to journey into outer space."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
