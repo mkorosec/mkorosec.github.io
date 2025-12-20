@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Asia is known for being a major trading hub on the Silk Road and features a large collection of terracotta warriors guarding the mausoleum?",
       "answer": { "label": "Mausoleum of the First Qin Emperor, Xi'an, China", "lat": 34.38, "lng": 109.27 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Palmyra, Syria", "lat": 34.5487, "lng": 38.2919 },
       "context": "Once a vital cultural center, Palmyra's ruins include grand colonnades, temples, and a Roman theater, reflecting its historical significance as a caravan city."
     }
-  
-        ]
-    }
-);
+  ]
+}
