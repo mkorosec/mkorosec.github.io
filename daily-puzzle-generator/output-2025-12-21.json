@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "In what city can you find the UNESCO World Heritage Site that is dedicated to the architect Antoni Gaudí and includes works such as Park Güell and Casa Milà?",
       "answer": { "label": "Barcelona, Spain", "lat": 41.38, "lng": 2.17 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Acropolis of Athens, Greece", "lat": 37.97, "lng": 23.72 },
       "context": "Constructed in the 5th century BC, the Parthenon is an enduring symbol of Athenian democracy and classical architecture."
     }
-  
-        ]
-    }
-);
+  ]
+}
