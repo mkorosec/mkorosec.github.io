@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site in Italy is famous for its structured urban planning and is said to have been buried under volcanic ash in 79 AD?",
       "answer": { "label": "Pompeii, Italy", "lat": 40.75, "lng": 14.49 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Cape Town, South Africa", "lat": -33.92, "lng": 18.42 },
       "context": "Founded by the Dutch East India Company in 1652, Cape Town is a vibrant city famed not just for its history but also for Table Mountain and its natural beauty."
     }
-  
-        ]
-    }
-);
+  ]
+}
