@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Asia is known for being an ancient city capital that flourished under the Khmer Empire during the 12th to 15th centuries?",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.41, "lng": 103.87 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Petra, Jordan", "lat": 30.32, "lng": 35.48 },
       "context": "This historical city was the capital of the Nabatean Kingdom and is known by many as the 'Rose City' for the color of the stone."
     }
-  
-        ]
-    }
-);
+  ]
+}
