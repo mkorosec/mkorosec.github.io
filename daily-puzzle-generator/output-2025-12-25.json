@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Where can you find the UNESCO site known for its rock-hewn churches from the 12th and 13th centuries?",
       "answer": { "label": "Lalibela, Ethiopia", "lat": 12.03, "lng": 39.05 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Hiroshima Peace Memorial (Genbaku Dome), Hiroshima", "lat": 34.39, "lng": 132.45 },
       "context": "Also known as the Atomic Bomb Dome, this site stands as a haunting reminder of the devastation caused by the first atomic bomb."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
