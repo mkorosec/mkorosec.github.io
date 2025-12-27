@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "This ancient ruin is considered the cradle of Western civilization and was once the heart of the world's first democracy.",
       "answer": { "label": "Acropolis of Athens, Greece", "lat": 37.9715, "lng": 23.7266 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.965, "lng": 63.305 },
       "context": "Established in 1955, this site witnessed Yuri Gagarin's historic Vostok 1 mission in 1961, marking a pivotal event in the Space Race."
     }
-  
-        ]
-    }
-);
+  ]
+}
