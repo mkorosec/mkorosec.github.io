@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruin, located in the Andes, is known for its sophisticated dry-stone construction and was declared a UNESCO World Heritage Site in 1983?",
       "answer": { "label": "Machu Picchu", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Taj Mahal", "lat": 27.1751, "lng": 78.0421 },
       "context": "Commissioned by Emperor Shah Jahan, this monument is admired for its architectural beauty and is a symbol of love."
     }
-  
-        ]
-    }
-);
+  ]
+}
