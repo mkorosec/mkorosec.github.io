@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site, known for its annual festival of lights (Diya), marks the legendary return of Lord Rama after his victory over Ravan?",
       "answer": { "label": "Ramkot Fort, Ayodhya, India", "lat": 26.8, "lng": 82.2 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Angkor Wat, Siem Reap, Cambodia", "lat": 13.4125, "lng": 103.8667 },
       "context": "Recognized for its grandeur, this site was gradually transformed into a Buddhist temple towards the end of the 12th century."
     }
-  
-        ]
-    }
-);
+  ]
+}
