@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which renowned UNESCO World Heritage Site is known for its historic amphitheater where gladiatorial contests occurred, located on the European continent?",
       "answer": { "label": "Colosseum, Rome", "lat": 41.89, "lng": 12.49 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Alhambra, Granada", "lat": 37.17, "lng": -3.59 },
       "context": "This stunning palace and fortress complex was originally constructed in 889 AD, with its most notable expansion during the Nasrid Dynasty in the 13th century."
     }
-  
-        ]
-    }
-);
+  ]
+}
