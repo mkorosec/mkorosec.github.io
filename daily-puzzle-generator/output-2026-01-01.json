@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site, known for its extensive temple complex and intricate carvings, was originally built as a Hindu temple dedicated to Vishnu in the 12th century?",
       "answer": { "label": "Angkor Wat, Cambodia", "lat": 13.4125, "lng": 103.867 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Kennedy Space Center, Florida", "lat": 28.5721, "lng": -80.648 }
       "context": "Located on Merritt Island, this site has been the primary launch center of human spaceflight for NASA since 1968."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
