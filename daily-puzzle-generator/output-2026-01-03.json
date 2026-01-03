@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site in Asia is famed for its stunning and intricate rock-cut architecture built around the 2nd century BCE, and houses numerous Buddhist temples and monasteries?",
       "answer": { "label": "Ajanta Caves, India", "lat": 20.5523, "lng": 75.7033 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Babylon, Iraq", "lat": 32.5428, "lng": 44.4204 },
       "context": "Babylon's historical significance and enigmatic gardens make it a site of great archaeological interest, reflecting its once monumental role in ancient history."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
