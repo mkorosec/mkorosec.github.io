@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel in the United Arab Emirates is known for its innovative design that features a dramatic leaning exterior inspired by the rich culture of the country?",
       "answer": { "label": "Capital Gate, Abu Dhabi", "lat": 24.418, "lng": 54.4418 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Chernobyl Exclusion Zone, Ukraine", "lat": 51.2761, "lng": 30.2219 },
       "context": "This area, now part of modern-day Ukraine, draws visitors interested in its eerie abandoned landscapes and the impactful history of the nuclear meltdown."
     }
-  
-        ]
-    }
-);
+  ]
+}
