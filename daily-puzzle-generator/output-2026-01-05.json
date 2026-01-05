@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which modern architectural marvel in the United Arab Emirates was once declared the world's tallest building upon its completion in 2010?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Ottawa, Ontario", "lat": 45.4215, "lng": -75.6972 },
       "context": "Besides hosting government offices, Ottawa is famous for its historic canal that becomes the world’s largest skating rink in winter."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
