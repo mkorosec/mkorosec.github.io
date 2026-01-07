@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage Site is known for its rock-cut architecture, dating back to the 2nd century AD, and was once a thriving trading city in the Arabian Peninsula?",
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Ilha Grande, Brazil", "lat": -23.1522, "lng": -44.1628 },
       "context": "This island, now popular with tourists for its beautiful beaches and hiking, housed a notorious prison from which escape was nearly impossible."
     }
-  
-        ]
-    }
-);
+  ]
+}
