@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which city, home to an iconic museum that houses the world's largest collection of paintings by Vincent van Gogh, is also known for its extensive canal system?",
       "answer": { "label": "Van Gogh Museum, Amsterdam", "lat": 52.358, "lng": 4.881 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "National Museum of Denmark, Copenhagen", "lat": 55.674, "lng": 12.57 },
       "context": "Located in Denmark's capital, this museum showcases the country's cultural heritage from prehistoric to contemporary times."
     }
-  
-        ]
-    }
-);
+  ]
+}
