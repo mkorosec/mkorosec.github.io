@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Where is the modern architectural marvel known for its sail-like structure located, which was completed in Dubai in 1999?",
       "answer": { "label": "Burj Al Arab, Dubai, UAE", "lat": 25.1413, "lng": 55.1853 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Abu Simbel Temples, Aswan, Egypt", "lat": 22.3372, "lng": 31.6258 },
       "context": "Constructed under Pharaoh Ramses II, these temples were relocated in a massive effort to prevent their submersion in the lake created by the Aswan Dam."
     }
-  
-        ]
-    }
-);
+  ]
+}
