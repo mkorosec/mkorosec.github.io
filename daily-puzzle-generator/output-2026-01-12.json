@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which ancient ruin, an iconic remnant of the Roman Empire, was famously completed in AD 80 and hosted gladiatorial contests and public spectacles?",
       "answer": { "label": "Colosseum, Rome", "lat": 41.89, "lng": 12.49 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Nazca Lines, Peru", "lat": -14.72, "lng": -75.13 },
       "context": "These massive drawings are believed to have religious significance and were created by the Nazca culture between 500 BC and AD 500."
     }
-  
-        ]
-    }
-);
+  ]
+}
