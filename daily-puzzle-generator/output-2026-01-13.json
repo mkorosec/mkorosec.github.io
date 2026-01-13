@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Which UNESCO World Heritage site is recognized for its collection of life-size terracotta warriors buried alongside China's first Emperor Qin Shi Huang?",
       "answer": { "label": "Terracotta Army, Xi'an, China", "lat": 34.38, "lng": 109.28 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Chichen Itza, Mexico", "lat": 20.68, "lng": -88.57 },
       "context": "Chichen Itza's El Castillo aligns with the sun during equinoxes, projecting shadows in the form of a serpent — a symbol of Kukulkan, a feathered serpent deity."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
