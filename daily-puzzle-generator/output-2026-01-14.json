@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "Which UNESCO site, recognized for its stunning terraced architecture in South America, was re-discovered by Hiram Bingham in 1911?",
       "answer": { "label": "Machu Picchu, Peru", "lat": -13.1631, "lng": -72.5450 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Chichen Itza, Mexico", "lat": 20.6843, "lng": -88.5678 },
       "context": "This archaeological site was one of the largest Mayan cities and remains a source of cultural pride in Mexico today."
     }
-  
-        ]
-    }
-);
+  ]
+}
