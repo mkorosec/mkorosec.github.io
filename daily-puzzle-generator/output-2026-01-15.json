@@ -1,15 +1,6 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+```json
+{
+  "questions": [
     {
       "question": "Where is the modern architectural marvel that features a significant spire and is known as the tallest building in the world as of its completion in 2010?",
       "answer": { "label": "Burj Khalifa, Dubai", "lat": 25.1972, "lng": 55.2744 },
@@ -35,7 +26,6 @@ window.quizList.push(
       "answer": { "label": "Baikonur Cosmodrome, Kazakhstan", "lat": 45.9644, "lng": 63.3056 },
       "context": "This site launched Yuri Gagarin into orbit, marking a historic milestone in space exploration."
     }
-  
-        ]
-    }
-);
+  ]
+}
+```
