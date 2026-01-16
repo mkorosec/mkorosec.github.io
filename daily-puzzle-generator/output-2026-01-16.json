@@ -1,15 +1,5 @@
-
-if (window.quizList == undefined || window.quizList == null) {
-    window.quizList = [];
-}
-
-window.quizList.push(
-    {
-        "name": "The Daily Map Quiz",
-        "id": "daily",
-        "order": "strict",
-        "questions": [
-
+{
+  "questions": [
     {
       "question": "What site, designated a UNESCO World Heritage Site, is home to a famous column-lined Parthenon and serves as a symbol of ancient Greek civilization?",
       "answer": { "label": "Acropolis of Athens, Greece", "lat": 37.9715, "lng": 23.7266 },
@@ -35,7 +25,5 @@ window.quizList.push(
       "answer": { "label": "Petra, Jordan", "lat": 30.3285, "lng": 35.4444 },
       "context": "Once a thriving trading center, this Nabataean metropolis is carved into vibrant red sandstone and is often called the 'Rose City.'"
     }
-  
-        ]
-    }
-);
+  ]
+}
