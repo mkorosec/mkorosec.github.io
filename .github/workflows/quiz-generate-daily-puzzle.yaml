@@ -1,11 +1,7 @@
 name: Map quiz - Generate Daily Puzzle
 
-on: []
-# Disabled; previous triggers kept for reference:
-# on:
-#   schedule:
-#     - cron: '0 0 * * *'  # This schedules the action to run daily at midnight UTC
-#   workflow_dispatch:  # This allows the workflow to be manually triggered
+on: 
+  workflow_dispatch: # Allows manual triggers, but prevents automatic periodic runs
 
 permissions:
   contents: write  # Request write permission to the repository contents
