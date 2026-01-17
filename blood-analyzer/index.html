@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blood Results Comparator</title>
+    <script type="module" crossorigin src="/assets/index-DDrGgWx1.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-wrmvoBWC.css">
+  </head>
+  <body>
+    <div class="ambient"></div>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Offline · Private · In-browser</p>
+        <h1>Track your blood markers over time.</h1>
+        <p class="lede">
+          Drop encrypted PDFs, compare values across dates, and visualize trends without leaving your browser.
+        </p>
+      </div>
+      <div class="status">
+        <div>
+          <p class="status-label">Stored reports</p>
+          <p class="status-value" id="report-count">0</p>
+        </div>
+        <button class="button ghost" id="clear-storage">Clear storage</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel" aria-labelledby="upload-title">
+        <div class="panel-head">
+          <h2 id="upload-title">Upload PDFs</h2>
+          <p>Drag and drop one or more reports. Passwords are requested only when needed.</p>
+        </div>
+        <div id="dropzone" class="dropzone">
+          <div>
+            <p class="drop-title">Drop files here</p>
+            <p class="drop-sub">or click to select PDFs</p>
+          </div>
+          <input id="file-input" type="file" accept="application/pdf" multiple />
+        </div>
+        <div id="upload-log" class="log"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="table-title">
+        <div class="panel-head panel-head--row">
+          <div>
+            <h2 id="table-title">Spreadsheet view</h2>
+            <p>Compare numeric marker values across time points.</p>
+          </div>
+          <div id="marker-search" class="marker-search" aria-label="Filter markers">
+            <button id="marker-search-toggle" class="marker-search-toggle" type="button" aria-label="Search markers">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M10.5 3a7.5 7.5 0 105.04 13.07l3.2 3.2a1 1 0 001.42-1.42l-3.2-3.2A7.5 7.5 0 0010.5 3zm0 2a5.5 5.5 0 110 11 5.5 5.5 0 010-11z"
+                />
+              </svg>
+            </button>
+            <input
+              id="marker-search-input"
+              class="marker-search-input"
+              type="search"
+              inputmode="search"
+              autocomplete="off"
+              placeholder="Search markers"
+              aria-label="Search markers"
+            />
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="marker-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="charts-title">
+        <div class="panel-head">
+          <h2 id="charts-title">Marker charts</h2>
+          <p>Click a marker to add a chart. High markers appear automatically.</p>
+        </div>
+        <p id="chart-empty" class="chart-empty">No charts yet. Click a marker to add one.</p>
+        <div id="chart-grid" class="chart-grid" role="list"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Everything stays in your browser. No uploads, no accounts.</p>
+    </footer>
+
+  </body>
+</html>
