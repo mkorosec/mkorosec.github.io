@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blood Results Comparator</title>
     <link rel="icon" href="/blood-analyzer/assets/favicon-RrDzqi8W.ico" />
-    <script type="module" crossorigin src="/blood-analyzer/assets/index-K7GJJ67h.js"></script>
+    <script type="module" crossorigin src="/blood-analyzer/assets/index-BP5dhH7R.js"></script>
     <link rel="stylesheet" crossorigin href="/blood-analyzer/assets/index-wrmvoBWC.css">
   </head>
   <body>
@@ -30,15 +30,15 @@
     <main>
       <section class="panel" aria-labelledby="upload-title">
         <div class="panel-head">
-          <h2 id="upload-title">Upload PDFs</h2>
-          <p>Drag and drop one or more reports. Passwords are requested only when needed.</p>
+          <h2 id="upload-title">Upload reports</h2>
+          <p>Drag and drop one or more reports (PDF or images). Passwords are requested only when needed.</p>
         </div>
         <div id="dropzone" class="dropzone">
           <div>
             <p class="drop-title">Drop files here</p>
-            <p class="drop-sub">or click to select PDFs</p>
+            <p class="drop-sub">or click to select PDFs/images</p>
           </div>
-          <input id="file-input" type="file" accept="application/pdf" multiple />
+          <input id="file-input" type="file" accept="application/pdf,image/png,image/jpeg,image/webp" multiple />
         </div>
         <div id="upload-log" class="log"></div>
       </section>
