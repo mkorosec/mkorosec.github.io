@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pair Generator</title>
+    <title>Generator parov</title>
     <style>
         :root {
             --bg: #ffffff;
@@ -14,7 +14,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             line-height: 1.6;
@@ -77,9 +77,10 @@
             border: none;
             border-radius: 6px;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: opacity 0.2s;
+            margin-top: 10px;
         }
 
         button:hover {
@@ -91,24 +92,18 @@
             font-size: 0.875rem;
             margin-top: 1rem;
             display: none;
+            text-align: center;
         }
 
         #results {
             margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 1.25rem;
         }
 
         .pair-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #fafafa;
-        }
-
-        .pair-num {
-            font-weight: 600;
-            color: var(--accent);
+            padding: 5px 0;
+            font-weight: 500;
         }
 
         .helper-text {
@@ -121,32 +116,44 @@
 <body>
 
 <div class="container">
-    <h1>Pair Generator</h1>
+    <h1>Generator parov</h1>
 
     <div class="field">
-        <label for="input-n">Total Numbers (N)</label>
-        <input type="number" id="input-n" placeholder="e.g. 20" min="2">
+        <label for="input-n">Skupno število (N)</label>
+        <input type="number" id="input-n" placeholder="npr. 20" min="2" oninput="saveInputs()">
     </div>
 
     <div class="field">
-        <label for="invalid-pairs">Invalid Pairs (x,y)</label>
-        <textarea id="invalid-pairs" placeholder="1,2&#10;5,10"></textarea>
-        <div class="helper-text">Enter one pair per line, separated by commas.</div>
+        <label for="invalid-pairs">Neveljavni pari (x,y)</label>
+        <textarea id="invalid-pairs" placeholder="1,2&#10;5,10" oninput="saveInputs()"></textarea>
+        <div class="helper-text">Vnesite en par na vrstico, ločen z vejico.</div>
     </div>
 
     <div class="field">
-        <label for="input-m">Number of Pairs to Generate (M)</label>
-        <input type="number" id="input-m" placeholder="e.g. 5" min="1">
-        <div class="helper-text">Note: M cannot exceed N/2.</div>
+        <label for="input-m">Število parov za generiranje (M)</label>
+        <input type="number" id="input-m" placeholder="npr. 5" min="1" oninput="saveInputs()">
     </div>
 
-    <button onclick="generatePairs()">Generate Pairs</button>
+    <button onclick="generatePairs()">kak te bom vprašo, hjoo</button>
     <div id="error-msg"></div>
 
     <div id="results"></div>
 </div>
 
 <script>
+    // Ob nalaganju strani naloži podatke iz local storage
+    window.onload = function() {
+        if (localStorage.getItem('n')) document.getElementById('input-n').value = localStorage.getItem('n');
+        if (localStorage.getItem('invalid')) document.getElementById('invalid-pairs').value = localStorage.getItem('invalid');
+        if (localStorage.getItem('m')) document.getElementById('input-m').value = localStorage.getItem('m');
+    };
+
+    function saveInputs() {
+        localStorage.setItem('n', document.getElementById('input-n').value);
+        localStorage.setItem('invalid', document.getElementById('invalid-pairs').value);
+        localStorage.setItem('m', document.getElementById('input-m').value);
+    }
+
     function generatePairs() {
         const n = parseInt(document.getElementById('input-n').value);
         const m = parseInt(document.getElementById('input-m').value);
@@ -154,52 +161,42 @@
         const resultsDiv = document.getElementById('results');
         const errorDiv = document.getElementById('error-msg');
 
-        // Reset
         resultsDiv.innerHTML = '';
         errorDiv.style.display = 'none';
 
         if (isNaN(n) || isNaN(m)) {
-            showError("Please enter valid numbers for N and M.");
+            showError("Vnesi N in M, ne ga srat.");
             return;
         }
 
         if (m > n / 2) {
-            showError(`Impossible to generate ${m} non-repeating pairs from ${n} numbers.`);
+            showError(`Preveč parov (M) hočeš za ta N.`);
             return;
         }
 
-        // Parse invalid pairs into a Set for fast lookup
         const invalidSet = new Set();
         const lines = invalidText.split('\n');
         for (let line of lines) {
             const parts = line.split(',').map(p => parseInt(p.trim()));
             if (parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
-                // Store normalized (small,large) to handle directionality
                 const pairKey = parts[0] < parts[1] ? `${parts[0]}-${parts[1]}` : `${parts[1]}-${parts[0]}`;
                 invalidSet.add(pairKey);
             }
         }
 
-        // Create pool of numbers
         let pool = Array.from({length: n}, (_, i) => i + 1);
         
-        // Shuffle pool (Fisher-Yates)
+        // Shuffle pool
         for (let i = pool.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [pool[i], pool[j]] = [pool[j], pool[i]];
         }
 
         const generatedPairs = [];
-        let attempts = 0;
-        const maxAttempts = 500; // Prevent infinite loops if constraints are too tight
-
-        // Simple greedy selection from shuffled pool
-        // We iterate and try to find valid partners
         let tempPool = [...pool];
         
-        while (generatedPairs.length < m && attempts < maxAttempts) {
+        while (generatedPairs.length < m) {
             let found = false;
-            // Try to pick the first available number
             for (let i = 0; i < tempPool.length; i++) {
                 for (let j = i + 1; j < tempPool.length; j++) {
                     const a = tempPool[i];
@@ -208,7 +205,6 @@
 
                     if (!invalidSet.has(key)) {
                         generatedPairs.push([a, b]);
-                        // Remove these two from temp pool
                         tempPool.splice(j, 1);
                         tempPool.splice(i, 1);
                         found = true;
@@ -217,22 +213,18 @@
                 }
                 if (found) break;
             }
-            
-            if (!found) break; // No more valid pairs can be formed
-            attempts++;
+            if (!found) break; 
         }
 
         if (generatedPairs.length < m) {
-            showError("Could not find enough valid unique pairs. Try reducing M or checking invalid combinations.");
+            showError("Ni ratalo najti dovolj veljavnih kombinacij.");
             return;
         }
 
-        // Render Results
-        resultsDiv.innerHTML = '<h3>Generated Pairs</h3>';
-        generatedPairs.forEach((pair, idx) => {
+        generatedPairs.forEach(pair => {
             const div = document.createElement('div');
             div.className = 'pair-item';
-            div.innerHTML = `<span>Pair ${idx + 1}</span> <span class="pair-num">${pair[0]} &mdash; ${pair[1]}</span>`;
+            div.textContent = `${pair[0]} - ${pair[1]}`;
             resultsDiv.appendChild(div);
         });
     }
