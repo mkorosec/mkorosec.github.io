@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blood Panel — Health Dashboard</title>
+    <link rel="icon" href="/blood-panel/favicon.ico" />
+    <script type="module" crossorigin src="/blood-panel/assets/index-BmqlsjN3.js"></script>
+    <link rel="stylesheet" crossorigin href="/blood-panel/assets/index-DI34UTvk.css">
+  </head>
+  <body>
+    <div class="ambient"></div>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Offline · Private · In-browser</p>
+        <h1>Your blood panel at a glance.</h1>
+        <p class="lede">
+          Drop a single report (PDF or image) and see a colour-coded health dashboard — instantly, without leaving your browser.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel" aria-labelledby="upload-title">
+        <div class="panel-head">
+          <h2 id="upload-title">Upload a report</h2>
+          <p>Drag and drop a blood test report (PDF or image). Passwords are requested only when needed.</p>
+        </div>
+        <div id="dropzone" class="dropzone">
+          <div>
+            <p class="drop-title">Drop file here</p>
+            <p class="drop-sub">or click to select a PDF/image</p>
+          </div>
+          <input id="file-input" type="file" accept="application/pdf,image/png,image/jpeg,image/webp" />
+        </div>
+        <div id="upload-log" class="log"></div>
+      </section>
+
+      <div id="report-meta" class="report-meta" hidden></div>
+      <div id="dashboard"></div>
+    </main>
+
+    <footer class="footer">
+      <p>Everything stays in your browser. No uploads, no accounts, no storage.</p>
+    </footer>
+
+  </body>
+</html>
