@@ -318,45 +318,45 @@
         }
 
         function triggerGamification(guess, answer, distanceM, bombTier) {
-            var burstHtml = '<div class="impact-burst"></div>';
-            var burstIcon = L.divIcon({ className: '', html: burstHtml, iconSize: [0, 0], iconAnchor: [0, 0] });
-            L.marker([guess.lat, guess.lng], { icon: burstIcon }).addTo(markersGroup);
+            map.once('moveend', function() {
+                var burstHtml = '<div class="impact-burst"></div>';
+                var burstIcon = L.divIcon({ className: '', html: burstHtml, iconSize: [0, 0], iconAnchor: [0, 0] });
+                L.marker([guess.lat, guess.lng], { icon: burstIcon }).addTo(markersGroup);
 
-            var blastG = L.circle([guess.lat, guess.lng], {
-                radius: 0, color: '#f87171', fillColor: '#ef4444', fillOpacity: 0.12, weight: 2
-            }).addTo(markersGroup);
-            var blastY = L.circle([answer.lat, answer.lng], {
-                radius: 0, color: '#fbbf24', fillColor: '#f59e0b', fillOpacity: 0.08, weight: 2, dashArray: '6 4'
-            }).addTo(markersGroup);
-
-            animateCircleRadius(blastG, distanceM, 1200, 80);
-            animateCircleRadius(blastY, distanceM, 1200, 80);
-
-            for (var i = 0; i < 3; i++) {
-                (function(idx) {
-                    setTimeout(function() {
-                        var ring = L.circle([guess.lat, guess.lng], {
-                            radius: 0, color: i === 0 ? '#fca5a5' : '#f87171',
-                            fillColor: 'transparent', weight: i === 0 ? 5 : 3, opacity: 1
-                        }).addTo(markersGroup);
-                        ring._path.classList.add('impact-ring-g');
-                        animateCircleRadius(ring, distanceM, 1000, 200 + idx * 150);
-                    }, idx * 180);
-                })(i);
-            }
-
-            setTimeout(function() {
-                var target = L.circle([answer.lat, answer.lng], {
-                    radius: distanceM, color: '#fbbf24', fillColor: 'transparent',
-                    weight: 2, dashArray: '6 4', opacity: 0.3
+                var blastG = L.circle([guess.lat, guess.lng], {
+                    radius: 0, color: '#f87171', fillColor: '#ef4444', fillOpacity: 0.12, weight: 2
                 }).addTo(markersGroup);
-                target._path.classList.add('target-ring');
-            }, 1500);
+                var blastY = L.circle([answer.lat, answer.lng], {
+                    radius: 0, color: '#fbbf24', fillColor: '#f59e0b', fillOpacity: 0.08, weight: 2, dashArray: '6 4'
+                }).addTo(markersGroup);
 
-            setTimeout(function() {
-                map.flyTo([answer.lat, answer.lng],
-                    currentQuiz.map !== undefined && currentQuiz.map.zoom !== undefined ? currentQuiz.map.zoom : 6);
-            }, 2200);
+                animateCircleRadius(blastG, distanceM, 1200, 80);
+                animateCircleRadius(blastY, distanceM, 1200, 80);
+
+                for (var i = 0; i < 3; i++) {
+                    (function(idx) {
+                        setTimeout(function() {
+                            var ring = L.circle([guess.lat, guess.lng], {
+                                radius: 0, color: i === 0 ? '#fca5a5' : '#f87171',
+                                fillColor: 'transparent', weight: i === 0 ? 5 : 3, opacity: 1
+                            }).addTo(markersGroup);
+                            ring._path.classList.add('impact-ring-g');
+                            animateCircleRadius(ring, distanceM, 1000, 200 + idx * 150);
+                        }, idx * 180);
+                    })(i);
+                }
+
+                setTimeout(function() {
+                    var target = L.circle([answer.lat, answer.lng], {
+                        radius: distanceM, color: '#fbbf24', fillColor: 'transparent',
+                        weight: 2, dashArray: '6 4', opacity: 0.3
+                    }).addTo(markersGroup);
+                    target._path.classList.add('target-ring');
+                }, 1500);
+            });
+
+            map.flyTo([answer.lat, answer.lng],
+                currentQuiz.map !== undefined && currentQuiz.map.zoom !== undefined ? currentQuiz.map.zoom : 6);
         }
 
         var url = window.location.href;
