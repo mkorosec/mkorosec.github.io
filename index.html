@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="en_US">
+<html lang="en">
 <head>
-    <title>I ❤️ maps!</title>
+    <title>Map Games — Geography Quiz</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--
-    <link rel="stylesheet" href="src/css/leaflet.css" />
-    <link rel="stylesheet" href="src/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="src/css/quiz.css"/>
-    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/styles.min.pure.css"/>
 </head>
 <body>
@@ -16,90 +14,139 @@
 
     <div id="floatingDialog" class="card">
         <div class="dialog-header">
-          <h5 class="mb-0" id="quizName">Find this location on the map</h5>
+          <span class="dialog-title" id="quizName">Find this location on the map</span>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4">
+            <circle cx="8" cy="1.5" r="1"/>
+            <circle cx="1.5" cy="5" r="1"/>
+            <circle cx="14.5" cy="5" r="1"/>
+            <circle cx="2" cy="11" r="1"/>
+            <circle cx="14" cy="11" r="1"/>
+            <circle cx="8" cy="14.5" r="1"/>
+          </svg>
         </div>
         <div class="dialog-body">
-            <p>Question <span id="questionNumber"></span>/<span id="allAnswers"></span>: <span id="question"></span></p>
-            <p style="display:none">Answers: <span id="answers">0</span>/<span id="allAnswers2">0</span></p>
-            <p>Points: <span id="points">0</span>/<span id="allPoints">0</span> (max 100 per answer)</p>
-            <button type="button" class="btn btn-primary" onclick="nextQuestion()" id="nextQuestionButton" disabled="true">Next</button>
-            <button type="button" class="btn btn-secondary" onclick="changeCategoryModal()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-                    <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
-                    <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
-                  </svg> New quiz
-            </button>
+            <p style="margin:0; display:flex; justify-content:space-between; align-items:center;">
+              <span id="question"></span>
+              <span style="display:none" id="questionCounter" class="dialog-stat-value"></span>
+            </p>
+            <div class="dialog-stats">
+              <div class="dialog-stat">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>Q <span id="questionNumber">1</span>/<span id="allAnswers">0</span></span>
+              </div>
+              <div class="dialog-stat">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="points">0</span>/<span id="allPoints">0</span>
+              </div>
+            </div>
+            <div class="dialog-actions">
+              <button type="button" class="btn btn-primary" onclick="nextQuestion()" id="nextQuestionButton" disabled>Next</button>
+              <button type="button" class="btn btn-secondary" onclick="changeCategoryModal()" aria-label="Change quiz category">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                Quizzes
+              </button>
+            </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="resultsModal" tabindex="-1" aria-labelledby="resultsModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="resultsModalLabel">How did you do?</h5>
+              <h5 class="modal-title" id="resultsModalLabel">Your Results</h5>
             </div>
             <div class="modal-body">
-                <p style="display:none" id="dailyResultsMessage">Daily puzzle will refresh again tomorrow, you can only play it once per day. Meanwhile, <a class="link" onclick="changeCategoryModal()">try some other quizes to practice!</a></p>
-                <p>Total points: <span id="pointsInDialog"></span>/<span id="possiblePoints"></span> (<span id="pointsPct"></span>)</p>
-                <p>Your guesses:</p>
+                <p style="display:none" id="dailyResultsMessage">Daily puzzle refreshes tomorrow. You can only play once per day. Meanwhile, <a class="link" onclick="changeCategoryModal()">try other quizzes to practice!</a></p>
+                <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px;">
+                  <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                    <span style="font-weight:600; color:var(--color-text-primary);">Score</span>
+                    <span style="font-size:1.5rem; font-weight:700;" id="pointsPct">0%</span>
+                  </div>
+                  <div class="score-meter">
+                    <div class="score-meter-fill" id="scoreMeterFill" style="width:0%; background:var(--color-accent);"></div>
+                  </div>
+                  <span style="font-size:var(--text-sm); color:var(--color-text-muted);" id="pointsDetail">0 / 0 points</span>
+                </div>
+                <p style="font-weight:500; margin-bottom:8px; color:var(--color-text-primary);">Your guesses:</p>
                 <ul class="answers"></ul>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="changeCategoryModal()">Choose next quiz</button>
-                <button type="button" class="btn btn-secondary" onclick="copyResultToClipboard()" id="copyBtn">Share results (without spoilers)</button>
+                <button type="button" class="btn btn-secondary" onclick="copyResultToClipboard()" id="copyBtn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+                  Share results
+                </button>
             </div>
           </div>
         </div>
     </div>
 
     <div class="modal fade" id="categoriesModal" tabindex="-1" aria-labelledby="categoriesModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="categoriesModalLabel">Start a new quiz</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- dropdown of categories-->
-                <p>Choose a quiz to start</p>
+                <p style="color:var(--color-text-secondary);">Choose a quiz to start</p>
                 <select id="categorySelect" class="form-select" aria-label="Select category">
                 </select>
-                <p></p>
-                <button type="button" class="btn btn-secondary" onclick="changeCategory(true)">Surprise me!</button>
+                <div style="margin-top:12px;">
+                  <button type="button" class="btn btn-secondary" onclick="changeCategory(true)" style="width:100%;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    Surprise me!
+                  </button>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="changeCategory()">Start</button>
-                <button type="button" class="btn btn-primary" onclick="changeCategory(false, true)">Start - shuffle questions</button>
+                <button type="button" class="btn btn-secondary" onclick="changeCategory(false, true)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                  Shuffle &amp; start
+                </button>
             </div>
           </div>
         </div>
     </div>
-    <!--
-    <script src="src/js/leaflet.js"></script>
-    <script src="src/js/bootstrap.bundle.min.js"></script>
-    <script src="src/js/questions.js"></script>  
-    <script src="src/js/quiz.js"></script>  
-    <script src="src/js/quiz-helper.js"></script>  
-    -->
-    <script src="daily-questions.js"></script>  
-    <script src="dist/bundle.min.js"></script>  
+
+    <script src="daily-questions.js"></script>
+    <script src="dist/bundle.min.js"></script>
     <script>
-        // Initialize the map
-        var map = L.map('map').setView([20, 0], 2); // Centered at latitude 20, longitude 0, zoom level 2
+        var map = L.map('map').setView([20, 0], 2);
         map.doubleClickZoom.disable();
         map.setMaxBounds([[90, -180], [-90, 180]]);
         const markersGroup = L.layerGroup().addTo(map);
 
-        // Add OpenStreetMap tiles
-        //L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-        //L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-            attribution: '<a href="https://carto.com/legal/" target="_blank">© Carto</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+            attribution: '<a href="https://carto.com/legal/" target="_blank">&copy; Carto</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        //go over all window.quizList and add them to the dropdown
+        var mouseLatLng = null;
+        map.getContainer().addEventListener('mousemove', function(e) {
+            var rect = map.getContainer().getBoundingClientRect();
+            var point = L.point(e.clientX - rect.left, e.clientY - rect.top);
+            mouseLatLng = map.containerPointToLatLng(point);
+        });
+
+        var guessIcon = L.divIcon({
+            className: 'guess-marker',
+            html: '<div class="pin-body"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="34" viewBox="0 0 22 34"><path d="M11 0C4.9 0 0 4.9 0 11c0 7.7 11 23 11 23s11-15.3 11-23C22 4.9 17.1 0 11 0z" fill="#60a5fa"/><circle cx="11" cy="11" r="4.5" fill="#0b1120" opacity="0.6"/></svg></div>',
+            iconSize: [22, 34],
+            iconAnchor: [11, 34],
+            popupAnchor: [0, -34]
+        });
+
+        var answerIcon = L.divIcon({
+            className: 'answer-marker',
+            html: '<div class="pin-body pin-drop-anim"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="34" viewBox="0 0 22 34"><path d="M11 0C4.9 0 0 4.9 0 11c0 7.7 11 23 11 23s11-15.3 11-23C22 4.9 17.1 0 11 0z" fill="#4ade80"/><circle cx="11" cy="11" r="4.5" fill="#0b1120" opacity="0.6"/></svg></div>',
+            iconSize: [22, 34],
+            iconAnchor: [11, 34],
+            popupAnchor: [0, -34]
+        });
+
         const categorySelect = document.getElementById('categorySelect');
-        window.quizList.map((option) => option).forEach((category) => {
+        window.quizList.forEach((category) => {
             const option = document.createElement('option');
             option.value = category.name;
             option.innerText = category.name + ' (' + category.questions.length + ' questions)';
@@ -107,18 +154,35 @@
         });
 
         map.on('click', function(e) {
-            if (!allowNewMarkerPlacement) {
-                return;
-            }
+            if (!allowNewMarkerPlacement) return;
             const { lat, lng } = e.latlng;
-
-            // 3. Place a Marker at Click Location
             const marker = addMarker(lat, lng);
             handleMarkerPlaced(marker, lat, lng);
         });
 
+        document.addEventListener('keydown', function(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+            if (document.querySelector('.modal.show')) return;
+
+            const panStep = map.getZoom() > 10 ? 0.05 : map.getZoom() > 5 ? 0.2 : 1;
+
+            switch (e.key) {
+                case 'ArrowUp':    case 'w': case 'W': map.panBy([0, -60]); e.preventDefault(); break;
+                case 'ArrowDown':  case 's': case 'S': map.panBy([0, 60]);  e.preventDefault(); break;
+                case 'ArrowLeft':  case 'a': case 'A': map.panBy([-60, 0]); e.preventDefault(); break;
+                case 'ArrowRight': case 'd': case 'D': map.panBy([60, 0]);  e.preventDefault(); break;
+                case 'Enter':
+                case ' ':
+                    if (!allowNewMarkerPlacement || !mouseLatLng) return;
+                    e.preventDefault();
+                    var marker = addMarker(mouseLatLng.lat, mouseLatLng.lng);
+                    handleMarkerPlaced(marker, mouseLatLng.lat, mouseLatLng.lng);
+                    break;
+            }
+        });
+
         function addMarker(lat, lng) {
-            const marker = L.marker([lat, lng]).addTo(markersGroup);
+            const marker = L.marker([lat, lng], {icon: guessIcon}).addTo(markersGroup);
             return marker;
         }
 
@@ -129,21 +193,21 @@
         }
 
         function submitGuess() {
-            //TODO currently we validate offline (in js). In a real app, you would submit to a server for validation
             if (latestGuess) {
-                //distance in meters
                 const distance = L.latLng(latestGuess.lat, latestGuess.lng).distanceTo(L.latLng(answer.lat, answer.lng));
-                const score = evaluateResult((distance/1000).toFixed(0));
+                const km = (distance/1000);
+                const score = evaluateResult(km.toFixed(0));
                 totalPoints += score.points;
                 answered++;
-                document.getElementById('answers').innerText = '' + answered;
                 document.getElementById('points').innerText = '' + totalPoints;
 
-                revealAnswerOnMap(answer.lat, answer.lng, 
-                '<p style="margin:0">Correct answer: ' + answer.label + '</p>' + 
-                '<p style="margin:0">Distance: ' + (distance/1000).toFixed(2) + 'km</p>' + 
-                '<p style="margin:0">Points: ' + score.points + '/100</p>' +
-                '<p style="margin-top:1em"><a class="link" onclick="moreInformationAboutAnswer()">click for more info</a> &#x25BC;</p>' +
+                const tier = score.distanceTier;
+
+                revealAnswerOnMap(answer.lat, answer.lng,
+                '<p style="margin:0; font-weight:600">Correct: ' + answer.label + '</p>' +
+                '<p style="margin:0">Distance: ' + km.toFixed(2) + 'km \u2014 ' + getDistanceSense(km) + ' ' + tier.icon + '</p>' +
+                '<p style="margin:0">Points: ' + score.points + '/100 ' + score.label + '</p>' +
+                '<p style="margin-top:0.5em"><a class="link" onclick="moreInformationAboutAnswer()">More info</a></p>' +
                 '<p style="margin:0" id="moreInformation"></p>'
                 );
 
@@ -152,8 +216,11 @@
                     answer: answer,
                     guess: latestGuess,
                     distance: distance,
-                    points: score.points
+                    points: score.points,
+                    distanceTier: tier
                 });
+
+                triggerGamification(latestGuess, answer, distance, tier);
             } else {
                 console.log('No guess to submit.');
             }
@@ -168,38 +235,24 @@
         function cancelCountdown() {
             clearInterval(nextQuestionAutoSubmitTimer);
             const button = document.getElementById('nextQuestionButton');
-            button.textContent = 'Next';
+            button.innerHTML = 'Next';
             button.disabled = false;
         }
 
         function revealAnswerOnMap(lat, lng, label) {
-            const marker = L.marker([lat, lng]).addTo(markersGroup);
-            setTimeout(() => {
-                map.flyTo([lat, lng], currentQuiz.map !== undefined && currentQuiz.map.zoom !== undefined ? currentQuiz.map.zoom : 6);
-                //draw line between guess and answer
-                if (latestGuess) {
-                    const latlngs = [
-                        [latestGuess.lat, latestGuess.lng],
-                        [lat, lng]
-                    ];
-                    const polyline = L.polyline(latlngs, {color: 'gray'}).addTo(markersGroup);
-                }
-            }, 500);
-            marker._icon.classList.add("huechange");
-            marker._icon.classList.add("animated-icon");
-            marker._icon.id = 'answerIcon';
-            marker._shadow.id = 'answerIconShadow';
-            marker.bindPopup(label).openPopup();
+            const marker = L.marker([lat, lng], {icon: answerIcon}).addTo(markersGroup);
 
-            animateMarker(marker);
+            if (latestGuess) {
+                L.polyline([[latestGuess.lat, latestGuess.lng], [lat, lng]], {color: 'rgba(148,163,184,0.6)', dashArray: '6 4', weight: 2}).addTo(markersGroup);
+            }
+
+            marker.bindPopup(label).openPopup();
             enableNextQuestionButton(true, 10);
-            //map.setView([answer.lat, answer.lng], 5);
         }
 
         function nextQuestion() {
             enableNextQuestionButton(false);
             clearMarkers();
-            //choose from a list of questions
             if (currentQuiz.questionsIndex >= currentQuiz.questions.length) {
                 finishQuiz();
                 return;
@@ -216,16 +269,15 @@
         function enableNextQuestionButton(enabled, autoSubmitInSeconds) {
             clearInterval(nextQuestionAutoSubmitTimer);
             const button = document.getElementById('nextQuestionButton');
-            button.textContent = 'Next';
+            button.innerHTML = 'Next';
             button.disabled = !enabled;
             if (enabled && autoSubmitInSeconds) {
                 const buttonLabel = currentQuiz.questionsIndex >= currentQuiz.questions.length ? 'Finish' : 'Next';
                 var countdown = autoSubmitInSeconds;
                 nextQuestionAutoSubmitTimer = setInterval(() => {
                     countdown--;
-                    button.textContent = `${buttonLabel} in ${countdown}s`;
+                    button.innerHTML = buttonLabel + ' <span class="countdown-badge">' + countdown + 's</span>';
 
-                    // If countdown reaches zero, execute the action
                     if (countdown <= 0) {
                         nextQuestion();
                     }
@@ -237,7 +289,6 @@
             enableNextQuestionButton(false);
             displayResults(totalPoints, currentQuiz);
             if (currentQuiz.id === 'daily') {
-                //ensure daily can be played only once per day
                 localStorage.setItem('lastPlayedDailyQuiz', new Date().toISOString());
                 setLastPlayedDailyHashCode(currentQuiz.questions);
                 localStorage.setItem('dailyQuizResults', JSON.stringify(currentQuiz.results));
@@ -251,6 +302,62 @@
             allowNewMarkerPlacement = true;
         }
 
+        function animateCircleRadius(circle, targetRadius, durationMs, delayMs) {
+            delayMs = delayMs || 0;
+            var start;
+            function step(ts) {
+                if (!start) start = ts - delayMs;
+                var elapsed = ts - start;
+                if (elapsed < 0) { requestAnimationFrame(step); return; }
+                var progress = Math.min(1, elapsed / durationMs);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                circle.setRadius(Math.max(1, eased * targetRadius));
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        function triggerGamification(guess, answer, distanceM, bombTier) {
+            var burstHtml = '<div class="impact-burst"></div>';
+            var burstIcon = L.divIcon({ className: '', html: burstHtml, iconSize: [0, 0], iconAnchor: [0, 0] });
+            L.marker([guess.lat, guess.lng], { icon: burstIcon }).addTo(markersGroup);
+
+            var blastG = L.circle([guess.lat, guess.lng], {
+                radius: 0, color: '#f87171', fillColor: '#ef4444', fillOpacity: 0.12, weight: 2
+            }).addTo(markersGroup);
+            var blastY = L.circle([answer.lat, answer.lng], {
+                radius: 0, color: '#fbbf24', fillColor: '#f59e0b', fillOpacity: 0.08, weight: 2, dashArray: '6 4'
+            }).addTo(markersGroup);
+
+            animateCircleRadius(blastG, distanceM, 1200, 80);
+            animateCircleRadius(blastY, distanceM, 1200, 80);
+
+            for (var i = 0; i < 3; i++) {
+                (function(idx) {
+                    setTimeout(function() {
+                        var ring = L.circle([guess.lat, guess.lng], {
+                            radius: 0, color: i === 0 ? '#fca5a5' : '#f87171',
+                            fillColor: 'transparent', weight: i === 0 ? 5 : 3, opacity: 1
+                        }).addTo(markersGroup);
+                        ring._path.classList.add('impact-ring-g');
+                        animateCircleRadius(ring, distanceM, 1000, 200 + idx * 150);
+                    }, idx * 180);
+                })(i);
+            }
+
+            setTimeout(function() {
+                var target = L.circle([answer.lat, answer.lng], {
+                    radius: distanceM, color: '#fbbf24', fillColor: 'transparent',
+                    weight: 2, dashArray: '6 4', opacity: 0.3
+                }).addTo(markersGroup);
+                target._path.classList.add('target-ring');
+            }, 1500);
+
+            setTimeout(function() {
+                map.flyTo([answer.lat, answer.lng],
+                    currentQuiz.map !== undefined && currentQuiz.map.zoom !== undefined ? currentQuiz.map.zoom : 6);
+            }, 2200);
+        }
 
         var url = window.location.href;
         var quizToStartWith = window.quizList.find((quiz) => quiz.id === 'daily');
@@ -260,12 +367,11 @@
             if (deepLinkQuiz) {
                 quizToStartWith = deepLinkQuiz;
             }
-        } 
+        }
         if (quizToStartWith === null || quizToStartWith === undefined) {
             quizToStartWith = window.quizList[0];
         }
 
-        //on href change
         window.onhashchange = function() {
             var url = window.location.href;
             if (url.indexOf("#") > 0) {
@@ -274,7 +380,7 @@
                 if (deepLinkQuiz) {
                     startQuiz(deepLinkQuiz);
                 }
-            } 
+            }
         };
         startQuiz(quizToStartWith);
      </script>
