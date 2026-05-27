@@ -176,6 +176,7 @@ body {
   position: relative;
   min-width: 44px;
   min-height: 44px;
+  padding: 0;
   -webkit-appearance: none;
 }
 
@@ -412,6 +413,15 @@ body {
   </div>
 
   <div class="numpad" role="group" aria-label="Number pad">
+    <button class="num-btn" data-num="1" aria-label="Enter 1">1</button>
+    <button class="num-btn" data-num="2" aria-label="Enter 2">2</button>
+    <button class="num-btn" data-num="3" aria-label="Enter 3">3</button>
+    <button class="num-btn" data-num="4" aria-label="Enter 4">4</button>
+    <button class="num-btn" data-num="5" aria-label="Enter 5">5</button>
+    <button class="num-btn" data-num="6" aria-label="Enter 6">6</button>
+    <button class="num-btn" data-num="7" aria-label="Enter 7">7</button>
+    <button class="num-btn" data-num="8" aria-label="Enter 8">8</button>
+    <button class="num-btn" data-num="9" aria-label="Enter 9">9</button>
     <button class="erase-btn" aria-label="Erase cell">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 6 6 18"/><path d="M6 6l12 12"/>
@@ -806,27 +816,28 @@ body {
       cell.setAttribute('role', 'gridcell');
 
       if (isWhite(i)) {
-        cell.classList.add('cell', 'playable');
-        cell.setAttribute('tabindex', '0');
-        cell.setAttribute('aria-label',
+        const playCell = document.createElement('button');
+        playCell.className = 'cell playable';
+        playCell.setAttribute('role', 'gridcell');
+        playCell.setAttribute('aria-label',
           'Row ' + (Math.floor(i / size) + 1) +
           ' column ' + (i % size + 1) +
           (playerBoard[i] ? ', value ' + playerBoard[i] : ', empty'));
 
         if (playerBoard[i] !== 0) {
-          cell.textContent = playerBoard[i];
+          playCell.textContent = playerBoard[i];
         }
 
         if (i === selected) {
-          cell.classList.add('selected');
+          playCell.classList.add('selected');
         }
 
         if (cellErrors(i, runs)) {
-          cell.classList.add('error');
+          playCell.classList.add('error');
         }
 
-        cell.addEventListener('click', () => selectCell(i));
-        boardEl.appendChild(cell);
+        playCell.addEventListener('click', () => selectCell(i));
+        boardEl.appendChild(playCell);
       } else if (isClue(i)) {
         cell.classList.add('cell', 'clue');
         const clue = clues[i];
@@ -860,6 +871,11 @@ body {
         cell.setAttribute('aria-label', 'Empty');
         boardEl.appendChild(cell);
       }
+    }
+
+    if (selected >= 0 && isWhite(selected)) {
+      const selBtn = boardEl.children[selected];
+      if (selBtn) selBtn.focus();
     }
   }
 
@@ -1004,6 +1020,10 @@ body {
 
   document.querySelectorAll('.diff-btn').forEach(btn => {
     btn.addEventListener('click', () => setDifficulty(btn.dataset.level));
+  });
+
+  document.querySelectorAll('.num-btn').forEach(btn => {
+    btn.addEventListener('click', () => enterNumber(Number(btn.dataset.num)));
   });
 
   document.querySelector('.new-game-btn').addEventListener('click', newGame);
