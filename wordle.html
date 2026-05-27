@@ -19,9 +19,7 @@
   --text-secondary: oklch(0.60 0.01 85);
   --text-dim: oklch(0.38 0.01 85);
   --correct: oklch(0.55 0.14 140);
-  --correct-bg: oklch(0.24 0.06 140);
   --present: oklch(0.62 0.14 90);
-  --present-bg: oklch(0.24 0.06 90);
   --absent: oklch(0.32 0.01 85);
   --tile-border: oklch(0.28 0.01 85);
   --tile-border-active: oklch(0.48 0.02 85);
@@ -134,6 +132,26 @@ body {
   pointer-events: none;
 }
 
+.new-game-btn {
+  font-family: var(--font);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: border-color 150ms, background 150ms;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.new-game-btn:hover {
+  border-color: var(--accent-dim);
+  background: var(--surface-raised);
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -158,7 +176,6 @@ body {
 }
 
 .tile.filled { border-color: var(--tile-border-active); }
-
 .tile.active { border-color: var(--accent); }
 
 .tile.correct {
@@ -187,16 +204,6 @@ body {
   0%, 100% { transform: translateX(0); }
   10%, 50%, 90% { transform: translateX(-4px); }
   30%, 70% { transform: translateX(4px); }
-}
-
-.tile.flip {
-  animation: flip 500ms ease-out forwards;
-}
-
-@keyframes flip {
-  0% { transform: rotateX(0); }
-  50% { transform: rotateX(90deg); }
-  100% { transform: rotateX(0); }
 }
 
 .keyboard {
@@ -326,7 +333,6 @@ body {
 }
 
 .close-btn:hover { color: var(--text-primary); border-color: var(--tile-border-active); }
-
 .close-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .lang-tabs {
@@ -423,7 +429,6 @@ body {
 }
 
 .add-input::placeholder { color: var(--text-dim); }
-
 .add-input:focus { border-color: var(--accent); }
 
 .btn {
@@ -464,9 +469,19 @@ body {
 
 .hidden-input { display: none; }
 
+.loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 0;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
 @media (max-width: 480px) {
   body { padding: 16px; }
   .game { gap: 20px; }
+  .header-right { gap: 4px; }
+  .new-game-btn { font-size: 0.6875rem; padding: 6px 10px; }
   .tile { font-size: 1.25rem; }
   .key { height: 40px; font-size: 0.6875rem; max-width: 36px; }
   .key.wide { max-width: 48px; }
@@ -481,7 +496,8 @@ body {
     <h1 class="title">Wordle</h1>
     <div class="header-right">
       <select class="lang-select" id="lang-select" aria-label="Language"></select>
-      <button class="icon-btn" id="settings-btn" aria-label="Manage word list">
+      <button class="new-game-btn" id="new-game-btn" aria-label="Start a new game">New</button>
+      <button class="icon-btn" id="settings-btn" aria-label="Manage words">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
         </svg>
@@ -496,17 +512,17 @@ body {
 
 <div class="toast" id="toast" aria-live="polite"></div>
 
-<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Word list editor">
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Word editor">
   <div class="overlay-content">
     <div class="overlay-header">
-      <div class="overlay-title">Word list</div>
+      <div class="overlay-title">Answer words</div>
       <button class="close-btn" id="overlay-close" aria-label="Close">&#x2715;</button>
     </div>
     <div class="lang-tabs" id="lang-tabs"></div>
     <div class="word-stats" id="word-stats"></div>
     <div class="word-list" id="word-list"></div>
     <div class="add-section">
-      <input class="add-input" id="add-input" type="text" maxlength="10" placeholder="Add words, one per line..." aria-label="Add words">
+      <input class="add-input" id="add-input" type="text" maxlength="60" placeholder="Add words, one per line..." aria-label="Add words">
       <button class="btn btn-primary" id="add-btn">Add</button>
     </div>
     <div class="import-export">
@@ -523,103 +539,28 @@ body {
 (function() {
   'use strict';
 
+  const DATA_VERSION = 1;
   const WORD_LENGTH = 5;
   const MAX_GUESSES = 6;
 
-  const DEFAULT_WORDS = {
-    en: [
-      "about","above","abuse","actor","admit","adopt","adult","after","again","agent",
-      "agree","ahead","alarm","album","alert","alien","align","alive","allow","alone",
-      "along","alter","angel","anger","angle","angry","apart","apple","apply","arena",
-      "argue","arise","array","aside","asset","avoid","award","aware","awful","badge",
-      "badly","basic","basin","basis","beach","begin","being","below","bench","birth",
-      "black","blade","blame","blank","blast","blaze","bleed","blend","bless","blind",
-      "block","blood","bloom","blown","board","bonus","boost","bound","brain","brand",
-      "brave","bread","break","breed","brick","brief","bring","broad","broke","brook",
-      "brown","brush","build","built","bunch","burst","buyer","cabin","cable","carry",
-      "catch","cause","chain","chair","chalk","chaos","charm","chart","chase","cheap",
-      "check","cheek","chest","chief","child","claim","class","clean","clear","clerk",
-      "click","climb","clock","close","cloud","coach","coast","color","couch","could",
-      "count","court","cover","crack","craft","crash","cream","crime","cross","crowd",
-      "crown","crude","curve","cycle","daily","dance","death","decay","delay","dense",
-      "depth","devil","dirty","donor","doubt","draft","drain","drama","drawn","dream",
-      "dress","drift","drink","drive","dying","eager","early","earth","eight","elder",
-      "elect","elite","empty","enemy","enjoy","enter","equal","error","essay","event",
-      "every","exact","exile","exist","extra","faith","false","fault","favor","fence",
-      "fever","fiber","field","fight","final","first","fixed","flame","flash","fleet",
-      "flesh","float","flood","floor","flour","fluid","focus","force","forge","forth",
-      "forum","found","frame","frank","fraud","fresh","front","frost","froze","fruit",
-      "fully","funny","genre","ghost","giant","given","glass","globe","gloom","glory",
-      "goods","grade","grain","grand","grant","graph","grasp","grass","grave","great",
-      "green","greet","grief","grill","grind","gross","group","grown","guard","guess",
-      "guest","guide","guilt","happy","harsh","heart","heavy","hedge","hence","honey",
-      "honor","horse","hotel","house","human","humor","ideal","image","imply","index",
-      "inner","input","irony","issue","ivory","jewel","joint","judge","juice","knife",
-      "knock","label","labor","large","latch","later","latin","laugh","layer","learn",
-      "lease","least","leave","legal","level","lever","light","limit","linen","liver",
-      "local","lodge","logic","loose","lover","lower","lucky","lunch","major","maker",
-      "march","match","mayor","media","mercy","merit","metal","might","minor","minus",
-      "mixed","model","money","month","moral","motor","mount","mouse","mouth","movie",
-      "music","nerve","never","newly","night","noise","north","noted","novel","nurse",
-      "occur","ocean","offer","olive","onset","opera","orbit","order","organ","other",
-      "outer","owner","oxide","paint","panel","panic","paper","party","pause","peace",
-      "phase","phone","photo","piano","piece","pilot","pitch","place","plain","plane",
-      "plant","plate","point","poker","polar","pound","power","press","price","pride",
-      "prime","print","prior","prize","probe","proof","proud","prove","queen","quick",
-      "quiet","quite","quote","radar","radio","raise","rally","range","rapid","ratio",
-      "reach","react","ready","realm","refer","reign","relax","renew","reply","rider",
-      "ridge","rifle","right","rigid","rival","river","robin","rocky","round","route",
-      "royal","ruler","rural","sadly","scale","scene","scope","score","seize","sense",
-      "serve","setup","seven","shade","shaft","shake","shall","shame","shape","share",
-      "sharp","sheep","sheer","sheet","shelf","shell","shift","shine","shirt","shock",
-      "shoot","shore","short","shown","sight","since","sixth","sixty","sized","skill",
-      "skull","slave","sleep","slice","slide","slope","small","smart","smell","smile",
-      "smoke","snake","solar","solid","solve","sorry","south","space","spare","spark",
-      "speak","speed","spend","spent","spice","spike","spill","spine","split","spoke",
-      "sport","spray","squad","stack","staff","stage","stain","stair","stake","stall",
-      "stamp","stand","stare","start","state","steam","steel","steep","stick","still",
-      "stock","stone","stood","store","storm","story","stove","strip","stuck","study",
-      "stuff","style","sugar","suite","super","swear","sweep","sweet","swing","sword",
-      "swore","table","taken","taste","teach","teeth","tempt","terms","theme","there",
-      "these","thick","thing","think","third","those","three","threw","throw","thumb",
-      "tight","tired","title","today","token","topic","total","touch","tough","tower",
-      "track","trade","trail","train","trait","trash","treat","trend","trial","tribe",
-      "trick","tried","troop","truck","truly","trump","trunk","trust","truth","tumor",
-      "twice","twist","under","union","unity","until","upper","upset","urban","usage",
-      "usual","valid","value","video","virus","visit","vital","voice","voter","wages",
-      "waste","watch","water","weave","weigh","wheel","where","which","while","white",
-      "whole","whose","woman","works","world","worry","worse","worst","worth","would",
-      "wound","wreck","write","wrong","wrote","yield","young","youth"
-    ],
-    sl: [
-      "angel","avtor","banki","barva","besed","bilka","blizu","bodem","bolje","borba",
-      "brala","brati","bregu","breza","cesta","cveti","danes","dejan","dekle","dela",
-      "delal","delam","delo","denar","dober","dobro","dokaj","dolga","dolgo","domov",
-      "drevu","drugi","držim","dvign","enega","glava","gleda","hotel","imajo","imela",
-      "imeli","imelo","imeti","imetj","iskal","jabol","jutro","kadar","kakor","kakšn",
-      "kater","knjig","kojih","koncu","lahek","lahko","lepih","lepo","listi","ljudi",
-      "lovil","majhn","manjk","marec","misel","misli","mlada","mladi","moram","moči",
-      "morja","morje","mesto","najti","naprej","nared","nasme","našel","našli","nazaj",
-      "nekom","nismo","nisva","njegov","novih","ocean","okrog","oseba","ostal","otrok",
-      "pilom","pisal","plesa","počut","podat","pogum","polje","pomoč","ponov","posel",
-      "potem","pravih","pravi","pred","pričak","priča","prišl","prvim","punca","ravno",
-      "rekel","reči","rešit","ribič","sanjah","sejem","sever","silno","skrbi","slaba",
-      "sliko","slika","sliša","smejo","smrti","spati","sploh","sreča","sredi","stopn",
-      "tabor","težka","težko","tisti","točk","tolik","trava","treba","upati","upora",
-      "vajin","vashi","vedel","večer","velik","visok","vode","vodil","vodo","voljo",
-      "vrata","vreme","vrsto","vsake","vseh","vsemi","vzeti","začet","zadnj","zelen",
-      "zemlj","zgod","zivlj","zlasti","zmaga","zmot","znajo","zunaj","življ","želel",
-      "željo","žival"
-    ]
+  const FALLBACK_ANSWERS = {
+    en: ["about","after","apple","beach","brain","bread","clean","cloud","dance","dream","earth","flash","frame","glass","green","happy","heart","house","light","money","night","ocean","paint","peace","plant","queen","river","seven","shape","smile","snake","space","stone","sugar","table","think","tiger","train","under","value","water","woman","world","write","young"],
+    sl: ["angel","avtor","barva","besed","blizu","cesar","cesta","danes","dekle","delo","denar","dober","domov","glava","hotel","imeti","kadar","lahko","morje","mesto","najti","okrog","oseba","polje","potem","pravi","rekel","slika","smrti","sploh","trava","treba","vedel","vreme","vrata","zgod","zmaga","zunaj","želel","žival"]
   };
 
+  const FALLBACK_GUESSES = {
+    en: FALLBACK_ANSWERS.en.concat(["abuse","adopt","alarm","album","alien","allow","arena","argue","avoid","badge","basic","begin","birth","black","blade","bless","blind","blood","bloom","board","bound","brand","brave","break","brick","brief","bring","broad","brown","build","cabin","cable","carry","catch","cause","chain","chair","chaos","charm","chart","chase","cheap","check","chest","chief","civil","claim","class","clear","clerk","click","climb","clock","close","coach","count","court","cover","crack","craft","crash","cream","crime","cross","crowd","crown","cycle","death","delay","depth","devil","donor","doubt","draft","drama","drift","drink","drive","eager","early","eight","elect","elite","empty","enemy","enjoy","enter","equal","error","essay","event","exact","exist","extra","faith","false","fault","fever","field","fight","final","fixed","flame","flesh","float","floor","focus","force","fraud","fruit","ghost","giant","grain","grand","grant","graph","grasp","grass","grave","great","greet","gross","group","guard","guess","guide","heavy","honey","honor","horse","human","ideal","image","index","inner","input","issue","joint","judge","knife","knock","label","labor","large","laugh","layer","learn","leave","legal","level","limit","local","logic","lover","lucky","lunch","major","march","match","mayor","media","mercy","metal","might","minor","mixed","model","month","moral","mount","mouse","mouth","movie","music","nerve","noise","north","novel","nurse","offer","opera","orbit","order","other","owner","panel","panic","paper","party","pause","phase","phone","photo","piano","piece","pilot","pitch","plain","plane","plate","point","pound","power","press","price","pride","prime","print","prior","prize","proof","proud","prove","queen","quick","quiet","quite","quote","radar","radio","raise","range","rapid","ratio","reach","react","ready","reply","right","rival","round","route","royal","rural","scale","scene","scope","score","seize","sense","serve","setup","shade","shaft","shake","shall","shame","sharp","sheep","sheet","shelf","shell","shift","shore","short","sight","sixth","sixty","skill","slave","sleep","slice","slide","small","smart","smell","solid","solve","sorry","spare","speak","speed","spend","spent","split","sport","stack","staff","stage","stamp","stand","stare","start","state","steam","steel","stick","still","stock","storm","story","strip","stuck","study","stuff","style","suite","super","swear","sweet","swing","sword","taste","teach","teeth","terms","theme","thick","thing","third","throw","thumb","tight","title","today","token","topic","total","touch","tough","tower","track","trade","trail","train","treat","trend","trial","tribe","trick","troop","truck","trust","truth","twice","union","unity","upper","usage","valid","video","virus","visit","vital","voice","voter","waste","watch","weave","wheel","where","whole","worry","worth","wound","yield"]),
+    sl: FALLBACK_ANSWERS.sl
+  };
+
+  let answerWords = {};
+  let guessWords = {};
+  let customAnswers = {};
   let lang = 'en';
   let target = '';
   let guesses = [];
   let currentGuess = '';
   let gameOver = false;
-  let wordLists = {};
-  let customWords = {};
   let editLang = 'en';
 
   const boardEl     = document.getElementById('board');
@@ -627,6 +568,17 @@ body {
   const toastEl     = document.getElementById('toast');
   const overlayEl   = document.getElementById('overlay');
   const langSelect  = document.getElementById('lang-select');
+
+  function loadCustomAnswers() {
+    try {
+      const raw = localStorage.getItem('wordle-custom-answers');
+      if (raw) customAnswers = JSON.parse(raw);
+    } catch (e) { customAnswers = {}; }
+  }
+
+  function saveCustomAnswers() {
+    try { localStorage.setItem('wordle-custom-answers', JSON.stringify(customAnswers)); } catch (e) {}
+  }
 
   function loadState() {
     try {
@@ -639,99 +591,112 @@ body {
         currentGuess = s.currentGuess || '';
         gameOver = s.gameOver || false;
       }
-    } catch (e) {
-      resetGame();
-    }
+    } catch (e) { resetGame(); }
   }
 
   function saveState() {
     try {
-      localStorage.setItem('wordle-state', JSON.stringify({
-        lang, target, guesses, currentGuess, gameOver
-      }));
+      localStorage.setItem('wordle-state', JSON.stringify({ lang, target, guesses, currentGuess, gameOver }));
     } catch (e) {}
   }
 
-  function loadCustomWords() {
+  async function fetchWords(l, type) {
+    const filename = type === 'answers' ? 'words' : 'guesses';
+    const url = filename + '-' + l + '.json?v=' + DATA_VERSION;
+    const cacheKey = 'wordle-' + type + '-' + l;
+
     try {
-      const raw = localStorage.getItem('wordle-custom');
-      if (raw) {
-        customWords = JSON.parse(raw);
+      const resp = await fetch(url);
+      if (resp.ok) {
+        const words = await resp.json();
+        localStorage.setItem(cacheKey, JSON.stringify(words));
+        return words;
       }
-    } catch (e) {
-      customWords = {};
-    }
-  }
-
-  function saveCustomWords() {
-    try {
-      localStorage.setItem('wordle-custom', JSON.stringify(customWords));
     } catch (e) {}
+
+    try {
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) return JSON.parse(cached);
+    } catch (e) {}
+
+    return FALLBACK_ANSWERS[l] || FALLBACK_GUESSES[l] || [];
   }
 
-  function buildWordLists() {
-    wordLists = {};
-    for (const l of Object.keys(DEFAULT_WORDS)) {
-      const defaults = new Set(DEFAULT_WORDS[l] || []);
-      const customs = (customWords[l] || []).filter(w => w.length === WORD_LENGTH);
-      wordLists[l] = [...defaults, ...customs];
+  async function loadAllWords() {
+    boardEl.innerHTML = '<div class="loading">Loading word lists&hellip;</div>';
+
+    const langKeys = Object.keys(FALLBACK_ANSWERS);
+    const results = await Promise.all(
+      langKeys.flatMap(l => [
+        fetchWords(l, 'answers').then(w => ({ l, type: 'answers', w })),
+        fetchWords(l, 'guesses').then(w => ({ l, type: 'guesses', w }))
+      ])
+    );
+
+    for (const { l, type, w } of results) {
+      if (type === 'answers') answerWords[l] = w;
+      else guessWords[l] = w;
     }
   }
 
-  function validWords(l) {
-    return wordLists[l] || [];
+  function allAnswers(l) {
+    const built = new Set(answerWords[l] || []);
+    for (const w of (customAnswers[l] || [])) {
+      if (w.length === WORD_LENGTH) built.add(w);
+    }
+    return [...built];
+  }
+
+  function allGuesses(l) {
+    const set = new Set(guessWords[l] || []);
+    for (const w of allAnswers(l)) set.add(w);
+    return [...set];
   }
 
   function pickTarget(l) {
-    const words = validWords(l);
+    const words = allAnswers(l);
     if (words.length === 0) return null;
     return words[Math.floor(Math.random() * words.length)].toLowerCase();
   }
 
-  function ensureTarget() {
-    if (!target || !validWords(lang).includes(target)) {
-      target = pickTarget(lang);
-      if (!target) {
-        boardEl.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px 0;color:var(--text-secondary);font-size:0.875rem">No words available. Open settings to add some.</div>';
-        keyboardEl.innerHTML = '';
-        return false;
-      }
-    }
-    return true;
-  }
-
   function getLetterStates() {
     const states = {};
-    for (let i = 0; i < guesses.length; i++) {
-      const g = guesses[i];
-      const targetLetters = target.split('');
+    for (const g of guesses) {
+      const remaining = {};
+      for (const ch of target) remaining[ch] = (remaining[ch] || 0) + 1;
       const result = new Array(WORD_LENGTH).fill('absent');
 
-      const remaining = {};
-      for (const ch of targetLetters) remaining[ch] = (remaining[ch] || 0) + 1;
-
       for (let j = 0; j < WORD_LENGTH; j++) {
-        if (g[j] === target[j]) {
-          result[j] = 'correct';
-          remaining[g[j]]--;
-        }
+        if (g[j] === target[j]) { result[j] = 'correct'; remaining[g[j]]--; }
       }
       for (let j = 0; j < WORD_LENGTH; j++) {
         if (result[j] !== 'correct' && remaining[g[j]] > 0) {
-          result[j] = 'present';
-          remaining[g[j]]--;
+          result[j] = 'present'; remaining[g[j]]--;
         }
       }
       for (let j = 0; j < WORD_LENGTH; j++) {
-        const ch = g[j];
-        if (!states[ch] || states[ch] === 'absent') {
-          states[ch] = result[j];
-        } else if (states[ch] === 'present' && result[j] === 'correct') {
-          states[ch] = 'correct';
-        }
+        if (!states[g[j]] || states[g[j]] === 'absent') states[g[j]] = result[j];
+        else if (states[g[j]] === 'present' && result[j] === 'correct') states[g[j]] = 'correct';
       }
     }
     return states;
+  }
+
+  function getLetterStatesForGuess(guessIdx, col) {
+    const g = guesses[guessIdx];
+    const remaining = {};
+    for (const ch of target) remaining[ch] = (remaining[ch] || 0) + 1;
+    const result = new Array(WORD_LENGTH).fill('absent');
+
+    for (let j = 0; j < WORD_LENGTH; j++) {
+      if (g[j] === target[j]) { result[j] = 'correct'; remaining[g[j]]--; }
+    }
+    for (let j = 0; j < WORD_LENGTH; j++) {
+      if (result[j] !== 'correct' && remaining[g[j]] > 0) {
+        result[j] = 'present'; remaining[g[j]]--;
+      }
+    }
+    return result[col];
   }
 
   function renderBoard() {
@@ -740,44 +705,17 @@ body {
       for (let c = 0; c < WORD_LENGTH; c++) {
         const tile = document.createElement('div');
         tile.className = 'tile';
-
         if (r < guesses.length) {
-          const g = guesses[r];
-          const state = getLetterStatesForGuess(r, c);
-          tile.textContent = g[c] || '';
-          tile.classList.add('filled', state);
+          tile.textContent = guesses[r][c] || '';
+          tile.classList.add('filled', getLetterStatesForGuess(r, c));
         } else if (r === guesses.length && !gameOver) {
           tile.textContent = currentGuess[c] || '';
           if (c === currentGuess.length) tile.classList.add('active');
           if (currentGuess[c]) tile.classList.add('filled');
         }
-
         boardEl.appendChild(tile);
       }
     }
-  }
-
-  function getLetterStatesForGuess(guessIdx, col) {
-    const g = guesses[guessIdx];
-    const targetLetters = target.split('');
-    const result = new Array(WORD_LENGTH).fill('absent');
-
-    const remaining = {};
-    for (const ch of targetLetters) remaining[ch] = (remaining[ch] || 0) + 1;
-
-    for (let j = 0; j < WORD_LENGTH; j++) {
-      if (g[j] === target[j]) {
-        result[j] = 'correct';
-        remaining[g[j]]--;
-      }
-    }
-    for (let j = 0; j < WORD_LENGTH; j++) {
-      if (result[j] !== 'correct' && remaining[g[j]] > 0) {
-        result[j] = 'present';
-        remaining[g[j]]--;
-      }
-    }
-    return result[col];
   }
 
   function renderKeyboard() {
@@ -787,25 +725,18 @@ body {
       ['a','s','d','f','g','h','j','k','l'],
       ['Enter','z','x','c','v','b','n','m','Back']
     ];
-
     const states = getLetterStates();
 
     for (const row of rows) {
       const rowEl = document.createElement('div');
       rowEl.className = 'keyboard-row';
-
       for (const key of row) {
         const btn = document.createElement('button');
         btn.className = 'key';
         btn.textContent = key === 'Back' ? '⌫' : key;
-
-        if (key === 'Enter' || key === 'Back') {
-          btn.classList.add('wide');
-        }
-
+        if (key === 'Enter' || key === 'Back') btn.classList.add('wide');
         const lower = key.toLowerCase();
         if (states[lower]) btn.classList.add(states[lower]);
-
         btn.addEventListener('click', () => handleKey(key));
         rowEl.appendChild(btn);
       }
@@ -818,29 +749,21 @@ body {
 
     if (key === 'Enter') {
       if (currentGuess.length !== WORD_LENGTH) {
-        showToast('Not enough letters');
-        shakeBoard();
-        return;
+        showToast('Not enough letters'); shakeBoard(); return;
       }
-      if (!validWords(lang).includes(currentGuess)) {
-        showToast('Not in word list');
-        shakeBoard();
-        return;
+      if (!allGuesses(lang).includes(currentGuess)) {
+        showToast('Not in word list'); shakeBoard(); return;
       }
       guesses.push(currentGuess);
       currentGuess = '';
       saveState();
       render();
-
       if (guesses[guesses.length - 1] === target) {
-        gameOver = true;
-        saveState();
+        gameOver = true; saveState();
         const tries = guesses.length;
-        const emoji = tries <= 2 ? '🎯' : tries <= 4 ? '👏' : '👍';
-        showToast(emoji + ' Got it in ' + tries + '!', 2500);
+        showToast((tries <= 2 ? '🎯 ' : tries <= 4 ? '👏 ' : '👍 ') + 'Got it in ' + tries + '!', 2500);
       } else if (guesses.length >= MAX_GUESSES) {
-        gameOver = true;
-        saveState();
+        gameOver = true; saveState();
         showToast('Answer: ' + target.toUpperCase(), 3000);
       }
       render();
@@ -848,18 +771,12 @@ body {
     }
 
     if (key === 'Back') {
-      if (currentGuess.length > 0) {
-        currentGuess = currentGuess.slice(0, -1);
-        saveState();
-        render();
-      }
+      if (currentGuess.length > 0) { currentGuess = currentGuess.slice(0, -1); saveState(); render(); }
       return;
     }
 
     if (currentGuess.length < WORD_LENGTH && /^[a-zA-Z]$/.test(key)) {
-      currentGuess += key.toLowerCase();
-      saveState();
-      render();
+      currentGuess += key.toLowerCase(); saveState(); render();
     }
   }
 
@@ -879,23 +796,20 @@ body {
     toastEl._timeout = setTimeout(() => toastEl.classList.remove('show'), duration || 1500);
   }
 
-  function render() {
-    renderBoard();
-    renderKeyboard();
-  }
+  function render() { renderBoard(); renderKeyboard(); }
 
   function resetGame() {
+    target = pickTarget(lang);
     guesses = [];
     currentGuess = '';
     gameOver = false;
-    target = pickTarget(lang);
     saveState();
     render();
   }
 
   function newGame() {
-    if (!validWords(lang).length) {
-      showToast('No words available. Open settings to add some.');
+    if (allAnswers(lang).length === 0) {
+      showToast('No answer words available. Add some in settings.');
       return;
     }
     resetGame();
@@ -910,17 +824,16 @@ body {
 
   function populateLangSelect() {
     langSelect.innerHTML = '';
-    const labels = { en: 'English', sl: 'Slovenščina' };
-    for (const l of Object.keys(DEFAULT_WORDS)) {
+    const labels = { en: 'English', sl: 'Sloven\u0161\u010dina' };
+    for (const l of Object.keys(FALLBACK_ANSWERS)) {
       const opt = document.createElement('option');
       opt.value = l;
       opt.textContent = labels[l] || l;
       langSelect.appendChild(opt);
     }
     langSelect.value = lang;
-
-    if (!DEFAULT_WORDS[lang]) {
-      lang = Object.keys(DEFAULT_WORDS)[0];
+    if (!FALLBACK_ANSWERS[lang]) {
+      lang = Object.keys(FALLBACK_ANSWERS)[0];
       langSelect.value = lang;
     }
   }
@@ -931,27 +844,19 @@ body {
     renderOverlay();
   }
 
-  function closeOverlay() {
-    overlayEl.classList.remove('visible');
-  }
+  function closeOverlay() { overlayEl.classList.remove('visible'); }
 
-  function renderOverlay() {
-    renderLangTabs();
-    renderWordList();
-  }
+  function renderOverlay() { renderLangTabs(); renderWordList(); }
 
   function renderLangTabs() {
     const tabs = document.getElementById('lang-tabs');
     tabs.innerHTML = '';
-    const labels = { en: 'English', sl: 'Slovenščina' };
-    for (const l of Object.keys(DEFAULT_WORDS)) {
+    const labels = { en: 'English', sl: 'Sloven\u0161\u010dina' };
+    for (const l of Object.keys(FALLBACK_ANSWERS)) {
       const btn = document.createElement('button');
       btn.className = 'lang-tab' + (l === editLang ? ' active' : '');
       btn.textContent = labels[l] || l;
-      btn.addEventListener('click', () => {
-        editLang = l;
-        renderOverlay();
-      });
+      btn.addEventListener('click', () => { editLang = l; renderOverlay(); });
       tabs.appendChild(btn);
     }
   }
@@ -959,76 +864,70 @@ body {
   function renderWordList() {
     const list = document.getElementById('word-list');
     const stats = document.getElementById('word-stats');
-    const defaults = new Set(DEFAULT_WORDS[editLang] || []);
-    const customs = new Set(customWords[editLang] || []);
-    const all = [...defaults, ...customs].sort();
+    const built = new Set(answerWords[editLang] || []);
+    const custom = new Set((customAnswers[editLang] || []).filter(w => w.length === WORD_LENGTH));
+    const all = [...new Set([...built, ...custom])].sort();
 
-    stats.textContent = all.length + ' words (' + defaults.size + ' built-in, ' + customs.size + ' custom)';
+    stats.textContent = all.length + ' answer words (' + built.size + ' built-in, ' + custom.size + ' custom)';
     list.innerHTML = '';
 
     for (const word of all) {
       const chip = document.createElement('span');
       chip.className = 'word-chip';
-      if (customs.has(word)) chip.classList.add('custom');
+      if (custom.has(word) && !built.has(word)) chip.classList.add('custom');
       chip.textContent = word;
 
       const remove = document.createElement('button');
       remove.className = 'word-chip-remove';
       remove.textContent = '\u00d7';
       remove.setAttribute('aria-label', 'Remove ' + word);
-      remove.addEventListener('click', () => {
-        removeWord(word);
-      });
-      if (defaults.has(word) && !customs.has(word)) {
+
+      if (built.has(word) && !custom.has(word)) {
         remove.style.visibility = 'hidden';
       }
+      remove.addEventListener('click', () => removeWord(word));
       chip.appendChild(remove);
       list.appendChild(chip);
     }
   }
 
   function removeWord(word) {
-    const defaults = new Set(DEFAULT_WORDS[editLang] || []);
-    if (defaults.has(word) && !(customWords[editLang] || []).includes(word)) return;
+    const built = new Set(answerWords[editLang] || []);
+    if (built.has(word) && !(customAnswers[editLang] || []).includes(word)) return;
 
-    if (!customWords[editLang]) customWords[editLang] = [];
-    customWords[editLang] = customWords[editLang].filter(w => w !== word);
-    saveCustomWords();
-    buildWordLists();
+    if (!customAnswers[editLang]) customAnswers[editLang] = [];
+    customAnswers[editLang] = customAnswers[editLang].filter(w => w !== word);
+    saveCustomAnswers();
     renderOverlay();
-    if (editLang === lang) {
-      const words = validWords(lang);
-      if (target && !words.includes(target)) {
-        resetGame();
-      }
-    }
+    if (editLang === lang && target === word) resetGame();
   }
 
   function addWords(inputStr) {
-    const raw = inputStr.split(/[\n,;\s]+/).map(w => w.trim().toLowerCase()).filter(w => w.length === WORD_LENGTH && /^[a-zA-ZčćžšđČĆŽŠĐ]+$/.test(w));
+    const raw = inputStr.split(/[\n,;\s]+/).map(w => w.trim().toLowerCase()).filter(
+      w => w.length === WORD_LENGTH && /^[a-zA-Z\u010d\u0107\u017e\u0161\u0111\u010c\u0106\u017d\u0160\u0110]+$/.test(w)
+    );
     if (raw.length === 0) {
       showToast('Enter at least one ' + WORD_LENGTH + '-letter word');
       return;
     }
 
-    if (!customWords[editLang]) customWords[editLang] = [];
-    const defaults = new Set(DEFAULT_WORDS[editLang] || []);
+    if (!customAnswers[editLang]) customAnswers[editLang] = [];
+    const built = new Set(answerWords[editLang] || []);
     let added = 0;
     for (const w of raw) {
-      if (!defaults.has(w) && !customWords[editLang].includes(w)) {
-        customWords[editLang].push(w);
+      if (!built.has(w) && !customAnswers[editLang].includes(w)) {
+        customAnswers[editLang].push(w);
         added++;
       }
     }
-    saveCustomWords();
-    buildWordLists();
+    saveCustomAnswers();
     renderOverlay();
     document.getElementById('add-input').value = '';
     showToast('Added ' + added + ' word' + (added !== 1 ? 's' : ''));
   }
 
   function exportWords() {
-    const data = { customWords, version: 1 };
+    const data = { customAnswers, version: 1 };
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -1042,30 +941,23 @@ body {
   function importWordsData(data) {
     try {
       const parsed = typeof data === 'string' ? JSON.parse(data) : data;
-      if (parsed.customWords) {
-        for (const l of Object.keys(parsed.customWords)) {
-          if (!customWords[l]) customWords[l] = [];
-          for (const w of parsed.customWords[l]) {
-            if (!customWords[l].includes(w)) {
-              customWords[l].push(w);
-            }
+      if (parsed.customAnswers) {
+        for (const l of Object.keys(parsed.customAnswers)) {
+          if (!customAnswers[l]) customAnswers[l] = [];
+          for (const w of parsed.customAnswers[l]) {
+            if (!customAnswers[l].includes(w)) customAnswers[l].push(w);
           }
         }
-        saveCustomWords();
-        buildWordLists();
+        saveCustomAnswers();
         renderOverlay();
         return true;
-      } else {
-        showToast('Invalid file format');
-        return false;
       }
-    } catch (e) {
-      showToast('Invalid JSON');
+      showToast('Invalid file format');
       return false;
-    }
+    } catch (e) { showToast('Invalid JSON'); return false; }
   }
 
-  function importWords(file) {
+  function importFile(file) {
     const reader = new FileReader();
     reader.onload = () => { importWordsData(reader.result); };
     reader.readAsText(file);
@@ -1073,92 +965,81 @@ body {
 
   function pasteImport() {
     navigator.clipboard.readText().then(text => {
-      if (importWordsData(text)) {
-        showToast('Imported from clipboard');
-      }
-    }).catch(() => {
-      showToast('Clipboard access denied', 1500);
-    });
+      if (importWordsData(text)) showToast('Imported from clipboard');
+    }).catch(() => showToast('Clipboard access denied', 1500));
   }
 
   function shareWords() {
-    const data = JSON.stringify({ customWords, version: 1 });
+    const data = JSON.stringify({ customAnswers, version: 1 });
     navigator.clipboard.writeText(data).then(() => {
-      showToast('Copied to clipboard. Paste to import on another device.', 2500);
-    }).catch(() => {
-      showToast('Could not copy', 1500);
+      showToast('Copied. Paste in settings to import on another device.', 2500);
+    }).catch(() => showToast('Could not copy', 1500));
+  }
+
+  function init() {
+    langSelect.addEventListener('change', () => changeLanguage(langSelect.value));
+    document.getElementById('new-game-btn').addEventListener('click', newGame);
+    document.getElementById('settings-btn').addEventListener('click', openOverlay);
+    document.getElementById('overlay-close').addEventListener('click', closeOverlay);
+    overlayEl.addEventListener('click', e => { if (e.target === overlayEl) closeOverlay(); });
+    document.getElementById('add-btn').addEventListener('click', () => {
+      addWords(document.getElementById('add-input').value);
+    });
+    document.getElementById('add-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); addWords(e.target.value); }
+    });
+    document.getElementById('export-btn').addEventListener('click', exportWords);
+    document.getElementById('import-btn').addEventListener('click', () => {
+      document.getElementById('import-file').click();
+    });
+    document.getElementById('paste-btn').addEventListener('click', pasteImport);
+    document.getElementById('import-file').addEventListener('change', e => {
+      if (e.target.files[0]) importFile(e.target.files[0]); e.target.value = '';
+    });
+    document.getElementById('share-btn').addEventListener('click', shareWords);
+
+    document.addEventListener('keydown', e => {
+      if (overlayEl.classList.contains('visible')) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.key === 'Enter') { e.preventDefault(); handleKey('Enter'); return; }
+      if (e.key === 'Backspace') { e.preventDefault(); handleKey('Back'); return; }
+      if (/^[a-zA-Z]$/.test(e.key)) { e.preventDefault(); handleKey(e.key); }
     });
   }
 
-  langSelect.addEventListener('change', () => changeLanguage(langSelect.value));
+  async function start() {
+    loadCustomAnswers();
+    await loadAllWords();
+    populateLangSelect();
+    loadState();
 
-  document.getElementById('settings-btn').addEventListener('click', openOverlay);
-  document.getElementById('overlay-close').addEventListener('click', closeOverlay);
-  overlayEl.addEventListener('click', e => { if (e.target === overlayEl) closeOverlay(); });
-
-  document.getElementById('add-btn').addEventListener('click', () => {
-    const input = document.getElementById('add-input');
-    addWords(input.value);
-  });
-
-  document.getElementById('add-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      addWords(e.target.value);
+    if (!target || !allAnswers(lang).includes(target)) {
+      const t = pickTarget(lang);
+      if (!t) {
+        boardEl.innerHTML = '<div class="loading">No answer words available. Open settings to add some.</div>';
+        keyboardEl.innerHTML = '';
+        return;
+      }
+      target = t;
+      guesses = [];
+      currentGuess = '';
+      gameOver = false;
+      saveState();
     }
-  });
 
-  document.getElementById('export-btn').addEventListener('click', exportWords);
-  document.getElementById('import-btn').addEventListener('click', () => {
-    document.getElementById('import-file').click();
-  });
-  document.getElementById('paste-btn').addEventListener('click', pasteImport);
-  document.getElementById('import-file').addEventListener('change', e => {
-    if (e.target.files[0]) importWords(e.target.files[0]);
-    e.target.value = '';
-  });
-  document.getElementById('share-btn').addEventListener('click', shareWords);
+    render();
 
-  document.addEventListener('keydown', e => {
-    if (overlayEl.classList.contains('visible')) return;
-
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
-
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleKey('Enter');
-      return;
-    }
-    if (e.key === 'Backspace') {
-      e.preventDefault();
-      handleKey('Back');
-      return;
-    }
-    if (/^[a-zA-Z]$/.test(e.key)) {
-      e.preventDefault();
-      handleKey(e.key);
-    }
-  });
-
-  loadCustomWords();
-  buildWordLists();
-  populateLangSelect();
-  loadState();
-
-  if (!ensureTarget()) {
-    return;
-  }
-
-  saveState();
-  render();
-
-  if (gameOver && guesses.length > 0) {
-    if (guesses[guesses.length - 1] === target) {
-      showToast('You solved it!', 2000);
-    } else {
-      showToast('Answer: ' + target.toUpperCase(), 3000);
+    if (gameOver && guesses.length > 0) {
+      if (guesses[guesses.length - 1] === target) {
+        showToast('You solved it!', 2000);
+      } else {
+        showToast('Answer: ' + target.toUpperCase(), 3000);
+      }
     }
   }
+
+  init();
+  start();
 })();
 </script>
 </body>
