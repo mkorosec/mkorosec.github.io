@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offline Chat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: oklch(0.14 0.01 85);
+  --surface: oklch(0.17 0.008 85);
+  --surface-raised: oklch(0.20 0.008 85);
+  --text-primary: oklch(0.90 0.005 85);
+  --text-secondary: oklch(0.58 0.01 85);
+  --text-dim: oklch(0.38 0.01 85);
+  --accent: oklch(0.68 0.17 80);
+  --accent-dim: oklch(0.45 0.12 80);
+  --accent-surface: oklch(0.22 0.025 80);
+  --line: oklch(0.23 0.01 85);
+  --radius: 8px;
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+html { height: 100%; }
+
+body {
+  font-family: var(--font);
+  font-optical-sizing: auto;
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.screen { display: none; flex-direction: column; gap: 24px; }
+.screen.active { display: flex; }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.header p {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 360px;
+}
+
+.note {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+}
+
+.input-group input {
+  font-family: var(--font);
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 200ms ease-out;
+  min-height: 44px;
+}
+
+.input-group input:focus {
+  border-color: var(--accent-dim);
+}
+
+.btn {
+  font-family: var(--font);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 24px;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  transition: background 150ms ease-out, opacity 150ms ease-out;
+  text-align: center;
+}
+
+.btn-primary {
+  color: oklch(0.15 0.01 85);
+  background: var(--accent);
+}
+
+.btn-primary:hover { background: var(--accent-dim); }
+.btn-primary:disabled { opacity: 0.4; cursor: default; pointer-events: none; }
+
+.btn-secondary {
+  color: var(--text-secondary);
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+}
+
+.btn-secondary:hover {
+  color: var(--text-primary);
+  border-color: oklch(0.35 0.02 85);
+}
+
+.btn-outline {
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--line);
+}
+
+.btn-outline:hover { border-color: var(--accent-dim); background: var(--accent-surface); }
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-row .btn { flex: 1; }
+
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.qr-container canvas {
+  display: block;
+  image-rendering: pixelated;
+  border-radius: 4px;
+}
+
+.qr-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.sdp-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sdp-area textarea {
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", monospace;
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  outline: none;
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.sdp-area textarea:focus { border-color: var(--accent-dim); }
+
+.video-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: oklch(0.08 0.01 85);
+  aspect-ratio: 1;
+  max-height: 360px;
+}
+
+.video-wrap video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scan-zone {
+  position: absolute;
+  inset: 15%;
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  pointer-events: none;
+  box-shadow: 0 0 0 9999px oklch(0 0 0 / 0.4);
+}
+
+.scan-label {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--text-primary);
+  text-shadow: 0 1px 4px oklch(0 0 0 / 0.7);
+}
+
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.status-bar .peer-count {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+
+.status-bar .peer-count strong {
+  color: var(--accent);
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: oklch(0.60 0.18 145);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px oklch(0.60 0.18 145 / 0.5);
+}
+
+.chat-messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 50vh;
+  overflow-y: auto;
+  padding: 8px 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-track { background: transparent; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--surface-raised); border-radius: 4px; }
+
+.msg {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  max-width: 85%;
+  animation: msg-in 200ms ease-out;
+}
+
+.msg--mine {
+  align-self: flex-end;
+  background: var(--accent-surface);
+  border: 1px solid oklch(0.35 0.06 80);
+}
+
+.msg--peer {
+  align-self: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.msg--system {
+  align-self: center;
+  font-size: 0.6875rem;
+  color: var(--text-dim);
+  font-style: italic;
+  background: none;
+  border: none;
+  padding: 2px 12px;
+}
+
+.msg-author {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.msg-text {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.msg--peer .msg-text { color: var(--text-primary); }
+.msg--mine .msg-text { color: var(--text-primary); }
+
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input-row input {
+  flex: 1;
+  font-family: var(--font);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  outline: none;
+  min-height: 44px;
+  transition: border-color 200ms ease-out;
+}
+
+.chat-input-row input:focus { border-color: var(--accent-dim); }
+
+.chat-input-row .btn { white-space: nowrap; }
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 20px;
+  font-size: 0.8125rem;
+  color: var(--text-primary);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease-out;
+  box-shadow: 0 4px 16px oklch(0 0 0 / 0.4);
+}
+
+.toast.visible { opacity: 1; pointer-events: auto; }
+
+.empty-chat {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
+
+.empty-chat p {
+  font-size: 0.8125rem;
+  color: var(--text-dim);
+}
+
+@media (max-width: 480px) {
+  body { padding: 16px; }
+  .page { gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="screen active" id="screen-lobby">
+    <div class="header">
+      <h1>Offline Chat</h1>
+      <p>Chat with people nearby. Both devices must be connected to the same WiFi hotspot.</p>
+    </div>
+    <div class="input-group">
+      <label for="name-input">Your name</label>
+      <input type="text" id="name-input" placeholder="Enter your name" maxlength="24" autocomplete="off">
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="btn-host">Host Chat</button>
+      <button class="btn btn-secondary" id="btn-join">Join Chat</button>
+    </div>
+    <p class="note">One person hosts (creates a room), others join. The host's device relays all messages. Both must be on the same WiFi network.</p>
+  </div>
+
+  <div class="screen" id="screen-host-qr">
+    <div class="header">
+      <h1>Host: Share Your Code</h1>
+      <p>Ask the other person to scan this QR code or paste the text below.</p>
+    </div>
+    <div class="qr-container">
+      <canvas id="host-qr-canvas"></canvas>
+      <span class="qr-label">Scan with the join page, or use the text below</span>
+    </div>
+    <div class="sdp-area">
+      <textarea id="host-sdp-text" readonly></textarea>
+      <button class="btn btn-outline" id="btn-copy-offer">Copy to clipboard</button>
+    </div>
+    <button class="btn btn-primary" id="btn-scan-answer">Next: Scan partner's answer</button>
+    <div class="note" id="host-waiting-note">Waiting for partner to connect...</div>
+  </div>
+
+  <div class="screen" id="screen-scan">
+    <div class="header">
+      <h1 id="scan-title">Scan QR Code</h1>
+      <p id="scan-desc">Point your camera at the other person's QR code.</p>
+    </div>
+    <div class="video-wrap">
+      <video id="scan-video" autoplay playsinline muted></video>
+      <div class="scan-zone"></div>
+      <span class="scan-label" id="scan-status">Looking for QR code...</span>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-outline" id="btn-camera-toggle">Switch camera</button>
+      <button class="btn btn-secondary" id="btn-cancel-scan">Cancel</button>
+    </div>
+    <div class="sdp-area">
+      <textarea id="paste-sdp" placeholder="Or paste the SDP text here instead of scanning..."></textarea>
+      <button class="btn btn-secondary" id="btn-use-pasted">Use pasted text</button>
+    </div>
+  </div>
+
+  <div class="screen" id="screen-answer-qr">
+    <div class="header">
+      <h1>Show This to Host</h1>
+      <p>Show this QR code to the host so they can scan it. Or send them the text below.</p>
+    </div>
+    <div class="qr-container">
+      <canvas id="answer-qr-canvas"></canvas>
+      <span class="qr-label">Let the host scan this, or copy the text below</span>
+    </div>
+    <div class="sdp-area">
+      <textarea id="answer-sdp-text" readonly></textarea>
+      <button class="btn btn-outline" id="btn-copy-answer">Copy to clipboard</button>
+    </div>
+    <p class="note">Keep this screen open until the host has scanned your code.</p>
+  </div>
+
+  <div class="screen" id="screen-chat">
+    <div class="header">
+      <h1>Chat</h1>
+    </div>
+    <div class="status-bar">
+      <span class="peer-count">Connected: <strong id="peer-count">1</strong></span>
+      <span class="status-indicator"></span>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="empty-chat"><p>No messages yet. Say hello!</p></div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="Type a message..." maxlength="1000" autocomplete="off">
+      <button class="btn btn-primary" id="btn-send">Send</button>
+    </div>
+    <button class="btn btn-outline" id="btn-add-person" style="display:none;">Add another person</button>
+    <button class="btn btn-secondary" id="btn-leave">Leave chat</button>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- QR Code Generator (Kazuhiko Arase, MIT license, inlined) -->
+<script>
+var qrcode = function() {
+
+  var qrcode = function(typeNumber, errorCorrectionLevel) {
+    var PAD0 = 0xEC;
+    var PAD1 = 0x11;
+    var _typeNumber = typeNumber;
+    var _errorCorrectionLevel = QRErrorCorrectionLevel[errorCorrectionLevel];
+    var _modules = null;
+    var _moduleCount = 0;
+    var _dataCache = null;
+    var _dataList = [];
+    var _this = {};
+
+    var makeImpl = function(test, maskPattern) {
+      _moduleCount = _typeNumber * 4 + 17;
+      _modules = function(moduleCount) {
+        var modules = new Array(moduleCount);
+        for (var row = 0; row < moduleCount; row += 1) {
+          modules[row] = new Array(moduleCount);
+          for (var col = 0; col < moduleCount; col += 1) {
+            modules[row][col] = null;
+          }
+        }
+        return modules;
+      }(_moduleCount);
+
+      setupPositionProbePattern(0, 0);
+      setupPositionProbePattern(_moduleCount - 7, 0);
+      setupPositionProbePattern(0, _moduleCount - 7);
+      setupPositionAdjustPattern();
+      setupTimingPattern();
+      setupTypeInfo(test, maskPattern);
+
+      if (_typeNumber >= 7) {
+        setupTypeNumber(test);
+      }
+
+      if (_dataCache == null) {
+        _dataCache = createData(_typeNumber, _errorCorrectionLevel, _dataList);
+      }
+
+      mapData(_dataCache, maskPattern);
+    };
+
+    var setupPositionProbePattern = function(row, col) {
+      for (var r = -1; r <= 7; r += 1) {
+        if (row + r <= -1 || _moduleCount <= row + r) continue;
+        for (var c = -1; c <= 7; c += 1) {
+          if (col + c <= -1 || _moduleCount <= col + c) continue;
+          if ( (0 <= r && r <= 6 && (c == 0 || c == 6) )
+              || (0 <= c && c <= 6 && (r == 0 || r == 6) )
+              || (2 <= r && r <= 4 && 2 <= c && c <= 4) ) {
+            _modules[row + r][col + c] = true;
+          } else {
+            _modules[row + r][col + c] = false;
+          }
+        }
+      }
+    };
+
+    var getBestMaskPattern = function() {
+      var minLostPoint = 0;
+      var pattern = 0;
+      for (var i = 0; i < 8; i += 1) {
+        makeImpl(true, i);
+        var lostPoint = QRUtil.getLostPoint(_this);
+        if (i == 0 || minLostPoint > lostPoint) {
+          minLostPoint = lostPoint;
+          pattern = i;
+        }
+      }
+      return pattern;
+    };
+
+    var setupTimingPattern = function() {
+      for (var r = 8; r < _moduleCount - 8; r += 1) {
+        if (_modules[r][6] != null) continue;
+        _modules[r][6] = (r % 2 == 0);
+      }
+      for (var c = 8; c < _moduleCount - 8; c += 1) {
+        if (_modules[6][c] != null) continue;
+        _modules[6][c] = (c % 2 == 0);
+      }
+    };
+
+    var setupPositionAdjustPattern = function() {
+      var pos = QRUtil.getPatternPosition(_typeNumber);
+      for (var i = 0; i < pos.length; i += 1) {
+        for (var j = 0; j < pos.length; j += 1) {
+          var row = pos[i];
+          var col = pos[j];
+          if (_modules[row][col] != null) continue;
+          for (var r = -2; r <= 2; r += 1) {
+            for (var c = -2; c <= 2; c += 1) {
+              if (r == -2 || r == 2 || c == -2 || c == 2 || (r == 0 && c == 0) ) {
+                _modules[row + r][col + c] = true;
+              } else {
+                _modules[row + r][col + c] = false;
+              }
+            }
+          }
+        }
+      }
+    };
+
+    var setupTypeNumber = function(test) {
+      var bits = QRUtil.getBCHTypeNumber(_typeNumber);
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[Math.floor(i / 3)][i % 3 + _moduleCount - 8 - 3] = mod;
+      }
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[i % 3 + _moduleCount - 8 - 3][Math.floor(i / 3)] = mod;
+      }
+    };
+
+    var setupTypeInfo = function(test, maskPattern) {
+      var data = (_errorCorrectionLevel << 3) | maskPattern;
+      var bits = QRUtil.getBCHTypeInfo(data);
+      for (var i = 0; i < 15; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        if (i < 6) { _modules[i][8] = mod; }
+        else if (i < 8) { _modules[i + 1][8] = mod; }
+        else { _modules[_moduleCount - 15 + i][8] = mod; }
+      }
+      for (var i = 0; i < 15; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        if (i < 8) { _modules[8][_moduleCount - i - 1] = mod; }
+        else if (i < 9) { _modules[8][15 - i - 1 + 1] = mod; }
+        else { _modules[8][15 - i - 1] = mod; }
+      }
+      _modules[_moduleCount - 8][8] = (!test);
+    };
+
+    var mapData = function(data, maskPattern) {
+      var inc = -1;
+      var row = _moduleCount - 1;
+      var bitIndex = 7;
+      var byteIndex = 0;
+      var maskFunc = QRUtil.getMaskFunction(maskPattern);
+      for (var col = _moduleCount - 1; col > 0; col -= 2) {
+        if (col == 6) col -= 1;
+        while (true) {
+          for (var c = 0; c < 2; c += 1) {
+            if (_modules[row][col - c] == null) {
+              var dark = false;
+              if (byteIndex < data.length) {
+                dark = ( ( (data[byteIndex] >>> bitIndex) & 1) == 1);
+              }
+              var mask = maskFunc(row, col - c);
+              if (mask) dark = !dark;
+              _modules[row][col - c] = dark;
+              bitIndex -= 1;
+              if (bitIndex == -1) { byteIndex += 1; bitIndex = 7; }
+            }
+          }
+          row += inc;
+          if (row < 0 || _moduleCount <= row) { row -= inc; inc = -inc; break; }
+        }
+      }
+    };
+
+    var createBytes = function(buffer, rsBlocks) {
+      var offset = 0;
+      var maxDcCount = 0;
+      var maxEcCount = 0;
+      var dcdata = new Array(rsBlocks.length);
+      var ecdata = new Array(rsBlocks.length);
+      for (var r = 0; r < rsBlocks.length; r += 1) {
+        var dcCount = rsBlocks[r].dataCount;
+        var ecCount = rsBlocks[r].totalCount - dcCount;
+        maxDcCount = Math.max(maxDcCount, dcCount);
+        maxEcCount = Math.max(maxEcCount, ecCount);
+        dcdata[r] = new Array(dcCount);
+        for (var i = 0; i < dcdata[r].length; i += 1) {
+          dcdata[r][i] = 0xff & buffer.getBuffer()[i + offset];
+        }
+        offset += dcCount;
+        var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
+        var rawPoly = qrPolynomial(dcdata[r], rsPoly.getLength() - 1);
+        var modPoly = rawPoly.mod(rsPoly);
+        ecdata[r] = new Array(rsPoly.getLength() - 1);
+        for (var i = 0; i < ecdata[r].length; i += 1) {
+          var modIndex = i + modPoly.getLength() - ecdata[r].length;
+          ecdata[r][i] = (modIndex >= 0)? modPoly.getAt(modIndex) : 0;
+        }
+      }
+      var totalCodeCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) { totalCodeCount += rsBlocks[i].totalCount; }
+      var data = new Array(totalCodeCount);
+      var index = 0;
+      for (var i = 0; i < maxDcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < dcdata[r].length) { data[index] = dcdata[r][i]; index += 1; }
+        }
+      }
+      for (var i = 0; i < maxEcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < ecdata[r].length) { data[index] = ecdata[r][i]; index += 1; }
+        }
+      }
+      return data;
+    };
+
+    var createData = function(typeNumber, errorCorrectionLevel, dataList) {
+      var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectionLevel);
+      var buffer = qrBitBuffer();
+      for (var i = 0; i < dataList.length; i += 1) {
+        var data = dataList[i];
+        buffer.put(data.getMode(), 4);
+        buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+        data.write(buffer);
+      }
+      var totalDataCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) { totalDataCount += rsBlocks[i].dataCount; }
+      if (buffer.getLengthInBits() > totalDataCount * 8) {
+        throw 'code length overflow. (' + buffer.getLengthInBits() + '>' + totalDataCount * 8 + ')';
+      }
+      if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) { buffer.put(0, 4); }
+      while (buffer.getLengthInBits() % 8 != 0) { buffer.putBit(false); }
+      while (true) {
+        if (buffer.getLengthInBits() >= totalDataCount * 8) break;
+        buffer.put(PAD0, 8);
+        if (buffer.getLengthInBits() >= totalDataCount * 8) break;
+        buffer.put(PAD1, 8);
+      }
+      return createBytes(buffer, rsBlocks);
+    };
+
+    _this.addData = function(data, mode) {
+      mode = mode || 'Byte';
+      var newData = null;
+      switch(mode) {
+      case 'Numeric' : newData = qrNumber(data); break;
+      case 'Alphanumeric' : newData = qrAlphaNum(data); break;
+      case 'Byte' : newData = qr8BitByte(data); break;
+      case 'Kanji' : newData = qrKanji(data); break;
+      default : throw 'mode:' + mode;
+      }
+      _dataList.push(newData);
+      _dataCache = null;
+    };
+
+    _this.isDark = function(row, col) {
+      if (row < 0 || _moduleCount <= row || col < 0 || _moduleCount <= col) { throw row + ',' + col; }
+      return _modules[row][col];
+    };
+
+    _this.getModuleCount = function() { return _moduleCount; };
+
+    _this.make = function() {
+      if (_typeNumber < 1) {
+        var typeNumber = 1;
+        for (; typeNumber < 40; typeNumber++) {
+          var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, _errorCorrectionLevel);
+          var buffer = qrBitBuffer();
+          for (var i = 0; i < _dataList.length; i++) {
+            var data = _dataList[i];
+            buffer.put(data.getMode(), 4);
+            buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+            data.write(buffer);
+          }
+          var totalDataCount = 0;
+          for (var i = 0; i < rsBlocks.length; i++) { totalDataCount += rsBlocks[i].dataCount; }
+          if (buffer.getLengthInBits() <= totalDataCount * 8) break;
+        }
+        _typeNumber = typeNumber;
+      }
+      makeImpl(false, getBestMaskPattern() );
+    };
+
+    _this.renderTo2dContext = function(context, cellSize) {
+      cellSize = cellSize || 2;
+      var length = _this.getModuleCount();
+      for (var row = 0; row < length; row++) {
+        for (var col = 0; col < length; col++) {
+          context.fillStyle = _this.isDark(row, col) ? 'black' : 'white';
+          context.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+        }
+      }
+    };
+
+    return _this;
+  };
+
+  var QRMode = {
+    MODE_NUMBER : 1 << 0,
+    MODE_ALPHA_NUM : 1 << 1,
+    MODE_8BIT_BYTE : 1 << 2,
+    MODE_KANJI : 1 << 3
+  };
+
+  var QRErrorCorrectionLevel = { L : 1, M : 0, Q : 3, H : 2 };
+
+  var QRMaskPattern = { PATTERN000 : 0, PATTERN001 : 1, PATTERN010 : 2, PATTERN011 : 3, PATTERN100 : 4, PATTERN101 : 5, PATTERN110 : 6, PATTERN111 : 7 };
+
+  var QRUtil = function() {
+    var PATTERN_POSITION_TABLE = [
+      [], [6, 18], [6, 22], [6, 26], [6, 30], [6, 34], [6, 22, 38], [6, 24, 42], [6, 26, 46], [6, 28, 50],
+      [6, 30, 54], [6, 32, 58], [6, 34, 62], [6, 26, 46, 66], [6, 26, 48, 70], [6, 26, 50, 74], [6, 30, 54, 78],
+      [6, 30, 56, 82], [6, 30, 58, 86], [6, 34, 62, 90], [6, 28, 50, 72, 94], [6, 26, 50, 74, 98], [6, 30, 54, 78, 102],
+      [6, 28, 54, 80, 106], [6, 32, 58, 84, 110], [6, 30, 58, 86, 114], [6, 34, 62, 90, 118], [6, 26, 50, 74, 98, 122],
+      [6, 30, 54, 78, 102, 126], [6, 26, 52, 78, 104, 130], [6, 30, 56, 82, 108, 134], [6, 34, 60, 86, 112, 138],
+      [6, 30, 58, 86, 114, 142], [6, 34, 62, 90, 118, 146], [6, 30, 54, 78, 102, 126, 150], [6, 24, 50, 76, 102, 128, 154],
+      [6, 28, 54, 80, 106, 132, 158], [6, 32, 58, 84, 110, 136, 162], [6, 26, 54, 82, 110, 138, 166], [6, 30, 58, 86, 114, 142, 170]
+    ];
+    var G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
+    var G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
+    var G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
+    var _this = {};
+
+    var getBCHDigit = function(data) { var digit = 0; while (data != 0) { digit += 1; data >>>= 1; } return digit; };
+
+    _this.getBCHTypeInfo = function(data) {
+      var d = data << 10;
+      while (getBCHDigit(d) - getBCHDigit(G15) >= 0) { d ^= (G15 << (getBCHDigit(d) - getBCHDigit(G15) ) ); }
+      return ( (data << 10) | d) ^ G15_MASK;
+    };
+
+    _this.getBCHTypeNumber = function(data) {
+      var d = data << 12;
+      while (getBCHDigit(d) - getBCHDigit(G18) >= 0) { d ^= (G18 << (getBCHDigit(d) - getBCHDigit(G18) ) ); }
+      return (data << 12) | d;
+    };
+
+    _this.getPatternPosition = function(typeNumber) { return PATTERN_POSITION_TABLE[typeNumber - 1]; };
+
+    _this.getMaskFunction = function(maskPattern) {
+      switch (maskPattern) {
+      case 0: return function(i, j) { return (i + j) % 2 == 0; };
+      case 1: return function(i, j) { return i % 2 == 0; };
+      case 2: return function(i, j) { return j % 3 == 0; };
+      case 3: return function(i, j) { return (i + j) % 3 == 0; };
+      case 4: return function(i, j) { return (Math.floor(i / 2) + Math.floor(j / 3) ) % 2 == 0; };
+      case 5: return function(i, j) { return (i * j) % 2 + (i * j) % 3 == 0; };
+      case 6: return function(i, j) { return ( (i * j) % 2 + (i * j) % 3) % 2 == 0; };
+      case 7: return function(i, j) { return ( (i * j) % 3 + (i + j) % 2) % 2 == 0; };
+      default: throw 'bad maskPattern:' + maskPattern;
+      }
+    };
+
+    _this.getErrorCorrectPolynomial = function(errorCorrectLength) {
+      var a = qrPolynomial([1], 0);
+      for (var i = 0; i < errorCorrectLength; i += 1) { a = a.multiply(qrPolynomial([1, QRMath.gexp(i)], 0) ); }
+      return a;
+    };
+
+    _this.getLengthInBits = function(mode, type) {
+      if (1 <= type && type < 10) {
+        switch(mode) {
+        case QRMode.MODE_NUMBER: return 10;
+        case QRMode.MODE_ALPHA_NUM: return 9;
+        case QRMode.MODE_8BIT_BYTE: return 8;
+        case QRMode.MODE_KANJI: return 8;
+        default: throw 'mode:' + mode;
+        }
+      } else if (type < 27) {
+        switch(mode) {
+        case QRMode.MODE_NUMBER: return 12;
+        case QRMode.MODE_ALPHA_NUM: return 11;
+        case QRMode.MODE_8BIT_BYTE: return 16;
+        case QRMode.MODE_KANJI: return 10;
+        default: throw 'mode:' + mode;
+        }
+      } else if (type < 41) {
+        switch(mode) {
+        case QRMode.MODE_NUMBER: return 14;
+        case QRMode.MODE_ALPHA_NUM: return 13;
+        case QRMode.MODE_8BIT_BYTE: return 16;
+        case QRMode.MODE_KANJI: return 12;
+        default: throw 'mode:' + mode;
+        }
+      } else { throw 'type:' + type; }
+    };
+
+    _this.getLostPoint = function(qrcode) {
+      var moduleCount = qrcode.getModuleCount();
+      var lostPoint = 0;
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount; col += 1) {
+          var sameCount = 0;
+          var dark = qrcode.isDark(row, col);
+          for (var r = -1; r <= 1; r += 1) {
+            if (row + r < 0 || moduleCount <= row + r) continue;
+            for (var c = -1; c <= 1; c += 1) {
+              if (col + c < 0 || moduleCount <= col + c) continue;
+              if (r == 0 && c == 0) continue;
+              if (dark == qrcode.isDark(row + r, col + c) ) sameCount += 1;
+            }
+          }
+          if (sameCount > 5) lostPoint += (3 + sameCount - 5);
+        }
+      }
+      for (var row = 0; row < moduleCount - 1; row += 1) {
+        for (var col = 0; col < moduleCount - 1; col += 1) {
+          var count = 0;
+          if (qrcode.isDark(row, col) ) count += 1;
+          if (qrcode.isDark(row + 1, col) ) count += 1;
+          if (qrcode.isDark(row, col + 1) ) count += 1;
+          if (qrcode.isDark(row + 1, col + 1) ) count += 1;
+          if (count == 0 || count == 4) lostPoint += 3;
+        }
+      }
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount - 6; col += 1) {
+          if (qrcode.isDark(row, col) && !qrcode.isDark(row, col + 1) && qrcode.isDark(row, col + 2)
+              && qrcode.isDark(row, col + 3) && qrcode.isDark(row, col + 4) && !qrcode.isDark(row, col + 5)
+              && qrcode.isDark(row, col + 6) ) { lostPoint += 40; }
+        }
+      }
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount - 6; row += 1) {
+          if (qrcode.isDark(row, col) && !qrcode.isDark(row + 1, col) && qrcode.isDark(row + 2, col)
+              && qrcode.isDark(row + 3, col) && qrcode.isDark(row + 4, col) && !qrcode.isDark(row + 5, col)
+              && qrcode.isDark(row + 6, col) ) { lostPoint += 40; }
+        }
+      }
+      var darkCount = 0;
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount; row += 1) {
+          if (qrcode.isDark(row, col) ) darkCount += 1;
+        }
+      }
+      var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+      lostPoint += ratio * 10;
+      return lostPoint;
+    };
+
+    return _this;
+  }();
+
+  var QRMath = function() {
+    var EXP_TABLE = new Array(256);
+    var LOG_TABLE = new Array(256);
+    for (var i = 0; i < 8; i += 1) { EXP_TABLE[i] = 1 << i; }
+    for (var i = 8; i < 256; i += 1) { EXP_TABLE[i] = EXP_TABLE[i - 4] ^ EXP_TABLE[i - 5] ^ EXP_TABLE[i - 6] ^ EXP_TABLE[i - 8]; }
+    for (var i = 0; i < 255; i += 1) { LOG_TABLE[EXP_TABLE[i] ] = i; }
+    var _this = {};
+    _this.glog = function(n) { if (n < 1) throw 'glog(' + n + ')'; return LOG_TABLE[n]; };
+    _this.gexp = function(n) { while (n < 0) n += 255; while (n >= 256) n -= 255; return EXP_TABLE[n]; };
+    return _this;
+  }();
+
+  function qrPolynomial(num, shift) {
+    if (typeof num.length == 'undefined') throw num.length + '/' + shift;
+    var _num = function() {
+      var offset = 0;
+      while (offset < num.length && num[offset] == 0) offset += 1;
+      var _num = new Array(num.length - offset + shift);
+      for (var i = 0; i < num.length - offset; i += 1) _num[i] = num[i + offset];
+      return _num;
+    }();
+    var _this = {};
+    _this.getAt = function(index) { return _num[index]; };
+    _this.getLength = function() { return _num.length; };
+    _this.multiply = function(e) {
+      var num = new Array(_this.getLength() + e.getLength() - 1);
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        for (var j = 0; j < e.getLength(); j += 1) {
+          num[i + j] ^= QRMath.gexp(QRMath.glog(_this.getAt(i) ) + QRMath.glog(e.getAt(j) ) );
+        }
+      }
+      return qrPolynomial(num, 0);
+    };
+    _this.mod = function(e) {
+      if (_this.getLength() - e.getLength() < 0) return _this;
+      var ratio = QRMath.glog(_this.getAt(0) ) - QRMath.glog(e.getAt(0) );
+      var num = new Array(_this.getLength() );
+      for (var i = 0; i < _this.getLength(); i += 1) num[i] = _this.getAt(i);
+      for (var i = 0; i < e.getLength(); i += 1) num[i] ^= QRMath.gexp(QRMath.glog(e.getAt(i) ) + ratio);
+      return qrPolynomial(num, 0).mod(e);
+    };
+    return _this;
+  }
+
+  var QRRSBlock = function() {
+    var RS_BLOCK_TABLE = [
+      [1, 26, 19], [1, 26, 16], [1, 26, 13], [1, 26, 9], [1, 44, 34], [1, 44, 28], [1, 44, 22], [1, 44, 16],
+      [1, 70, 55], [1, 70, 44], [2, 35, 17], [2, 35, 13], [1, 100, 80], [2, 50, 32], [2, 50, 24], [4, 25, 9],
+      [1, 134, 108], [2, 67, 43], [2, 33, 15, 2, 34, 16], [2, 33, 11, 2, 34, 12], [2, 86, 68], [4, 43, 27],
+      [4, 43, 19], [4, 43, 15], [2, 98, 78], [4, 49, 31], [2, 32, 14, 4, 33, 15], [4, 39, 13, 1, 40, 14],
+      [2, 121, 97], [2, 60, 38, 2, 61, 39], [4, 40, 18, 2, 41, 19], [4, 40, 14, 2, 41, 15], [2, 146, 116],
+      [3, 58, 36, 2, 59, 37], [4, 36, 16, 4, 37, 17], [4, 36, 12, 4, 37, 13], [2, 86, 68, 2, 87, 69],
+      [4, 69, 43, 1, 70, 44], [6, 43, 19, 2, 44, 20], [6, 43, 15, 2, 44, 16], [4, 101, 81], [1, 80, 50, 4, 81, 51],
+      [4, 50, 22, 4, 51, 23], [3, 36, 12, 8, 37, 13], [2, 116, 92, 2, 117, 93], [6, 58, 36, 2, 59, 37],
+      [4, 46, 20, 6, 47, 21], [7, 42, 14, 4, 43, 15], [4, 133, 107], [8, 59, 37, 1, 60, 38], [8, 44, 20, 4, 45, 21],
+      [12, 33, 11, 4, 34, 12], [3, 145, 115, 1, 146, 116], [4, 64, 40, 5, 65, 41], [11, 36, 16, 5, 37, 17],
+      [11, 36, 12, 5, 37, 13], [5, 109, 87, 1, 110, 88], [5, 65, 41, 5, 66, 42], [5, 54, 24, 7, 55, 25],
+      [11, 36, 12, 7, 37, 13], [5, 122, 98, 1, 123, 99], [7, 73, 45, 3, 74, 46], [15, 43, 19, 2, 44, 20],
+      [3, 45, 15, 13, 46, 16], [1, 135, 107, 5, 136, 108], [10, 74, 46, 1, 75, 47], [1, 50, 22, 15, 51, 23],
+      [2, 42, 14, 17, 43, 15], [5, 150, 120, 1, 151, 121], [9, 69, 43, 4, 70, 44], [17, 50, 22, 1, 51, 23],
+      [2, 42, 14, 19, 43, 15], [3, 141, 113, 4, 142, 114], [3, 70, 44, 11, 71, 45], [17, 47, 21, 4, 48, 22],
+      [9, 39, 13, 16, 40, 14], [3, 135, 107, 5, 136, 108], [3, 67, 41, 13, 68, 42], [15, 54, 24, 5, 55, 25],
+      [15, 43, 15, 10, 44, 16], [4, 144, 116, 4, 145, 117], [17, 68, 42], [17, 50, 22, 6, 51, 23], [19, 46, 16, 6, 47, 17],
+      [2, 139, 111, 7, 140, 112], [17, 74, 46], [7, 54, 24, 16, 55, 25], [34, 37, 13], [4, 151, 121, 5, 152, 122],
+      [4, 75, 47, 14, 76, 48], [11, 54, 24, 14, 55, 25], [16, 45, 15, 14, 46, 16], [6, 147, 117, 4, 148, 118],
+      [6, 73, 45, 14, 74, 46], [11, 54, 24, 16, 55, 25], [30, 46, 16, 2, 47, 17], [8, 132, 106, 4, 133, 107],
+      [8, 75, 47, 13, 76, 48], [7, 54, 24, 22, 55, 25], [22, 45, 15, 13, 46, 16], [10, 142, 114, 2, 143, 115],
+      [19, 74, 46, 4, 75, 47], [28, 50, 22, 6, 51, 23], [33, 46, 16, 4, 47, 17], [8, 152, 122, 4, 153, 123],
+      [22, 73, 45, 3, 74, 46], [8, 53, 23, 26, 54, 24], [12, 45, 15, 28, 46, 16], [3, 147, 117, 10, 148, 118],
+      [3, 73, 45, 23, 74, 46], [4, 54, 24, 31, 55, 25], [11, 45, 15, 31, 46, 16], [7, 146, 116, 7, 147, 117],
+      [21, 73, 45, 7, 74, 46], [1, 53, 23, 37, 54, 24], [19, 45, 15, 26, 46, 16], [5, 145, 115, 10, 146, 116],
+      [19, 75, 47, 10, 76, 48], [15, 54, 24, 25, 55, 25], [23, 45, 15, 25, 46, 16], [13, 145, 115, 3, 146, 116],
+      [2, 74, 46, 29, 75, 47], [42, 54, 24, 1, 55, 25], [23, 45, 15, 28, 46, 16], [17, 145, 115], [10, 74, 46, 23, 75, 47],
+      [10, 54, 24, 35, 55, 25], [19, 45, 15, 35, 46, 16], [17, 145, 115, 1, 146, 116], [14, 74, 46, 21, 75, 47],
+      [29, 54, 24, 19, 55, 25], [11, 45, 15, 46, 46, 16], [13, 145, 115, 6, 146, 116], [14, 74, 46, 23, 75, 47],
+      [44, 54, 24, 7, 55, 25], [59, 46, 16, 1, 47, 17], [12, 151, 121, 7, 152, 122], [12, 75, 47, 26, 76, 48],
+      [39, 54, 24, 14, 55, 25], [22, 45, 15, 41, 46, 16], [6, 151, 121, 14, 152, 122], [6, 75, 47, 34, 76, 48],
+      [46, 54, 24, 10, 55, 25], [2, 45, 15, 64, 46, 16], [17, 152, 122, 4, 153, 123], [29, 74, 46, 14, 75, 47],
+      [49, 54, 24, 10, 55, 25], [24, 45, 15, 46, 46, 16], [4, 152, 122, 18, 153, 123], [13, 74, 46, 32, 75, 47],
+      [48, 54, 24, 14, 55, 25], [42, 45, 15, 32, 46, 16], [20, 147, 117, 4, 148, 118], [40, 75, 47, 7, 76, 48],
+      [43, 54, 24, 22, 55, 25], [10, 45, 15, 67, 46, 16], [19, 148, 118, 6, 149, 119], [18, 75, 47, 31, 76, 48],
+      [34, 54, 24, 34, 55, 25], [20, 45, 15, 61, 46, 16]
+    ];
+
+    var qrRSBlock = function(totalCount, dataCount) { return { totalCount: totalCount, dataCount: dataCount }; };
+
+    var _this = {};
+
+    var getRsBlockTable = function(typeNumber, errorCorrectionLevel) {
+      switch(errorCorrectionLevel) {
+      case 1: return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];  // L
+      case 0: return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];  // M
+      case 3: return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];  // Q
+      case 2: return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];  // H
+      default: return undefined;
+      }
+    };
+
+    _this.getRSBlocks = function(typeNumber, errorCorrectionLevel) {
+      var rsBlock = getRsBlockTable(typeNumber, errorCorrectionLevel);
+      if (typeof rsBlock == 'undefined') throw 'bad rs block @ typeNumber:' + typeNumber + '/errorCorrectionLevel:' + errorCorrectionLevel;
+      var length = rsBlock.length / 3;
+      var list = [];
+      for (var i = 0; i < length; i += 1) {
+        var count = rsBlock[i * 3 + 0];
+        var totalCount = rsBlock[i * 3 + 1];
+        var dataCount = rsBlock[i * 3 + 2];
+        for (var j = 0; j < count; j += 1) list.push(qrRSBlock(totalCount, dataCount) );
+      }
+      return list;
+    };
+
+    return _this;
+  }();
+
+  var qrBitBuffer = function() {
+    var _buffer = [];
+    var _length = 0;
+    var _this = {};
+    _this.getBuffer = function() { return _buffer; };
+    _this.getAt = function(index) { var bufIndex = Math.floor(index / 8); return ( (_buffer[bufIndex] >>> (7 - index % 8) ) & 1) == 1; };
+    _this.put = function(num, length) { for (var i = 0; i < length; i += 1) { _this.putBit( ( (num >>> (length - i - 1) ) & 1) == 1); } };
+    _this.getLengthInBits = function() { return _length; };
+    _this.putBit = function(bit) {
+      var bufIndex = Math.floor(_length / 8);
+      if (_buffer.length <= bufIndex) _buffer.push(0);
+      if (bit) _buffer[bufIndex] |= (0x80 >>> (_length % 8) );
+      _length += 1;
+    };
+    return _this;
+  };
+
+  var qrNumber = function(data) {
+    var _mode = 1;
+    var _data = data;
+    var _this = {};
+    _this.getMode = function() { return _mode; };
+    _this.getLength = function() { return _data.length; };
+    _this.write = function(buffer) {
+      var data = _data;
+      var i = 0;
+      var strToNum = function(s) { var num = 0; for (var i = 0; i < s.length; i += 1) { num = num * 10 + (s.charCodeAt(i) - 48); } return num; };
+      while (i + 2 < data.length) { buffer.put(strToNum(data.substring(i, i + 3) ), 10); i += 3; }
+      if (i < data.length) {
+        if (data.length - i == 1) { buffer.put(strToNum(data.substring(i, i + 1) ), 4); }
+        else if (data.length - i == 2) { buffer.put(strToNum(data.substring(i, i + 2) ), 7); }
+      }
+    };
+    return _this;
+  };
+
+  var qrAlphaNum = function(data) {
+    var _mode = 2;
+    var _data = data;
+    var _this = {};
+    _this.getMode = function() { return _mode; };
+    _this.getLength = function() { return _data.length; };
+    _this.write = function(buffer) {
+      var s = _data;
+      var i = 0;
+      var getCode = function(c) {
+        if ('0' <= c && c <= '9') return c.charCodeAt(0) - 48;
+        if ('A' <= c && c <= 'Z') return c.charCodeAt(0) - 65 + 10;
+        switch (c) { case ' ': return 36; case '$': return 37; case '%': return 38; case '*': return 39; case '+': return 40; case '-': return 41; case '.': return 42; case '/': return 43; case ':': return 44; default: throw 'illegal char :' + c; }
+      };
+      while (i + 1 < s.length) { buffer.put(getCode(s.charAt(i)) * 45 + getCode(s.charAt(i + 1)), 11); i += 2; }
+      if (i < s.length) { buffer.put(getCode(s.charAt(i)), 6); }
+    };
+    return _this;
+  };
+
+  var qr8BitByte = function(data) {
+    var _mode = 4;
+    var _data = data;
+    var _bytes = [];
+    for (var i = 0; i < _data.length; i += 1) { _bytes.push(_data.charCodeAt(i) & 0xff); }
+    var _this = {};
+    _this.getMode = function() { return _mode; };
+    _this.getLength = function() { return _bytes.length; };
+    _this.write = function(buffer) { for (var i = 0; i < _bytes.length; i += 1) buffer.put(_bytes[i], 8); };
+    return _this;
+  };
+
+  var qrKanji = function(data) {
+    var _mode = 8;
+    var _data = data;
+    var _bytes = [];
+    for (var i = 0; i < _data.length; i += 1) {
+      var c = _data.charCodeAt(i);
+      _bytes.push((c >>> 8) & 0xff);
+      _bytes.push(c & 0xff);
+    }
+    var _this = {};
+    _this.getMode = function() { return _mode; };
+    _this.getLength = function() { return Math.floor(_bytes.length / 2); };
+    _this.write = function(buffer) {
+      var data = _bytes;
+      var i = 0;
+      while (i + 1 < data.length) {
+        var c = ((0xff & data[i]) << 8) | (0xff & data[i + 1]);
+        if (0x8140 <= c && c <= 0x9FFC) c -= 0x8140;
+        else if (0xE040 <= c && c <= 0xEBBF) c -= 0xC140;
+        else throw 'illegal char at ' + (i + 1) + '/' + c;
+        c = ((c >>> 8) & 0xff) * 0xC0 + (c & 0xff);
+        buffer.put(c, 13);
+        i += 2;
+      }
+      if (i < data.length) throw 'illegal char at ' + (i + 1);
+    };
+    return _this;
+  };
+
+  return qrcode;
+}();
+</script>
+
+<script>
+(function() {
+  'use strict';
+
+  var NAME_KEY = 'chat-name';
+
+  var _name = '';
+  var _isHost = false;
+  var _peers = {};
+  var _peerIdSeq = 0;
+  var _scanPurpose = null;
+  var _hostOffer = null;
+  var _currentStream = null;
+  var _usingFrontCamera = false;
+
+  var _screenLobby = document.getElementById('screen-lobby');
+  var _screenHostQr = document.getElementById('screen-host-qr');
+  var _screenScan = document.getElementById('screen-scan');
+  var _screenAnswerQr = document.getElementById('screen-answer-qr');
+  var _screenChat = document.getElementById('screen-chat');
+
+  var _nameInput = document.getElementById('name-input');
+  var _hostQrCanvas = document.getElementById('host-qr-canvas');
+  var _hostSdpText = document.getElementById('host-sdp-text');
+  var _answerQrCanvas = document.getElementById('answer-qr-canvas');
+  var _answerSdpText = document.getElementById('answer-sdp-text');
+  var _scanVideo = document.getElementById('scan-video');
+  var _scanStatus = document.getElementById('scan-status');
+  var _scanTitle = document.getElementById('scan-title');
+  var _scanDesc = document.getElementById('scan-desc');
+  var _pasteSdp = document.getElementById('paste-sdp');
+  var _chatMessages = document.getElementById('chat-messages');
+  var _chatInput = document.getElementById('chat-input');
+  var _peerCount = document.getElementById('peer-count');
+  var _btnAddPerson = document.getElementById('btn-add-person');
+  var _hostWaitingNote = document.getElementById('host-waiting-note');
+  var _toast = document.getElementById('toast');
+
+  function toast(msg) {
+    _toast.textContent = msg;
+    _toast.classList.add('visible');
+    clearTimeout(_toast._timeout);
+    _toast._timeout = setTimeout(function() { _toast.classList.remove('visible'); }, 2500);
+  }
+
+  function showScreen(screen) {
+    [_screenLobby, _screenHostQr, _screenScan, _screenAnswerQr, _screenChat].forEach(function(s) { s.classList.remove('active'); });
+    screen.classList.add('active');
+  }
+
+  function loadName() {
+    try { var n = localStorage.getItem(NAME_KEY); if (n) { _name = n; _nameInput.value = n; } }
+    catch (e) {}
+  }
+
+  function saveName() {
+    try { if (_name) localStorage.setItem(NAME_KEY, _name); }
+    catch (e) {}
+  }
+
+  function generateId() {
+    return 'p' + Date.now().toString(36) + Math.random().toString(36).substring(2, 8);
+  }
+
+  function drawQr(canvas, text) {
+    var cellSize = Math.max(2, Math.floor(Math.min(canvas.parentElement.clientWidth - 48, 300) / 50));
+    var qr = qrcode(0, 'M');
+    qr.addData(text);
+    qr.make();
+    var modCount = qr.getModuleCount();
+    var size = modCount * cellSize;
+    canvas.width = size;
+    canvas.height = size;
+    canvas.style.width = size + 'px';
+    canvas.style.height = size + 'px';
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, size, size);
+    qr.renderTo2dContext(ctx, cellSize);
+  }
+
+  function getPeerCount() {
+    return Object.keys(_peers).length;
+  }
+
+  function updatePeerCount() {
+    var n = getPeerCount();
+    _peerCount.textContent = n;
+    if (_isHost) { _btnAddPerson.style.display = ''; }
+  }
+
+  function addSystemMessage(text) {
+    addMessage('System', text, 'system');
+  }
+
+  function addMessage(author, text, cls) {
+    var empty = _chatMessages.querySelector('.empty-chat');
+    if (empty) empty.remove();
+
+    var div = document.createElement('div');
+    div.className = 'msg ' + (cls || '') + ' msg--' + (author === _name ? 'mine' : 'peer');
+    if (cls === 'system') div.className = 'msg msg--system';
+
+    if (author !== _name && cls !== 'system') {
+      var authorSpan = document.createElement('span');
+      authorSpan.className = 'msg-author';
+      authorSpan.textContent = author;
+      div.appendChild(authorSpan);
+    }
+
+    var textSpan = document.createElement('span');
+    textSpan.className = 'msg-text';
+    textSpan.textContent = text;
+    div.appendChild(textSpan);
+
+    _chatMessages.appendChild(div);
+    _chatMessages.scrollTop = _chatMessages.scrollHeight;
+  }
+
+  function broadcastMessage(msg) {
+    var data = JSON.stringify(msg);
+    Object.keys(_peers).forEach(function(pid) {
+      var ch = _peers[pid].channel;
+      if (ch && ch.readyState === 'open') {
+        try { ch.send(data); } catch (e) {}
+      }
+    });
+  }
+
+  function sendChatMessage(text) {
+    var msg = { type: 'msg', id: generateId(), from: _name, time: Date.now(), text: text };
+    addMessage(_name, text, 'mine');
+    broadcastMessage(msg);
+  }
+
+  function relayMessage(msg, fromPeerId) {
+    var data = JSON.stringify(msg);
+    Object.keys(_peers).forEach(function(pid) {
+      if (pid === fromPeerId) return;
+      var ch = _peers[pid].channel;
+      if (ch && ch.readyState === 'open') {
+        try { ch.send(data); } catch (e) {}
+      }
+    });
+  }
+
+  function setupPeerConnection(pc, channelLabel) {
+    pc._channelLabel = channelLabel;
+    pc._channels = {};
+
+    pc.addEventListener('datachannel', function(e) {
+      var ch = e.channel;
+      setupDataChannel(ch, channelLabel);
+    });
+
+    pc.addEventListener('iceconnectionstatechange', function() {
+      if (pc.iceConnectionState === 'failed' || pc.iceConnectionState === 'disconnected') {
+        var pid = pc._peerId;
+        if (pid && _peers[pid]) {
+          toast((_peers[pid].name || 'Someone') + ' disconnected');
+          addSystemMessage((_peers[pid].name || 'Someone') + ' left');
+          delete _peers[pid];
+          updatePeerCount();
+        }
+      }
+    });
+  }
+
+  function setupDataChannel(ch, label) {
+    ch.addEventListener('open', function() {
+      toast('Connected!');
+      updatePeerCount();
+      if (_screenAnswerQr.classList.contains('active')) {
+        showChat();
+      }
+      if (_screenHostQr.classList.contains('active')) {
+        showChat();
+      }
+    });
+
+    ch.addEventListener('message', function(e) {
+      try {
+        var msg = JSON.parse(e.data);
+        handleMessage(msg, ch);
+      } catch (err) {}
+    });
+
+    ch.addEventListener('close', function() {});
+  }
+
+  function handleMessage(msg, channel) {
+    if (msg.type === 'msg') {
+      addMessage(msg.from, msg.text, 'peer');
+      if (_isHost) {
+        var fromPid = null;
+        Object.keys(_peers).forEach(function(pid) {
+          if (_peers[pid].channel === channel) fromPid = pid;
+        });
+        if (fromPid !== null) relayMessage(msg, fromPid);
+      }
+    }
+  }
+
+  function createOfferForPeer(peerName) {
+    return new Promise(function(resolve, reject) {
+      var pc = new RTCPeerConnection({ iceServers: [] });
+      setupPeerConnection(pc, 'chat');
+
+      var ch = pc.createDataChannel('chat');
+      setupDataChannel(ch, 'chat');
+
+      var peerId = generateId();
+      pc._peerId = peerId;
+      _peers[peerId] = { pc: pc, channel: ch, name: peerName };
+
+      pc.createOffer().then(function(offer) {
+        return pc.setLocalDescription(offer);
+      }).then(function() {
+        waitForIceComplete(pc).then(function() {
+          resolve({ pc: pc, peerId: peerId, sdp: btoa(JSON.stringify(pc.localDescription)) });
+        });
+      }).catch(function(e) { reject(e); });
+    });
+  }
+
+  function waitForIceComplete(pc) {
+    return new Promise(function(resolve) {
+      if (pc.iceGatheringState === 'complete') { resolve(); return; }
+      pc.addEventListener('icegatheringstatechange', function handler() {
+        if (pc.iceGatheringState === 'complete') {
+          pc.removeEventListener('icegatheringstatechange', handler);
+          resolve();
+        }
+      });
+    });
+  }
+
+  function acceptOffer(encodedSdp) {
+    return new Promise(function(resolve, reject) {
+      var sdpObj;
+      try {
+        sdpObj = JSON.parse(atob(encodedSdp));
+      } catch (e) { reject(new Error('Invalid SDP data')); return; }
+
+      var pc = new RTCPeerConnection({ iceServers: [] });
+      setupPeerConnection(pc, 'chat');
+
+      pc.addEventListener('datachannel', function(e) {
+        setupDataChannel(e.channel, 'chat');
+        var peerId = generateId();
+        pc._peerId = peerId;
+        _peers[peerId] = { pc: pc, channel: e.channel, name: '' };
+      });
+
+      pc.setRemoteDescription(new RTCSessionDescription(sdpObj)).then(function() {
+        return pc.createAnswer();
+      }).then(function(answer) {
+        return pc.setLocalDescription(answer);
+      }).then(function() {
+        return waitForIceComplete(pc);
+      }).then(function() {
+        resolve({ sdp: btoa(JSON.stringify(pc.localDescription)) });
+      }).catch(function(e) { reject(e); });
+    });
+  }
+
+  function completeConnection(encodedSdp) {
+    var sdpObj;
+    try {
+      sdpObj = JSON.parse(atob(encodedSdp));
+    } catch (e) { return; }
+
+    Object.keys(_peers).forEach(function(pid) {
+      var peer = _peers[pid];
+      if (peer.pc.signalingState === 'have-local-offer' && peer.channel.readyState === 'connecting') {
+        peer.pc.setRemoteDescription(new RTCSessionDescription(sdpObj)).catch(function() {});
+      }
+    });
+  }
+
+  function stopCamera() {
+    if (_currentStream) {
+      _currentStream.getTracks().forEach(function(t) { t.stop(); });
+      _currentStream = null;
+    }
+  }
+
+  function startCamera(facingMode) {
+    stopCamera();
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      return Promise.reject(new Error('Camera API not available'));
+    }
+    if (!window.isSecureContext && window.location.protocol === 'file:') {
+      return Promise.reject(new Error('file-protocol'));
+    }
+    var constraints = { video: { facingMode: facingMode || 'user', width: { ideal: 640 }, height: { ideal: 640 } }, audio: false };
+    return navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+      _currentStream = stream;
+      _scanVideo.srcObject = stream;
+      return stream;
+    });
+  }
+
+  function scanWithBarcodeDetector(checkFunc) {
+    var scanning = true;
+    var detector = null;
+
+    try {
+      if (typeof BarcodeDetector !== 'undefined') {
+        detector = new BarcodeDetector({ formats: ['qr_code'] });
+      }
+    } catch (e) {}
+
+    function tick() {
+      if (!scanning) return;
+      if (detector && _scanVideo.readyState >= 2) {
+        detector.detect(_scanVideo).then(function(barcodes) {
+          if (barcodes.length > 0) {
+            var val = barcodes[0].rawValue;
+            scanning = false;
+            checkFunc(val);
+            return;
+          }
+          if (scanning) requestAnimationFrame(tick);
+        }).catch(function() {
+          if (scanning) requestAnimationFrame(tick);
+        });
+      } else {
+        if (scanning) requestAnimationFrame(tick);
+      }
+    }
+
+    requestAnimationFrame(tick);
+    return function() { scanning = false; };
+  }
+
+  function startScanning(purpose) {
+    _scanPurpose = purpose;
+    showScreen(_screenScan);
+
+    if (purpose === 'join') {
+      _scanTitle.textContent = 'Scan Host QR Code';
+      _scanDesc.textContent = 'Point your camera at the host\'s QR code.';
+    } else {
+      _scanTitle.textContent = 'Scan Partner QR Code';
+      _scanDesc.textContent = 'Point your camera at the partner\'s answer QR code.';
+    }
+
+    _pasteSdp.value = '';
+    _scanStatus.textContent = 'Starting camera...';
+
+    startCamera(_usingFrontCamera ? 'user' : 'environment').then(function() {
+      _scanStatus.textContent = 'Looking for QR code...';
+      return scanWithBarcodeDetector(function(val) {
+        stopCamera();
+        if (val && val.trim()) {
+          toast('QR code detected!');
+          handleScannedSdp(val.trim());
+        }
+      });
+    }).catch(function(err) {
+      console.error('Camera error:', err && err.name, err && err.message, 'isSecureContext:', window.isSecureContext);
+      if (err && err.message === 'file-protocol') {
+        _scanStatus.textContent = 'Open via localhost (e.g. python3 -m http.server 8080). Camera needs a secure context.';
+      } else if (err && (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError')) {
+        _scanStatus.textContent = 'Camera permission denied. Check browser settings.';
+      } else if (err && err.name === 'NotFoundError') {
+        _scanStatus.textContent = 'No camera found. Use paste area below.';
+      } else if (!window.isSecureContext) {
+        _scanStatus.textContent = 'Camera needs HTTPS or localhost. Paste the SDP text below instead.';
+      } else {
+        _scanStatus.textContent = 'Camera error: ' + (err ? (err.name || err.message) : 'unknown') + '. Use paste below.';
+      }
+    });
+  }
+
+  function toggleCamera() {
+    _usingFrontCamera = !_usingFrontCamera;
+    startCamera(_usingFrontCamera ? 'user' : 'environment').then(function() {}).catch(function() {
+      toast('Could not switch camera');
+    });
+  }
+
+  function handleScannedSdp(val) {
+    if (_scanPurpose === 'join') {
+      acceptOffer(val).then(function(result) {
+        showScreen(_screenAnswerQr);
+        drawQr(_answerQrCanvas, result.sdp);
+        _answerSdpText.value = result.sdp;
+      }).catch(function(e) {
+        toast('Failed to process offer: ' + e.message);
+        showScreen(_screenLobby);
+      });
+    } else {
+      completeConnection(val);
+      toast('Connected!');
+      showChat();
+    }
+  }
+
+  function startHost() {
+    _isHost = true;
+    _name = _nameInput.value.trim() || 'Host';
+    _nameInput.value = _name;
+    saveName();
+
+    createOfferForPeer('').then(function(result) {
+      _hostOffer = result;
+      showScreen(_screenHostQr);
+      drawQr(_hostQrCanvas, result.sdp);
+      _hostSdpText.value = result.sdp;
+      updatePeerCount();
+    }).catch(function(e) {
+      toast('Failed to create connection: ' + e.message);
+    });
+  }
+
+  function startJoin() {
+    _name = _nameInput.value.trim() || 'Guest';
+    _nameInput.value = _name;
+    saveName();
+    startScanning('join');
+  }
+
+  function showChat() {
+    showScreen(_screenChat);
+    updatePeerCount();
+    var empty = _chatMessages.querySelector('.empty-chat');
+    if (!empty && _chatMessages.children.length === 0) {
+      _chatMessages.innerHTML = '<div class="empty-chat"><p>No messages yet. Say hello!</p></div>';
+    }
+  }
+
+  function resetAll() {
+    Object.keys(_peers).forEach(function(pid) {
+      try { _peers[pid].channel.close(); } catch (e) {}
+      try { _peers[pid].pc.close(); } catch (e) {}
+    });
+    _peers = {};
+    _hostOffer = null;
+    _isHost = false;
+    _peerIdSeq = 0;
+    _scanPurpose = null;
+    stopCamera();
+    _chatMessages.innerHTML = '<div class="empty-chat"><p>No messages yet. Say hello!</p></div>';
+    showScreen(_screenLobby);
+  }
+
+  document.getElementById('btn-host').addEventListener('click', startHost);
+  document.getElementById('btn-join').addEventListener('click', startJoin);
+
+  document.getElementById('btn-scan-answer').addEventListener('click', function() {
+    startScanning('answer');
+  });
+
+  document.getElementById('btn-cancel-scan').addEventListener('click', function() {
+    stopCamera();
+    showScreen(_isHost ? _screenHostQr : _screenLobby);
+  });
+
+  document.getElementById('btn-camera-toggle').addEventListener('click', toggleCamera);
+
+  document.getElementById('btn-use-pasted').addEventListener('click', function() {
+    var val = _pasteSdp.value.trim();
+    if (!val) { toast('Paste the SDP text first'); return; }
+    stopCamera();
+    handleScannedSdp(val);
+  });
+
+  document.getElementById('btn-copy-offer').addEventListener('click', function() {
+    var txt = _hostSdpText.value;
+    if (txt && navigator.clipboard) {
+      navigator.clipboard.writeText(txt).then(function() { toast('Copied!'); }).catch(function() { toast('Copy failed'); });
+    } else if (txt) {
+      _hostSdpText.select();
+      try { document.execCommand('copy'); toast('Copied!'); } catch (e) { toast('Copy failed'); }
+    }
+  });
+
+  document.getElementById('btn-copy-answer').addEventListener('click', function() {
+    var txt = _answerSdpText.value;
+    if (txt && navigator.clipboard) {
+      navigator.clipboard.writeText(txt).then(function() { toast('Copied!'); }).catch(function() { toast('Copy failed'); });
+    } else if (txt) {
+      _answerSdpText.select();
+      try { document.execCommand('copy'); toast('Copied!'); } catch (e) { toast('Copy failed'); }
+    }
+  });
+
+  document.getElementById('btn-send').addEventListener('click', function() {
+    var text = _chatInput.value.trim();
+    if (!text) return;
+    _chatInput.value = '';
+    sendChatMessage(text);
+  });
+
+  _chatInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      document.getElementById('btn-send').click();
+    }
+  });
+
+  document.getElementById('btn-add-person').addEventListener('click', function() {
+    if (!_isHost) return;
+    createOfferForPeer('').then(function(result) {
+      _hostOffer = result;
+      showScreen(_screenHostQr);
+      drawQr(_hostQrCanvas, result.sdp);
+      _hostSdpText.value = result.sdp;
+      _hostWaitingNote.textContent = 'Add another person. They should scan this QR or paste the text.';
+    }).catch(function(e) {
+      toast('Failed to create connection: ' + e.message);
+    });
+  });
+
+  document.getElementById('btn-leave').addEventListener('click', function() {
+    resetAll();
+  });
+
+  loadName();
+  showScreen(_screenLobby);
+})();
+</script>
+</body>
+</html>
