@@ -371,23 +371,55 @@ body {
 
 .toast {
   position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+
+.toast span {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 10px 20px;
   font-size: 0.8125rem;
-  color: var(--text-primary);
-  z-index: 200;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 200ms ease-out;
   box-shadow: 0 4px 16px oklch(0 0 0 / 0.4);
+  max-width: 90vw;
 }
 
 .toast.visible { opacity: 1; pointer-events: auto; }
+
+.qr-fullscreen {
+  position: fixed;
+  inset: 0;
+  background: oklch(0 0 0 / 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease-out;
+  cursor: pointer;
+}
+
+.qr-fullscreen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.qr-fullscreen canvas {
+  display: block;
+  image-rendering: pixelated;
+  border-radius: 4px;
+  background: #fff;
+  padding: 8px;
+}
 
 .empty-chat {
   flex: 1;
@@ -436,6 +468,7 @@ body {
     <div class="qr-container">
       <canvas id="host-qr-canvas"></canvas>
       <span class="qr-label">Scan with the join page, or use the text below</span>
+      <button class="btn btn-outline btn-view-fullscreen" data-canvas="host-qr-canvas">View fullscreen</button>
     </div>
     <div class="sdp-area">
       <textarea id="host-sdp-text" readonly></textarea>
@@ -473,6 +506,7 @@ body {
     <div class="qr-container">
       <canvas id="answer-qr-canvas"></canvas>
       <span class="qr-label">Let the host scan this, or copy the text below</span>
+      <button class="btn btn-outline btn-view-fullscreen" data-canvas="answer-qr-canvas">View fullscreen</button>
     </div>
     <div class="sdp-area">
       <textarea id="answer-sdp-text" readonly></textarea>
@@ -502,7 +536,11 @@ body {
 
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast"><span></span></div>
+
+<div class="qr-fullscreen" id="fullscreen-overlay">
+  <canvas id="fullscreen-qr-canvas"></canvas>
+</div>
 
 <!-- QR Code Generator (Kazuhiko Arase, MIT license, inlined) -->
 <script>
@@ -1191,9 +1229,10 @@ var qrcode = function() {
   var _btnAddPerson = document.getElementById('btn-add-person');
   var _hostWaitingNote = document.getElementById('host-waiting-note');
   var _toast = document.getElementById('toast');
+  var _fullscreenOverlay = document.getElementById('fullscreen-overlay');
 
   function toast(msg) {
-    _toast.textContent = msg;
+    _toast.querySelector('span').textContent = msg;
     _toast.classList.add('visible');
     clearTimeout(_toast._timeout);
     _toast._timeout = setTimeout(function() { _toast.classList.remove('visible'); }, 2500);
@@ -1219,17 +1258,41 @@ var qrcode = function() {
   }
 
   function drawQr(canvas, text) {
-    var cellSize = Math.max(2, Math.floor(Math.min(canvas.parentElement.clientWidth - 48, 300) / 50));
     var qr = qrcode(0, 'M');
     qr.addData(text);
     qr.make();
     var modCount = qr.getModuleCount();
+    var maxWidth = Math.min(canvas.parentElement.clientWidth - 48, 300) || 300;
+    var cellSize = Math.max(2, Math.floor(maxWidth / modCount));
     var size = modCount * cellSize;
     canvas.width = size;
     canvas.height = size;
     canvas.style.width = size + 'px';
     canvas.style.height = size + 'px';
     var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, size, size);
+    qr.renderTo2dContext(ctx, cellSize);
+    canvas._qrText = text;
+  }
+
+  function showFullscreenQr(canvas) {
+    var qrText = canvas._qrText;
+    if (!qrText) return;
+    var fullCanvas = document.getElementById('fullscreen-qr-canvas');
+    _fullscreenOverlay.classList.add('active');
+    var w = Math.min(window.innerWidth - 32, window.innerHeight - 32, 512);
+    var qr = qrcode(0, 'M');
+    qr.addData(qrText);
+    qr.make();
+    var modCount = qr.getModuleCount();
+    var cellSize = Math.max(2, Math.floor(w / modCount));
+    var size = modCount * cellSize;
+    fullCanvas.width = size;
+    fullCanvas.height = size;
+    fullCanvas.style.width = size + 'px';
+    fullCanvas.style.height = size + 'px';
+    var ctx = fullCanvas.getContext('2d');
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, size, size);
     qr.renderTo2dContext(ctx, cellSize);
@@ -1672,6 +1735,20 @@ var qrcode = function() {
 
   document.getElementById('btn-leave').addEventListener('click', function() {
     resetAll();
+  });
+
+  _fullscreenOverlay.addEventListener('click', function() {
+    _fullscreenOverlay.classList.remove('active');
+  });
+
+  var _viewFullscreenBtns = document.querySelectorAll('.btn-view-fullscreen');
+  _viewFullscreenBtns.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var canvasId = btn.getAttribute('data-canvas');
+      var canvas = document.getElementById(canvasId);
+      if (canvas) showFullscreenQr(canvas);
+    });
   });
 
   loadName();
