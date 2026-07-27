@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mastermind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: oklch(0.14 0.01 85);
+  --surface: oklch(0.17 0.008 85);
+  --surface-raised: oklch(0.20 0.008 85);
+  --text-primary: oklch(0.90 0.005 85);
+  --text-secondary: oklch(0.58 0.01 85);
+  --text-dim: oklch(0.38 0.01 85);
+  --accent: oklch(0.68 0.17 80);
+  --accent-dim: oklch(0.45 0.12 80);
+  --accent-surface: oklch(0.22 0.025 80);
+  --line: oklch(0.23 0.01 85);
+  --radius: 8px;
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+html { height: 100%; }
+
+body {
+  font-family: var(--font);
+  font-optical-sizing: auto;
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.scores {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.score-box {
+  flex: 1;
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-height: 60px;
+  justify-content: center;
+}
+
+.score-label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+
+.score-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.new-game-btn {
+  font-family: var(--font);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 24px;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  transition: border-color 150ms ease-out, background 150ms ease-out;
+}
+
+.new-game-btn:hover {
+  border-color: var(--accent-dim);
+  background: var(--accent-surface);
+}
+
+.new-game-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- screens ---------- */
+
+.screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.screen.active { display: flex; }
+
+.rules {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  width: 100%;
+  max-width: 400px;
+}
+
+.rules strong { color: var(--text-primary); font-weight: 600; }
+
+.mode-btn {
+  font-family: var(--font);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: border-color 150ms ease-out, background 150ms ease-out;
+}
+
+.mode-btn:hover {
+  border-color: var(--accent-dim);
+  background: var(--surface-raised);
+}
+
+.mode-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.mode-title { font-size: 0.9375rem; font-weight: 600; }
+
+.mode-desc {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.screen-title { font-size: 1.125rem; font-weight: 600; text-align: center; }
+
+.screen-note {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ---------- pegs & palette ---------- */
+
+.code-slots { display: flex; gap: 12px; }
+
+.code-peg {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: oklch(0.22 0.005 85);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  padding: 0;
+}
+
+.code-peg.selected,
+.peg.selected {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.code-peg:focus-visible,
+.peg:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.palette {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.palette-peg {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 120ms ease-out;
+}
+
+.palette-peg:active { transform: scale(0.9); }
+
+.palette-peg:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- board ---------- */
+
+.secret {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+}
+
+.secret-label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+
+.secret-slots { display: flex; gap: 10px; }
+
+.secret-peg {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: oklch(0.22 0.005 85);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.guess-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+}
+
+.guess-row.active {
+  background: var(--surface);
+  border-color: var(--accent-dim);
+}
+
+.guess-row.done { opacity: 0.55; }
+
+.row-num {
+  width: 16px;
+  font-size: 0.6875rem;
+  color: var(--text-dim);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.row-slots { display: flex; gap: 8px; }
+
+.peg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: oklch(0.22 0.005 85);
+  border: 1px solid var(--line);
+  padding: 0;
+}
+
+.guess-row.active .peg { cursor: pointer; }
+
+.feedback {
+  display: grid;
+  grid-template-columns: repeat(2, 10px);
+  grid-auto-rows: 10px;
+  gap: 3px;
+  margin-left: auto;
+}
+
+.fb-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: oklch(0.24 0.005 85);
+}
+
+.fb-dot.exact { background: var(--accent); }
+
+.fb-dot.near {
+  background: transparent;
+  border: 1px solid oklch(0.72 0.01 85);
+}
+
+.check-btn {
+  font-family: var(--font);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: oklch(0.15 0.01 85);
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 32px;
+  cursor: pointer;
+  min-height: 44px;
+  width: 100%;
+  max-width: 400px;
+  transition: background 150ms ease-out, opacity 150ms ease-out;
+}
+
+.check-btn:hover:not(:disabled) { background: var(--accent-dim); }
+
+.check-btn:disabled { opacity: 0.35; cursor: default; }
+
+.check-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.legend {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ---------- overlay ---------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: oklch(0 0 0 / 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms ease-out;
+}
+
+.overlay.solid { background: oklch(0.11 0.008 85 / 0.97); }
+
+.overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.overlay-content {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 40px 48px;
+  text-align: center;
+  max-width: 360px;
+  width: calc(100% - 48px);
+}
+
+.overlay-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.overlay-stats {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.8;
+}
+
+.overlay-stats strong {
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.overlay-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.overlay-btn {
+  font-family: var(--font);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: oklch(0.15 0.01 85);
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 32px;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  transition: background 150ms ease-out;
+}
+
+.overlay-btn:hover { background: var(--accent-dim); }
+
+.overlay-ghost {
+  font-family: var(--font);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 32px;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  transition: color 150ms ease-out, border-color 150ms ease-out;
+}
+
+.overlay-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-dim);
+}
+
+.overlay-btn:focus-visible,
+.overlay-ghost:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.chip {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  vertical-align: -2px;
+  margin: 0 2px;
+}
+
+@media (max-width: 480px) {
+  body { padding: 16px; }
+  .game { gap: 24px; }
+  .code-peg { width: 48px; height: 48px; }
+  .overlay-content { padding: 32px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="game" role="main" aria-label="Mastermind">
+  <div class="header">
+    <h1 class="title">Mastermind</h1>
+    <div class="scores">
+      <div class="score-box">
+        <span class="score-label">Attempts left</span>
+        <span class="score-value" id="attempts">10</span>
+      </div>
+      <div class="score-box">
+        <span class="score-label">Mode</span>
+        <span class="score-value" id="mode-label">&mdash;</span>
+      </div>
+    </div>
+    <div class="toolbar">
+      <button class="new-game-btn" aria-label="Back to menu">New game</button>
+    </div>
+  </div>
+
+  <div class="screen active" id="screen-setup">
+    <div class="rules">
+      One player sets a secret code of <strong>4 colors</strong>. The other has
+      <strong>10 guesses</strong> to crack it. After each guess:
+      <strong>solid dot</strong> = right color &amp; right spot,
+      <strong>ring</strong> = right color, wrong spot. Colors may repeat.
+    </div>
+    <button class="mode-btn" id="btn-solo">
+      <span class="mode-title">Solo</span>
+      <span class="mode-desc">Auto-generate a secret code and crack it yourself.</span>
+    </button>
+    <button class="mode-btn" id="btn-duo">
+      <span class="mode-title">Two players</span>
+      <span class="mode-desc">Pass &amp; play — Player 1 sets the code, Player 2 guesses. Swap roles each round.</span>
+    </button>
+  </div>
+
+  <div class="screen" id="screen-create">
+    <h2 class="screen-title" id="create-title"></h2>
+    <p class="screen-note" id="create-note"></p>
+    <div class="code-slots" id="create-slots">
+      <button class="code-peg" type="button" aria-label="Code slot 1"></button>
+      <button class="code-peg" type="button" aria-label="Code slot 2"></button>
+      <button class="code-peg" type="button" aria-label="Code slot 3"></button>
+      <button class="code-peg" type="button" aria-label="Code slot 4"></button>
+    </div>
+    <div class="palette" id="create-palette"></div>
+    <button class="check-btn" id="confirm-create" disabled>Confirm code</button>
+  </div>
+
+  <div class="screen" id="screen-board">
+    <div class="secret">
+      <span class="secret-label">Secret</span>
+      <div class="secret-slots" id="secret-slots">
+        <span class="secret-peg">?</span>
+        <span class="secret-peg">?</span>
+        <span class="secret-peg">?</span>
+        <span class="secret-peg">?</span>
+      </div>
+    </div>
+    <div class="rows" id="rows"></div>
+    <div class="palette" id="board-palette"></div>
+    <button class="check-btn" id="check-btn" disabled>Check</button>
+    <p class="legend">Solid dot = right color &amp; right spot &middot; Ring = right color, wrong spot</p>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true">
+  <div class="overlay-content">
+    <div class="overlay-title" id="overlay-title"></div>
+    <div class="overlay-stats" id="overlay-text"></div>
+    <div class="overlay-actions">
+      <button class="overlay-btn" id="overlay-primary"></button>
+      <button class="overlay-ghost" id="overlay-secondary"></button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var COLORS = [
+    { name: 'Red',    css: 'oklch(0.63 0.21 27)' },
+    { name: 'Yellow', css: 'oklch(0.87 0.16 98)' },
+    { name: 'Green',  css: 'oklch(0.72 0.19 150)' },
+    { name: 'Blue',   css: 'oklch(0.60 0.18 255)' },
+    { name: 'Violet', css: 'oklch(0.56 0.20 305)' },
+    { name: 'White',  css: 'oklch(0.92 0.01 90)' }
+  ];
+  var CODE_LEN = 4;
+  var MAX_GUESSES = 10;
+
+  var mode = null;            // 'solo' | 'duo'
+  var creator = 1;            // duo: player who sets the code
+  var code = [];
+  var guesses = [];
+  var current = emptyRow();
+  var selectedSlot = 0;
+  var finished = false;
+  var activeScreen = 'setup';
+  var rowRefs = [];
+
+  var attemptsEl = document.getElementById('attempts');
+  var modeLabelEl = document.getElementById('mode-label');
+  var screens = {
+    setup: document.getElementById('screen-setup'),
+    create: document.getElementById('screen-create'),
+    board: document.getElementById('screen-board')
+  };
+  var createTitle = document.getElementById('create-title');
+  var createNote = document.getElementById('create-note');
+  var createSlotsEl = document.getElementById('create-slots');
+  var createPaletteEl = document.getElementById('create-palette');
+  var confirmCreateBtn = document.getElementById('confirm-create');
+  var secretSlotsEl = document.getElementById('secret-slots');
+  var rowsEl = document.getElementById('rows');
+  var boardPaletteEl = document.getElementById('board-palette');
+  var checkBtn = document.getElementById('check-btn');
+  var overlayEl = document.getElementById('overlay');
+  var overlayTitle = document.getElementById('overlay-title');
+  var overlayText = document.getElementById('overlay-text');
+  var overlayPrimary = document.getElementById('overlay-primary');
+  var overlaySecondary = document.getElementById('overlay-secondary');
+
+  function emptyRow() {
+    var r = [];
+    for (var i = 0; i < CODE_LEN; i++) r.push(null);
+    return r;
+  }
+
+  function showScreen(name) {
+    activeScreen = name;
+    for (var k in screens) {
+      screens[k].classList.toggle('active', k === name);
+    }
+  }
+
+  function showOverlay(opts) {
+    overlayTitle.textContent = opts.title;
+    overlayText.innerHTML = opts.text;
+    overlayPrimary.textContent = opts.primaryLabel;
+    overlayPrimary.onclick = opts.onPrimary;
+    if (opts.secondaryLabel) {
+      overlaySecondary.style.display = '';
+      overlaySecondary.textContent = opts.secondaryLabel;
+      overlaySecondary.onclick = opts.onSecondary;
+    } else {
+      overlaySecondary.style.display = 'none';
+    }
+    overlayEl.classList.toggle('solid', !!opts.solid);
+    overlayEl.classList.add('visible');
+  }
+
+  function hideOverlay() {
+    overlayEl.classList.remove('visible');
+  }
+
+  function randomCode() {
+    var c = [];
+    for (var i = 0; i < CODE_LEN; i++) {
+      c.push(Math.floor(Math.random() * COLORS.length));
+    }
+    return c;
+  }
+
+  function scoreGuess(guess, secret) {
+    var exact = 0;
+    var secretRest = {};
+    var guessRest = {};
+    for (var i = 0; i < CODE_LEN; i++) {
+      if (guess[i] === secret[i]) {
+        exact++;
+      } else {
+        secretRest[secret[i]] = (secretRest[secret[i]] || 0) + 1;
+        guessRest[guess[i]] = (guessRest[guess[i]] || 0) + 1;
+      }
+    }
+    var near = 0;
+    for (var c in guessRest) {
+      near += Math.min(guessRest[c], secretRest[c] || 0);
+    }
+    return { exact: exact, near: near };
+  }
+
+  function buildPalette(container, onPick) {
+    container.innerHTML = '';
+    COLORS.forEach(function(c, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'palette-peg';
+      b.style.background = c.css;
+      b.setAttribute('aria-label', c.name);
+      b.addEventListener('click', function() { onPick(i); });
+      container.appendChild(b);
+    });
+  }
+
+  function advanceSelection() {
+    for (var i = 0; i < CODE_LEN; i++) {
+      if (current[i] === null) { selectedSlot = i; return; }
+    }
+  }
+
+  function isComplete() {
+    return current.indexOf(null) === -1;
+  }
+
+  /* ---------------- setup ---------------- */
+
+  document.getElementById('btn-solo').addEventListener('click', function() {
+    mode = 'solo';
+    code = randomCode();
+    startBoard();
+  });
+
+  document.getElementById('btn-duo').addEventListener('click', function() {
+    mode = 'duo';
+    creator = 1;
+    startCreate();
+  });
+
+  /* ---------------- create (2 players) ---------------- */
+
+  function startCreate() {
+    current = emptyRow();
+    selectedSlot = 0;
+    var other = creator === 1 ? 2 : 1;
+    createTitle.textContent = 'Player ' + creator + ': set the secret code';
+    createNote.textContent = 'Player ' + other + ', look away! Pick ' + CODE_LEN + ' colors — repeats allowed.';
+    buildPalette(createPaletteEl, onCreatePick);
+    renderCreate();
+    showScreen('create');
+  }
+
+  function onCreatePick(i) {
+    current[selectedSlot] = i;
+    advanceSelection();
+    renderCreate();
+  }
+
+  function renderCreate() {
+    var slots = createSlotsEl.children;
+    for (var i = 0; i < CODE_LEN; i++) {
+      slots[i].style.background = current[i] === null ? '' : COLORS[current[i]].css;
+      slots[i].classList.toggle('selected', i === selectedSlot);
+    }
+    confirmCreateBtn.disabled = !isComplete();
+  }
+
+  Array.prototype.forEach.call(createSlotsEl.children, function(el, i) {
+    el.addEventListener('click', function() {
+      if (current[i] !== null) current[i] = null;
+      selectedSlot = i;
+      renderCreate();
+    });
+  });
+
+  confirmCreateBtn.addEventListener('click', function() {
+    code = current.slice();
+    var guesser = creator === 1 ? 2 : 1;
+    startBoard();
+    showOverlay({
+      solid: true,
+      title: 'Pass the phone',
+      text: 'Player ' + guesser + ', take the phone.<br>The code is set — no peeking!',
+      primaryLabel: 'Start guessing',
+      onPrimary: function() { hideOverlay(); }
+    });
+  });
+
+  /* ---------------- board ---------------- */
+
+  function startBoard() {
+    guesses = [];
+    current = emptyRow();
+    selectedSlot = 0;
+    finished = false;
+    buildRows();
+    renderSecret(false);
+    buildPalette(boardPaletteEl, onBoardPick);
+    updateHud();
+    renderActiveRow();
+    updateCheck();
+    showScreen('board');
+  }
+
+  function buildRows() {
+    rowsEl.innerHTML = '';
+    rowRefs = [];
+    for (var i = 0; i < MAX_GUESSES; i++) {
+      var row = document.createElement('div');
+      row.className = 'guess-row';
+
+      var num = document.createElement('span');
+      num.className = 'row-num';
+      num.textContent = i + 1;
+      row.appendChild(num);
+
+      var slots = document.createElement('div');
+      slots.className = 'row-slots';
+      var pegEls = [];
+      for (var j = 0; j < CODE_LEN; j++) {
+        var p = document.createElement('button');
+        p.type = 'button';
+        p.className = 'peg';
+        p.setAttribute('aria-label', 'Guess ' + (i + 1) + ', slot ' + (j + 1));
+        (function(rowIdx, slotIdx) {
+          p.addEventListener('click', function() { onSlotClick(rowIdx, slotIdx); });
+        })(i, j);
+        slots.appendChild(p);
+        pegEls.push(p);
+      }
+      row.appendChild(slots);
+
+      var fb = document.createElement('div');
+      fb.className = 'feedback';
+      var dotEls = [];
+      for (var k = 0; k < CODE_LEN; k++) {
+        var d = document.createElement('span');
+        d.className = 'fb-dot';
+        fb.appendChild(d);
+        dotEls.push(d);
+      }
+      row.appendChild(fb);
+
+      rowsEl.appendChild(row);
+      rowRefs.push({ row: row, pegs: pegEls, dots: dotEls });
+    }
+    rowRefs[0].row.classList.add('active');
+  }
+
+  function onSlotClick(rowIdx, slotIdx) {
+    if (finished || rowIdx !== guesses.length) return;
+    if (current[slotIdx] !== null) current[slotIdx] = null;
+    selectedSlot = slotIdx;
+    renderActiveRow();
+    updateCheck();
+  }
+
+  function onBoardPick(i) {
+    if (finished) return;
+    current[selectedSlot] = i;
+    advanceSelection();
+    renderActiveRow();
+    updateCheck();
+  }
+
+  function renderActiveRow() {
+    var idx = guesses.length;
+    if (idx >= MAX_GUESSES) return;
+    var ref = rowRefs[idx];
+    for (var i = 0; i < CODE_LEN; i++) {
+      ref.pegs[i].style.background = current[i] === null ? '' : COLORS[current[i]].css;
+      ref.pegs[i].classList.toggle('selected', i === selectedSlot);
+    }
+  }
+
+  function updateCheck() {
+    checkBtn.disabled = finished || !isComplete();
+  }
+
+  function updateHud() {
+    attemptsEl.textContent = MAX_GUESSES - guesses.length;
+    modeLabelEl.textContent = mode === 'solo' ? 'Solo' : '2 players';
+  }
+
+  checkBtn.addEventListener('click', submitGuess);
+
+  function submitGuess() {
+    if (finished || !isComplete()) return;
+
+    var res = scoreGuess(current, code);
+    var ref = rowRefs[guesses.length];
+
+    for (var i = 0; i < CODE_LEN; i++) {
+      ref.pegs[i].style.background = COLORS[current[i]].css;
+      ref.pegs[i].classList.remove('selected');
+    }
+    for (var d = 0; d < CODE_LEN; d++) {
+      if (d < res.exact) ref.dots[d].classList.add('exact');
+      else if (d < res.exact + res.near) ref.dots[d].classList.add('near');
+    }
+    ref.row.classList.remove('active');
+    ref.row.classList.add('done');
+
+    guesses.push({ pegs: current.slice(), exact: res.exact, near: res.near });
+    updateHud();
+
+    if (res.exact === CODE_LEN) { endGame(true); return; }
+    if (guesses.length >= MAX_GUESSES) { endGame(false); return; }
+
+    current = emptyRow();
+    selectedSlot = 0;
+    rowRefs[guesses.length].row.classList.add('active');
+    renderActiveRow();
+    updateCheck();
+  }
+
+  function renderSecret(reveal) {
+    var slots = secretSlotsEl.children;
+    for (var i = 0; i < CODE_LEN; i++) {
+      if (reveal) {
+        slots[i].style.background = COLORS[code[i]].css;
+        slots[i].textContent = '';
+      } else {
+        slots[i].style.background = '';
+        slots[i].textContent = '?';
+      }
+    }
+  }
+
+  function codeChipsHTML() {
+    var h = '';
+    for (var i = 0; i < CODE_LEN; i++) {
+      h += '<span class="chip" style="background:' + COLORS[code[i]].css + '"></span>';
+    }
+    return h;
+  }
+
+  function endGame(won) {
+    finished = true;
+    renderSecret(true);
+    updateCheck();
+
+    var guesserText = mode === 'solo' ? 'You' : 'Player ' + (creator === 1 ? 2 : 1);
+    var n = guesses.length;
+    var title, text;
+    if (won) {
+      title = 'Cracked!';
+      text = guesserText + ' cracked the code in <strong>' + n + '</strong> guess' + (n === 1 ? '' : 'es') + '.<br>' + codeChipsHTML();
+    } else {
+      title = 'Out of guesses';
+      text = (mode === 'solo' ? 'The code was:' : guesserText + ' didn\'t crack it. The code was:') + '<br>' + codeChipsHTML();
+    }
+
+    showOverlay({
+      title: title,
+      text: text,
+      primaryLabel: 'Play again',
+      onPrimary: function() {
+        hideOverlay();
+        if (mode === 'solo') {
+          code = randomCode();
+          startBoard();
+        } else {
+          creator = creator === 1 ? 2 : 1;
+          startCreate();
+        }
+      },
+      secondaryLabel: 'Change mode',
+      onSecondary: function() {
+        hideOverlay();
+        goHome();
+      }
+    });
+  }
+
+  function goHome() {
+    mode = null;
+    modeLabelEl.textContent = '—';
+    attemptsEl.textContent = MAX_GUESSES;
+    showScreen('setup');
+  }
+
+  document.querySelector('.new-game-btn').addEventListener('click', function() {
+    hideOverlay();
+    goHome();
+  });
+
+  /* ---------------- keyboard ---------------- */
+
+  document.addEventListener('keydown', function(e) {
+    if (overlayEl.classList.contains('visible')) return;
+    if (activeScreen !== 'board' && activeScreen !== 'create') return;
+
+    var render = activeScreen === 'board' ? renderActiveRow : renderCreate;
+
+    if (e.key >= '1' && e.key <= String(COLORS.length)) {
+      if (activeScreen === 'board') onBoardPick(Number(e.key) - 1);
+      else onCreatePick(Number(e.key) - 1);
+    } else if (e.key === 'Backspace' || e.key === 'Delete') {
+      current[selectedSlot] = null;
+      render();
+      updateCheck();
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      var d = e.key === 'ArrowLeft' ? -1 : 1;
+      selectedSlot = (selectedSlot + d + CODE_LEN) % CODE_LEN;
+      render();
+      e.preventDefault();
+    } else if (e.key === 'Enter') {
+      if (activeScreen === 'board' && !checkBtn.disabled) submitGuess();
+      else if (activeScreen === 'create' && !confirmCreateBtn.disabled) confirmCreateBtn.click();
+    }
+  });
+})();
+</script>
+</body>
+</html>

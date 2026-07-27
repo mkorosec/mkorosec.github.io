@@ -146,6 +146,19 @@ body {
   line-height: 1.5;
 }
 
+.section-title {
+  grid-column: 1 / -1;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  padding-top: 12px;
+  padding-bottom: 4px;
+}
+
+.section-title:first-child { padding-top: 0; }
+
 .card.coming-soon {
   opacity: 0.45;
   cursor: default;
@@ -184,6 +197,8 @@ body {
   </div>
 
   <div class="grid">
+
+    <div class="section-title">Singleplayer</div>
 
     <a class="card" href="sudoku.html">
       <div class="card-icon">
@@ -229,6 +244,22 @@ body {
       <p>Fill the grid so each run sums to its clue.</p>
     </a>
 
+    <div class="section-title">Multiplayer</div>
+
+    <a class="card" href="chat.html">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          <path d="M13 8H7M17 12H7" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="card-header">
+        <span class="card-title">Offline Chat</span>
+        <span class="card-badge">LAN</span>
+      </div>
+      <p>Chat with nearby people. No internet needed.</p>
+    </a>
+
     <div class="card coming-soon" aria-disabled="true">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -260,8 +291,36 @@ body {
       <p>Merge tiles to reach 2048.</p>
     </a>
 
+    <div class="section-title">Hot-seat</div>
+
+    <a class="card" href="mastermind.html">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="4.8" cy="14" r="2.2"/>
+          <circle cx="10.4" cy="14" r="2.2"/>
+          <circle cx="16" cy="14" r="2.2"/>
+          <circle cx="21.6" cy="14" r="2.2"/>
+          <circle cx="9" cy="6" r="1.1" fill="currentColor" stroke="none"/>
+          <circle cx="12.5" cy="6" r="1.1" fill="currentColor" stroke="none" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="card-header">
+        <span class="card-title">Mastermind</span>
+        <span class="card-badge">1–2 players</span>
+      </div>
+      <p>Crack the 4-color code. Pass &amp; play.</p>
+    </a>
+
   </div>
 </div>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('sw.js');
+  });
+}
+</script>
 
 </body>
 </html>
