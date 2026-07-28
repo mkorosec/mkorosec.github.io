@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Games">
+  <rect width="512" height="512" rx="112" fill="#0b0905"/>
+  <g transform="translate(106 106)">
+    <!-- 3x3 puzzle grid: filled cells spell a diagonal, echoing sudoku / nonogram / minesweeper -->
+    <rect x="0"   y="0"   width="88" height="88" rx="16" fill="#ce8900"/>
+    <rect x="106" y="0"   width="88" height="88" rx="16" fill="none" stroke="#4a3a18" stroke-width="10"/>
+    <rect x="212" y="0"   width="88" height="88" rx="16" fill="none" stroke="#4a3a18" stroke-width="10"/>
+    <rect x="0"   y="106" width="88" height="88" rx="16" fill="none" stroke="#4a3a18" stroke-width="10"/>
+    <rect x="106" y="106" width="88" height="88" rx="16" fill="#ce8900"/>
+    <rect x="212" y="106" width="88" height="88" rx="16" fill="none" stroke="#4a3a18" stroke-width="10"/>
+    <rect x="0"   y="212" width="88" height="88" rx="16" fill="none" stroke="#4a3a18" stroke-width="10"/>
+    <rect x="106" y="212" width="88" height="88" rx="16" fill="none" stroke="#4a3a18" stroke-width="10"/>
+    <rect x="212" y="212" width="88" height="88" rx="16" fill="#ce8900"/>
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Games">
+  <!-- Full bleed: launchers crop to a circle/squircle, so keep art inside the inner 80% safe zone. -->
+  <rect width="512" height="512" fill="#0b0905"/>
+  <g transform="translate(141 141)">
+    <rect x="0"   y="0"   width="66" height="66" rx="12" fill="#ce8900"/>
+    <rect x="82"  y="0"   width="66" height="66" rx="12" fill="none" stroke="#4a3a18" stroke-width="8"/>
+    <rect x="164" y="0"   width="66" height="66" rx="12" fill="none" stroke="#4a3a18" stroke-width="8"/>
+    <rect x="0"   y="82"  width="66" height="66" rx="12" fill="none" stroke="#4a3a18" stroke-width="8"/>
+    <rect x="82"  y="82"  width="66" height="66" rx="12" fill="#ce8900"/>
+    <rect x="164" y="82"  width="66" height="66" rx="12" fill="none" stroke="#4a3a18" stroke-width="8"/>
+    <rect x="0"   y="164" width="66" height="66" rx="12" fill="none" stroke="#4a3a18" stroke-width="8"/>
+    <rect x="82"  y="164" width="66" height="66" rx="12" fill="none" stroke="#4a3a18" stroke-width="8"/>
+    <rect x="164" y="164" width="66" height="66" rx="12" fill="#ce8900"/>
+  </g>
+</svg>

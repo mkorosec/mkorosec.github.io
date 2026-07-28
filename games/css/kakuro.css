@@ -1,0 +1,94 @@
+.kakuro-board {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px solid var(--line-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-sunken);
+  container-type: inline-size;
+}
+
+.kakuro-cell {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font);
+  font-variant-numeric: tabular-nums;
+  padding: 0;
+}
+
+.kakuro-cell.is-block { background: var(--surface-sunken); }
+
+.kakuro-cell.is-open {
+  background: var(--surface);
+  border: none;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--accent);
+  font-size: clamp(0.8rem, 4.6cqi, 1.35rem);
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-appearance: none;
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.kakuro-cell.is-open.is-run { background: var(--highlight-soft); }
+.kakuro-cell.is-open.is-selected { background: var(--selection); color: oklch(1 0 0); }
+.kakuro-cell.is-open.is-error { background: var(--danger-surface); color: var(--danger); }
+.kakuro-cell.is-open.is-selected.is-error { background: var(--danger); color: oklch(1 0 0); }
+
+/* The diagonal that separates the down clue (upper right) from the across
+   clue (lower left). */
+.kakuro-clue::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top right,
+    transparent calc(50% - 0.6px), var(--line-strong) 50%, transparent calc(50% + 0.6px));
+}
+
+.kakuro-clue span {
+  position: absolute;
+  font-size: clamp(0.42rem, 2.3cqi, 0.72rem);
+  font-weight: 700;
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+.kakuro-clue .down   { top: 9%; right: 9%; }
+.kakuro-clue .across { bottom: 9%; left: 9%; }
+
+.kakuro-notes {
+  position: absolute;
+  inset: 1px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  pointer-events: none;
+}
+
+.kakuro-notes span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.32rem, 1.5cqi, 0.55rem);
+  color: var(--text-dim);
+  line-height: 1;
+}
+
+.kakuro-cell.is-selected .kakuro-notes span { color: oklch(1 0 0 / 0.8); }
+
+.combo-help {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  text-align: center;
+  min-height: 1.4em;
+  line-height: 1.45;
+}
+
+.combo-help strong { color: var(--accent); font-variant-numeric: tabular-nums; }

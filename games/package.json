@@ -1,0 +1,15 @@
+{
+  "name": "games",
+  "private": true,
+  "type": "module",
+  "description": "Offline puzzle games. No dependencies; Node is used only for the build tools and tests.",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "check": "node tools/build.mjs --check",
+    "words": "node tools/build-wordlists.mjs",
+    "test": "node --test \"test/*.test.js\"",
+    "smoke": "node tools/smoke.mjs",
+    "offline": "node tools/offline-check.mjs",
+    "serve": "node tools/serve.mjs"
+  }
+}

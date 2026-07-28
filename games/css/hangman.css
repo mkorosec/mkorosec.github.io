@@ -1,0 +1,61 @@
+.hm-stage {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.hm-stage svg {
+  width: min(240px, 60vw);
+  height: auto;
+  stroke: var(--text-secondary);
+  stroke-width: 3;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.hm-stage .hm-body { stroke: var(--accent); }
+
+.hm-stage .hm-part {
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+
+.hm-stage .hm-part.is-shown { opacity: 1; }
+
+.hm-word {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  width: 100%;
+}
+
+.hm-slot {
+  min-width: 1.6em;
+  padding-bottom: 4px;
+  border-bottom: 3px solid var(--line-strong);
+  font-size: clamp(1.4rem, 8vw, 2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  line-height: 1.15;
+}
+
+.hm-slot.is-missed { color: var(--danger); border-bottom-color: var(--danger); }
+
+.hm-lives {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.hm-life {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--danger);
+  opacity: 0.22;
+}
+
+.hm-life.is-lost { opacity: 1; }

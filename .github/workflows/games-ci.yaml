@@ -1,0 +1,51 @@
+name: games
+
+on:
+  push:
+    paths:
+      - 'games/**'
+      - '.github/workflows/games-ci.yaml'
+  pull_request:
+    paths:
+      - 'games/**'
+      - '.github/workflows/games-ci.yaml'
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: games
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Puzzle generators and word lists. Catches ambiguous Kakuro boards,
+      # mislabelled Sudoku difficulty and unguessable Wordle answers.
+      - name: Unit tests
+        run: npm test
+
+      # The committed HTML, manifest and service worker are generated. If a
+      # game was added without rebuilding, sw.js would ship a stale precache
+      # list and the app would break offline.
+      - name: Generated files are up to date
+        run: npm run check
+
+      # Loads every page in Chromium and fails on any console error, which is
+      # the only way to catch a broken import path or a null element.
+      - name: Smoke test pages
+        run: npm run smoke
+        env:
+          # Preinstalled on the GitHub-hosted Ubuntu image.
+          CHROME: google-chrome
+
+      # The whole point of the app is that it works with the radios off.
+      # Installs the service worker, cuts the network, then reloads.
+      - name: Offline check
+        run: npm run offline
+        env:
+          CHROME: google-chrome

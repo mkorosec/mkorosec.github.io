@@ -1,0 +1,153 @@
+.wordle-board {
+  display: grid;
+  gap: 5px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 330px;
+}
+
+.wordle-row {
+  display: grid;
+  gap: 5px;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+.wordle-tile {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: clamp(1.1rem, 7vw, 1.9rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: transparent;
+  user-select: none;
+}
+
+.wordle-tile.is-filled { border-color: var(--line-strong); }
+.wordle-tile.is-active { border-color: var(--accent); }
+
+.wordle-tile.correct { background: var(--wordle-correct); border-color: var(--wordle-correct); color: #fff; }
+.wordle-tile.present { background: var(--wordle-present); border-color: var(--wordle-present); color: #fff; }
+.wordle-tile.absent  { background: var(--wordle-absent);  border-color: var(--wordle-absent);  color: #fff; }
+
+:root {
+  --wordle-correct: oklch(0.58 0.16 145);
+  --wordle-present: oklch(0.70 0.14 85);
+  --wordle-absent:  oklch(0.38 0.01 85);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --wordle-correct: oklch(0.56 0.15 145);
+    --wordle-present: oklch(0.66 0.14 80);
+    --wordle-absent:  oklch(0.62 0.01 85);
+  }
+}
+
+:root[data-theme="light"] {
+  --wordle-correct: oklch(0.56 0.15 145);
+  --wordle-present: oklch(0.66 0.14 80);
+  --wordle-absent:  oklch(0.62 0.01 85);
+}
+
+/* Colour-blind palette: orange/blue rather than green/yellow, which are the
+   two hues most commonly confused. */
+:root.cb {
+  --wordle-correct: oklch(0.62 0.19 42);
+  --wordle-present: oklch(0.58 0.16 250);
+  --wordle-absent:  oklch(0.42 0.01 85);
+}
+
+:root.cb .wordle-tile.correct::after,
+:root.cb .key.correct::after { content: "▲"; font-size: 0.5em; margin-left: 0.15em; }
+:root.cb .wordle-tile.present::after,
+:root.cb .key.present::after { content: "●"; font-size: 0.5em; margin-left: 0.15em; }
+
+@keyframes tile-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.wordle-row.is-invalid { animation: tile-shake 400ms var(--ease); }
+
+@keyframes tile-flip {
+  0%   { transform: rotateX(0); }
+  50%  { transform: rotateX(90deg); }
+  100% { transform: rotateX(0); }
+}
+
+.wordle-tile.is-revealing { animation: tile-flip 480ms ease both; }
+
+@keyframes tile-bounce {
+  0%, 100% { transform: translateY(0); }
+  40%      { transform: translateY(-16px); }
+  60%      { transform: translateY(-4px); }
+}
+
+.wordle-tile.is-winning { animation: tile-bounce 520ms var(--ease) both; }
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.key {
+  flex: 1;
+  min-width: 0;
+  max-width: 44px;
+  height: var(--tap);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-raised);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+  -webkit-appearance: none;
+}
+
+.key.is-wide { flex: 1.6; max-width: 68px; font-size: 0.6875rem; }
+.key.correct { background: var(--wordle-correct); color: #fff; }
+.key.present { background: var(--wordle-present); color: #fff; }
+.key.absent  { background: var(--wordle-absent);  color: #fff; opacity: 0.75; }
+
+.key svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; }
+
+.wordle-controls {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.share-grid {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 1.05rem;
+  line-height: 1.15;
+  letter-spacing: 2px;
+  text-align: center;
+  margin: var(--space-3) 0;
+}

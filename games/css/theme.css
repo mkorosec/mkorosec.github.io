@@ -1,0 +1,214 @@
+/* Design tokens, typography and motion policy.
+   Loaded by every page before ui.css. */
+
+/* Inter, self-hosted. The app must work with the radios off, so no font CDN.
+   latin-ext carries c/s/z with carons for the Slovenian word lists and only
+   downloads when such a glyph is actually rendered. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/inter-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+                 U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+                 U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/inter-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                 U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --- dark (default) ------------------------------------------------------ */
+:root {
+  color-scheme: dark;
+
+  --bg:              oklch(0.14  0.010 85);
+  --surface:         oklch(0.17  0.008 85);
+  --surface-raised:  oklch(0.20  0.008 85);
+  --surface-sunken:  oklch(0.115 0.008 85);
+
+  --text-primary:    oklch(0.93  0.005 85);
+  --text-secondary:  oklch(0.72  0.008 85);
+  --text-dim:        oklch(0.615 0.011 85);
+  --text-on-accent:  oklch(0.15  0.010 85);
+
+  --accent:          oklch(0.72  0.150 80);
+  --accent-hover:    oklch(0.78  0.150 80);
+  --accent-surface:  oklch(0.24  0.035 80);
+  --accent-line:     oklch(0.42  0.090 80);
+
+  --danger:          oklch(0.68  0.170 25);
+  --danger-surface:  oklch(0.26  0.060 25);
+  --success:         oklch(0.72  0.160 150);
+  --info:            oklch(0.70  0.130 240);
+
+  --line:            oklch(0.26  0.010 85);
+  --line-strong:     oklch(0.42  0.020 85);
+
+  --selection:       oklch(0.50  0.140 80);
+  --highlight-soft:  oklch(0.19  0.015 80);
+  --highlight-peer:  oklch(0.22  0.040 80);
+
+  --scrim:           oklch(0 0 0 / 0.62);
+  --shadow-dialog:   0 24px 60px oklch(0 0 0 / 0.55);
+}
+
+/* --- light --------------------------------------------------------------- */
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+
+    --bg:              oklch(0.985 0.003 85);
+    --surface:         oklch(1     0     0);
+    --surface-raised:  oklch(0.965 0.004 85);
+    --surface-sunken:  oklch(0.945 0.005 85);
+
+    --text-primary:    oklch(0.24  0.010 85);
+    --text-secondary:  oklch(0.44  0.012 85);
+    --text-dim:        oklch(0.53  0.012 85);
+    --text-on-accent:  oklch(1     0     0);
+
+    --accent:          oklch(0.52  0.150 62);
+    --accent-hover:    oklch(0.45  0.150 62);
+    --accent-surface:  oklch(0.95  0.035 70);
+    --accent-line:     oklch(0.78  0.090 70);
+
+    --danger:          oklch(0.51  0.190 27);
+    --danger-surface:  oklch(0.94  0.045 27);
+    --success:         oklch(0.48  0.150 150);
+    --info:            oklch(0.48  0.140 250);
+
+    --line:            oklch(0.90  0.005 85);
+    --line-strong:     oklch(0.74  0.010 85);
+
+    --selection:       oklch(0.62  0.140 62);
+    --highlight-soft:  oklch(0.955 0.012 70);
+    --highlight-peer:  oklch(0.915 0.035 70);
+
+    --scrim:           oklch(0.30 0.01 85 / 0.42);
+    --shadow-dialog:   0 24px 60px oklch(0.3 0.02 85 / 0.22);
+  }
+}
+
+/* Explicit override from the theme toggle. Higher specificity than the media
+   query above, so it wins in both directions regardless of source order. */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg:              oklch(0.985 0.003 85);
+  --surface:         oklch(1     0     0);
+  --surface-raised:  oklch(0.965 0.004 85);
+  --surface-sunken:  oklch(0.945 0.005 85);
+
+  --text-primary:    oklch(0.24  0.010 85);
+  --text-secondary:  oklch(0.44  0.012 85);
+  --text-dim:        oklch(0.53  0.012 85);
+  --text-on-accent:  oklch(1     0     0);
+
+  --accent:          oklch(0.52  0.150 62);
+  --accent-hover:    oklch(0.45  0.150 62);
+  --accent-surface:  oklch(0.95  0.035 70);
+  --accent-line:     oklch(0.78  0.090 70);
+
+  --danger:          oklch(0.51  0.190 27);
+  --danger-surface:  oklch(0.94  0.045 27);
+  --success:         oklch(0.48  0.150 150);
+  --info:            oklch(0.48  0.140 250);
+
+  --line:            oklch(0.90  0.005 85);
+  --line-strong:     oklch(0.74  0.010 85);
+
+  --selection:       oklch(0.62  0.140 62);
+  --highlight-soft:  oklch(0.955 0.012 70);
+  --highlight-peer:  oklch(0.915 0.035 70);
+
+  --scrim:           oklch(0.30 0.01 85 / 0.42);
+  --shadow-dialog:   0 24px 60px oklch(0.3 0.02 85 / 0.22);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg:              oklch(0.14  0.010 85);
+  --surface:         oklch(0.17  0.008 85);
+  --surface-raised:  oklch(0.20  0.008 85);
+  --surface-sunken:  oklch(0.115 0.008 85);
+
+  --text-primary:    oklch(0.93  0.005 85);
+  --text-secondary:  oklch(0.72  0.008 85);
+  --text-dim:        oklch(0.615 0.011 85);
+  --text-on-accent:  oklch(0.15  0.010 85);
+
+  --accent:          oklch(0.72  0.150 80);
+  --accent-hover:    oklch(0.78  0.150 80);
+  --accent-surface:  oklch(0.24  0.035 80);
+  --accent-line:     oklch(0.42  0.090 80);
+
+  --danger:          oklch(0.68  0.170 25);
+  --danger-surface:  oklch(0.26  0.060 25);
+  --success:         oklch(0.72  0.160 150);
+  --info:            oklch(0.70  0.130 240);
+
+  --line:            oklch(0.26  0.010 85);
+  --line-strong:     oklch(0.42  0.020 85);
+
+  --selection:       oklch(0.50  0.140 80);
+  --highlight-soft:  oklch(0.19  0.015 80);
+  --highlight-peer:  oklch(0.22  0.040 80);
+
+  --scrim:           oklch(0 0 0 / 0.62);
+  --shadow-dialog:   0 24px 60px oklch(0 0 0 / 0.55);
+}
+
+/* --- non-colour tokens --------------------------------------------------- */
+:root {
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          system-ui, sans-serif;
+
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 14px;
+
+  /* 44px is the minimum comfortable touch target; every interactive control
+     in ui.css is sized from this. */
+  --tap: 44px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+
+  --dur-fast: 120ms;
+  --dur:      180ms;
+  --dur-slow: 300ms;
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+
+  /* Notch / home-indicator padding, 0 on hardware without insets. */
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-right:  env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left:   env(safe-area-inset-left, 0px);
+}
+
+/* Honour the OS "reduce motion" setting everywhere at once, so individual
+   games never have to remember to. Animations collapse to ~instant rather
+   than being removed, which keeps animationend listeners firing. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  :root { --dur-fast: 0.01ms; --dur: 0.01ms; --dur-slow: 0.01ms; }
+}

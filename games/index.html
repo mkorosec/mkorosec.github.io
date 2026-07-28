@@ -2,325 +2,164 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Games</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg: oklch(0.14 0.01 85);
-  --surface: oklch(0.17 0.008 85);
-  --surface-raised: oklch(0.20 0.008 85);
-  --text-primary: oklch(0.90 0.005 85);
-  --text-secondary: oklch(0.58 0.01 85);
-  --text-dim: oklch(0.38 0.01 85);
-  --accent: oklch(0.68 0.17 80);
-  --accent-dim: oklch(0.45 0.12 80);
-  --line: oklch(0.23 0.01 85);
-  --radius: 8px;
-  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-}
-
-html { height: 100%; }
-
-body {
-  font-family: var(--font);
-  font-optical-sizing: auto;
-  background: var(--bg);
-  color: var(--text-primary);
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 24px;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.page {
-  width: 100%;
-  max-width: 720px;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.header h1 {
-  font-size: 1.75rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-.header p {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
-}
-
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 20px;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  transition: border-color 200ms ease-out, background 200ms ease-out, transform 200ms ease-out;
-}
-
-.card:hover {
-  border-color: oklch(0.38 0.03 85);
-  background: var(--surface-raised);
-  transform: translateY(-1px);
-}
-
-.card:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.card-icon {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: oklch(0.22 0.025 80);
-  border-radius: 6px;
-  color: var(--accent);
-  font-size: 1.25rem;
-}
-
-.card-icon svg {
-  width: 22px;
-  height: 22px;
-  stroke: var(--accent);
-}
-
-.card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.card-title {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.card-badge {
-  font-size: 0.625rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-dim);
-  background: var(--surface-raised);
-  border-radius: 3px;
-  padding: 2px 6px;
-  flex-shrink: 0;
-}
-
-.card p {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-.section-title {
-  grid-column: 1 / -1;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-dim);
-  padding-top: 12px;
-  padding-bottom: 4px;
-}
-
-.section-title:first-child { padding-top: 0; }
-
-.card.coming-soon {
-  opacity: 0.45;
-  cursor: default;
-}
-
-.card.coming-soon:hover {
-  border-color: var(--line);
-  background: var(--surface);
-  transform: none;
-}
-
-.card.coming-soon .card-icon {
-  background: oklch(0.18 0.005 85);
-  color: var(--text-dim);
-}
-
-.card.coming-soon .card-icon svg {
-  stroke: var(--text-dim);
-}
-
-@media (max-width: 480px) {
-  body { padding: 24px 16px; }
-  .page { gap: 28px; }
-  .grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .card { padding: 16px; gap: 8px; }
-  .header h1 { font-size: 1.5rem; }
-}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Offline puzzle games that work with the radios off. No install, no account, no network.">
+<meta name="theme-color" content="#0b0905" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfaf8" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
+<title>Games · offline puzzles</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Games">
+<meta property="og:title" content="Games · offline puzzles">
+<meta property="og:description" content="Offline puzzle games that work with the radios off. No install, no account, no network.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/ui.css">
+<link rel="stylesheet" href="css/hub.css">
+<script src="js/core/boot.js"></script>
 </head>
 <body>
-
-<div class="page">
-  <div class="header">
+<div class="app app--wide">
+  <header class="hub-header">
     <h1>Games</h1>
-    <p>Offline games for the plane. Open one, play. Nothing to install.</p>
-  </div>
+    <p>Offline puzzle games that work with the radios off. No install, no account, no network.</p>
+    <div class="hub-actions" id="hub-actions"></div>
+  </header>
 
-  <div class="grid">
+  <section id="continue-section" hidden>
+    <h2 class="section-title">Continue</h2>
+    <div class="grid" id="continue-grid"></div>
+  </section>
 
-    <div class="section-title">Singleplayer</div>
+  <main>
 
-    <a class="card" href="sudoku.html">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>
-        </svg>
+      <h2 class="section-title">Puzzles</h2>
+      <div class="grid">
+        <a class="card" href="sudoku.html">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg></span>
+          <span class="card-head">
+            <span class="card-title">Sudoku</span>
+            <span class="card-badge">Daily</span>
+          </span>
+          <span class="card-blurb">Fill the grid. Difficulty is rated by the technique it needs, not the clue count.</span>
+        </a>
+        <a class="card" href="nonogram.html">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/><rect x="10" y="10" width="4" height="4" fill="currentColor" stroke="none"/><rect x="15" y="15" width="4" height="4" fill="currentColor" stroke="none"/><rect x="4" y="15" width="4" height="4" fill="currentColor" stroke="none"/></svg></span>
+          <span class="card-head">
+            <span class="card-title">Nonogram</span>
+            <span class="card-badge">Daily</span>
+          </span>
+          <span class="card-blurb">Reveal the hidden picture from the number clues. Never needs a guess.</span>
+        </a>
+        <a class="card" href="kakuro.html">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="8" x2="8" y2="2"/><line x1="8" y1="14" x2="14" y2="8"/><line x1="14" y1="20" x2="20" y2="14"/></svg></span>
+          <span class="card-head">
+            <span class="card-title">Kakuro</span>
+            <span class="card-badge">Daily</span>
+          </span>
+          <span class="card-blurb">Fill each run so it adds up to its clue, with no digit repeated.</span>
+        </a>
+        <a class="card" href="killer.html">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 10h7V3M14 21v-7h7" stroke-dasharray="2 2"/><path d="M10 10h4v4h-4z"/></svg></span>
+          <span class="card-head">
+            <span class="card-title">Killer Sudoku</span>
+            <span class="card-badge">3 levels</span>
+          </span>
+          <span class="card-blurb">Sudoku with cage sums instead of starting digits.</span>
+        </a>
+        <a class="card" href="minesweeper.html">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="12" r="3.2" fill="currentColor" stroke="none"/><path d="M12 5.5v1.8M12 16.7v1.8M5.5 12h1.8M16.7 12h1.8"/></svg></span>
+          <span class="card-head">
+            <span class="card-title">Minesweeper</span>
+            <span class="card-badge">No guessing</span>
+          </span>
+          <span class="card-blurb">Clear the board. Every layout is solvable by logic alone.</span>
+        </a>
       </div>
-      <div class="card-header">
-        <span class="card-title">Sudoku</span>
-        <span class="card-badge">3 levels</span>
-      </div>
-      <p>Fill the grid. Easy, medium, or hard.</p>
-    </a>
 
-    <a class="card" href="wordle.html">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="4" width="6" height="6" rx="1"/><rect x="9" y="4" width="6" height="6" rx="1"/><rect x="16" y="4" width="6" height="6" rx="1"/>
-          <rect x="2" y="11" width="6" height="6" rx="1"/><rect x="9" y="11" width="6" height="6" rx="1"/><rect x="16" y="11" width="6" height="6" rx="1"/>
-          <path d="M4 8v1" opacity="0.5"/>
-        </svg>
+      <h2 class="section-title">Words</h2>
+      <div class="grid">
+        <a class="card" href="wordle.html">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="6" height="6" rx="1"/><rect x="9" y="4" width="6" height="6" rx="1"/><rect x="16" y="4" width="6" height="6" rx="1"/><rect x="2" y="12" width="6" height="6" rx="1"/><rect x="9" y="12" width="6" height="6" rx="1"/><rect x="16" y="12" width="6" height="6" rx="1"/></svg></span>
+          <span class="card-head">
+            <span class="card-title">Wordle</span>
+            <span class="card-badge">Daily</span>
+          </span>
+          <span class="card-blurb">Guess the five-letter word in six tries. English and Slovenian.</span>
+        </a>
+        <a class="card" href="wordsearch.html">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M6.5 7.5h11M6.5 12h11M6.5 16.5h6"/><circle cx="17" cy="16.5" r="3.2"/><path d="M19.4 18.9L21.5 21"/></svg></span>
+          <span class="card-head">
+            <span class="card-title">Word Search</span>
+            <span class="card-badge">2 languages</span>
+          </span>
+          <span class="card-blurb">Find every hidden word in the grid.</span>
+        </a>
+        <a class="card" href="hangman.html">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 21h9M6.5 21V4h8"/><path d="M14.5 4v3"/><circle cx="14.5" cy="9.5" r="2.5"/><path d="M14.5 12v4.5M14.5 14l-2 2M14.5 14l2 2"/></svg></span>
+          <span class="card-head">
+            <span class="card-title">Hangman</span>
+            <span class="card-badge">2 languages</span>
+          </span>
+          <span class="card-blurb">Guess the word one letter at a time before the drawing finishes.</span>
+        </a>
       </div>
-      <div class="card-header">
-        <span class="card-title">Wordle</span>
-        <span class="card-badge">2 languages</span>
-      </div>
-      <p>Guess the 5-letter word. Six tries.</p>
-    </a>
 
-    <a class="card" href="kakuro.html">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="2" width="20" height="20" rx="2"/>
-          <line x1="2" y1="8" x2="8" y2="2"/><line x1="8" y1="14" x2="14" y2="8"/><line x1="14" y1="20" x2="20" y2="14"/>
-          <text x="15" y="6.5" font-size="5" font-weight="700" fill="currentColor" stroke="none">6</text>
-        </svg>
+      <h2 class="section-title">Cards</h2>
+      <div class="grid">
+        <a class="card" href="solitaire.html">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="12" height="16" rx="2" transform="rotate(-9 8.5 13)"/><rect x="9.5" y="4" width="12" height="16" rx="2"/><path d="M15.5 9.5l2 2.4 2-2.4a1.6 1.6 0 10-2-1.9 1.6 1.6 0 10-2 1.9z"/></svg></span>
+          <span class="card-head">
+            <span class="card-title">Solitaire</span>
+            <span class="card-badge">Klondike</span>
+          </span>
+          <span class="card-blurb">Klondike, draw one or three. Tap a card, tap where it goes.</span>
+        </a>
       </div>
-      <div class="card-header">
-        <span class="card-title">Kakuro</span>
-        <span class="card-badge">3 levels</span>
-      </div>
-      <p>Fill the grid so each run sums to its clue.</p>
-    </a>
 
-    <div class="section-title">Multiplayer</div>
+      <h2 class="section-title">Arcade</h2>
+      <div class="grid">
+        <a class="card" href="2048.html">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="8" height="8" rx="1.5"/><rect x="14" y="2" width="8" height="8" rx="1.5"/><rect x="2" y="14" width="8" height="8" rx="1.5"/><rect x="14" y="14" width="8" height="8" rx="1.5"/></svg></span>
+          <span class="card-head">
+            <span class="card-title">2048</span>
+            <span class="card-badge">Undo</span>
+          </span>
+          <span class="card-blurb">Slide and merge tiles to reach 2048. Three board sizes.</span>
+        </a>
+      </div>
 
-    <a class="card" href="chat.html">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-          <path d="M13 8H7M17 12H7" opacity="0.5"/>
-        </svg>
+      <h2 class="section-title">Two players</h2>
+      <div class="grid">
+        <a class="card" href="mastermind.html">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="4.8" cy="14" r="2.2"/><circle cx="10.4" cy="14" r="2.2"/><circle cx="16" cy="14" r="2.2"/><circle cx="21.6" cy="14" r="2.2"/><circle cx="9" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="12.5" cy="6" r="1.1" fill="currentColor" stroke="none" opacity="0.5"/></svg></span>
+          <span class="card-head">
+            <span class="card-title">Mastermind</span>
+            <span class="card-badge">Pass &amp; play</span>
+          </span>
+          <span class="card-blurb">Crack the colour code, alone or against someone next to you.</span>
+        </a>
+        <a class="card" href="chat.html">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><path d="M13 8H7M17 12H7" opacity="0.5"/></svg></span>
+          <span class="card-head">
+            <span class="card-title">Offline Chat</span>
+            <span class="card-badge">Same Wi-Fi</span>
+          </span>
+          <span class="card-blurb">Pair by QR code and chat with no server in between.</span>
+        </a>
       </div>
-      <div class="card-header">
-        <span class="card-title">Offline Chat</span>
-        <span class="card-badge">LAN</span>
-      </div>
-      <p>Chat with nearby people. No internet needed.</p>
-    </a>
+  </main>
 
-    <div class="card coming-soon" aria-disabled="true">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="2" width="20" height="20" rx="2"/>
-          <circle cx="8" cy="8" r="1" fill="currentColor"/><circle cx="16" cy="14" r="1" fill="currentColor"/>
-          <circle cx="12" cy="18" r="1" fill="currentColor"/>
-        </svg>
-      </div>
-      <div class="card-header">
-        <span class="card-title">Minesweeper</span>
-        <span class="card-badge">Coming soon</span>
-      </div>
-      <p>Clear the board. Avoid the mines.</p>
-    </div>
-
-    <a class="card" href="2048.html">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="2" width="8" height="8" rx="1.5"/>
-          <rect x="14" y="2" width="8" height="8" rx="1.5"/>
-          <rect x="2" y="14" width="8" height="8" rx="1.5"/>
-          <rect x="14" y="14" width="8" height="8" rx="1.5"/>
-        </svg>
-      </div>
-      <div class="card-header">
-        <span class="card-title">2048</span>
-        <span class="card-badge">Puzzle</span>
-      </div>
-      <p>Merge tiles to reach 2048.</p>
-    </a>
-
-    <div class="section-title">Hot-seat</div>
-
-    <a class="card" href="mastermind.html">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="4.8" cy="14" r="2.2"/>
-          <circle cx="10.4" cy="14" r="2.2"/>
-          <circle cx="16" cy="14" r="2.2"/>
-          <circle cx="21.6" cy="14" r="2.2"/>
-          <circle cx="9" cy="6" r="1.1" fill="currentColor" stroke="none"/>
-          <circle cx="12.5" cy="6" r="1.1" fill="currentColor" stroke="none" opacity="0.5"/>
-        </svg>
-      </div>
-      <div class="card-header">
-        <span class="card-title">Mastermind</span>
-        <span class="card-badge">1–2 players</span>
-      </div>
-      <p>Crack the 4-color code. Pass &amp; play.</p>
-    </a>
-
-  </div>
+  <footer class="hub-footer">
+    <p>Everything runs on your device. No accounts, no tracking, no network needed once loaded.</p>
+  </footer>
 </div>
-
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('sw.js');
-  });
-}
-</script>
-
+<script type="module" src="js/hub.js"></script>
 </body>
 </html>

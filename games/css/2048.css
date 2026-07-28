@@ -1,0 +1,76 @@
+.t2048-frame {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  aspect-ratio: 1;
+  background: var(--surface-sunken);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--gap);
+  touch-action: none;
+  --gap: 8px;
+}
+
+.t2048-grid,
+.t2048-layer {
+  position: absolute;
+  inset: var(--gap);
+  display: grid;
+  grid-template-columns: repeat(var(--n), 1fr);
+  grid-template-rows: repeat(var(--n), 1fr);
+  gap: var(--gap);
+}
+
+.t2048-layer { pointer-events: none; }
+
+.t2048-cell {
+  background: var(--surface);
+  border-radius: var(--radius);
+}
+
+/* Tiles are positioned by transform rather than by grid slot, so a move is a
+   real slide instead of a repaint. */
+.t2048-tile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--size);
+  height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  will-change: transform;
+  transition: transform 110ms cubic-bezier(0.25, 0.6, 0.3, 1);
+}
+
+@keyframes tile-appear {
+  from { transform: var(--pos) scale(0.2); opacity: 0; }
+  to   { transform: var(--pos) scale(1); opacity: 1; }
+}
+
+@keyframes tile-merge {
+  0%   { transform: var(--pos) scale(1); }
+  45%  { transform: var(--pos) scale(1.18); }
+  100% { transform: var(--pos) scale(1); }
+}
+
+.t2048-tile.is-new { animation: tile-appear 150ms var(--ease) both; }
+.t2048-tile.is-merged { animation: tile-merge 190ms var(--ease); }
+
+.t2048-hint {
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.t2048-win {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  flex-wrap: wrap;
+}

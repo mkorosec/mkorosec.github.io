@@ -1,0 +1,3 @@
+# Chromium profiles created by the headless test harnesses.
+.smoke-profile/
+.offline-profile/
