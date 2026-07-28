@@ -84,6 +84,9 @@ await send('Page.enable');
 await send('Runtime.enable');
 await send('Network.enable');
 
+// Same reason as the smoke test: no third-party requests from CI.
+await send('Network.setBlockedURLs', { urls: ['*gc.zgo.at*', '*goatcounter.com*'] });
+
 // Warm the cache.
 console.log('  installing service worker…');
 await send('Page.navigate', { url: `http://localhost:${PORT}/index.html` });

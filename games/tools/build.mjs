@@ -41,6 +41,14 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
 
 /* --- page template -------------------------------------------------------- */
 
+/* GoatCounter: cookieless, no personal data, and its count.js skips
+   localhost and private ranges, so local runs and CI never register a hit.
+   Cross-origin, so the service worker leaves it alone (it only intercepts
+   same-origin requests) and it is deliberately not precached — offline the
+   request simply fails and the game carries on. */
+const ANALYTICS = `<script data-goatcounter="https://mkorosec.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>`;
+
 function head({ title, description, css = [], canonical }) {
   const sheets = ['css/theme.css', 'css/ui.css', ...css]
     .map((href) => `<link rel="stylesheet" href="${href}">`).join('\n');
@@ -64,7 +72,8 @@ function head({ title, description, css = [], canonical }) {
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:type" content="website">
 ${canonical ? `<meta property="og:url" content="${canonical}">\n` : ''}${sheets}
-<script src="js/core/boot.js"></script>`;
+<script src="js/core/boot.js"></script>
+${ANALYTICS}`;
 }
 
 function gamePage(game) {

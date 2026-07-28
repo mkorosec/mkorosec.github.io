@@ -169,6 +169,13 @@ for (const page of pages) {
   await send('Runtime.enable');
   await send('Log.enable');
   await send('Page.enable');
+  await send('Network.enable');
+
+  // Keep the run hermetic: never reach out to the analytics host. It would
+  // make CI depend on a third party, and count.js logs a warning when it
+  // decides not to count on localhost, which is not a page defect.
+  await send('Network.setBlockedURLs', { urls: ['*gc.zgo.at*', '*goatcounter.com*'] });
+
   await send('Page.navigate', { url: `${BASE}/${page.url}` });
   await delay(page.settle);
 
@@ -185,7 +192,10 @@ for (const page of pages) {
     detail = err.message;
   }
 
-  const hardProblems = problems.filter((p) => !/favicon|manifest|Download error|net::ERR_FAILED.*sw\.js/i.test(p));
+  const hardProblems = problems.filter((p) =>
+    !/favicon|manifest|Download error|net::ERR_FAILED.*sw\.js/i.test(p)
+    // Analytics is blocked above; its load failure is expected, not a defect.
+    && !/goatcounter|gc\.zgo\.at|ERR_BLOCKED_BY_CLIENT/i.test(p));
   if (hardProblems.length) ok = false;
 
   if (ok) {

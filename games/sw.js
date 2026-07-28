@@ -2,7 +2,7 @@
    CACHE is a hash of the precached bytes, so any content change invalidates
    the old cache automatically. */
 
-var CACHE = 'games-92facb76e4da';
+var CACHE = 'games-e401d0731a4f';
 
 var PRECACHE = [
   "./",
