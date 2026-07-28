@@ -126,90 +126,103 @@
   }
 
   /* ---------------------------------------------------------
-     Language rotator — the same sentence, in her languages.
-     Demonstrates the "50 languages" claim instead of asserting it.
+     Quote rotator
+     One bank of quotes, filtered per page by data-quote-set.
+     Auto-advances, pauses on hover/focus, and has explicit
+     prev / next / pause controls — WCAG 2.2.2.
 
-     Latin script only: the site ships latin + latin-ext font subsets,
-     so Cyrillic / Greek / CJK lines would fall back to a system font
-     and break the typography. See LAUNCH-CHECKLIST.md to extend.
+     Text may contain a single "|": everything after it renders
+     emphasised (red), matching the original two-tone quote style.
      --------------------------------------------------------- */
-  var LINES = [
-    ['English',         'en', 'Every language is beautiful when you sing it.'],
-    ['Slovenščina',     'sl', 'Vsak jezik je lep, ko ga zapoješ.'],
-    ['Deutsch',         'de', 'Jede Sprache ist schön, wenn man sie singt.'],
-    ['Italiano',        'it', 'Ogni lingua è bella quando la canti.'],
-    ['Español',         'es', 'Cada idioma es hermoso cuando lo cantas.'],
-    ['Português',       'pt', 'Toda língua é bonita quando você a canta.'],
-    ['Français',        'fr', 'Chaque langue est belle quand on la chante.'],
-    ['Hrvatski',        'hr', 'Svaki jezik je lijep kad ga pjevaš.'],
-    ['Bahasa Indonesia','id', 'Setiap bahasa itu indah ketika dinyanyikan.'],
-    ['Norsk',           'nb', 'Hvert språk er vakkert når du synger det.'],
-    ['Nederlands',      'nl', 'Elke taal is mooi als je hem zingt.'],
-    ['Svenska',         'sv', 'Varje språk är vackert när du sjunger det.'],
-    ['Català',          'ca', 'Cada llengua és bonica quan la cantes.'],
-    ['Čeština',         'cs', 'Každý jazyk je krásný, když ho zpíváš.'],
-    ['Slovenčina',      'sk', 'Každý jazyk je krásny, keď ho spievaš.'],
-    ['Română',          'ro', 'Fiecare limbă e frumoasă când o cânți.'],
-    ['Polski',          'pl', 'Każdy język jest piękny, gdy go śpiewasz.'],
-    ['Türkçe',          'tr', 'Her dil söylendiğinde güzeldir.'],
-    ['Kiswahili',       'sw', 'Kila lugha ni nzuri unapoiimba.'],
-    ['Afrikaans',       'af', 'Elke taal is mooi as jy dit sing.'],
-    ['Bahasa Melayu',   'ms', 'Setiap bahasa itu indah apabila dinyanyikan.']
+  var QUOTES = [
+    { s:['all','story','voice'], c:'Ramona Irgolič · 24ur, March 2025',
+      t:'Maybe not every language sounds beautiful when you speak it.|But every single one is beautiful when you sing it.' },
+    { s:['all','voice'], c:'Ramona Irgolič · 24ur, March 2025',
+      t:'I can sing in 50 languages. Of course I can’t speak them all fluently.|But I still have time.' },
+    { s:['all','story'], c:'Ramona Irgolič',
+      t:'I don’t know all these languages because I’m gifted.|It’s the fruit of hard, systematic work.' },
+    { s:['all','story'], c:'The secret pleasure of the polyglot',
+      t:'I love situations where people think I don’t speak their language.|It’s fun having control over when — and if — I reveal myself.' },
+    { s:['all','story'], c:'On the world’s 7,000 languages',
+      t:'When a language disappears, we lose not just words but a culture,|an identity, a unique perspective on what it means to be human.' },
+    { s:['all','world'], c:'Ramona Irgolič · 24ur',
+      t:'You’re never too old for new knowledge.|It’s only a lack of courage that keeps us in place.' },
+    { s:['all','story'], c:'Ramona Irgolič · Dnevnik, 2025',
+      t:'You know a language when you’re relaxed in it —|regardless of any grammatical mistake.' },
+    { s:['all','world'], c:'On one working day in Norway',
+      t:'It was quite hard to switch from one language to another.|But if you’re mentally rested, it’s no problem.' },
+    { s:['all','world'], c:'Ramona Irgolič · Dnevnik, 2025',
+      t:'Where will the road take me next?|Far.' },
+    { s:['all','record'], c:'Planet TV, 2025',
+      t:'Officially the 4th longest legs on the planet —|who wouldn’t stop at that fact?' },
+    { s:['all','record'], c:'On the measurement',
+      t:'I have a Thai modelling agency to thank —|they measured me.' },
+    { s:['all','record'], c:'Marc Forster, director · Quantum of Solace',
+      t:'Because I have long legs, he couldn’t get past me.|“Girl, I still have a film to shoot.”' },
+    { s:['all','record'], c:'Anatole Taubman on set — the word was “hvala”',
+      t:'If you give me a kiss on the cheek,|I’ll tell you a Slovenian word.' },
+    { s:['all','voice'], c:'The Wedding Music Company, Singapore',
+      t:'Her energetic stage presence and strong voice|leave the audience with great enthusiasm.' },
+    { s:['all','world','story'], c:'On Brazilian Portuguese',
+      t:'I thought: my God, I’ll never learn that.|Then I lived in Brazil for two years.' },
+    { s:['all','world'], c:'Ramona Irgolič',
+      t:'My friends say I should be twice my age,|considering everything I’ve already lived through.' }
   ];
 
-  var rot = $('.lang-rot');
-  if (rot) {
-    var lineEl   = $('.lang-rot__line', rot);
-    var nameEl   = $('[data-lang-name]', rot);
-    var idxEl    = $('[data-lang-idx]', rot);
-    var dotsEl   = $('.lang-rot__dots', rot);
-    var pauseBtn = $('[data-lang-pause]', rot);
-    var li = 0;
-    var userPaused  = reduced;    // reduced-motion visitors start paused
-    var hoverPaused = false;
+  $$('.quote-rot').forEach(function (band) {
+    var set   = band.getAttribute('data-quote-set') || 'all';
+    var bq    = $('blockquote', band);
+    var cite  = $('cite', band);
+    var idxEl = $('.quote-idx', band);
+    var pause = $('.quote-pause', band);
+    var list  = QUOTES.filter(function (q) { return q.s.indexOf(set) !== -1; });
+    if (!bq || !cite || list.length < 2) return;
 
-    LINES.forEach(function () { dotsEl.appendChild(document.createElement('i')); });
-    var dots = $$('i', dotsEl);
+    var i = 0, userPaused = reduced, hoverPaused = false;
     var pad = function (n) { return (n < 10 ? '0' : '') + n; };
 
-    var render = function (i) {
-      var L = LINES[i];
-      lineEl.textContent = L[2];
-      lineEl.setAttribute('lang', L[1]);
-      nameEl.textContent = L[0];
-      nameEl.setAttribute('lang', L[1]);
-      idxEl.textContent = pad(i + 1) + ' / ' + pad(LINES.length);
-      dots.forEach(function (d, j) { d.classList.toggle('on', j === i); });
+    var paint = function (n) {
+      var q = list[n], parts = q.t.split('|');
+      bq.innerHTML = '<span class="q-text">' + parts[0] +
+        (parts[1] ? ' <em>' + parts[1] + '</em>' : '') + '</span>';
+      cite.textContent = '— ' + q.c;
+      if (idxEl) idxEl.textContent = pad(n + 1) + ' / ' + pad(list.length);
     };
 
-    var advance = function () {
-      li = (li + 1) % LINES.length;
-      if (reduced) { render(li); return; }
-      lineEl.classList.add('is-fading');
-      setTimeout(function () { render(li); lineEl.classList.remove('is-fading'); }, 320);
+    var go = function (step) {
+      i = (i + step + list.length) % list.length;
+      if (reduced) { paint(i); return; }
+      bq.classList.add('is-fading'); cite.classList.add('is-fading');
+      setTimeout(function () {
+        paint(i);
+        bq.classList.remove('is-fading'); cite.classList.remove('is-fading');
+      }, 300);
     };
 
-    render(0);
+    paint(0);
     setInterval(function () {
       if (userPaused || hoverPaused || document.hidden) return;
-      advance();
-    }, 3200);
+      go(1);
+    }, 6000);
 
-    if (pauseBtn) {
-      var syncBtn = function () {
-        pauseBtn.setAttribute('aria-pressed', String(userPaused));
-        pauseBtn.textContent = userPaused ? 'Play' : 'Pause';
+    var prev = $('.quote-prev', band), next = $('.quote-next', band);
+    if (prev) prev.addEventListener('click', function () { go(-1); });
+    if (next) next.addEventListener('click', function () { go(1); });
+    if (pause) {
+      var sync = function () {
+        pause.setAttribute('aria-pressed', String(userPaused));
+        pause.textContent = userPaused ? 'Play' : 'Pause';
       };
-      pauseBtn.addEventListener('click', function () { userPaused = !userPaused; syncBtn(); });
-      syncBtn();
+      pause.addEventListener('click', function () { userPaused = !userPaused; sync(); });
+      sync();
     }
     ['mouseenter', 'focusin'].forEach(function (ev) {
-      rot.addEventListener(ev, function () { hoverPaused = true; });
+      band.addEventListener(ev, function () { hoverPaused = true; });
     });
     ['mouseleave', 'focusout'].forEach(function (ev) {
-      rot.addEventListener(ev, function () { hoverPaused = false; });
+      band.addEventListener(ev, function () { hoverPaused = false; });
     });
-  }
+  });
 
   /* ---------------------------------------------------------
      Lightbox gallery
@@ -271,42 +284,6 @@
       }
     });
   }
-
-  /* ---------------------------------------------------------
-     YouTube facade — load the player only when asked.
-     A bare embed pulls ~1.5 MB and sets tracking cookies on page load.
-     --------------------------------------------------------- */
-  $$('.ytf').forEach(function (el) {
-    // A facade with no video ID would be a button that does nothing. Mark it
-    // as not-yet-available and take it out of the tab order instead.
-    if (!el.getAttribute('data-yt')) {
-      el.classList.add('ytf--empty');
-      el.removeAttribute('role');
-      el.removeAttribute('tabindex');
-      el.setAttribute('aria-label', 'Video coming soon');
-      var play = $('.ytf__play', el);
-      if (play) play.remove();
-      var t = $('.ytf__title', el);
-      if (t) t.textContent = 'Video coming soon';
-      return;
-    }
-    var load = function () {
-      var id = el.getAttribute('data-yt');
-      if (!id || el.dataset.loaded) return;
-      el.dataset.loaded = '1';
-      var f = document.createElement('iframe');
-      f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
-      f.title = el.getAttribute('data-title') || 'Video';
-      f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
-      f.setAttribute('allowfullscreen', '');
-      el.innerHTML = '';
-      el.appendChild(f);
-    };
-    el.addEventListener('click', load);
-    el.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); load(); }
-    });
-  });
 
   /* ---------------------------------------------------------
      Booking form guard

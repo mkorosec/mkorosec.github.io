@@ -23,8 +23,8 @@ there is no layout shift while images load.
 | `record-5.jpg`       | 1000×1250 | 4:5  | `modelling.html`  | Behind the scenes / film set |
 | `record-6.jpg`       | 1000×1250 | 4:5  | `modelling.html`  | Recent editorial, 2025–26 |
 | `story-portrait.jpg` | 1000×1250 | 4:5  | `story.html`      | Warm candid — laughing, off duty |
-| `video-1.jpg`        | 1600×900  | 16:9 | `music.html`      | Poster for the Val 202 conversation |
-| `video-2.jpg`        | 1600×900  | 16:9 | `music.html`      | Poster for a performance video |
+| `video-1.jpg`        | 1600×900  | 16:9 | `music.html`      | Thumbnail for the Val 202 conversation card |
+| `video-2.jpg`        | 1600×900  | 16:9 | `music.html`      | Thumbnail for the YouTube channel card |
 
 ### Before you upload
 

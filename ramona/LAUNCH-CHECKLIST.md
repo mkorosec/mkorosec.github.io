@@ -51,12 +51,14 @@ See `assets/img/README.md` for the full spec table.
 
 ## 3. Video
 
-- [x] Val 202 podcast episode is live and wired up (`3ldRsy9OrN4`)
-- [ ] `music.html` — second slot: paste a **performance** video ID into `data-yt`
-- [ ] Swap `assets/img/photos/video-2.jpg` for a real still from that video
+The Voice page links straight out to YouTube rather than embedding a player, so no
+request is made to YouTube and no cookie is set while a visitor is on the site.
 
-Empty slots render as a greyed-out "Video coming soon" card and are removed from the tab
-order, so an unfilled slot is never a dead button.
+- [x] Val 202 episode card → `youtube.com/watch?v=3ldRsy9OrN4`
+- [x] Second card → the channel, `youtube.com/c/ramonairgolic`
+- [ ] Swap the two thumbnails (`video-1.jpg`, `video-2.jpg`) for real stills
+- [ ] To add more as performance videos go up: copy a `.vid-card` block in `music.html`
+      and change the `href`, thumbnail, title and description. No JavaScript involved.
 
 ---
 
@@ -121,18 +123,19 @@ worth someone's afternoon.
 
 ---
 
-## 8. Language rotator
+## 8. Quotes
 
-The homepage cycles one sentence — *"Every language is beautiful when you sing it"* —
-through 21 of her languages. Translations are in `assets/js/main.js` (`LINES`).
+Every page's quote band rotates through a shared bank in `assets/js/main.js` (`QUOTES`).
+Each entry is tagged so a page only shows relevant ones: the homepage uses `all` (16
+quotes), then `voice` (3), `world` (5), `record` (4) and `story` (6). It auto-advances
+every 6 s, pauses on hover/focus, and has explicit prev / pause / next buttons.
 
-- [ ] **Have Ramona check them.** She speaks all 21; I don't. The Germanic and Romance
-      lines are high-confidence, but Kiswahili, Turkish, Malay and Indonesian deserve
-      her eye before a mass audience sees them.
-- [ ] Optional: add Cyrillic / Greek / CJK lines. This needs extra font subsets —
-      the site currently ships `latin` + `latin-ext` only, so a Macedonian or Greek line
-      would fall back to a system font and break the typography. Add the subset to
-      `assets/css/fonts.css` and download the matching `.woff2` first.
+- [ ] **Read through all 16.** They were assembled from the site's existing copy plus the
+      verified 24ur interview. Several are English renderings of Slovenian originals and
+      should be adjusted to read the way she actually said them.
+- [ ] Two are credited to *Dnevnik, 2025* and remain unverified — see item 7.
+- [ ] To add more: append to `QUOTES` and set `s` to the page sets it belongs to. Text
+      may contain one `|`; everything after it renders in red.
 
 ---
 
