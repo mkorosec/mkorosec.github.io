@@ -1,29 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World — Ramona Irgolič · 80 Countries, 10 Homes</title>
 <meta name="description" content="Ramona Irgolič the traveller: 80 countries explored, 10 countries lived in — Germany, Slovenia, Italy, Portugal, Brazil, UK, Singapore, Indonesia, Norway, USA — and a tour guide in Norway who spoke 13 languages in a single day.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://mkorosec.github.io/ramona/travel.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ramona Irgolič">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="World — Ramona Irgolič · 80 Countries, 10 Homes">
+<meta property="og:description" content="Four continents, ten addresses, one rule: the language is learned on the road.">
+<meta property="og:url" content="https://mkorosec.github.io/ramona/travel.html">
+<meta property="og:image" content="https://mkorosec.github.io/ramona/assets/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ramona Irgolič — singer, model, hyperpolyglot, explorer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="World — Ramona Irgolič · 80 Countries, 10 Homes">
+<meta name="twitter:description" content="Four continents, ten addresses, one rule: the language is learned on the road.">
+<meta name="twitter:image" content="https://mkorosec.github.io/ramona/assets/img/og-cover.jpg">
+<meta name="theme-color" content="#0a0a0b">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/anton-400-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/archivo-var-latin.woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="assets/css/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230a0a0b'/><circle cx='50' cy='50' r='18' fill='%23e10600'/></svg>">
+<script>document.documentElement.classList.remove('no-js');</script>
+<script defer src="assets/js/analytics.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://mkorosec.github.io/ramona/" },
+    { "@type": "ListItem", "position": 2, "name": "World", "item": "https://mkorosec.github.io/ramona/travel.html" }
+  ]
+}
+</script>
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <header class="site-head">
   <a class="brand" href="index.html"><span class="dot"></span>RAMONA<em>IRGOLIČ</em></a>
-  <nav class="main-nav" aria-label="Main">
-    <a href="music.html">Voice</a>
-    <a href="travel.html" aria-current="page">World</a>
-    <a href="modelling.html">Legs</a>
-    <a href="story.html">Story</a>
-  </nav>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navwrap" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-wrap" id="navwrap">
+    <nav class="main-nav" aria-label="Main">
+      <a href="music.html">Voice</a>
+      <a href="travel.html" aria-current="page">World</a>
+      <a href="modelling.html">Record</a>
+      <a href="story.html">Story</a>
+      <a href="press.html">Press</a>
+    </nav>
+    <a class="nav-cta" href="contact.html">Book Ramona</a>
+  </div>
 </header>
 
-<main>
+<main id="main">
   <section class="page-hero">
     <div class="glow" style="bottom:-45%;left:-25%;background:radial-gradient(circle,rgba(225,6,0,.13),transparent 60%)"></div>
     <p class="crumb"><a href="index.html">Home</a> <span>/</span> <span class="red">02 · World</span></p>
@@ -37,11 +82,30 @@
     </div>
   </section>
 
+  <!-- ============ MAP ============ -->
+  <section class="section section--tight">
+    <div class="section-head reveal">
+      <h2 class="display">The map<br><span class="red">so far</span></h2>
+      <span class="idx">/01 — TEN HOMES, AND THE STAGES BETWEEN</span>
+    </div>
+    <div class="map-wrap reveal">
+      <div id="worldMap" role="application" aria-label="Interactive map of the ten countries Ramona has lived in and the stages between them"></div>
+      <div class="map-legend">
+        <span><i class="home"></i> Called home — in order</span>
+        <span><i class="stage"></i> Stages &amp; chapters</span>
+        <span>Click a point for the story · scroll locks until you click the map</span>
+      </div>
+    </div>
+    <noscript>
+      <p class="mono mt-2" style="color:var(--muted)">The interactive map needs JavaScript. The full list of ten homes is below.</p>
+    </noscript>
+  </section>
+
   <!-- ============ HOMES ============ -->
   <section class="section">
     <div class="section-head reveal">
       <h2 class="display">Ten places<br><span class="red">called home</span></h2>
-      <span class="idx">/01 — A LIFE IN ADDRESSES</span>
+      <span class="idx">/02 — A LIFE IN ADDRESSES</span>
     </div>
     <div class="homes">
       <div class="home reveal"><span class="n">01 · Born</span><h4>Germany</h4><p>Mainz — bilingual start</p></div>
@@ -56,6 +120,27 @@
       <div class="home reveal reveal-d1"><span class="n">10 · States</span><h4>USA</h4><p>Chicago &amp; beyond</p></div>
     </div>
     <p class="mono mt-2 reveal" style="color:var(--muted)">+ Hong Kong chapter · 80 countries explored in total — and counting.</p>
+  </section>
+
+  <!-- ============ PHOTOS ============ -->
+  <section class="section section--tight" aria-label="Travel photographs">
+    <div class="photo-strip">
+      <figure class="media media--wide reveal">
+        <img src="assets/img/photos/world-1.jpg" width="1600" height="1067" loading="lazy" decoding="async"
+             alt="Ramona Irgolič travelling">
+        <figcaption class="media__cap"><b>01</b> · On the road</figcaption>
+      </figure>
+      <figure class="media media--wide reveal reveal-d1">
+        <img src="assets/img/photos/world-2.jpg" width="1600" height="1067" loading="lazy" decoding="async"
+             alt="The Norwegian fjords">
+        <figcaption class="media__cap"><b>02</b> · Norway — the guiding years</figcaption>
+      </figure>
+      <figure class="media media--wide reveal reveal-d2">
+        <img src="assets/img/photos/world-3.jpg" width="1600" height="1067" loading="lazy" decoding="async"
+             alt="A street in Southeast Asia">
+        <figcaption class="media__cap"><b>03</b> · Asia — the star years</figcaption>
+      </figure>
+    </div>
   </section>
 
   <!-- ============ 13 LANGUAGES A DAY ============ -->
@@ -78,7 +163,7 @@
   <section class="section">
     <div class="section-head reveal">
       <h2 class="display">Rules of<br><span class="red">the road</span></h2>
-      <span class="idx">/02 — FIELD NOTES</span>
+      <span class="idx">/03 — FIELD NOTES</span>
     </div>
     <div class="cols">
       <div class="prose reveal">
@@ -118,7 +203,7 @@
   <!-- ============ NEXT ============ -->
   <nav class="next-links" aria-label="More chapters">
     <a href="music.html">Voice — the stages <span>01 →</span></a>
-    <a href="modelling.html">Legs — the record <span>03 →</span></a>
+    <a href="modelling.html">Record — 124 cm <span>03 →</span></a>
     <a href="story.html">Story — the method <span>04 →</span></a>
   </nav>
 </main>
@@ -132,8 +217,9 @@
         <ul>
           <li><a href="music.html">Voice — the singing</a></li>
           <li><a href="travel.html">World — the travelling</a></li>
-          <li><a href="modelling.html">Legs — the modelling</a></li>
+          <li><a href="modelling.html">Record — the modelling</a></li>
           <li><a href="story.html">Story — the languages</a></li>
+          <li><a href="press.html">Press — the coverage</a></li>
         </ul>
       </div>
       <div>
@@ -141,17 +227,19 @@
         <ul>
           <li><a href="https://www.youtube.com/c/ramonairgolic" target="_blank" rel="noopener">YouTube — Tell-A-Vision</a></li>
           <li><a href="https://www.facebook.com/ramonairgolicmodel/" target="_blank" rel="noopener">Facebook</a></li>
-          <li><a href="https://si.linkedin.com/in/ramonairgolic" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="contact.html">Booking &amp; enquiries</a></li>
         </ul>
       </div>
     </div>
   </div>
   <div class="base">
-    <span>© 2026 Ramona Irgolič</span>
+    <span>© <span data-year>2026</span> Ramona Irgolič</span>
     <span>Mainz · Maribor · The World</span>
   </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/vendor/leaflet/leaflet.js"></script>
+<script defer src="assets/js/map.js"></script>
 </body>
 </html>

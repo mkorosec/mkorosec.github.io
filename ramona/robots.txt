@@ -1,0 +1,11 @@
+# Ramona Irgolič
+#
+# NOTE: robots.txt is only honoured at a DOMAIN ROOT. While this site lives at
+# mkorosec.github.io/ramona/ this file is ignored by crawlers — the effective
+# robots.txt is https://mkorosec.github.io/robots.txt. It becomes live the moment
+# the site moves to its own domain. See LAUNCH-CHECKLIST.md item 1.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://mkorosec.github.io/ramona/sitemap.xml
