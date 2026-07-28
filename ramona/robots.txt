@@ -1,0 +1,6 @@
+# Ramona Irgolič — ramonairgolic.com
+
+User-agent: *
+Allow: /
+
+Sitemap: https://mkorosec.github.io/ramona/sitemap.xml
