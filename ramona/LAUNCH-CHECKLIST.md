@@ -7,28 +7,11 @@ Items are ordered by how much they cost you if you skip them.
 
 ---
 
-## 1. Domain — blocks everything SEO
+## 1. Domain — SUPERSEDED
 
-The site currently lives at `https://mkorosec.github.io/ramona/`, a subfolder under
-someone else's username, where the domain root is a geography quiz game.
-
-- [ ] Register the domain (`ramonairgolic.com` or similar)
-- [ ] Add a `CNAME` file at the **repository root** containing just the hostname
-- [ ] Point the DNS `A`/`ALIAS` records at GitHub Pages
-- [ ] Enable **Enforce HTTPS** in the repo's Pages settings
-- [ ] Then run the find-and-replace below
-
-Once the domain exists, one command updates every absolute URL:
-
-```bash
-cd ramona
-grep -rl 'mkorosec.github.io/ramona' . --include='*.html' --include='*.xml' --include='*.txt' \
-  | xargs sed -i 's#https://mkorosec.github.io/ramona#https://YOURDOMAIN.com#g'
-```
-
-Two files only take effect at a domain root, so they do nothing until this is done:
-- `robots.txt` — crawlers only read `/robots.txt` at the root
-- `404.html` — GitHub Pages serves the **repo root** `404.html`, not this one
+This copy under `mkorosec.github.io/ramona/` has been split into a standalone repo for
+**ramonairgolic.com**, which is now the canonical source. Once that is live, delete this
+`ramona/` folder so the two cannot drift.
 
 ---
 
@@ -62,17 +45,36 @@ request is made to YouTube and no cookie is set while a visitor is on the site.
 
 ---
 
-## 4. Social accounts
+## 4. Social accounts — done, but confirm the TikTok
 
-The footer and contact page currently link YouTube, Facebook and LinkedIn. For a singer
-and model in 2026, **Instagram and TikTok are the two that matter most** and both are
-missing. The markup is already in place, commented out.
+She uses the same handle everywhere: **`ramonairgolic`**.
 
-- [ ] `index.html` footer — uncomment and fill the Instagram + TikTok links
-- [ ] `contact.html` — same, in the "Follow" card
-- [ ] Add both handles to the `sameAs` array in the JSON-LD block in `index.html`
-- [ ] Repeat the footer edit across `music.html`, `travel.html`, `modelling.html`,
-      `story.html`, `press.html` (the footer is duplicated per page — see note at the bottom)
+- [x] Instagram — <https://www.instagram.com/ramonairgolic/> (~12k followers).
+      Independently confirmed: it's the only social profile listed in the external-links
+      section of her Slovenian Wikipedia draft.
+- [x] TikTok — <https://www.tiktok.com/@ramonairgolic>
+- [x] Footers on all seven pages, the "Follow" card on `contact.html`, and the `sameAs`
+      array in the homepage JSON-LD
+
+- [ ] **Confirm the TikTok URL is right.** It's the one link here I could not verify
+      directly — TikTok serves nothing to a plain fetch, so the evidence is search
+      indexing only: two independent searches returned this handle, one of them a video
+      whose description reads *"Join my multilingual adventure… #Polyglot #Multilingual
+      #ramonairgolic #tiktokslovenia"*, which is unmistakably her. The handle also matches
+      every other platform. Very likely correct, but worth one click.
+
+Also found, not linked — decide whether you want them:
+
+| Platform | URL | Note |
+|---|---|---|
+| X / Twitter | `x.com/ramonairgolic` | Low value for this audience |
+| Threads | `threads.com/@ramonairgolic` | Same |
+| Ko-fi | `ko-fi.com/ramonairgolic` | A tip jar — may not fit the tone of a booking site |
+
+And a **public email**, `ramonairgolic@gmail.com`, appears in her profiles. I deliberately
+did **not** put it on the contact page: publishing a personal Gmail on a mass-audience
+site guarantees scraper spam. If she wants a visible address, use a dedicated one
+(`booking@ramonairgolic.com` via the domain) rather than her personal inbox.
 
 ---
 
@@ -116,6 +118,18 @@ with Ramona:
 | **Esplanade, two consecutive nights** | Reworded from "first foreign musician to perform twice in a row" to just the fact of the two nights | The "first foreign musician" superlative was dropped as unverifiable. Restore it only with a source. |
 | **Quote: "You know a language when you're relaxed in it"** | Cited to *Dnevnik, 2025* on `story.html` | Unverified — I could not find this in Dnevnik. The similar quote on the homepage **was** verified and is now correctly attributed to 24ur, 14 March 2025. |
 | **Quote on `modelling.html`** | Cited to *Planet TV, 2025* | Plausible given the Planet TV article, but unconfirmed. |
+| **HYPIA member "No. 420"** | Stated on `index.html` and `story.html` | The HYPIA member page is now linked from the Story page and Press page as the primary source, and it **confirms the 12 December 2024 join date and the full language inventory exactly**. It does **not** show a member number, so "No. 420" is still only her own account of it. Either source it or drop the number — the membership itself is now solidly evidenced without it. |
+
+**Good news on the inventory.** HYPIA's own page lists the levels identically to the Story
+page — ten fluent, eight proficient, nine basic, Chinese and Greek in progress. That claim
+is now backed by a primary source rather than assertion, which is a real credibility gain
+on the page most likely to be doubted.
+
+Two label differences are noted on the Press page: HYPIA records "Serbo-Croatian" (shown
+here as "Croatian / Serbian") and "Sudanese" (shown here as *Sundanese*). The second is
+almost certainly an error in the original declaration — Sudanese is a nationality, while
+Sundanese is the West Javanese language, which fits her years in Indonesia. Worth having
+her correct it with HYPIA directly.
 
 Also: the Slovenian Wikipedia entry is still a **draft** (`Osnutek:Ramona_Irgolič`).
 Getting it accepted as a live article would meaningfully help search visibility and is

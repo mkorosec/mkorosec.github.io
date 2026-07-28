@@ -162,7 +162,7 @@
     { s:['all','record'], c:'Anatole Taubman on set — the word was “hvala”',
       t:'If you give me a kiss on the cheek,|I’ll tell you a Slovenian word.' },
     { s:['all','voice'], c:'The Wedding Music Company, Singapore',
-      t:'Her energetic stage presence and strong voice|leave the audience with great enthusiasm.' },
+      t:'Her energetic stage-presence and strong voice leaves the audience|with great impression and enthusiasm.' },
     { s:['all','world','story'], c:'On Brazilian Portuguese',
       t:'I thought: my God, I’ll never learn that.|Then I lived in Brazil for two years.' },
     { s:['all','world'], c:'Ramona Irgolič',
