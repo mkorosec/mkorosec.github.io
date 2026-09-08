@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blood Results Comparator</title>
     <link rel="icon" href="/blood-analyzer/assets/favicon-RrDzqi8W.ico" />
-    <script type="module" crossorigin src="/blood-analyzer/assets/index-DyVzosAJ.js"></script>
-    <link rel="stylesheet" crossorigin href="/blood-analyzer/assets/index-wrmvoBWC.css">
-  <script data-goatcounter="https://mkorosec.goatcounter.com/count"
-          async src="//gc.zgo.at/count.js"></script>
+    <script data-goatcounter="https://mkorosec.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+    <script type="module" crossorigin src="/blood-analyzer/assets/index-Cx2wjcbi.js"></script>
+    <link rel="stylesheet" crossorigin href="/blood-analyzer/assets/index-Cipfuufs.css">
   </head>
   <body>
     <div class="ambient"></div>
+    <div id="drop-overlay" class="drop-overlay" hidden aria-hidden="true">
+      <p class="drop-overlay-message">Drop to import</p>
+    </div>
     <header class="hero">
       <div>
         <p class="eyebrow">Offline · Private · In-browser</p>
@@ -25,31 +28,72 @@
           <p class="status-label">Stored reports</p>
           <p class="status-value" id="report-count">0</p>
         </div>
-        <button class="button ghost" id="clear-storage">Clear storage</button>
+        <div class="status-actions">
+          <button class="button ghost" id="imports-toggle" type="button" aria-expanded="false" aria-controls="imports-panel">Show imports</button>
+          <button class="button ghost" id="add-report-button" type="button" hidden>Add report</button>
+          <button class="button ghost" id="manual-entry" type="button">Manual entry</button>
+          <button class="button ghost" id="clear-storage">Clear storage</button>
+        </div>
+        <div id="upload-log" class="log"></div>
       </div>
     </header>
 
     <main>
-      <section class="panel" aria-labelledby="upload-title">
-        <div class="panel-head">
-          <h2 id="upload-title">Upload reports</h2>
-          <p>Drag and drop one or more reports (PDF or images). Passwords are requested only when needed.</p>
+      <section id="shared-view" class="panel shared-view" aria-labelledby="shared-view-title" hidden>
+        <div class="panel-head panel-head--row">
+          <div>
+            <h2 id="shared-view-title">Shared blood markers</h2>
+            <p>A read-only link someone shared with you. It is not connected to your own stored data.</p>
+          </div>
+          <button class="button ghost" id="shared-view-dismiss" type="button">View my own data</button>
+        </div>
+        <p id="shared-view-error" class="shared-view-error" hidden></p>
+        <div id="shared-view-meta" class="shared-view-meta"></div>
+        <div id="shared-view-charts" class="chart-grid" role="list"></div>
+      </section>
+
+      <div id="app-view">
+      <section id="upload-panel" class="panel" aria-labelledby="upload-title">
+        <div class="panel-head panel-head--row">
+          <div>
+            <h2 id="upload-title">Upload reports</h2>
+            <p>Drag and drop one or more reports (PDF or images). Passwords are requested only when needed.</p>
+          </div>
         </div>
         <div id="dropzone" class="dropzone">
           <div>
             <p class="drop-title">Drop files here</p>
-            <p class="drop-sub">or click to select PDFs/images</p>
+            <p class="drop-sub">or click to select PDFs/images, or paste an image (Ctrl/Cmd+V)</p>
           </div>
           <input id="file-input" type="file" accept="application/pdf,image/png,image/jpeg,image/webp" multiple />
         </div>
-        <div id="upload-log" class="log"></div>
+      </section>
+
+      <section id="imports-panel" class="panel" aria-labelledby="imports-title" hidden>
+        <div class="panel-head">
+          <h2 id="imports-title">Imports</h2>
+          <p>Every report you've imported, discardable one at a time.</p>
+        </div>
+        <div id="imports-list" class="imports-list"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="charts-title">
+        <div class="panel-head panel-head--row">
+          <div>
+            <h2 id="charts-title">Marker charts</h2>
+            <p>Click a marker to add a chart. High markers appear automatically.</p>
+          </div>
+          <button class="button ghost" id="share-link-open" type="button">Share link</button>
+        </div>
+        <p id="chart-empty" class="chart-empty">No charts yet. Click a marker to add one.</p>
+        <div id="chart-grid" class="chart-grid" role="list"></div>
       </section>
 
       <section class="panel" aria-labelledby="table-title">
         <div class="panel-head panel-head--row">
           <div>
             <h2 id="table-title">Spreadsheet view</h2>
-            <p>Compare numeric marker values across time points.</p>
+            <p>Compare numeric marker values across time points. Click a value to see which import it came from.</p>
           </div>
           <div id="marker-search" class="marker-search" aria-label="Filter markers">
             <button id="marker-search-toggle" class="marker-search-toggle" type="button" aria-label="Search markers">
@@ -77,15 +121,7 @@
           </table>
         </div>
       </section>
-
-      <section class="panel" aria-labelledby="charts-title">
-        <div class="panel-head">
-          <h2 id="charts-title">Marker charts</h2>
-          <p>Click a marker to add a chart. High markers appear automatically.</p>
-        </div>
-        <p id="chart-empty" class="chart-empty">No charts yet. Click a marker to add one.</p>
-        <div id="chart-grid" class="chart-grid" role="list"></div>
-      </section>
+      </div>
     </main>
 
     <footer class="footer">
