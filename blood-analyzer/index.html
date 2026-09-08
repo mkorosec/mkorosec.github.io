@@ -7,8 +7,8 @@
     <link rel="icon" href="/blood-analyzer/assets/favicon-RrDzqi8W.ico" />
     <script data-goatcounter="https://mkorosec.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
-    <script type="module" crossorigin src="/blood-analyzer/assets/index-BE1rC9Q8.js"></script>
-    <link rel="stylesheet" crossorigin href="/blood-analyzer/assets/index-DgwS6Hud.css">
+    <script type="module" crossorigin src="/blood-analyzer/assets/index-By5IHAA_.js"></script>
+    <link rel="stylesheet" crossorigin href="/blood-analyzer/assets/index-oj6IpcSk.css">
   </head>
   <body>
     <div class="ambient"></div>
@@ -16,14 +16,23 @@
       <p class="drop-overlay-message">Drop to import</p>
     </div>
     <header class="hero">
-      <div>
+      <div id="hero-own">
         <p class="eyebrow">Offline · Private · In-browser</p>
         <h1>Track your blood markers over time.</h1>
         <p class="lede">
           Drop encrypted PDFs, compare values across dates, and visualize trends without leaving your browser.
         </p>
       </div>
-      <div class="status">
+      <div id="hero-shared" hidden>
+        <p class="eyebrow">Offline · Private · In-browser</p>
+        <h1>Blood markers shared with you.</h1>
+        <p class="lede">
+          Someone shared these results as a link. Nothing was uploaded and nothing is stored — and you
+          can track your own the same way, free, without your data leaving your browser.
+        </p>
+        <button class="button" id="hero-shared-cta" type="button">Track your own markers</button>
+      </div>
+      <div class="status" id="status-widget">
         <div>
           <p class="status-label">Stored reports</p>
           <p class="status-value" id="report-count">0</p>
