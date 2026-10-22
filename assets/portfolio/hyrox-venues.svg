@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 900" role="img" aria-labelledby="title">
+  <title id="title">HYROX Venues</title>
+  <rect width="1280" height="900" fill="#e8ede7"/>
+  <path d="M0 280H1280M0 560H1280M320 0V900M640 0V900M960 0V900" stroke="#ccd6cb" stroke-width="2"/>
+  <circle cx="262" cy="250" r="17" fill="#a4442e"/>
+  <circle cx="860" cy="190" r="17" fill="#a4442e"/>
+  <circle cx="1020" cy="610" r="17" fill="#a4442e"/>
+  <circle cx="430" cy="710" r="17" fill="#a4442e"/>
+  <rect x="120" y="315" width="1040" height="270" fill="#fafbf8"/>
+  <text x="165" y="430" fill="#27312d" font-family="Arial, sans-serif" font-size="94" font-weight="700" letter-spacing="-3">HYROX</text>
+  <text x="165" y="528" fill="#a4442e" font-family="Arial, sans-serif" font-size="94" font-weight="700" letter-spacing="-3">VENUES</text>
+</svg>
