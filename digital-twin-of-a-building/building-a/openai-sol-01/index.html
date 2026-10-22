@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f1f0e9"><title>Building A — Building study</title>  <script type="module" crossorigin src="../../assets/index-CzLFZ4z5.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/OrbitControls-mPzSjqfB.js">
+  <link rel="stylesheet" crossorigin href="../../assets/index-BbVoMoHV.css">
+</head>
+<body>
+<header><a class="identity" href="../../"><span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 27V12L16 4l13 8v15M8 27V15h16v12M13 27V16m6 11V16M3 27h26"/></svg></span><span>Building A<small>Residential reconstruction</small></span></a><div class="header-note">A building, understood.<span>Evidence-based digital reconstruction</span></div></header>
+<main>
+<section class="workspace" aria-label="Interactive building viewer">
+<div class="view-top"><div><h1>The five-section building</h1><p id="viewDescription">Street-side perspective · north elevation correspondence inferred</p></div><span class="study-tag">Reconstruction · provisional</span></div>
+<div id="viewport"><canvas id="scene" tabindex="0" aria-label="3D building. Drag to orbit, scroll to zoom. Arrow keys orbit, plus and minus zoom. Use view buttons for fixed views."></canvas><div id="error" role="alert" hidden></div><div class="canvas-note"><span class="dot"></span> <span id="modelStatus">Five sections · Section 2 selected</span></div><div class="zoom-controls" aria-label="Zoom controls"><button id="zoomIn" aria-label="Zoom in">+</button><button id="zoomOut" aria-label="Zoom out">−</button></div><div class="orientation">Street side <span>Building A</span><small>Orientation inferred</small></div></div>
+<nav class="view-controls" aria-label="Camera views"><button data-view="orbit" aria-pressed="true">Perspective</button><button data-view="front" aria-pressed="false">Front</button><button data-view="top" aria-pressed="false">Overhead</button><button data-view="eye" aria-pressed="false">Eye level</button><button id="reset">Reset view</button><span>Drag to orbit · scroll / pinch to zoom</span></nav>
+<div class="section-strip"><div><strong>Explore a section</strong><small>Left to right in the supplied aerial</small></div><div id="sectionButtons" class="section-buttons" role="group" aria-label="Select building section"></div><p><span class="selection-key"></span> Selected<small>? Address placement inferred</small></p></div>
+</section>
+<aside class="inspector" aria-label="Building inspection controls">
+<div class="section-heading"><h2 id="sectionTitle">Section B / Section 2</h2><span id="sectionPosition">Second from the left</span></div>
+<p class="intro">Follow the stair core, lift off the roof, or look inside an original typical floor.</p>
+<div class="control-block"><label class="field-label" for="floor">Floor</label><select id="floor"><option value="all">All floors</option><option value="3">3rd floor</option><option value="2">2nd floor</option><option value="1">1st floor</option><option value="0">Ground floor</option><option value="-1">Basement · schematic</option></select><label class="toggle"><span>Isolate selected section</span><input id="isolate" type="checkbox"><i></i></label><label class="toggle"><span>Remove roof</span><input id="roof" type="checkbox"><i></i></label><label class="toggle"><span>Interior cutaway</span><input id="cutaway" type="checkbox"><i></i></label><p class="control-help" id="cutHelp">Cutaway removes the street wall and reveals inferred partitions.</p></div>
+<div class="reading"><h3>What the evidence tells us</h3><dl><div><dt>Overall length</dt><dd>78.30 m <small>scan reading</small></dd></div><div><dt>Main depth</dt><dd>11.20 m <small>section Y–Y</small></dd></div><div><dt>Residential levels</dt><dd>Ground + 3</dd></div><div><dt>Roof</dt><dd>Pitched, with dormers</dd></div></dl><p>Plan datums and dimensions are transcribed from faded scans, not field measurements.</p></div>
+<details id="interiorDetails"><summary>Interior interpretation</summary><p>Paired homes flank each stair core. Room names follow <em>typical floor layout</em>; coordinates, openings and present-day partitions are inferred.</p><ul class="room-legend"><li>Spalnica <span>Bedroom</span></li><li>Dnevna soba <span>Living room</span></li><li>Kuhinja + jedilni kot <span>Kitchen + dining</span></li><li>Kopalnica / WC <span>Bath / WC</span></li><li>Predsoba <span>Hall</span></li></ul><p>The end sections also show <em>otr. soba</em> (child’s room); these extra partitions are approximated. No apartment numbers are legible or assigned.</p></details>
+<div class="uncertainty"><h3>Read as a study, not a survey.</h3><p>Section 2 is confirmed as the second section. A–E mapping, other address positions, dimensions between cores and current layouts remain provisional. Your apartment’s floor and side are unknown.</p></div>
+</aside>
+</main>
+<footer><span>Built from the supplied photographs & original scanned plans</span><span>Historical plan ≠ verified current layout</span><button id="helpOpen">Keyboard guide</button></footer>
+
+<dialog id="help"><h2>Explore with your keyboard</h2><p>Tab reaches every control. Enter or Space activates buttons and switches.</p><p>Focus the model: arrow keys orbit; + / − zoom; Home returns to the overview. On touch screens, drag to orbit and pinch to zoom.</p><form method="dialog"><button>Close guide</button></form></dialog>
+</body></html>

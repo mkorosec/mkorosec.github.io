@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#eeeee7" />
+    
+    <meta name="description" content="Explore a plan-based 3D reconstruction of Building A in . Walk around, isolate floors, and look inside." />
+    <title>Building A — Building explorer</title>
+    <script type="module" crossorigin src="../../assets/index-Brerm49p.js"></script>
+    <link rel="modulepreload" crossorigin href="../../assets/OrbitControls-mPzSjqfB.js">
+    <link rel="modulepreload" crossorigin href="../../assets/BufferGeometryUtils-Sh9A4-8v.js">
+    <link rel="stylesheet" crossorigin href="../../assets/index-DyWrQIWB.css">
+  </head>
+  <body>
+    <main id="app">
+      <div id="viewport" role="region" aria-label="Interactive 3D building model"><div id="labels" aria-hidden="true"></div></div>
+      <header class="topbar">
+        <a class="identity" href="../../" aria-label="Building benchmark">
+          <svg class="brand-mark" viewBox="0 0 36 40" fill="none" aria-hidden="true"><path d="M4 35V12L18 5l14 7v23H4ZM18 5v30M4 12l14 7 14-7M10 17v5m0 5v5m15-15v5m0 5v5"/></svg>
+          <span><strong>Building A<span class="title-dot">.</span></strong><small>Residential reconstruction</small></span>
+        </a>
+        <nav class="view-switch" aria-label="Camera view">
+          <button data-view="orbit" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg>Explore</button>
+          <button data-view="top" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>Overhead</button>
+          <button data-view="walk" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="14" cy="4" r="2"/><path d="m8 22 3-7-2-4 3-4 3 4 4 1M5 12l4-1m2 4 5 3 1 4"/></svg>Walk</button>
+        </nav>
+        
+      </header>
+
+      <aside id="controls" class="control-panel" aria-label="Model controls">
+        <div class="panel-heading"><h1>Explore the building</h1><button id="panel-toggle" aria-label="Collapse model controls" aria-expanded="true"><svg viewBox="0 0 24 24"><path d="m7 14 5-5 5 5"/></svg></button></div>
+        <div class="panel-content">
+          <section class="section-picker"><div class="control-title"><h2>Building section</h2><span id="section-name">Section 2</span></div>
+            <div id="sections" class="sections" aria-label="Select building section"></div>
+            <p class="microcopy">Street-facing order · Section 2 is second from left</p>
+            <label class="check-row"><span>Isolate selected section</span><input type="checkbox" id="isolate" role="switch" /></label>
+          </section>
+          <section><div class="control-title"><h2>Levels</h2><button id="all-floors" class="text-button" aria-pressed="true">Show all</button></div>
+            <div id="floors" class="floor-list" aria-label="Select a level"></div>
+          </section>
+          <section><div class="control-title"><h2>Cutaway</h2><output id="slice-readout">Off</output></div>
+            <label class="sr-only" for="slice-axis">Cutaway direction</label><select id="slice-axis"><option value="off">No cutaway</option><option value="y">Horizontal · reveal floors</option><option value="z">Lengthwise · reveal rooms</option><option value="x">Crosswise · reveal sections</option></select>
+            <label class="sr-only" for="slice">Cutaway position</label><input id="slice" type="range" min="0" max="100" value="65" disabled />
+            <div class="range-captions"><span id="slice-start">Drag to look inside</span><span id="slice-end"></span></div>
+          </section>
+          <section><div class="control-title"><label for="explode">Separate floors</label><output id="explode-readout">0.0 m</output></div><input id="explode" type="range" min="0" max="6" step="0.1" value="0" />
+            <label class="check-row"><span>Show roof</span><input type="checkbox" id="roof" role="switch" checked /></label>
+            <label class="check-row"><span>Room labels</span><input type="checkbox" id="room-labels" role="switch" checked /></label>
+          </section>
+          <button id="reset" class="reset-button"><svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/></svg>Reset view & controls</button>
+        </div>
+      </aside>
+
+      <div class="scene-caption"><span class="caption-line"></span><strong id="scene-title">The whole block. Your building in focus.</strong><span id="scene-subtitle">Five adjoining sections, reconstructed from the archive.</span></div>
+      <div class="scene-tools"><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-out" aria-label="Zoom out">−</button><button id="home-view" aria-label="Fit building in view"><svg viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg></button></div>
+      <div id="compass" class="compass" aria-hidden="true"><span>N</span><svg viewBox="0 0 40 40"><path d="m20 5 7 24-7-4-7 4 7-24Z"/><path d="M20 5v20"/></svg></div>
+      <div id="room-card" class="room-card" hidden><button id="room-close" aria-label="Close room details">×</button><span id="room-location"></span><h2 id="room-name"></h2><p id="room-description"></p><small>Layout inferred from the original typical-floor plan.</small></div>
+
+      <div id="walk-panel" class="walk-panel" hidden><strong>Explore at eye level</strong><p id="walk-help">Use W A S D or arrow keys to move. Drag the scene to look around.</p><button id="enter-building">Enter selected section</button><button id="leave-walk">Return to orbit</button><div class="walk-pad" aria-label="Walking controls"><button data-move="forward" aria-label="Walk forward">↑</button><button data-move="left" aria-label="Walk left">←</button><button data-move="backward" aria-label="Walk backward">↓</button><button data-move="right" aria-label="Walk right">→</button></div></div>
+      <div id="crosshair" hidden aria-hidden="true"></div>
+      <footer><span>Approximate reconstruction</span><span id="renderer-status" hidden title="WebGL is unavailable in this browser. This software view uses simpler lighting and may move more slowly.">Software view</span><span id="interaction-hint">Drag to orbit <i>·</i> Scroll to zoom <i>·</i> Select a section or room</span></footer>
+      <div id="loading" role="status">Reconstructing the block…</div>
+      <div id="error" role="alert" hidden></div>
+      <span id="announcement" class="sr-only" role="status" aria-live="polite"></span>
+    </main>
+
+    
+  </body>
+</html>
