@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Building A  — digital twin (reconstruction)</title>
+  <script type="module" crossorigin src="../../assets/index-Db9Y31m3.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/OrbitControls-msCrwvTq.js">
+  <link rel="modulepreload" crossorigin href="../../assets/BufferGeometryUtils-gqY1CBWN.js">
+  <link rel="stylesheet" crossorigin href="../../assets/index-Cq3Ql8HC.css">
+</head>
+<body>
+  <div id="app">
+    <div id="viewport" aria-label="3D view of the building">
+      <canvas id="scene" tabindex="0" aria-label="3D model. Drag or use arrow keys to orbit, plus and minus to zoom, click a unit to select it."></canvas>
+      <div id="gl-error" role="alert" hidden>
+        <h2>3D view unavailable</h2>
+        <p id="gl-error-msg"></p>
+        
+      </div>
+      <div id="loading" aria-live="polite">Building model…</div>
+    </div>
+
+    <header id="topbar">
+      <div class="title">
+        <strong>Building A</strong><span class="sub"> · reconstruction from 1950s plans</span>
+      </div>
+      <nav class="views" aria-label="Camera views">
+        <button data-view="home" title="Orbit overview (H)">Overview</button>
+        <button data-view="front" title="Front / street facade (F)">Front</button>
+        <button data-view="eye" title="Eye level at Section 2 (E)">Eye level</button>
+        <button data-view="top" title="Overhead (T)">Overhead</button>
+        <button data-view="south" title="Park side (S)">Park side</button>
+      </nav>
+      <button id="panel-toggle" aria-controls="panel" aria-expanded="true">Panel</button>
+    </header>
+
+    <aside id="panel" aria-label="Controls and information">
+      <section class="group" aria-labelledby="h-sections">
+        <h2 id="h-sections">Sections</h2>
+        <div id="section-buttons" class="chips" role="group" aria-label="Select section"></div>
+      </section>
+
+      <section class="group" aria-labelledby="h-floors">
+        <h2 id="h-floors">Floor isolation</h2>
+        <div id="floor-buttons" class="chips" role="group" aria-label="Isolate floor"></div>
+      </section>
+
+      <section class="group" aria-labelledby="h-display">
+        <h2 id="h-display">Display</h2>
+        <div class="toggles">
+          <label><input type="checkbox" id="t-roof" checked /> Roof <kbd>R</kbd></label>
+          <label><input type="checkbox" id="t-cut" /> Interior cutaway <kbd>X</kbd></label>
+          <label><input type="checkbox" id="t-labels" checked /> Labels <kbd>L</kbd></label>
+          <label><input type="checkbox" id="t-inferred" /> Tint inferred parts <kbd>N</kbd></label>
+        </div>
+        <div id="cut-controls" class="cut" hidden>
+          <label for="cut-z">Cut plane (north ⇄ south)</label>
+          <input type="range" id="cut-z" min="-6" max="6" step="0.1" value="-2.5" />
+          <button id="cut-flip" type="button">Flip side</button>
+        </div>
+      </section>
+
+      <section class="group" aria-labelledby="h-info">
+        <h2 id="h-info">Information</h2>
+        <div id="info" aria-live="polite"></div>
+      </section>
+
+      <section class="group">
+        
+        <button id="open-help" class="wide secondary">Keyboard &amp; touch help <kbd>?</kbd></button>
+      </section>
+    </aside>
+
+    
+
+    
+
+    <dialog id="help" aria-labelledby="h-help">
+      <div class="dlg-head">
+        <h2 id="h-help">Controls</h2>
+        <button class="close" data-close aria-label="Close">✕</button>
+      </div>
+      <table class="keys">
+        <tr><td>Drag / one finger</td><td>Orbit</td></tr>
+        <tr><td>Wheel / pinch</td><td>Zoom</td></tr>
+        <tr><td>Right-drag / two fingers</td><td>Pan</td></tr>
+        <tr><td>Click / tap</td><td>Select unit (or section)</td></tr>
+        <tr><td><kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd></td><td>Orbit (when the 3D view or page has focus)</td></tr>
+        <tr><td><kbd>+</kbd> <kbd>−</kbd></td><td>Zoom</td></tr>
+        <tr><td><kbd>1</kbd>–<kbd>5</kbd>, <kbd>0</kbd></td><td>Select section A–E (west→east), clear</td></tr>
+        <tr><td><kbd>PgUp</kbd> <kbd>PgDn</kbd> <kbd>Home</kbd></td><td>Isolate floor up / down / show all</td></tr>
+        <tr><td><kbd>H</kbd> <kbd>F</kbd> <kbd>E</kbd> <kbd>T</kbd> <kbd>S</kbd></td><td>Overview, front, eye level, overhead, park side</td></tr>
+        <tr><td><kbd>R</kbd> <kbd>X</kbd> <kbd>[</kbd> <kbd>]</kbd></td><td>Roof, cutaway, move cut plane</td></tr>
+        <tr><td><kbd>L</kbd> <kbd>N</kbd></td><td>Labels, tint inferred parts</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Clear selection / close dialog</td></tr>
+      </table>
+    </dialog>
+  </div>
+</body>
+</html>
