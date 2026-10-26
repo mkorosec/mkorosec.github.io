@@ -14,6 +14,15 @@
 </head>
 <body>
     <div id="map"></div>
+    <div id="globe" hidden aria-label="Interactive 3D globe"></div>
+    <div class="view-switcher" role="group" aria-label="Map view">
+      <span class="view-switcher-label">Map view</span>
+      <button type="button" class="view-option" data-view="dark" aria-pressed="true" onclick="switchView('dark')">Dark</button>
+      <button type="button" class="view-option" data-view="bright" aria-pressed="false" onclick="switchView('bright')">Bright</button>
+      <button type="button" class="view-option" data-view="threejs" aria-pressed="false" onclick="switchView('threejs')">Three.js globe</button>
+    </div>
+    <div id="viewStatus" class="sr-only" role="status" aria-live="polite"></div>
+    <div id="globeResult" hidden></div>
 
     <!-- The offline games live under /games/ and were previously unreachable
          from here, so nobody could find them. -->
@@ -136,6 +145,55 @@
         map.doubleClickZoom.disable();
         map.setMaxBounds([[90, -180], [-90, 180]]);
         const markersGroup = L.layerGroup().addTo(map);
+        let activeView = 'dark';
+        let requestedView = 'dark';
+        let globeView = null;
+        let pendingGlobe = null;
+        let revealedAnswer = null;
+
+        async function switchView(view) {
+            requestedView = view;
+            if (view === activeView) return;
+            const status = document.getElementById('viewStatus');
+            if (view === 'threejs') {
+                status.textContent = 'Loading 3D globe';
+                try {
+                    if (!globeView) {
+                        pendingGlobe ||= import('./globe.js').then(({createGlobe}) => {
+                            return createGlobe(document.getElementById('globe'), (lat, lng) => {
+                                if (!allowNewMarkerPlacement) return;
+                                handleMarkerPlaced(null, lat, lng);
+                            });
+                        });
+                        globeView = await pendingGlobe;
+                        pendingGlobe = null;
+                    }
+                    if (requestedView !== view || activeView === view) return;
+                    globeView.setMarkers(latestGuess, revealedAnswer);
+                    document.getElementById('map').hidden = true;
+                    globeView.show();
+                } catch (error) {
+                    pendingGlobe = null;
+                    console.error('3D globe unavailable:', error);
+                    status.textContent = '3D globe could not load. Choose a flat map view.';
+                    return;
+                }
+            } else {
+                if (globeView) globeView.hide();
+                document.getElementById('map').hidden = false;
+                requestAnimationFrame(() => map.invalidateSize());
+                if (window.mapStyleLayer) {
+                    window.mapStyleLayer.getMaplibreMap()?.setStyle(view === 'bright' ? './style-bright.json' : './style-nolabels.json');
+                }
+            }
+            activeView = view;
+            document.body.dataset.view = view;
+            document.querySelectorAll('.view-option').forEach(button => {
+                button.setAttribute('aria-pressed', String(button.dataset.view === view));
+            });
+            document.getElementById('globeResult').hidden = view !== 'threejs' || !revealedAnswer;
+            status.textContent = view === 'threejs' ? '3D globe active. Drag to rotate, scroll to zoom, click to guess. Arrow keys rotate and Enter guesses at the center.' : view + ' map active';
+        }
 
 
         var mouseLatLng = null;
@@ -177,10 +235,15 @@
         });
 
         document.addEventListener('keydown', function(e) {
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+            if (['INPUT', 'SELECT', 'TEXTAREA', 'BUTTON', 'A'].includes(e.target.tagName)) return;
             if (document.querySelector('.modal.show')) return;
 
-            const panStep = map.getZoom() > 10 ? 0.05 : map.getZoom() > 5 ? 0.2 : 1;
+            if (activeView === 'threejs') {
+                const moves = {ArrowUp: [0, -.1], w: [0, -.1], W: [0, -.1], ArrowDown: [0, .1], s: [0, .1], S: [0, .1], ArrowLeft: [-.1, 0], a: [-.1, 0], A: [-.1, 0], ArrowRight: [.1, 0], d: [.1, 0], D: [.1, 0]};
+                if (moves[e.key]) { globeView.nudge(...moves[e.key]); e.preventDefault(); return; }
+                if (e.key === 'Enter' || e.key === ' ') { if (allowNewMarkerPlacement) globeView.selectHovered(); e.preventDefault(); }
+                return;
+            }
 
             switch (e.key) {
                 case 'ArrowUp':    case 'w': case 'W': map.panBy([0, -60]); e.preventDefault(); break;
@@ -244,7 +307,10 @@
         }
 
         function moreInformationAboutAnswer() {
-            document.getElementById('moreInformation').innerText = question.context;
+            const mapInfo = document.getElementById('moreInformation');
+            const globeInfo = document.getElementById('globeMoreInformation');
+            if (mapInfo) mapInfo.innerText = question.context;
+            if (globeInfo) globeInfo.innerText = question.context;
             cancelCountdown();
         }
 
@@ -256,6 +322,11 @@
         }
 
         function revealAnswerOnMap(lat, lng, label) {
+            revealedAnswer = {lat, lng};
+            const globeResult = document.getElementById('globeResult');
+            globeResult.innerHTML = label.replace('id="moreInformation"', 'id="globeMoreInformation"');
+            globeResult.hidden = activeView !== 'threejs';
+            if (globeView) globeView.setMarkers(latestGuess, revealedAnswer);
             const marker = L.marker([lat, lng], {icon: answerIcon}).addTo(markersGroup);
 
             if (latestGuess) {
@@ -315,6 +386,9 @@
         function clearMarkers() {
             markersGroup.clearLayers();
             latestGuess = null;
+            revealedAnswer = null;
+            document.getElementById('globeResult').hidden = true;
+            if (globeView) globeView.setMarkers(null, null);
             allowNewMarkerPlacement = true;
         }
 
@@ -334,6 +408,10 @@
         }
 
         function triggerGamification(guess, answer, distanceM, bombTier) {
+            if (activeView === 'threejs') {
+                globeView.focus(answer.lat, answer.lng);
+                return;
+            }
             map.once('moveend', function() {
                 var burstHtml = '<div class="impact-burst"></div>';
                 var burstIcon = L.divIcon({ className: '', html: burstHtml, iconSize: [0, 0], iconAnchor: [0, 0] });
@@ -407,7 +485,7 @@
             maplibregl.setWorkerUrl(new URL('./dist/maplibre-gl-worker.mjs', import.meta.url).href);
             window.maplibregl = maplibregl;
             await import('./dist/leaflet-maplibre-gl.js');
-            L.maplibreGL({style: './style-nolabels.json', attributionControl: {customAttribution: attribution}}).addTo(map);
+            window.mapStyleLayer = L.maplibreGL({style: activeView === 'bright' ? './style-bright.json' : './style-nolabels.json', attributionControl: {customAttribution: attribution}}).addTo(map);
         } catch (error) {
             console.error('Vector map unavailable:', error);
             L.tileLayer('https://tiles.openfreemap.org/natural_earth/ne2sr/{z}/{x}/{y}.png', {
