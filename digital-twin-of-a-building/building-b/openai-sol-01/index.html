@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#eeeae2">
+  <title>Building B · building explorer</title>
+  <script type="module" crossorigin src="../../assets/index-m8zj5Pj6.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/OrbitControls-Cz6NLJXz.js">
+  <link rel="stylesheet" crossorigin href="../../assets/index-O0_ONHmB.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span><div><strong>Building B</strong><small>BUILDING EXPLORER</small></div></div>
+      <div class="location">Residential reconstruction</div>
+      
+    </header>
+    <main class="workspace">
+      <section class="stage" aria-label="Interactive building model">
+        <div id="canvasHost" class="canvas-host" role="img" aria-label="Interactive three-dimensional illustration of Building B"></div>
+        <div class="stage-top"><div class="view-tag"><span class="live-dot"></span> INTERACTIVE MODEL <span class="view-tag-sub">/ ILLUSTRATIVE</span></div><button id="resetView" class="icon-button" type="button" title="Reset view" aria-label="Reset view">⌖</button></div>
+        <div class="view-controls" role="group" aria-label="Camera views"><button id="frontView" type="button">Front view</button><button id="topView" type="button">Overhead</button></div>
+        <div class="stage-bottom"><span>DRAG TO ORBIT <b>·</b> SCROLL OR PINCH TO ZOOM</span><span>ILLUSTRATIVE MODEL <b>·</b> NOT A SURVEY</span></div>
+        <div id="graphicsError" class="graphics-error" role="alert" hidden></div>
+      </section>
+      <aside class="panel" aria-label="Model controls and building information">
+        <div class="panel-scroll">
+          <div class="intro"><h1>A closer look<br>at Building B<span>.</span></h1><p>Explore an illustrative reconstruction of the house and its five described spaces.</p></div>
+          <div class="rule"></div>
+          <section class="panel-section"><div class="section-heading"><h2>Explore spaces</h2><span>05 SECTIONS</span></div><div id="unitList" class="unit-list" role="group" aria-label="Select a section"></div></section>
+          <div class="rule"></div>
+          <section class="panel-section"><div class="section-heading"><h2>Model layers</h2><span>DISPLAY</span></div>
+            <label class="control-row" for="floorSelect"><span>Visible floor</span><select id="floorSelect"><option value="all">All floors</option><option value="ground">Ground only</option><option value="upper">Upper only</option></select></label>
+            <label class="control-row" for="roofToggle"><span>Remove roof</span><input id="roofToggle" type="checkbox" role="switch"></label>
+            <label class="control-row" for="cutawayToggle"><span>Interior cutaway</span><input id="cutawayToggle" type="checkbox" role="switch"></label>
+          </section>
+          <div class="rule"></div>
+          <section class="selection" aria-live="polite"><h2 id="selectedName">Whole building</h2><div id="selectedMeta" class="selection-meta"></div><p id="selectedNote"></p></section>
+        </div>
+        <div class="panel-footer"><span class="legend-swatch"></span> Exterior form <span class="legend-swatch inferred"></span> Inferred layout</div>
+      </aside>
+    </main>
+  </div>
+  
+</body>
+</html>
