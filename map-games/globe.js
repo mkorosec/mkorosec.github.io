@@ -15,6 +15,10 @@ export function globeCoordinates(point) {
     return {lat: Math.asin(local.y) * 180 / Math.PI, lng: Math.atan2(-local.z, local.x) * 180 / Math.PI};
 }
 
+export function globeTextureWidth(maximum, memory, viewportWidth) {
+    return Math.min(maximum, memory < 4 ? 2048 : viewportWidth >= 900 ? 8192 : 4096);
+}
+
 export function globeArcPoints(guess, answer, segments = 90) {
     const start = globePoint(guess.lat, guess.lng).normalize();
     const end = globePoint(answer.lat, answer.lng).normalize();
@@ -83,12 +87,19 @@ export async function createGlobe(container, onGuess) {
     const response = await fetch('./dist/countries.json');
     if (!response.ok) throw new Error('Country outlines could not be loaded');
     const countries = await response.json();
+    const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.domElement.tabIndex = 0;
+    renderer.domElement.setAttribute('aria-label', '3D globe. Arrow keys rotate, Enter guesses the location at the center.');
+    container.appendChild(renderer.domElement);
     const textureCanvas = document.createElement('canvas');
-    textureCanvas.width = 2048;
-    textureCanvas.height = 1024;
+    textureCanvas.width = globeTextureWidth(renderer.capabilities.maxTextureSize, navigator.deviceMemory || 4, window.innerWidth);
+    textureCanvas.height = textureCanvas.width / 2;
     const context = textureCanvas.getContext('2d');
     const width = textureCanvas.width;
     const height = textureCanvas.height;
+    const textureScale = width / 2048;
     const ocean = context.createLinearGradient(0, 0, 0, height);
     ocean.addColorStop(0, '#0a293e');
     ocean.addColorStop(.5, '#164a5e');
@@ -96,8 +107,8 @@ export async function createGlobe(container, onGuess) {
     context.fillStyle = ocean;
     context.fillRect(0, 0, width, height);
     context.strokeStyle = 'rgba(180, 219, 224, .12)';
-    context.lineWidth = 1;
-    context.setLineDash([3, 7]);
+    context.lineWidth = textureScale;
+    context.setLineDash([3 * textureScale, 7 * textureScale]);
     for (let x = 0; x <= width; x += width / 12) {
         context.beginPath(); context.moveTo(x, 0); context.lineTo(x, height); context.stroke();
     }
@@ -123,13 +134,30 @@ export async function createGlobe(container, onGuess) {
     }
     patternContext.putImageData(pattern, 0, 0);
     context.fillStyle = context.createPattern(patternCanvas, 'repeat');
-    context.strokeStyle = 'rgba(220, 245, 213, .72)';
-    context.lineWidth = 1.1;
+    context.strokeStyle = 'rgba(220, 245, 213, .3)';
+    context.lineWidth = 1.1 * textureScale;
+    const borderPositions = [];
     for (const feature of countries.features) {
         const geometry = feature.geometry;
         const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
         for (const polygon of polygons) {
-            for (const shift of [-width, 0, width]) {
+            for (const ring of polygon) {
+                for (let index = 1; index < ring.length; index++) {
+                    const [fromLng, fromLat] = ring[index - 1];
+                    const [toLng, toLat] = ring[index];
+                    const deltaLng = ((toLng - fromLng + 540) % 360) - 180;
+                    const steps = Math.max(1, Math.ceil(Math.max(Math.abs(toLat - fromLat), Math.abs(deltaLng)) / .5));
+                    let from = globePoint(fromLat, fromLng, 2.012);
+                    for (let step = 1; step <= steps; step++) {
+                        const fraction = step / steps;
+                        const to = globePoint(fromLat + (toLat - fromLat) * fraction, fromLng + deltaLng * fraction, 2.012);
+                        borderPositions.push(from.x, from.y, from.z, to.x, to.y, to.z);
+                        from = to;
+                    }
+                }
+            }
+            const crossesSeam = polygon.some(ring => ring.some((coordinate, index) => index > 0 && Math.abs(coordinate[0] - ring[index - 1][0]) > 180));
+            for (const shift of crossesSeam ? [-width, 0, width] : [0]) {
                 context.beginPath();
                 for (const ring of polygon) {
                     let previousX;
@@ -155,21 +183,18 @@ export async function createGlobe(container, onGuess) {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
     camera.position.z = 7;
-    const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.domElement.tabIndex = 0;
-    renderer.domElement.setAttribute('aria-label', '3D globe. Arrow keys rotate, Enter guesses the location at the center.');
-    container.appendChild(renderer.domElement);
     const globe = new THREE.Group();
     globe.rotation.set(20 * Math.PI / 180, -Math.PI / 2, 0);
     scene.add(globe);
     const texture = new THREE.CanvasTexture(textureCanvas);
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
-    const sphere = new THREE.Mesh(new THREE.SphereGeometry(2, 80, 48), new THREE.MeshPhongMaterial({map: texture, shininess: 18, specular: 0x315c6a}));
+    const sphere = new THREE.Mesh(new THREE.SphereGeometry(2, 192, 128), new THREE.MeshPhongMaterial({map: texture, shininess: 18, specular: 0x315c6a}));
     globe.add(sphere);
-    const atmosphere = new THREE.Mesh(new THREE.SphereGeometry(2.095, 64, 48), new THREE.ShaderMaterial({
+    const borderGeometry = new THREE.BufferGeometry();
+    borderGeometry.setAttribute('position', new THREE.Float32BufferAttribute(borderPositions, 3));
+    globe.add(new THREE.LineSegments(borderGeometry, new THREE.LineBasicMaterial({color: 0xd6eed5, transparent: true, opacity: .58, depthWrite: false})));
+    const atmosphere = new THREE.Mesh(new THREE.SphereGeometry(2.095, 128, 96), new THREE.ShaderMaterial({
         transparent: true,
         depthWrite: false,
         uniforms: {glowColor: {value: new THREE.Color('#7ed8d1')}},
