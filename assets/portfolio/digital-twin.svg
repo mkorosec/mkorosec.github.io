@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 900" role="img" aria-labelledby="title">
+  <title id="title">Digital twin benchmark</title>
+  <rect width="1280" height="900" fill="#e8ede7"/>
+  <g fill="none" stroke="#a8b7a9" stroke-width="4">
+    <path d="M670 190 940 90l230 130-270 100zM670 190v380l230 130V320m270-100v380L900 700"/>
+    <path d="M670 315 900 445l270-100M670 440l230 130 270-100M760 235v380m90-345v380m140-310v330m90-365v330"/>
+  </g>
+  <rect x="95" y="286" width="660" height="312" fill="#fafbf8"/>
+  <text x="139" y="412" fill="#27312d" font-family="Arial, sans-serif" font-size="83" font-weight="700" letter-spacing="-3">DIGITAL</text>
+  <text x="139" y="514" fill="#a4442e" font-family="Arial, sans-serif" font-size="83" font-weight="700" letter-spacing="-3">TWIN</text>
+</svg>
