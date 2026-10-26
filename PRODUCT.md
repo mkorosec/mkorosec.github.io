@@ -5,13 +5,13 @@
 web
 
 ## Product Purpose
-Portfolio at /portfolio/ linking to the runnable projects hosted in this repository and projects published from other repositories through GitHub Pages.
+A portfolio at `/portfolio/` with links to runnable browser projects, some hosted in this repository and others deployed from their source repositories.
 
 ## Capabilities and Constraints
-Static HTML and CSS on GitHub Pages. Preserve the geography quiz at / and /quiz/ and its existing fragment-based sharing. Keep existing project routes intact. Travelogue is deployed from mkorosec/travelogue using the GitHub Pages build/deployment action; link to its published URL. Project descriptions come from the actual applications. No invented biography, employment or client claims.
+Static HTML and CSS on GitHub Pages. The root `index.html` is intentionally empty. The map quiz lives at `/map-games/`; `/quiz/` redirects there while preserving category fragments. Keep published project URLs intact. The digital twin benchmark is an audited public export from its source repository. Project descriptions come from the actual applications. No invented biography, employment or client claims.
 
 ## Brand Commitments
-Minimalistic, clean design. Follow the user's anti-slop article and use Book of Shapes as inspiration for geometric variety.
+Minimalistic, clean design. Use Book of Shapes as inspiration for geometric variety.
 
 ## Evidence on Hand
-Project HTML, .github/workflows, and public GitHub repository and deployment metadata. Public identity: M. Korošec, mkorosec.
+Project HTML, local source repositories, deployment workflows, and public project sites. Public identity: M. Korošec, mkorosec.
