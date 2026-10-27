@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f3f2ed"><title>Dvořakova — Building study</title>
+  <script type="module" crossorigin src="../assets/index-Czeiyt6Q.js"></script>
+  <link rel="modulepreload" crossorigin href="../assets/OrbitControls-CFyhzQGZ.js">
+  <link rel="stylesheet" crossorigin href="../assets/index-Pd9Hqcvy.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#" aria-label="Dvořakova home"><span class="brandmark">D<span>·</span></span><span>DVOŘAKOVA<br><small>HOUSING PROPOSAL</small></span></a><div class="top-center"><span class="status-dot"></span> INTERACTIVE BUILDING STUDY <span class="divider">/</span> MARIBOR, SLOVENIA</div><button id="sourcesOpen" class="source-button">Source material <span>↗</span></button></header>
+<main class="app">
+  <aside class="sidebar">
+    <div class="eyebrow"><span>PROJECT 18169</span><span>01 / 03</span></div>
+    <h1>A place<br>to <em>belong.</em></h1>
+    <p class="intro">An interactive study of a proposed residential community on Dvořakova ulica.</p>
+    <div class="rule"></div>
+    <div class="section-label">THE PROPOSAL <span>↗</span></div>
+    <div class="stats"><div><strong>60</strong><span>APARTMENTS</span></div><div><strong>2</strong><span>BUILDING SECTIONS</span></div><div><strong>64</strong><span>GARAGE SPACES</span></div></div>
+    <p class="small-note">Proposed quantities, not as-built records.</p>
+    <div class="rule"></div>
+    <div class="section-label">EXPLORE THE MODEL <span>01—02</span></div>
+    <div class="section-options" role="group" aria-label="Select building section"><button class="section-choice active" data-section="all"><span class="choice-number">00</span><span><b>Whole proposal</b><small>Site overview</small></span><span class="arrow">↗</span></button><button class="section-choice" data-section="lamela"><span class="choice-number">01</span><span><b>Lamela</b><small>Gallery-access building</small></span><span class="arrow">↗</span></button><button class="section-choice" data-section="stolpic"><span class="choice-number">02</span><span><b>Stolpič</b><small>Smaller residential block</small></span><span class="arrow">↗</span></button></div>
+    <div class="sidebar-bottom"><span class="asterisk">✳</span><p id="selectionText">Select a section to learn more, or explore the building directly.</p></div>
+  </aside>
+  <section class="viewer" aria-label="Interactive 3D building model">
+    <div id="canvas" tabindex="0" aria-label="3D model. Drag to orbit, scroll to zoom. Use arrow keys to orbit and plus or minus to zoom."></div><div id="graphicsError" class="error" hidden>Unable to initialize the 3D view. Please try a browser with WebGL enabled.</div>
+    <div class="viewer-top"><div><span class="overline">THE SITE / 3D MODEL</span><h2>Space to live, together<span>.</span></h2></div><div class="model-badge"><span>●</span> PROPOSAL STUDY</div></div>
+    <div class="view-buttons" role="group" aria-label="Camera view"><button id="orbit" class="active">01 <span>Perspective</span></button><button id="front">02 <span>Front</span></button><button id="top">03 <span>Overhead</span></button></div>
+    <div class="compass"><span>N</span><i>↗</i><small>ORIENTATION<br>INFERRED</small></div>
+    <div class="viewer-bottom"><div class="gesture"><span class="gesture-icon">✥</span><span>DRAG TO ORBIT<br><b>SCROLL TO ZOOM</b></span></div><div class="legend"><span><i></i> PROPOSED BUILDING</span><span><i></i> SHARED LANDSCAPE</span></div><div class="coordinates">DVOŘAKOVA ULICA<br><b>MARIBOR, SLOVENIA</b></div></div>
+    <div class="control-panel"><div class="panel-heading"><span>MODEL CONTROLS</span><span>⌁</span></div><label for="floor">FLOOR <span>ISOLATE LEVEL</span></label><select id="floor"><option value="all">All floors</option><option value="0">Ground floor</option><option value="1">Floor 1</option><option value="2">Floor 2</option><option value="3">Floor 3</option><option value="4">Floor 4</option><option value="5">Floor 5 / roof terrace</option></select><label class="toggle-row" for="roof"><span>Remove roof <small>Reveal the upper level</small></span><input type="checkbox" id="roof"><i></i></label><label class="toggle-row" for="cutaway"><span>Interior cutaway <small>Show inferred partitions</small></span><input type="checkbox" id="cutaway"><i></i></label><div class="panel-foot">MODEL IS AN INTERPRETATION <span>ⓘ</span></div></div>
+  </section>
+</main>
+<div class="modal" id="sourcesModal" hidden><div class="modal-backdrop" data-close></div><section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="sourceTitle"><div class="modal-head"><div><span class="overline">PROJECT ARCHIVE / 18169</span><h2 id="sourceTitle">Source material<span>.</span></h2></div><button id="sourcesClose" aria-label="Close source material">×</button></div><p>The original proposal documents are available below. The model is an interpretation, not a survey or a record of construction.</p><div class="source-grid" id="sourceGrid"></div></section></div>
+</body></html>

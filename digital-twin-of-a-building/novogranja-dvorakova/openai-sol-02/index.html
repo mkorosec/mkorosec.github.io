@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#e7e8e1" />
+  <title>Dvořakova · proposal twin</title>
+  <script type="module" crossorigin src="../assets/index-BEHPAo7c.js"></script>
+  <link rel="modulepreload" crossorigin href="../assets/OrbitControls-CFyhzQGZ.js">
+  <link rel="stylesheet" crossorigin href="../assets/index-BRTtniQt.css">
+</head>
+<body>
+  <div id="app">
+    <canvas id="scene" aria-label="Interactive 3D reconstruction of the Dvořakova housing proposal"></canvas>
+    <div class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">D<span>+</span></span><div><strong>DVOŘAKOVA</strong><small>PROPOSAL TWIN · MARIBOR</small></div></div>
+      <button id="sources-top" class="top-link" type="button">Sources <span aria-hidden="true">↗</span></button>
+    </div>
+
+    <aside class="control-panel" aria-label="Model controls">
+      <div class="panel-intro"><span class="eyebrow">ARCHITECTURAL STUDY · 18169</span><h1>Explore the proposal</h1><p>Two blocks framing a shared garden and public passage.</p></div>
+      <section class="control-section"><h2>Viewpoint</h2><div class="segmented" role="group" aria-label="Viewpoint"><button id="view-perspective" class="active" type="button">3D</button><button id="view-front" type="button">Front</button><button id="view-top" type="button">Overhead</button></div></section>
+      <section class="control-section"><h2>Explore level</h2><div id="floor-controls" class="floor-grid" role="group" aria-label="Floor isolation"><button class="active" type="button" data-floor="all">All</button><button type="button" data-floor="0">P</button><button type="button" data-floor="1">P+1</button><button type="button" data-floor="2">P+2</button><button type="button" data-floor="3">P+3</button><button type="button" data-floor="4">P+4</button><button type="button" data-floor="5">P+5</button><button type="button" data-floor="b1">B1</button><button type="button" data-floor="b2">B2</button></div><p class="micro">Levels follow section marks. Apartment placement is inferred.</p></section>
+      <section class="control-section"><h2>Focus</h2><div class="focus-list" role="group" aria-label="Select a section"><button type="button" data-focus="lamella"><span class="focus-dot blue"></span><span><strong>Lamela</strong><small>Gallery housing</small></span><span>↗</span></button><button type="button" data-focus="stolpic"><span class="focus-dot coral"></span><span><strong>Stolpič</strong><small>Street block</small></span><span>↗</span></button><button type="button" data-focus="courtyard"><span class="focus-dot green"></span><span><strong>Shared court</strong><small>Garden & passage</small></span><span>↗</span></button></div></section>
+      <section class="control-section options"><h2>Model layers</h2><label class="switch-row"><span>Remove roof</span><input id="roof-toggle" type="checkbox" role="switch" /><span class="switch" aria-hidden="true"></span></label><label class="switch-row"><span>Interior cutaway</span><input id="cut-toggle" type="checkbox" role="switch" /><span class="switch" aria-hidden="true"></span></label></section>
+      <button id="sources-panel" class="source-button" type="button"><span>View original drawings</span><span aria-hidden="true">↗</span></button>
+    </aside>
+
+    <div class="view-hint" aria-hidden="true">DRAG TO ORBIT <span>·</span> SCROLL / PINCH TO ZOOM <span>·</span> TAP A BLOCK</div>
+    <div id="info-card" class="info-card" aria-live="polite"></div>
+    <div class="scale-note">SCHEMATIC MODEL <span>·</span> PLAN PROPORTIONS INFERRED</div>
+    <div id="error" class="error-banner" role="alert" hidden></div>
+
+    <div id="source-dialog" class="dialog-backdrop" hidden>
+      <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="source-title">
+        <div class="dialog-head"><div><span class="eyebrow">SUPPLIED EVIDENCE</span><h2 id="source-title">Original material</h2></div><button id="close-sources" class="close-button" type="button" aria-label="Close source images">×</button></div>
+        <p class="dialog-intro">Proposal drawings and visualizations supplied with this packet. Open an image or PDF in a new tab for full detail.</p>
+        <div id="source-list" class="source-list"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

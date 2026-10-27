@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dvořakova · proposal explorer</title>
+  <script type="module" crossorigin src="../assets/index-CI_Zy3vj.js"></script>
+  <link rel="modulepreload" crossorigin href="../assets/OrbitControls-CFyhzQGZ.js">
+  <link rel="stylesheet" crossorigin href="../assets/index-LjZnfqnM.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="identity"><span class="mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M4 31V9h21v22H4Zm21-14h11v14H25M11 9V4h18v13"/></svg></span><div><strong>Dvořakova</strong><span>Proposal explorer · Maribor</span></div></div>
+    <button class="source-link" id="openSources" type="button">View source drawings <span aria-hidden="true">↗</span></button>
+  </header>
+  <main>
+    <section class="stage" aria-label="Interactive building model">
+      <div id="canvas" role="img" aria-label="Three dimensional reconstruction of the Dvořakova housing proposal"></div>
+      <div class="stage-label"><span class="status-dot"></span> PROPOSAL MODEL <span class="divider">/</span> GEOMETRY PARTLY INFERRED</div>
+      <div class="compass" aria-label="Model orientation inferred"><span>N?</span><i></i><small>orientation inferred</small></div>
+      <div class="stage-actions"><button id="frontView" type="button">Front view</button><button id="topView" type="button">Overhead</button><button id="resetView" type="button">Reset view</button></div>
+      <div class="gesture-hint">Drag to orbit · scroll or pinch to zoom</div>
+      <div id="error" class="error" role="alert" hidden></div>
+    </section>
+    <aside class="panel" aria-label="Model controls and details">
+      <div class="panel-scroll">
+        <div class="intro"><p class="eyebrow">Architectural proposal · 18169</p><h1>A building shaped around shared life.</h1><p>Explore the proposal’s two residential volumes, external galleries and stepped roof terraces. This is a reading of the supplied drawings, not a record of a completed building.</p></div>
+        <div class="metrics"><div><strong>60</strong><span>proposed homes</span></div><div><strong>6</strong><span>above-ground levels</span></div><div><strong>64</strong><span>garage spaces · 2 levels</span></div></div>
+        <div class="controls"><h2>Explore the model</h2><label for="floorSelect">Isolate a level</label><select id="floorSelect"><option value="all">All levels</option></select><label for="unitSelect">Highlight an apartment</label><select id="unitSelect"><option value="">Choose an apartment</option></select><div class="toggles"><label><input id="roofToggle" type="checkbox"><span>Remove roofs</span></label><label><input id="cutawayToggle" type="checkbox"><span>Interior cutaway</span></label></div></div>
+        <div class="selection" id="selection" aria-live="polite"><h2>Choose a home</h2><p>Use the apartment menu or select a floor in the model. Numbered positions and internal partitions are inferred from the proposal plans.</p></div>
+        <div class="evidence"><h2>Reading the evidence</h2><p>Elevation marks in the section are <strong>2.80 m apart</strong>. The model uses that vertical spacing. Floor footprints, façade rhythm and apartment boundaries are interpretive.</p><button id="openSourcesAlt" type="button">Open drawings and photographs <span aria-hidden="true">↗</span></button></div>
+      </div>
+      <div class="panel-foot">DVOŘAKOVA ULICA <span>MARIBOR, SLOVENIA</span></div>
+    </aside>
+  </main>
+</div>
+<dialog id="sources"><div class="dialog-head"><div><p class="eyebrow">Original input packet</p><h2>Source drawings</h2></div><button id="closeSources" type="button" aria-label="Close source drawings">×</button></div><p class="dialog-copy">The original proposal images and PDFs are preserved here. Open any item to inspect the evidence beside the interpretation.</p><div id="sourceGrid" class="source-grid"></div></dialog>
+</body>
+</html>
