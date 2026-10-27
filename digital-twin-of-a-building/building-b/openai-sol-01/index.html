@@ -1,47 +1,40 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#eeeae2">
-  <title>Building B · building explorer</title>
-  <script type="module" crossorigin src="../../assets/index-WKxFMRjR.js"></script>
-  <link rel="modulepreload" crossorigin href="../../assets/OrbitControls-DyxGuG2U.js">
-  <link rel="stylesheet" crossorigin href="../../assets/index-O0_ONHmB.css">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#eeede6"><title>Building B — A building, explored</title>  <script type="module" crossorigin src="../../assets/index-DFe7Y3ba.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/OrbitControls-BmsJdwxQ.js">
+  <link rel="stylesheet" crossorigin href="../../assets/index-DRFSerci.css">
 </head>
 <body>
-  <div class="app">
-    <header class="topbar">
-      <div class="brand"><span class="brand-mark" aria-hidden="true"></span><div><strong>Building B</strong><small>BUILDING EXPLORER</small></div></div>
-      <div class="location">Residential reconstruction</div>
-      
-    </header>
-    <main class="workspace">
-      <section class="stage" aria-label="Interactive building model">
-        <div id="canvasHost" class="canvas-host" role="img" aria-label="Interactive three-dimensional illustration of Building B"></div>
-        <div class="stage-top"><div class="view-tag"><span class="live-dot"></span> INTERACTIVE MODEL <span class="view-tag-sub">/ ILLUSTRATIVE</span></div><button id="resetView" class="icon-button" type="button" title="Reset view" aria-label="Reset view">⌖</button></div>
-        <div class="view-controls" role="group" aria-label="Camera views"><button id="frontView" type="button">Front view</button><button id="topView" type="button">Overhead</button></div>
-        <div class="stage-bottom"><span>DRAG TO ORBIT <b>·</b> SCROLL OR PINCH TO ZOOM</span><span>ILLUSTRATIVE MODEL <b>·</b> NOT A SURVEY</span></div>
-        <div id="graphicsError" class="graphics-error" role="alert" hidden></div>
-      </section>
-      <aside class="panel" aria-label="Model controls and building information">
-        <div class="panel-scroll">
-          <div class="intro"><h1>A closer look<br>at Building B<span>.</span></h1><p>Explore an illustrative reconstruction of the house and its five described spaces.</p></div>
-          <div class="rule"></div>
-          <section class="panel-section"><div class="section-heading"><h2>Explore spaces</h2><span>05 SECTIONS</span></div><div id="unitList" class="unit-list" role="group" aria-label="Select a section"></div></section>
-          <div class="rule"></div>
-          <section class="panel-section"><div class="section-heading"><h2>Model layers</h2><span>DISPLAY</span></div>
-            <label class="control-row" for="floorSelect"><span>Visible floor</span><select id="floorSelect"><option value="all">All floors</option><option value="ground">Ground only</option><option value="upper">Upper only</option></select></label>
-            <label class="control-row" for="roofToggle"><span>Remove roof</span><input id="roofToggle" type="checkbox" role="switch"></label>
-            <label class="control-row" for="cutawayToggle"><span>Interior cutaway</span><input id="cutawayToggle" type="checkbox" role="switch"></label>
-          </section>
-          <div class="rule"></div>
-          <section class="selection" aria-live="polite"><h2 id="selectedName">Whole building</h2><div id="selectedMeta" class="selection-meta"></div><p id="selectedNote"></p></section>
-        </div>
-        <div class="panel-footer"><span class="legend-swatch"></span> Exterior form <span class="legend-swatch inferred"></span> Inferred layout</div>
-      </aside>
-    </main>
-  </div>
-  
-</body>
-</html>
+<header class="topbar"><a class="brand" href="../../" aria-label="Building B home"><span class="brand-mark">B<span>°</span></span><span>Building B<span class="brand-sub">SPATIAL ARCHIVE</span></span></a><div class="location">Residential reconstruction</div></header>
+<main>
+<aside class="sidebar" aria-label="Building explorer">
+ <div class="intro"><span class="eyebrow">RESIDENTIAL · 01</span><h1>A building,<br><em>explored.</em></h1><p>An approximate residential reconstruction.</p></div>
+ <div class="building-stats"><div><b>06</b><span>SPACES</span></div><div><b>02</b><span>LEVELS</span></div><div><b>02</b><span>STAIR SYSTEMS</span></div></div>
+ <div class="section-heading"><h2>Explore the spaces</h2><span>SELECT TO INSPECT</span></div>
+ <button class="space-card all active" data-unit="all"><span class="space-icon">⌂</span><span><strong>Entire building</strong><small>The complete reconstruction</small></span><span class="card-arrow">↗</span></button>
+ <div class="floor-label">00 <span>GROUND FLOOR</span></div>
+ <button class="space-card" data-unit="spaceA"><span class="unit-dot teal"></span><span><strong>Space A</strong><small>Ground floor</small></span><span class="card-number">A</span></button>
+ <button class="space-card" data-unit="spaceE"><span class="unit-dot teal"></span><span><strong>Space E</strong><small>Ground floor</small></span><span class="card-number">E</span></button>
+ <button class="space-card" data-unit="spaceF"><span class="unit-dot teal"></span><span><strong>Space F</strong><small>Ground floor</small></span><span class="card-number">F</span></button>
+ <div class="floor-label">01 <span>UPPER FLOOR</span></div>
+ <button class="space-card" data-unit="spaceB"><span class="unit-dot teal"></span><span><strong>Space B</strong><small>Upper floor</small></span><span class="card-number">B</span></button>
+ <button class="space-card" data-unit="spaceC"><span class="unit-dot teal"></span><span><strong>Space C</strong><small>Upper floor</small></span><span class="card-number">C</span></button>
+ <button class="space-card" data-unit="spaceD"><span class="unit-dot teal"></span><span><strong>Space D</strong><small>Upper floor</small></span><span class="card-number">D</span></button>
+ <div class="evidence-note"><span class="evidence-dot"></span><div><strong>Drawing-led reconstruction</strong><p>Plan geometry, with provisional heights.<br>Geometry and stair connections remain provisional.</p></div></div>
+</aside>
+<section class="viewport" aria-label="Interactive three-dimensional building">
+ <div id="scene"><div id="loading" role="status"><span class="loader"></span>Preparing the reconstruction…</div><div id="graphics-error" role="alert" hidden></div><div id="labels"></div></div>
+ <div class="scene-heading"><span class="eyebrow">THE DIGITAL TWIN</span><div><span class="live-dot"></span><span id="scene-title">Entire building</span></div></div>
+ <div class="scene-badge"><span>01 / Building B</span><small>PLAN-BASED MODEL</small></div>
+ <div class="floor-switch" role="group" aria-label="Visible floor"><button class="active" data-floor="all" title="Show both floors (F)">All levels</button><button data-floor="0">00 <span>Ground</span></button><button data-floor="1">01 <span>Upper</span></button></div>
+ <div class="layers"><span class="eyebrow">LAYERS</span><button id="roof" aria-pressed="true" title="Toggle the inferred roof (R)"><span class="layer-symbol">⌃</span>Roof<span class="toggle on"></span></button><button id="cutaway" aria-pressed="false" title="Lower walls to reveal interiors (C)"><span class="layer-symbol">◩</span>Cutaway<span class="toggle"></span></button><button id="furniture" aria-pressed="true"><span class="layer-symbol">▤</span>Furnishings<span class="toggle on"></span></button><span class="layer-note">Roof & heights inferred</span></div>
+ <div class="selection-panel" id="selection" hidden><button class="close-selection" id="clear-selection" aria-label="Clear selection">×</button><span class="eyebrow" id="unit-source"></span><h2 id="unit-name"></h2><div id="unit-area"></div><p id="unit-description"></p><small id="unit-note"></small></div>
+ 
+ <div class="canvas-bottom"><div class="view-tools" role="group" aria-label="Camera views"><button class="active" data-view="perspective" title="Perspective view (3)">◈ <span>Perspective</span></button><button data-view="front" title="Front view (1)">▱ <span>Front</span></button><button data-view="overhead" title="Overhead view (2)">⊞ <span>Overhead</span></button><span class="tool-divider"></span><button id="zoom-in" aria-label="Zoom in" title="Zoom in (+)">+</button><button id="zoom-out" aria-label="Zoom out" title="Zoom out (−)">−</button><button id="reset" aria-label="Reset view" title="Reset view">↺</button></div><div class="orientation"><span>↑</span>DRAWING TOP<small>Not compass north</small></div></div>
+ <div class="interaction-hint"><span>↔</span> Drag to orbit <i>·</i> Scroll to zoom <i>·</i> Click a space <button id="help" aria-label="Show keyboard shortcuts">?</button></div>
+</section>
+</main>
+<footer><span><span class="status-dot"></span> LOCAL EVIDENCE ONLY</span><span>Architectural plans → geometry <span class="footer-separator">/</span> Photographs → appearance</span></footer>
+
+<dialog id="help-dialog"><div class="dialog-header"><h2>Explore with your keyboard</h2><button id="close-help" class="dialog-close" aria-label="Close keyboard help">×</button></div><p>Focus the model to use arrow keys to orbit. Drag with one finger to orbit; pinch to zoom, or use two fingers to pan.</p><dl><dt>1 / 2 / 3</dt><dd>Front / overhead / perspective</dd><dt>+ / −</dt><dd>Zoom in / out</dd><dt>F</dt><dd>Cycle visible floors</dd><dt>R / C</dt><dd>Toggle roof / cutaway</dd><dt>Escape</dt><dd>Close dialog or clear selection</dd></dl></dialog>
+</body></html>
