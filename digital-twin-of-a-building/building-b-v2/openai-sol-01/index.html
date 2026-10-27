@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#e7e8e0" />
+  <title>Building B · Building study</title>
+  <script type="module" crossorigin src="../../assets/index-WTdYMtnJ.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/OrbitControls-DyxGuG2U.js">
+  <link rel="stylesheet" crossorigin href="../../assets/index-59kfXRrn.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">B</span><div><strong>Building B</strong><small>BUILDING STUDY · </small></div></div>
+      <div class="top-actions"><span class="evidence-tag">Illustrative exterior · schematic interiors</span></div>
+    </header>
+
+    <main class="workspace">
+      <section class="viewer" aria-label="Interactive three dimensional building model">
+        <div id="canvasHost" class="canvas-host"><div id="graphicsError" class="graphics-error" role="alert" hidden></div></div>
+        <div class="view-heading"><div class="eyebrow">01 / EXPLORE</div><h1>A house by the garden</h1><p>Orbit the illustrative exterior. Open the cutaway to inspect a provisional spatial study.</p></div>
+        <div class="compass-note"><span class="note-dot"></span><span>Front = model front<br><strong>North is not established</strong></span></div>
+        <div id="sceneLabel" class="scene-label" aria-live="polite">Whole building</div>
+        <div class="view-tools" role="group" aria-label="Camera views">
+          <button type="button" class="icon-button" id="frontButton" title="Front view (F)" aria-label="Front view">FRONT</button>
+          <button type="button" class="icon-button" id="overheadButton" title="Overhead view (O)" aria-label="Overhead view">TOP</button>
+          <button type="button" class="icon-button" id="resetButton" title="Reset orbit (R)" aria-label="Reset orbit">RESET</button>
+        </div>
+        <div class="viewer-hint">Drag to orbit <span>·</span> Scroll or pinch to zoom <span>·</span> Arrow keys to orbit</div>
+      </section>
+
+      <aside class="sidebar" aria-label="Building information and model controls">
+        <div class="sidebar-scroll">
+          <section class="sidebar-section introduction"><div class="eyebrow">02 / THE PROPERTY</div><h2>Read the building</h2><p>The model shows approximate interior spaces. Their positions are unverified.</p></section>
+          <section class="sidebar-section"><div class="section-title"><h3>Visible sections</h3><span>SELECT</span></div><div id="sectionList" class="section-list" role="group" aria-label="Select building section"></div></section>
+          <section class="sidebar-section"><div class="section-title"><h3>Space notes</h3><span>MODEL NOTES</span></div><div id="unitList" class="unit-list"></div></section>
+          
+        </div>
+      </aside>
+    </main>
+
+    <div class="control-dock" aria-label="Model display controls">
+      <div class="control-group"><span class="control-title">LEVEL</span><div id="floorControls" class="segmented" role="group" aria-label="Floor isolation"><button type="button" data-floor="all" aria-pressed="true">All</button><button type="button" data-floor="ground" aria-pressed="false">Ground</button><button type="button" data-floor="upper" aria-pressed="false">Upper</button></div></div>
+      <div class="dock-divider"></div>
+      <label class="switch-row"><span><strong>Remove roof</strong><small>Inspect upper level</small></span><input id="roofToggle" type="checkbox" role="switch" /><span class="switch-track" aria-hidden="true"></span></label>
+      <label class="switch-row"><span><strong>Interior cutaway</strong><small>Inferred partitions</small></span><input id="cutawayToggle" type="checkbox" role="switch" /><span class="switch-track" aria-hidden="true"></span></label>
+      <div class="dock-divider last-divider"></div><button id="helpButton" type="button" class="help-button" aria-label="Show controls and caveats">?</button>
+    </div>
+
+    
+    <dialog id="helpDialog" class="help-dialog" aria-labelledby="helpTitle"><div class="dialog-head"><div><div class="eyebrow">GUIDE</div><h2 id="helpTitle">Explore this study</h2></div><button id="closeHelpButton" type="button" class="close-button" aria-label="Close help">×</button></div><p>Drag to orbit, scroll or pinch to zoom, and use the view buttons for fixed camera positions. Use Tab to reach every control. With focus on the model, use arrow keys to orbit, + and − to zoom, F for front, O for top, and R to reset.</p><p>The exterior silhouette is illustrative. The cutaway, unit locations, hidden facades, exact dimensions and orientation remain unverified.</p></dialog>
+  </div>
+</body>
+</html>
