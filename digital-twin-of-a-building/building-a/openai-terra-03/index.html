@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e9e9e2"><title>Building A — Building study</title>
+  <script type="module" crossorigin src="../../assets/index-CvGxZwb8.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="../../assets/OrbitControls-CZ4PC8z3.js">
+  <link rel="stylesheet" crossorigin href="../../assets/index-Don9I8B2.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="../../compare/building-a/" aria-label="Building study home"><span class="brandmark">A<span>·</span></span><span>BUILDING STUDY <small>Residential reconstruction</small></span></a><div class="header-right"><span class="status-dot"></span> INTERACTIVE MODEL <span class="header-index"> / 01</span></div></header>
+  <main id="top" class="layout">
+    <aside class="sidebar" aria-label="Model controls">
+      <div class="intro"><div class="eyebrow"><span>ARCHITECTURE / DIGITAL TWIN</span><span>01 — 05</span></div><h1>Building<br><em>A</em><span class="period">.</span></h1><p>Explore the building, from the street façade to its original floor plan.</p></div>
+      <div class="divider"></div>
+      <section class="control-section"><div class="section-heading"><span>01</span><h2>SELECT SECTION</h2></div><p class="helper">Five connected entrances, viewed from the street.</p><div class="section-buttons" role="group" aria-label="Select building section"><button data-section="0">1</button><button data-section="1" class="active" aria-pressed="true">2</button><button data-section="2">3</button><button data-section="3">4</button><button data-section="4">5</button></div><div class="selected-line"><span class="swatch"></span><span id="section-description">Section 2</span><span class="selected-tag">SELECTED</span></div></section>
+      <div class="divider"></div>
+      <section class="control-section"><div class="section-heading"><span>02</span><h2>EXPLORE THE MODEL</h2></div><label class="field-label" for="floor">FLOOR <span>ISOLATE A LEVEL</span></label><div class="select-wrap"><select id="floor"><option value="all">All floors</option><option value="0">Ground floor</option><option value="1">First floor</option><option value="2">Second floor</option><option value="3">Third floor</option></select></div><div class="toggles"><button class="toggle-row" id="roof" aria-pressed="false"><span><strong>Remove roof</strong><small>Reveal the top of the building</small></span><i></i></button><button class="toggle-row" id="cutaway" aria-pressed="false"><span><strong>Interior cutaway</strong><small>Show inferred room divisions</small></span><i></i></button></div></section>
+      <div class="divider"></div>
+      
+      <div class="sidebar-foot"><span>BASED ON SUPPLIED ARCHIVAL MATERIAL</span><span>↗</span></div>
+    </aside>
+    <section class="viewer" aria-label="Interactive building model"><div class="viewer-top"><div><span class="kicker">BUILDING A</span><h2>A closer look<span>.</span></h2></div><div class="viewer-note"><span class="asterisk">✳</span><span>AN ARCHITECTURAL<br>INTERPRETATION</span></div></div>
+      <div id="canvas-wrap"><div id="graphics-error" role="alert" hidden>Unable to initialize the 3D view. Please try a browser with WebGL enabled.</div><div class="canvas-hint"><span class="hint-icon">↔</span> DRAG TO ORBIT <span class="hint-divider">/</span> SCROLL TO ZOOM</div><div class="camera-tools" role="group" aria-label="Rotate and zoom model"><button data-camera="left" aria-label="Rotate left">↶</button><button data-camera="right" aria-label="Rotate right">↷</button><button data-camera="in" aria-label="Zoom in">+</button><button data-camera="out" aria-label="Zoom out">−</button></div><div class="compass"><span>F</span><div>↑</div></div></div>
+      <div class="viewer-bottom"><div class="view-tabs" role="group" aria-label="Camera view"><button data-view="orbit" class="active">01 <span>Perspective</span></button><button data-view="front">02 <span>Front</span></button><button data-view="overhead">03 <span>Overhead</span></button></div><div class="model-key"><span class="key-box"></span> SELECTED SECTION <span class="key-dot"></span> <span id="mode-label">EXTERIOR VIEW</span></div></div>
+      <div class="disclaimer"><span class="info-icon">i</span><p><strong>A model, not a survey.</strong> Dimensions and room divisions are interpreted from historic drawings; present-day layouts, exact orientation and the apartment's location are unverified.</p><button id="info-toggle" aria-expanded="false" aria-controls="more-info">DETAILS <span>↗</span></button></div><div id="more-info" hidden><p>Dimensions, apartment placement, partitions and orientation remain provisional. This schematic reconstruction is not a survey.</p></div>
+    </section>
+  </main>
+</body></html>
