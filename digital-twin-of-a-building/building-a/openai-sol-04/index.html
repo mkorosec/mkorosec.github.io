@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f5f0" />
+    
+    <title>Building A — FORMA spatial archive</title>
+    
+    <script type="module" crossorigin src="../../assets/index-Ci0ZtnyX.js"></script>
+    <link rel="modulepreload" crossorigin href="../../assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="modulepreload" crossorigin href="../../assets/OrbitControls-D3dNcFYU.js">
+    <link rel="stylesheet" crossorigin href="../../assets/index-BQZ0WXx0.css">
+  </head>
+  <body>
+    <svg class="icon-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+      <symbol id="i-building" viewBox="0 0 24 24"><path d="M3 21V7l9-4 9 4v14M3 12l9-4 9 4M12 8v13M7 15v2m10-2v2"/></symbol>
+      <symbol id="i-orbit" viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Zm0 9L4 7.5M12 12l8-4.5M12 12v9"/></symbol>
+      <symbol id="i-front" viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14H4Zm0-12h16M9 13v3m6-3v3M9 21v-2h6v2"/></symbol>
+      <symbol id="i-top" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 10h16m-10 0v10m4-16v6"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 10 5-10 5L2 8l10-5Zm-10 9 10 5 10-5M2 16l10 5 10-5"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5c-3-2-6-2-10-1v15c4-1 7-1 10 1m0-15c3-2 6-2 10-1v15c-4-1-7-1-10 1V5Z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-11v1"/></symbol>
+      <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 2 7M4 4v7h7"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+      <symbol id="i-focus" viewBox="0 0 24 24"><path d="M3 9V3h6m6 0h6v6M3 15v6h6m6 0h6v-6"/><path d="M9 9h6v6H9z"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+      <symbol id="i-mouse" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="6"/><path d="M12 2v7M6 10h12"/></symbol>
+      <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 1 1 4 3c-1 .5-1 1-1 2m0 3v1"/></symbol>
+    </defs></svg>
+
+    <header class="app-header">
+      <a class="brand" href="../../compare/building-a/" aria-label="FORMA, reset the building explorer"><span class="brand-mark"><svg><use href="#i-building"/></svg></span><span>FORMA<span class="brand-caption">SPATIAL ARCHIVE</span></span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" id="explorer-nav" aria-current="page">Building explorer</button>
+        
+        
+      </nav>
+      
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar" id="sidebar" aria-label="Building controls">
+        <button class="mobile-control-heading" id="mobile-controls" aria-expanded="false" aria-controls="sidebar-content"><span><svg><use href="#i-layers"/></svg>Building controls</span><svg class="chevron"><use href="#i-chevron"/></svg></button>
+        <div class="sidebar-content" id="sidebar-content">
+          <div class="project-intro">
+            <div class="eyebrow"><span class="tiny-line"></span> BUILDING / 001</div>
+            <h1>Building <span>A</span></h1>
+            
+            <p class="project-description">Five connected sections.<br>One building, a little better understood.</p>
+            <div class="project-stats"><div><strong>05</strong><span>Sections</span></div><div><strong>4<span class="stat-plus">+ attic</span></strong><span>Storeys</span></div><div><strong>78.30<span class="stat-plus"> m</span></strong><span>Plan length</span></div></div>
+          </div>
+
+          <section class="control-section section-select">
+            <div class="section-heading"><h2>Explore a section</h2><span class="micro">01 — 05</span></div>
+            <div class="section-buttons" role="group" aria-label="Select building section">
+              <button data-section="A" aria-pressed="false">A</button><button data-section="B" class="selected" aria-pressed="true">B<span class="section-dot"></span></button><button data-section="C" aria-pressed="false">C</button><button data-section="D" aria-pressed="false">D</button><button data-section="E" aria-pressed="false">E</button>
+            </div>
+            <div class="selection-card"><div><span class="selection-icon" id="selected-letter">B</span><div><strong id="selection-title">Building A</strong><span id="selection-subtitle">Section placement is provisional</span></div></div><button class="icon-button focus-button" id="focus-section" title="Focus on selected section" aria-label="Focus on selected section"><svg><use href="#i-focus"/></svg></button></div>
+            <label class="check-row"><input id="isolate-section" type="checkbox"/><span>Show this section only</span></label>
+          </section>
+
+          <section class="control-section floor-section">
+            <div class="section-heading"><h2>Choose a level</h2><button class="text-button" id="all-floors">Show all</button></div>
+            <div class="select-wrapper"><svg><use href="#i-layers"/></svg><select id="floor-select" aria-label="Isolate a floor"><option value="all">All levels</option><option value="attic">Attic level · +11.21 m</option><option value="third">Third floor · +8.35 m</option><option value="second">Second floor · +5.55 m</option><option value="first">First floor · +2.75 m</option><option value="ground">Ground floor · ±0.00 m</option><option value="basement">Basement · −2.625 m</option></select><svg class="select-chevron"><use href="#i-chevron"/></svg></div>
+            <div class="floor-strip" role="group" aria-label="Floor shortcuts"><button data-floor="basement" title="Basement">−1</button><button data-floor="ground" title="Ground floor">G</button><button data-floor="first" title="First floor">1</button><button data-floor="second" title="Second floor">2</button><button data-floor="third" title="Third floor">3</button><button data-floor="attic" title="Attic level">A</button></div>
+          </section>
+
+          <section class="control-section layers-section">
+            <div class="section-heading"><h2>Look inside</h2><svg class="muted-icon"><use href="#i-eye"/></svg></div>
+            <label class="toggle-row"><span>Show roof<span class="control-subtitle">Continuous pitched roof</span></span><input type="checkbox" role="switch" id="show-roof" checked/><span class="switch" aria-hidden="true"></span></label>
+            <label class="toggle-row"><span>Interior cutaway<span class="control-subtitle">Open the street-facing walls</span></span><input type="checkbox" role="switch" id="cutaway"/><span class="switch" aria-hidden="true"></span></label>
+            <label class="toggle-row"><span>Site context</span><input type="checkbox" role="switch" id="show-context" checked/><span class="switch" aria-hidden="true"></span></label>
+          </section>
+
+          <div class="evidence-note"><svg><use href="#i-info"/></svg><div><strong>A reconstruction, with context.</strong><p>Based on original plans and supplied photographs. Estimated details are marked as inferred.</p></div></div>
+        </div>
+        <div class="sidebar-footer"><span class="status-dot"></span> Source-based reconstruction <span class="version">v1.0</span></div>
+      </aside>
+
+      <section class="viewer" id="viewer" aria-label="Interactive 3D building explorer">
+        <div class="mobile-project"><span class="eyebrow">RESIDENTIAL RECONSTRUCTION</span><strong>Building A</strong></div>
+        <div class="view-toolbar" role="group" aria-label="Camera views">
+          <button data-view="orbit" class="active" aria-pressed="true" title="Orbit view (1)"><svg><use href="#i-orbit"/></svg><span>Orbit</span></button>
+          <button data-view="front" aria-pressed="false" title="Front elevation (2)"><svg><use href="#i-front"/></svg><span>Front</span></button>
+          <button data-view="overhead" aria-pressed="false" title="Overhead view (3)"><svg><use href="#i-top"/></svg><span>Overhead</span></button>
+          <button data-view="eye" aria-pressed="false" title="Eye-level view (4)"><svg><use href="#i-eye"/></svg><span>Eye level</span></button>
+        </div>
+        <div class="viewer-caption"><span class="status-dot"></span><span id="view-label">EXTERIOR · ALL LEVELS</span></div>
+        <div class="canvas-wrap" id="canvas-wrap"><canvas id="twin-canvas" tabindex="0" aria-label="3D building. Drag to orbit, scroll or pinch to zoom. Use arrow keys to orbit, plus or minus to zoom, and keys 1 to 4 for views." aria-describedby="viewer-help"></canvas></div>
+        <div class="label-layer" id="label-layer" aria-hidden="true"><div class="building-tag" id="building-tag"><span class="tag-dot"></span><strong>B</strong><span>Building A</span></div></div>
+        <div class="graphic-error" id="graphic-error" role="alert" hidden><svg><use href="#i-info"/></svg><h2>The 3D view couldn’t start.</h2><p id="error-detail">Please enable WebGL in your browser and reload this page.</p><button id="reload-graphics" class="text-button">Try again</button></div>
+        <div class="loading" id="loading"><span class="loading-mark"><svg><use href="#i-building"/></svg></span><span>Assembling the building…</span></div>
+        <div class="orientation" title="Model front; orientation is provisional"><span>F <small>≈</small></span><div id="compass-arrow"><svg viewBox="0 0 38 38" aria-hidden="true"><path d="m19 4 7 26-7-6-7 6Z" fill="#63786a"/><path d="m19 4 0 20-7 6Z" fill="#9fae9f"/></svg></div><span class="orientation-caption">inferred</span></div>
+        <div class="zoom-controls" role="group" aria-label="Zoom and reset"><button class="icon-button" id="zoom-in" title="Zoom in (+)" aria-label="Zoom in"><svg><use href="#i-plus"/></svg></button><button class="icon-button" id="zoom-out" title="Zoom out (−)" aria-label="Zoom out"><svg><use href="#i-minus"/></svg></button><span class="tool-divider"></span><button class="icon-button" id="reset-view" title="Reset camera (R)" aria-label="Reset camera"><svg><use href="#i-reset"/></svg></button></div>
+        <div class="plan-notice" id="plan-notice" hidden><span class="inferred-line"></span><span><strong>Plan-derived interior</strong> · Partitions and room placements are inferred; current layout unverified.</span></div>
+        <div class="viewer-bottom"><div class="viewer-legend"><span><i class="legend-selected"></i>Selected section</span><span><i class="legend-inferred"></i>Inferred geometry</span></div><div class="scale" id="model-scale"><div id="scale-line"></div><span><span id="scale-value">10 m</span> <small>· model scale</small></span></div></div>
+        <div class="interaction-hint" id="viewer-help"><svg><use href="#i-mouse"/></svg><span>Drag to orbit</span><span class="hint-dot">·</span><span>Scroll to zoom</span><button class="help-button" data-open="help" aria-label="Keyboard and touch controls" title="Keyboard and touch controls"><svg><use href="#i-help"/></svg></button></div>
+        <div class="sr-only" id="announce" role="status" aria-live="polite"></div>
+      </section>
+    </main>
+    <footer class="app-footer"><span>Built from evidence. Open to discovery.</span></footer>
+
+    
+
+    
+
+    <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title"><div class="dialog-header"><div><span class="eyebrow">MAKE YOURSELF AT HOME</span><h2 id="help-title">Explore at your own pace.</h2></div><button class="icon-button close-dialog" aria-label="Close controls help"><svg><use href="#i-close"/></svg></button></div><div class="help-body"><p>Choose a section, isolate a level, or open the street-facing walls to explore the interior. Selecting a level removes the roof and opens a plan view.</p><dl><div><dt>Orbit</dt><dd>Drag · one-finger drag · arrow keys</dd></div><div><dt>Zoom</dt><dd>Scroll · pinch · <kbd>+</kbd> / <kbd>−</kbd></dd></div><div><dt>Pan</dt><dd>Right drag · two-finger drag</dd></div><div><dt>Camera presets</dt><dd><kbd>1</kbd> Orbit <kbd>2</kbd> Front <kbd>3</kbd> Overhead <kbd>4</kbd> Eye level</dd></div><div><dt>Reset camera</dt><dd><kbd>R</kbd></dd></div><div><dt>Select a section</dt><dd>Click the building or use the A–E buttons</dd></div><div><dt>Close a panel</dt><dd><kbd>Esc</kbd></dd></div></dl><p class="help-footnote">For keyboard camera control, focus the 3D view first. Every setting is also available through the controls using Tab and Space.</p></div></dialog>
+    <noscript><div class="noscript">This interactive reconstruction needs JavaScript. Enable it to explore the building.</div></noscript>
+  </body>
+</html>
