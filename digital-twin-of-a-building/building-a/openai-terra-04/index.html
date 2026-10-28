@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f3ed" />
+  
+  <title>Building A — Building Study</title>
+  <script type="module" crossorigin src="../../assets/index-B5to_n4T.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="../../assets/OrbitControls-D7r21kdb.js">
+  <link rel="stylesheet" crossorigin href="../../assets/index-B4cvufQ3.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="identity" href="../../compare/building-a/" aria-label="Building A, reset page">
+      <span class="identity-mark" aria-hidden="true">A<span>.</span></span>
+      <span class="identity-copy"><strong>Building A</strong><small>RESIDENTIAL RECONSTRUCTION</small></span>
+    </a>
+    <div class="top-actions">
+      
+      
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar" aria-label="Model controls">
+      <div class="intro">
+        <div class="eyebrow"><span class="accent-line"></span> THE BUILDING / 01</div>
+        <h1>Explore the<br><em>building.</em></h1>
+        <p>Five connected sections, one shared story. Explore the building from the outside in.</p>
+      </div>
+
+      <section class="control-section">
+        <div class="section-heading"><span>01</span><h2>SELECT A SECTION</h2><span class="hint">STREET SIDE</span></div>
+        <div class="section-picker" id="section-picker" role="group" aria-label="Select a building section">
+          <button type="button" data-section="0" aria-label="Section A">A</button>
+          <button type="button" data-section="1" aria-label="Section B" aria-pressed="true">B</button>
+          <button type="button" data-section="2" aria-label="Section C">C</button>
+          <button type="button" data-section="3" aria-label="Section D">D</button>
+          <button type="button" data-section="4" aria-label="Section E">E</button>
+        </div>
+        <p class="control-note"><span class="legend-dot"></span> Section placement and interior layout are provisional.</p>
+        <button class="text-button" id="show-building" type="button">View the whole building <span>↗</span></button>
+      </section>
+
+      <section class="control-section">
+        <div class="section-heading"><span>02</span><h2>ISOLATE A FLOOR</h2></div>
+        <div class="floor-picker" id="floor-picker" role="group" aria-label="Isolate a floor">
+          <button type="button" data-floor="all" aria-pressed="true">All</button>
+          <button type="button" data-floor="0" aria-label="Ground floor">G</button>
+          <button type="button" data-floor="1" aria-label="First floor">01</button>
+          <button type="button" data-floor="2" aria-label="Second floor">02</button>
+          <button type="button" data-floor="3" aria-label="Third floor">03</button>
+        </div>
+        <p class="control-note" id="floor-note">Showing all four principal levels.</p>
+      </section>
+
+      <section class="control-section display-section">
+        <div class="section-heading"><span>03</span><h2>DISPLAY</h2></div>
+        <button class="toggle-row" id="roof-toggle" type="button" aria-pressed="true">
+          <span><strong>Roof</strong><small id="roof-description">Show the pitched roof</small></span><span class="switch" aria-hidden="true"><i></i></span>
+        </button>
+        <button class="toggle-row" id="cutaway-toggle" type="button" aria-pressed="false">
+          <span><strong>Interior cutaway</strong><small>Reveal the typical plan</small></span><span class="switch" aria-hidden="true"><i></i></span>
+        </button>
+      </section>
+
+      <section class="drawing-key" aria-label="Dimensions from original drawings">
+        <div class="section-heading"><span>↗</span><h2>PROVISIONAL MODEL DIMENSIONS</h2></div>
+        <div><p><strong>78.30 <small>m</small></strong><span>OVERALL LENGTH</span></p><p><strong>9.60 <small>m</small></strong><span>MAIN DEPTH</span></p><p><strong>2.80 <small>m</small></strong><span>FLOOR INTERVAL</span></p></div>
+        <p class="control-note">Original dimensions; current measurements are unverified.</p>
+      </section>
+
+      <div class="sidebar-foot">
+        <span class="info-icon">i</span>
+        <p><strong>A study, not a survey.</strong> Public export corrects the original viewer’s 1 px canvas sizing. Geometry is unchanged. Original plans may not reflect the building today. Interior placement and orientation are inferred.</p>
+      </div>
+    </aside>
+
+    <section class="stage" aria-label="Interactive building model">
+      <div id="viewer" class="viewer" aria-label="Three-dimensional building model"></div>
+      <div class="stage-top">
+        <div><div class="stage-kicker"><span></span> INTERACTIVE MODEL</div><div class="stage-title">Building <span>A</span></div></div>
+        <div class="view-switch" role="group" aria-label="Camera view">
+          <button type="button" data-view="orbit" aria-pressed="true">3D</button>
+          <button type="button" data-view="front">Front</button>
+          <button type="button" data-view="top">Overhead</button>
+        </div>
+      </div>
+      <div class="model-caption"><span class="crosshair">✳</span><span id="model-scope">FIVE CONNECTED SECTIONS</span><span class="caption-separator"></span><span id="view-label">PERSPECTIVE VIEW</span></div>
+      <div class="viewer-error" id="viewer-error" role="alert" hidden><strong>Unable to display the 3D model.</strong><span>Your browser may not support WebGL, or graphics initialization failed. Reload the page to try again.</span></div>
+      <div class="stage-bottom">
+        <div class="selection-card" aria-live="polite">
+          <div class="selection-icon" aria-hidden="true">⌗</div>
+          <div><small>SELECTED SECTION</small><strong id="selection-title">Section B</strong><p id="selection-description">Approximate section geometry and interior placement.</p></div>
+        </div>
+        <div class="navigation">
+          <p><span class="drag-icon">✥</span> Drag to orbit <span class="nav-divider">/</span> Scroll to zoom</p>
+          <div class="nav-buttons" aria-label="Model navigation">
+            <button type="button" id="rotate-left" aria-label="Orbit left" title="Orbit left">↶</button>
+            <button type="button" id="rotate-right" aria-label="Orbit right" title="Orbit right">↷</button>
+            <button type="button" id="zoom-out" aria-label="Zoom out" title="Zoom out">−</button>
+            <button type="button" id="zoom-in" aria-label="Zoom in" title="Zoom in">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="stage-edge"><span>PROVISIONAL MODEL DIMENSIONS</span><span>DIMENSIONS &amp; LAYOUT SUBJECT TO VERIFICATION</span></div>
+    </section>
+  </main>
+
+  
+</body>
+</html>
