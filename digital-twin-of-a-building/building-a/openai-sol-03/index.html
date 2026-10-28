@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f1f2ec">
+  
+  <title>Building A — Building atlas</title>
+  
+  <script type="module" crossorigin src="../../assets/index-ChmlM2WB.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="../../assets/preload-helper-PPVm8Dsz.js">
+  <link rel="modulepreload" crossorigin href="../../assets/model-EzVH8FsM.js">
+  <link rel="stylesheet" crossorigin href="../../assets/index-BkC_45EG.css">
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="../../compare/building-a/" aria-label="Building atlas home"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="m5 12 13-7 13 7v14l-13 7-13-7zM5 12l13 7 13-7M18 19v14M11 9l13 7v13"/></svg><span>Building<span class="brand-light">atlas</span></span></a>
+    <nav aria-label="Main"><span class="nav-current">Explore</span></nav>
+    <div class="header-location"><span class="location-dot"></span>Residential reconstruction</div>
+  </header>
+  <main>
+    <section class="project-heading" aria-labelledby="project-title">
+      <div><p class="eyebrow">RESIDENTIAL ARCHIVE <span>/</span> 001</p><h1 id="project-title">Building A<span class="title-dot">.</span></h1></div>
+      <div class="project-description"><p>Five sections. One connected building.</p><span>A reconstruction from original drawings & photographs.</span></div>
+      <span class="model-badge"><span></span>Interpretive digital twin</span>
+    </section>
+    <div class="workspace">
+      <section class="viewer" aria-label="Interactive building model">
+        <div id="scene" tabindex="0" role="application" aria-label="3D building. Arrow keys orbit, plus and minus zoom. Shift and arrows pan. Home resets the view." aria-describedby="keyboard-help"></div>
+        <div id="loading" class="loading"><span class="loading-symbol">⌑</span><strong>Assembling the building</strong><span>From the supplied archive</span></div>
+        <div id="graphics-error" class="graphics-error" role="alert" hidden><strong>The 3D view is unavailable</strong><p id="error-detail"></p><p>Reload the page to try again.</p><button id="retry">Try again</button></div>
+        <div class="view-toolbar" role="group" aria-label="Camera views">
+          <button data-view="orbit" class="active" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2 7 4v8l-7 4-7-4V6zM3 6l7 4 7-4M10 10v8"/></svg><span>Orbit</span></button>
+          <button data-view="front" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 17V5h14v12M1 17h18M6 8h2m4 0h2M6 11h2m4 0h2M9 17v-3h2v3"/></svg><span>Front</span></button>
+          <button data-view="overhead" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3h14v14H3zM3 10h14M10 3v14"/></svg><span>Overhead</span></button>
+          <button data-view="eye" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M1 10s3-5 9-5 9 5 9 5-3 5-9 5-9-5-9-5Z"/><circle cx="10" cy="10" r="2.5"/></svg><span>Eye level</span></button>
+        </div>
+        <div class="view-readout"><span class="tiny-cross">+</span><span id="view-name">STREET-SIDE PERSPECTIVE</span><small>Orientation inferred</small></div>
+        <div id="section-labels" aria-label="Select a section in the model"></div>
+        <div class="scene-actions" role="group" aria-label="Zoom and reset">
+          <button id="zoom-in" aria-label="Zoom in" title="Zoom in (+)">+</button><button id="zoom-out" aria-label="Zoom out" title="Zoom out (−)">−</button><span></span><button id="reset-view" aria-label="Reset camera" title="Reset camera (Home)"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 6a6 6 0 1 1-1 7M5 2v4H1"/></svg></button>
+        </div>
+        <div class="scene-context"><span class="context-line"></span><span>ULICA Building A <small>Street-facing elevation</small></span></div>
+        <div class="viewer-bottom">
+          
+          <div class="navigation-hint" id="keyboard-help"><span><svg viewBox="0 0 18 22" aria-hidden="true"><rect x="3" y="1" width="12" height="19" rx="6"/><path d="M9 1v7"/></svg>Drag to orbit</span><i>·</i><span>Scroll to zoom</span><button id="help-open" aria-label="Open keyboard controls">?</button></div>
+        </div>
+        <div class="cutaway-banner" id="cutaway-banner" hidden><span class="status-dot"></span><span id="cutaway-text">Interior cutaway · schematic partitions</span></div>
+      </section>
+      <aside class="inspector" aria-label="Model controls">
+        <div class="inspector-scroll">
+          <section class="selection-panel"><div class="section-heading"><span class="eyebrow">01 <b>EXPLORE THE BUILDING</b></span><span class="mini-cube">◇</span></div><div class="selection-title"><h2 id="selection-title">Section B</h2><span class="selected-tag">SELECTED</span></div><p class="muted" id="selection-detail">Approximate section geometry and interior placement.</p>
+            <div class="section-picker" id="section-picker" role="group" aria-label="Building section"></div>
+            <p class="small-note">Section geometry and placement remain provisional.</p>
+            <label class="checkbox-row focus-option"><input type="checkbox" id="isolate-section"><span>Isolate selected section</span><span class="control-icon">⊡</span></label>
+          </section>
+          <section class="floor-panel"><div class="section-heading"><label class="eyebrow" for="floor-select">02 <b>CHOOSE A LEVEL</b></label><span id="floor-datum">ALL LEVELS</span></div>
+            <select id="floor-select" aria-label="Isolate a floor"><option value="all">Entire building</option><option value="A">A — Attic · +11.35 m</option><option value="3">3 — Third floor · +8.40 m</option><option value="2">2 — Second floor · +5.60 m</option><option value="1">1 — First floor · +2.80 m</option><option value="P">P — Ground floor · ±0.00 m</option><option value="K">K — Basement · −2.625 m</option></select>
+            <div class="floor-stack" id="floor-stack" role="group" aria-label="Floor shortcuts"></div>
+          </section>
+          <section class="layers-panel"><div class="section-heading"><span class="eyebrow">03 <b>LOOK INSIDE</b></span></div>
+            <label class="switch-row"><span><strong>Remove roof</strong><small>Reveal the attic</small></span><input type="checkbox" id="roof-off" role="switch"><span class="switch" aria-hidden="true"></span></label>
+            <label class="switch-row"><span><strong>Interior cutaway</strong><small>Open the street-facing wall</small></span><input type="checkbox" id="cutaway" role="switch"><span class="switch" aria-hidden="true"></span></label>
+            <button class="plan-action" id="explore-plan"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 3h16v16H3zM3 11h8V3m0 8v8m0-5h8"/></svg><span>Explore a typical floor</span><span>↗</span></button>
+          </section>
+          <section class="details-panel"><div class="section-heading"><span class="eyebrow" id="details-heading">FROM THE DRAWINGS</span></div>
+            <div id="envelope-details"><div class="metric-row"><span>Overall length</span><strong>78.30 <small>m</small></strong></div><div class="metric-row"><span>Main body depth</span><strong>9.60 <small>m</small></strong></div><div class="metric-row"><span>Typical floor spacing</span><strong>2.80 <small>m</small></strong></div></div>
+            <div id="room-details" hidden><p class="room-intro">Two mirrored apartments around a stair core. Original room descriptions:</p><div class="room-list"><span><i class="room-color bedroom"></i>Spalnica <small>Bedroom</small></span><span><i class="room-color living"></i>Dnevna soba <small>Living room</small></span><span><i class="room-color kitchen"></i>Kuhinja + jedilni kot <small>Kitchen & dining</small></span><span><i class="room-color bath"></i>Kopalnica + WC <small>Bathroom & WC</small></span><span><i class="room-color hall"></i>Predsoba <small>Entrance hall</small></span></div><p class="small-note" id="room-caveat">Simplified from the original typical-floor plan. Door positions and partitions are approximate; current layout and unit placement remains provisional. End sections also show Otr. soba / Sobica (small or child’s room).</p></div>
+          </section>
+          
+        </div>
+        <div class="confidence-note"><span class="status-dot"></span><p>Evidence-led, with visible assumptions.<br></p></div>
+      </aside>
+    </div>
+  </main>
+  <footer class="footer"><span>BUILDING A</span><span>Original plans may differ from today’s building.</span><span class="render-status"><span></span><span id="render-status">ON-DEMAND RENDERING</span></span></footer>
+  <div id="announcement" class="sr-only" aria-live="polite"></div>
+
+  
+
+  
+
+  <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title"><div class="modal-header"><h2 id="help-title">Move around.</h2><button class="close-button" data-close-dialog aria-label="Close controls help">×</button></div><div class="notes-content"><p>Drag with one finger or the left mouse button to orbit. Use two fingers to pan or pinch to zoom. Right-drag pans with a mouse.</p><dl><div><dt>Arrow keys</dt><dd>Orbit the focused 3D view</dd></div><div><dt>Shift + arrows</dt><dd>Pan</dd></div><div><dt>+ / −</dt><dd>Zoom</dd></div><div><dt>Home</dt><dd>Reset the camera</dd></div><div><dt>Tab / Enter / Space</dt><dd>Navigate and activate controls</dd></div><div><dt>Escape</dt><dd>Close a dialog</dd></div></dl><p>Choose a section using the letter buttons or by clicking the building. Floor selection hides the other levels; the cutaway opens the street-facing wall and lowers partitions for visibility.</p></div></dialog>
+</body>
+</html>
