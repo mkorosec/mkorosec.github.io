@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f4f3ef" />
+  
+  <title>Building A — Building explorer</title>
+  <script type="module" crossorigin src="../../assets/index-D5VDLs--.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="../../assets/model-7DOGjRmh.js">
+  <link rel="stylesheet" crossorigin href="../../assets/index-tbXVvMYo.css">
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="../../compare/building-a/" aria-label="Building A building explorer home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>BUILDING<span class="brand-light"> ATLAS</span></span></a>
+    <span class="header-project">Building A</span>
+    
+  </header>
+  <main class="workspace">
+    <section class="viewer" aria-label="Interactive building model">
+      <div class="viewport-heading"><div class="eyebrow"><span class="status-dot"></span> BUILDING A RESIDENTIAL ROW</div><h1>A closer look at home.</h1><p>Five adjoining sections. Explore the architecture, layer by layer.</p></div>
+      <div id="canvas-wrap"><canvas id="scene" tabindex="0" aria-label="3D building. Drag to orbit; pinch or scroll to zoom. Use arrow keys to orbit, plus and minus to zoom, and keys 1 through 5 to select a section."></canvas><div id="section-labels" aria-label="Select a building section"></div></div>
+      <div id="graphics-error" role="alert" hidden><b>The 3D view couldn’t start.</b><p id="error-detail">WebGL 2 is required. Try enabling hardware acceleration or using a current browser.</p><button id="retry">Try again</button></div>
+      <div class="model-tag"><span class="tiny-cube" aria-hidden="true">◇</span> Evidence-based reconstruction <span class="beta">PROVISIONAL</span></div>
+      <div class="view-tools" aria-label="Model zoom controls"><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-out" aria-label="Zoom out">−</button><span></span><button id="reset-view" aria-label="Reset model and camera" title="Reset model and camera">⟲</button></div>
+      <div class="orientation" aria-hidden="true"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="22"/><path d="M30 12 36 35 30 31 24 35Z"/></svg><span>STREET SIDE</span><small>Bearing inferred</small></div>
+      <div class="view-bottom"><div class="scale"><span id="scale-bar"></span><small>10 m · model scale</small></div><nav class="view-presets" aria-label="Camera views"><button data-view="orbit" aria-pressed="true"><span aria-hidden="true">◇</span> Orbit</button><button data-view="front" aria-pressed="false"><span aria-hidden="true">▤</span> Front</button><button data-view="overhead" aria-pressed="false"><span aria-hidden="true">⊞</span> Overhead</button><button data-view="eye" aria-pressed="false"><span aria-hidden="true">◎</span> Eye level</button></nav><button class="help-button" id="help-open" aria-label="Keyboard and navigation help">?</button></div>
+      <div class="viewer-footnote"><span id="view-caption">Drag to orbit <span>·</span> Scroll to zoom <span>·</span> Click a section to explore</span><span class="render-status"><i></i> LOCAL 3D MODEL</span></div>
+    </section>
+    <aside class="inspector" aria-label="Building exploration controls">
+      <div class="inspector-heading"><span class="eyebrow">YOUR EXPLORATION</span></div>
+      <div class="selection-title"><div><span class="overline">SELECTED SECTION</span><h2 id="selection-name">Section B</h2></div><span class="address-badge" id="selection-number">B</span></div>
+      <p class="selection-description" id="selection-description">Approximate section geometry and interior placement.</p>
+      <div class="section-picker" role="group" aria-label="Building section"><button data-section="A" aria-pressed="false">A</button><button data-section="B" aria-pressed="true">B</button><button data-section="C" aria-pressed="false">C</button><button data-section="D" aria-pressed="false">D</button><button data-section="E" aria-pressed="false">E</button></div>
+      <p class="micro-note">* Address order inferred. A–E plan mapping inferred.</p>
+      <label class="toggle-row"><span>Isolate selected section</span><input id="isolate" type="checkbox" role="switch"/><span class="switch" aria-hidden="true"></span></label>
+      <div class="panel-divider"></div>
+      <label class="control-label" for="floor">FLOOR LEVEL <span id="floor-count">ALL LEVELS</span></label>
+      <div class="select-wrap"><span aria-hidden="true">▱</span><select id="floor"><option value="all">Whole building</option><option value="4">Attic · shared space</option><option value="3">Third floor · 3</option><option value="2">Second floor · 2</option><option value="1">First floor · 1</option><option value="0">Ground floor · P</option><option value="-1">Basement · K</option></select></div>
+      <p class="micro-note" id="floor-note">Basement + four residential levels + shared attic</p>
+      <div class="layer-heading"><span class="control-label">MODEL LAYERS</span><span class="layer-icon" aria-hidden="true">▱</span></div>
+      <label class="toggle-row"><span>Show roof<small>Continuous pitched tile roof</small></span><input id="roof" type="checkbox" role="switch" checked/><span class="switch" aria-hidden="true"></span></label>
+      <label class="toggle-row"><span>Interior cutaway<small>Open the selected street façade</small></span><input id="cutaway" type="checkbox" role="switch"/><span class="switch" aria-hidden="true"></span></label>
+      <label class="toggle-row"><span>Room labels<small>Visible on exposed residential floors</small></span><input id="labels" type="checkbox" role="switch" checked/><span class="switch" aria-hidden="true"></span></label>
+      <button id="inspect-plan" class="primary-button"><span aria-hidden="true">⊞</span> Inspect a floor plan <span aria-hidden="true">↗</span></button>
+      <div class="evidence-note"><span aria-hidden="true">i</span><div><b>A reconstruction, with open questions.</b><p>Exterior follows supplied photographs. Interior partitions and unit placements are provisional; original plans may have changed.</p></div></div>
+      <div class="inspector-bottom"><span class="legend-dot"></span> Selected section <span class="legend-line"></span> Inferred interior</div>
+    </aside>
+  </main>
+  <footer class="app-footer"><span>BUILDING A</span><span id="selection-status" role="status" aria-live="polite">Section B · Whole building</span><span class="footer-version">RECONSTRUCTION 01 <span>·</span> PROVISIONAL GEOMETRY</span></footer>
+  
+  
+  <dialog id="help-dialog" class="help-dialog"><div class="dialog-header"><h2>Find your way around.</h2><button class="close-button" data-close aria-label="Close navigation help">×</button></div><div class="about-body"><p>Drag with one finger or the left mouse button to orbit. Pinch or scroll to zoom. Two-finger drag or right-mouse drag pans.</p><dl class="key-list"><dt>Arrow keys</dt><dd>Orbit the focused 3D view</dd><dt>Shift + arrows</dt><dd>Pan the focused 3D view</dd><dt>+ / −</dt><dd>Zoom in / out</dd><dt>1 … 5</dt><dd>Select section A … E</dd><dt>R</dt><dd>Reset the model and camera</dd><dt>Tab / Space</dt><dd>Move to / activate controls</dd><dt>Esc</dt><dd>Close a dialog</dd></dl><p>“Inspect a floor plan” isolates the selected section on the first floor, removes the roof, and opens the street façade. Change the floor selector to inspect another level.</p></div></dialog>
+</body>
+</html>
