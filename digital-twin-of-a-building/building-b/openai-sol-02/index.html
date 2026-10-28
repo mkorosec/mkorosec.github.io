@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+ <meta name="theme-color" content="#f6f5ef"><meta name="description" content="Explore a drawing-based digital reconstruction of Building B.">
+ <title>Building B — Building explorer</title>
+  <script type="module" crossorigin src="../../assets/index-D7eqwJ--.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="../../assets/OrbitControls-Dd14w_16.js">
+  <link rel="stylesheet" crossorigin href="../../assets/index-BKW3ODAE.css">
+</head>
+<body>
+ <header class="topbar">
+  <a class="brand" href="../../compare/building-b/" aria-label="Building B home"><span class="brand-symbol">B<span>·</span></span><span>Building B<small>BUILDING EXPLORER</small></span></a>
+  <div class="project-address">Residential reconstruction</div>
+  
+ </header>
+ <main id="workspace">
+  <aside class="sidebar" aria-label="Building controls">
+   <div class="eyebrow"><span class="live-dot"></span> THE DIGITAL TWIN <span class="edition">01 / 2026</span></div>
+   <h1>A place to explore.</h1><p class="intro">Two floors. Six spaces.<br>A closer look at Building B.</p>
+   <div class="section-label">01 <span>Choose a level</span></div>
+   <div class="segmented floor-select" role="group" aria-label="Floor isolation">
+    <button data-floor="all" aria-pressed="true" class="active">Whole building</button><button data-floor="0" aria-pressed="false">Ground</button><button data-floor="1" aria-pressed="false">Upper</button>
+   </div>
+   <div class="section-label unit-heading">02 <span>Explore a space</span><button id="clear-unit" title="Clear selected space" hidden>Clear</button></div>
+   <div id="unit-list" class="unit-list"></div>
+   <div id="unit-detail" class="unit-detail" hidden aria-live="polite"></div>
+   <div class="section-label">03 <span>Make it your view</span></div>
+   <div class="layers">
+    <label class="layer"><span><svg viewBox="0 0 24 24"><path d="m3 12 9-8 9 8M6 10v10h12V10"/></svg>Show roof</span><input id="roof" type="checkbox" checked><i></i></label>
+    <label class="layer"><span><svg viewBox="0 0 24 24"><path d="m4 7 8-4 8 4v10l-8 4-8-4zM4 7l8 4 8-4M12 11v10"/></svg>Interior cutaway</span><input id="cutaway" type="checkbox"><i></i></label>
+    <label class="layer"><span><svg viewBox="0 0 24 24"><path d="M4 12v7m16-7v7M4 16h16M6 12V7h12v5M3 12h4v4m14-4h-4v4"/></svg>Furnishings</span><input id="furnishings" type="checkbox" checked><i></i></label>
+    <label class="layer"><span><svg viewBox="0 0 24 24"><path d="M12 21V10M12 15C2 15 3 5 3 5s9 0 9 10Zm0-3c0-8 8-9 8-9s2 9-8 9Z"/></svg>Garden context</span><input id="context" type="checkbox" checked><i></i></label>
+   </div>
+   
+   <div class="sidebar-note"><span>i</span><p>Plan-based geometry. Heights and roof are inferred.</p></div>
+  </aside>
+  <section id="viewport" aria-label="Interactive three-dimensional building">
+   <canvas id="scene" tabindex="0" aria-label="Building model. Drag to orbit, scroll to zoom. Arrow keys orbit, plus and minus zoom. F front, P plan, R reset."></canvas>
+   <div class="view-heading"><span class="eyebrow">BUILDING B</span><div><span id="view-name">Whole building</span><span class="view-tag" id="view-tag">Perspective</span></div></div>
+   <div class="evidence-badge"><span></span> Drawing-led reconstruction</div>
+   <div id="loading">Preparing your building<span></span></div>
+   <div id="graphics-error" hidden role="alert"><strong>3D graphics could not start.</strong><p id="error-message"></p></div>
+   <div id="model-labels" aria-hidden="true"></div>
+   <div class="orientation"><svg viewBox="0 0 60 60"><path d="M30 6v39M25 12l5-6 5 6M12 30h36"/><circle cx="30" cy="30" r="19"/></svg><span>DRAWING FRONT</span></div>
+   <div class="scene-caption"><span class="caption-rule"></span><span id="scene-caption">Architectural study<small>Orbit to discover every side</small></span></div>
+   <div class="view-toolbar" role="group" aria-label="Camera views"><button data-view="perspective" class="active" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="m4 7 8-4 8 4v10l-8 4-8-4zM4 7l8 4 8-4M12 11v10"/></svg>3D view</button><button data-view="front" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8M6 9v11h12V9M10 20v-7h4v7"/></svg>Front</button><button data-view="plan" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 12h9V4M13 12v8"/></svg>Overhead</button><span></span><button id="reset" class="icon-button" aria-label="Reset building and camera" title="Reset (R)">↺</button></div>
+   <div class="zoom-controls"><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-out" aria-label="Zoom out">−</button></div>
+   <div class="viewport-foot"><span><span class="drag-icon">↔</span> Drag to orbit <b>·</b> Scroll to zoom</span><button id="help">Keyboard shortcuts <span>?</span></button></div>
+  </section>
+ </main>
+ 
+ <dialog id="help-dialog"><button class="close-help" aria-label="Close keyboard help">×</button><span class="eyebrow">A LITTLE GUIDANCE</span><h2>Find your way around.</h2><p>Drag with one finger or the mouse to orbit. Pinch or scroll to zoom. Right-drag or use two fingers to pan.</p><dl><dt>Arrow keys</dt><dd>Orbit the model</dd><dt>+ / −</dt><dd>Zoom in / out</dd><dt>F / P / R</dt><dd>Front / overhead / reset</dd><dt>Tab / Enter</dt><dd>Navigate and use controls</dd><dt>Escape</dt><dd>Close keyboard help</dd></dl><p class="muted">Focus the model to use view shortcuts. Orientation follows the drawing; compass direction is unknown.</p></dialog>
+</body>
+</html>
