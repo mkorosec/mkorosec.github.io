@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Building B — digital twin</title>
+  <script type="module" crossorigin src="../../assets/index-sBO4HreD.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="../../assets/OrbitControls-D3dNcFYU.js">
+  <link rel="modulepreload" crossorigin href="../../assets/BufferGeometryUtils-COLP7h4r.js">
+  <link rel="stylesheet" crossorigin href="../../assets/index-YvWiAO79.css">
+</head>
+<body>
+<div id="app">
+  <div id="stage" aria-live="off">
+    <canvas id="view" tabindex="0" aria-label="3D model of Building B. Arrow keys orbit, plus and minus zoom, F front view, T overhead view."></canvas>
+    <div id="gl-error" role="alert" hidden></div>
+  </div>
+
+  <header id="title">
+    <h1>Building B</h1>
+    <p>Residential reconstruction · geometry is provisional</p>
+  </header>
+
+  <nav id="toolbar" aria-label="Model controls">
+    <div class="group" role="group" aria-label="Views">
+      <button type="button" data-view="front" title="Front view (F)">Front</button>
+      <button type="button" data-view="top" title="Overhead view (T)">Overhead</button>
+      <button type="button" data-view="iso" title="Perspective view (P)">3D</button>
+    </div>
+    <div class="group" role="group" aria-label="Floors">
+      <button type="button" data-floor="all" aria-pressed="true" title="All floors (0)">All</button>
+      <button type="button" data-floor="ground" aria-pressed="false" title="Ground floor only (1)">Ground</button>
+      <button type="button" data-floor="upper" aria-pressed="false" title="Upper floor only (2)">Upper</button>
+    </div>
+    <div class="group" role="group" aria-label="Roof and cutaway">
+      <button type="button" id="btn-roof" aria-pressed="true" title="Show / remove roof (R)">Roof</button>
+      <button type="button" id="btn-cut" aria-pressed="false" title="Interior cutaway (C)">Cutaway</button>
+      <label class="slider" id="cut-wrap" hidden>Cut height
+        <input id="cut-h" type="range" min="0.6" max="6.2" step="0.05" value="4.55" aria-label="Cutaway height in metres">
+        <output id="cut-out">4.55 m</output>
+      </label>
+    </div>
+    <div class="group">
+      <label>Unit
+        <select id="sel-unit" aria-label="Select unit or section">
+          <option value="">— none —</option>
+        </select>
+      </label>
+    </div>
+    
+    <div class="group">
+      <a href="../../compare/building-b/">← Comparison</a>
+      <button type="button" id="btn-info" aria-pressed="false" aria-controls="info" title="Details and checks (I)">Details</button>
+    </div>
+  </nav>
+
+  <aside id="info" hidden aria-label="Details">
+    <button type="button" class="close" id="info-close" aria-label="Close details">×</button>
+    <div id="info-body"></div>
+  </aside>
+
+  
+</div>
+</body>
+</html>
